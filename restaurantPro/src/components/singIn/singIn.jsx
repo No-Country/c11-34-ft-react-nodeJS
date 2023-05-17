@@ -6,26 +6,68 @@ export default function signIn() {
   return (
     <div className="mainContainer">
       <div className="containerForm">
-        <h3 className="title">LOGIN</h3>
+        <div className="containerImg">
+          <img
+            className="imgPrimary"
+            src="https://www.ehosa.es/wp-content/uploads/2016/12/mesa-reservada.jpg"
+            alt=""
+          />
+        </div>
         <form action="/" method="post">
-          <label htmlFor="correo">Correo</label>
-          <input type="email" name="emailUser" id="correoInp" />
-          <label htmlFor="password">Contraseña</label>
-          <input type="password" name="passwordUser" id="passwordInp" />
+          <input
+            type="email"
+            name="emailUser"
+            id="correoInp"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            name="passwordUser"
+            id="passwordInp"
+            placeholder="Contraseña"
+          />
+          <div className="forgotPass">
+            <Link to={``} className="restaurantLink">
+              ¿Olvidaste la contraseña?
+            </Link>
+          </div>
+          <button className="confirmBtn">Confirmar</button>
         </form>
+        <div class="options">
+          <hr/>
+          <div class="textContain">
+            <span>O ingresa con</span>
+          </div>
+          <hr />
+        </div>
         <div className="containerLiniks">
           <Link>
             <img
-              src="https://cdn-icons-png.flaticon.com/256/2875/2875404.png"
-              alt="googleIcon"
-              width={`30px`}
+              className="iconSocial"
+              src="https://img.icons8.com/?size=512&id=435&format=png"
+              alt="fbIcon"
             />
           </Link>
-          <Link to={``} className="forgotLink" >Olvide la contraseña</Link>
+          <Link>
+            <img
+              className="iconSocial"
+              src="https://img.icons8.com/?size=512&id=DpOQ6G5p47f0&format=png"
+              alt="igIcon"
+            />
+          </Link>
+          <Link>
+            <img
+              className="iconSocial"
+              src="https://img.icons8.com/?size=512&id=17904&format=png"
+              alt="googleIcon"
+            />
+          </Link>
         </div>
-        <div className="registerBtn">
-          <Link to={``} className="restaurantLink">Soy Restaurante</Link>
-          <Link to={``} className="registerLink">Aun no tengo cuenta</Link>
+        <div className="createAcc">
+          <h3 className="register">¿Aun no tienes cuenta?</h3>
+          <Link to={``} className="registerLink">
+            Crear cuenta
+          </Link>
         </div>
       </div>
     </div>
