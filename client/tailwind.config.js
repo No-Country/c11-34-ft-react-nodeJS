@@ -6,7 +6,10 @@ export default {
   ],
   theme: {
     extend: {
-      
+      colors : {
+        subtitle : '#BAC0C7',
+        'border-color' : '#E6E8EA'
+      },
       screens : {
         dt : '1440px'
       },
