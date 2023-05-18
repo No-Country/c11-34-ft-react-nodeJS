@@ -1,7 +1,7 @@
 
 export function Home() {
   return (
-    <main>
+    <main className="font-montserrat">
       <h1>Este es el inicio</h1>
     </main>
   )
