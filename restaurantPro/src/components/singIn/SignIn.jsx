@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import React from "react";
 import "./styles.css";
 
-export default function signIn() {
+export default function SignIn() {
   return (
     <div className="mainContainer">
       <div className="containerForm">
@@ -33,9 +32,9 @@ export default function signIn() {
           </div>
           <button className="confirmBtn">Confirmar</button>
         </form>
-        <div class="options">
+        <div className="options">
           <hr/>
-          <div class="textContain">
+          <div className="textContain">
             <span>O ingresa con</span>
           </div>
           <hr />

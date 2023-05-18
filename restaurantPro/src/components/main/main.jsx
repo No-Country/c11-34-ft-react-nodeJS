@@ -1,8 +1,7 @@
 import { Link} from "react-router-dom";
-import React from "react";
 import "../main/style.css";
 
-export default function main() {
+export default function Main() {
   return (
     <header className="headerContainer">
       <div className="logo">
@@ -15,10 +14,10 @@ export default function main() {
         <nav>
           <ul>
             <li>
-              <Link to={`./register`}>Registrarse</Link>
+              <Link to={`./signup`}>Registrarse</Link>
             </li>
             <li>
-              <Link to={`./singIn`}>Iniciar sesion</Link>
+              <Link to={`./signin`}>Iniciar sesion</Link>
             </li>
           </ul>
         </nav>

@@ -1,21 +1,17 @@
-import React, {Fragment} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Main from '../../src/components/main/main';
-import SingIn from "../../src/components/singIn/singIn";
-
-
+import {Main, SignIn, SignUp} from '../components'
 
 export default function App() {
   return (
-    <Fragment>
+    <>
         <Router>
             <Routes>
                 <Route path="/" exact element={<Main/>}/>
-                <Route path="/singin" exact element={<SingIn/>}/>
-                {/* <Route path="/register" exact element={<Register/>}/> */}
+                <Route path="/signin" exact element={<SignIn/>}/>
+                <Route path="/signup" exact element={<SignUp/>}/>
             </Routes>
         </Router>
-    </Fragment>
+    </>
   );
 }
 
