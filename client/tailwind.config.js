@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {
+      
       screens : {
         dt : '1440px'
       },

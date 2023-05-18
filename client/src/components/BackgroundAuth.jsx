@@ -1,29 +1,36 @@
-import placeholder from '../assets/Vector.svg'
+import { Link } from 'react-router-dom'
+import arrowLeft from '../assets/arrow-left.svg'
+import arrowRight from '../assets/arrow-right.svg'
+import logoWhite from '../assets/logo-white.svg'
 
 export function BackgroundAuth() {
   return (
-    <section className="hidden lg:col-span-5 dt:col-span-8 bg-[#EFEFF0] rounded-3xl h-full lg:flex justify-between items-end px-12 py-16 relative ">
-    
-          {/* Info */}
-            <div className=''>
-              <h2 className='text-2xl font-medium'>Lorem ipsum</h2>
-              <p className='text-lg w-96 font-medium'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi aut</p>
+    <section className="hidden lg:col-span-5 dt:col-span-7 overflow-hidden rounded-3xl h-full lg:flex justify-between items-end px-12 py-16 relative ">
+          <img src='https://a.storyblok.com/f/53624/1365x1800/5f945a262a/two-men-on-a-colorful-balcony-in-caminito-la-boca-buenos-aires.jpg' alt='restaurante la boca' 
+          className='w-full h-full object-cover absolute top-0 left-0 rounded-3xl'
+          />
+         <section className="absolute h-full w-full bg-black/40 top-0 left-0 flex justify-between items-end text-white px-8 py-12">
+           {/* Info */}
+           <div className='font-inter flex flex-col gap-y-1'>
+              <h2 className='text-2xl font-medium '>Sabores del Riachuelo</h2>
+              <p className='text-base leading-5 w-96 font-normal'>Inspirado en la rica historia y cultura de La Boca, este establecimiento ofrece una experiencia culinaria única que celebra los sabores auténticos y tradicionales de la región.</p>
             </div>
     
             {/* Buttons Slide */}
-            <div className='flex gap-x-4 items-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className='bg-white p-1 rounded-full'><path d="M15 4l-8 8 8 8"/></svg>       
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className='bg-white p-1 rounded-full'><path d="M8 4l8 8-8 8"/></svg>
+            <div className='flex gap-x-6 items-center'>
+              <button>
+                <img src={arrowLeft}/> 
+              </button>
+              <button>
+                <img src={arrowRight}/>
+              </button>
             </div>
+         </section>
     
-            {/* Placeholder svg */}
-            <div className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>
-              <img src={placeholder} alt='placeholder'/>
-            </div>
-            {/* Placeholder svg */}
-            <div className='absolute top-12 left-12 opacity-60'>
-              <img src={placeholder} alt='placeholder'/>
-            </div>
+        <Link to='/' className=' transition-transform cursor-pointer'>
+          <img src={logoWhite} alt='logo morfi' className='absolute top-8 left-10 hover:scale-95'/>
+        </Link>
+            
     </section>
   )
 }
