@@ -44,7 +44,7 @@ input {
   margin: 5px 0;
   border-radius: 22px;
   border: 1px solid rgba(104, 104, 104, 1);
-  padding: 0 10px;
+  padding: 0 25px;
   height: 44px;
   width: 100%;
   -webkit-border-radius: 22px;
@@ -93,6 +93,13 @@ input {
   border: none;
 }
 
+.confirmBtn:hover{
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
 .options {
   display: flex;
   flex-direction: row;
@@ -107,7 +114,7 @@ hr{
 }
 
 /* icons Link*/
-.containerLiniks {
+.containerLinks {
   display: flex;
   flex-direction: row;
   padding: 5px 0;

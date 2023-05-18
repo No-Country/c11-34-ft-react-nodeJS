@@ -4,7 +4,7 @@ import React from "react";
 export default function signIn() {
   return (
     <>
-    <h2>soy el inicio</h2>
+    <h2>soy el registro</h2>
     </>
   );
 }
