@@ -12,7 +12,7 @@ import 'swiper/css'
 
 export function BackgroundAuth() {
   return (
-    <section className="hidden lg:col-span-5 dt:col-span-7 w-full lg:h-[92vh] dt:h-[96vh]  overflow-hidden rounded-3xl  lg:flex justify-between items-end  relative ">
+    <section className="hidden lg:col-span-5 dt:col-span-7 w-full lg:h-[92vh] dt:h-[94vh]  overflow-hidden rounded-3xl  lg:flex justify-between items-end  relative ">
       <Swiper
         loop={true}
         navigation={{
