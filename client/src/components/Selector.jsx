@@ -5,7 +5,7 @@ import arrowDown from '../assets/arrow-down.svg';
 export function Selector({textDefault, image}) {
     const dates = ['12/5/23', '12/6/23', '12/7/23', '12/8/23', '12/9/23', '12/10/23', '12/11/23', '12/12/23'];
     // const [countries, setCountries] = useState(null);
-    // const [inputValue, setInputValue] = useState("");
+    // const [inputValue, setInputValue] = useState("")
     const [selected, setSelected] = useState("");
     const [open, setOpen] = useState(false);
   return (
