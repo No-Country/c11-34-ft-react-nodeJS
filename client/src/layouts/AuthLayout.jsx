@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { BackgroundAuth } from "../components";
+import { BackgroundAuth } from "../components/auth";
 
 export default function AuthLayout() {
   return (

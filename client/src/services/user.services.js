@@ -2,9 +2,12 @@ import axios from "axios"
 const API_URL = 'https://ncback-production.up.railway.app/api/usuarios'
 
 export async function registerUser (newUser) {
-    return (await axios.post(API_URL, newUser)).data
+    return await axios.post(API_URL, newUser)
+ 
 }
 
 export async function loginUser (userToLogin) {
-    return (await axios.post(`${API_URL}/loginm`, userToLogin)).data
+    console.log(userToLogin)
+    return await axios.post(`${API_URL}/login`, userToLogin)
 }
+

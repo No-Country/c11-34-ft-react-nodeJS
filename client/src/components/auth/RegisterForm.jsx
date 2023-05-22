@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { registerUser } from "../services"
+import { registerUser } from "../../services"
 import { toast } from "react-hot-toast"
 
 export function RegisterForm() {
@@ -23,11 +23,11 @@ export function RegisterForm() {
     async function handleSubmit (event) {
         event.preventDefault()
         try {
-            await registerUser(values)
-            toast.success('Registrado sastifactoriamente')
+            const res = await registerUser(values)
+            toast.success(res.data.mensaje)
             resetFields()
         } catch (error) {
-            const errorMessage = error.response.data.mensaje
+            const errorMessage = error.response.data.data.errors[0].msg
             toast.error(errorMessage)
         }
     }

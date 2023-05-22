@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { LoginForm } from '../components'
 import placeholder from '../assets/logo.svg'
+import { LoginForm } from '../components/auth'
 
 export function Login() {
   return (
@@ -13,7 +13,7 @@ export function Login() {
 
       <LoginForm />
 
-      <p className='text-subtitle text-sm text-center font-inter'>Nuevo en Morfi? <Link to='/auth/register' className='text-black font-medium underline text-sm'>Crear una cuenta</Link></p>
+      <p className='text-subtitle text-sm text-center font-inter'>Nuevo en Morfi? <Link to='/auth/register' className='text-black font-medium hover:underline text-sm'>Crear una cuenta</Link></p>
   </>
   )
 }
