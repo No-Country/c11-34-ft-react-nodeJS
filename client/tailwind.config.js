@@ -8,7 +8,8 @@ export default {
     extend: {
       colors : {
         subtitle : '#BAC0C7',
-        'border-color' : '#E6E8EA'
+        'border-color' : '#E6E8EA',
+        'icon-color': '#E6E8EA'
       },
       screens : {
         dt : '1440px'
