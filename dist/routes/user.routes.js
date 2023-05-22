@@ -16,6 +16,7 @@ router.get('/', [
         .normalizeEmail(),
     checking_1.default
 ], userController_1.default.getUsers);
+router.post('/imagen', userController_1.default.uploadImage);
 router.post('/', [
     (0, express_validator_1.check)('nombre', 'El nombre es Obligatorio').notEmpty(),
     (0, express_validator_1.check)('correo', 'Verifique que el correo sea valido')

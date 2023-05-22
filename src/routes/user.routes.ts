@@ -19,6 +19,8 @@ router.get(
   userController.getUsers
 )
 
+router.post('/imagen', userController.uploadImage)
+
 router.post(
   '/',
   [
