@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import {Navigation, Thumbs, Pagination} from 'swiper'
 import { SwiperCard } from './SwiperCard'
-import { swiperCards } from '../utils'
+import { swiperCards } from '../../utils'
 
-import logoWhite from '../assets/logo-white.svg'
-import arrowLeft from '../assets/arrow-left.svg'
-import arrowRight from '../assets/arrow-right.svg'
+import logoWhite from '../../assets/logo-white.svg'
+import arrowLeft from '../../assets/arrow-left.svg'
+import arrowRight from '../../assets/arrow-right.svg'
 
 import 'swiper/css'
 
