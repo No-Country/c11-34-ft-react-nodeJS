@@ -4,6 +4,7 @@ import { NavBar, SearchBar, Gallery } from '../components';
 export function Home() {
   return (
     <main className="font-montserrat flex flex-col gap-y-4">
+
       <NavBar />
       <div className="flex flex-col gap-y-6 justify-center items-center lg:mt-12 px-5">
         <h1 className="lg:text-6xl font-black">Encontrá tu nuevo lugar favorito</h1>
