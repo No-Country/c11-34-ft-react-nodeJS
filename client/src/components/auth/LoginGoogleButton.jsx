@@ -3,8 +3,10 @@ export function LoginGoogleButton() {
 
  //TODO : Hacer logica de authenticacion con google
 
+
   return (
-    <button 
+    <button
+        type="button" 
         id="g_id_onload"
         data-client_id="565935417184-okrrn47e20u7jrgtk4mmjoar5b7678e4.apps.googleusercontent.com"
         data-context="signin"
