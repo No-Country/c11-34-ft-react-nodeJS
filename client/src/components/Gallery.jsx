@@ -1,5 +1,5 @@
-import { galleryCards } from '../utils/GalleryCards'
 import location from '../assets/location.svg'
+import { galleryCards } from '../utils';
 
 export function Gallery() {
 
