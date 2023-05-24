@@ -1,5 +1,6 @@
 import location from '../assets/location.svg'
 import { galleryCards } from '../utils';
+import {Link} from "react-router-dom";
 
 export function Gallery() {
 
@@ -9,7 +10,7 @@ export function Gallery() {
             <div className="flex flex-col items-center justify-center gap-2 bg-white p-5 rounded-lg" key={card.id}>
               <img src={card.img} className='rounded-lg w-72 h-72 object-cover' />
               <div className='flex flex-col justify-start mt-4 w-full gap-3'>
-                <div>{card.title}</div>
+                  <Link to={`/restaurant/${card.id}`}><div>{card.title}</div></Link>
                 <div className='flex flex-row w-full items-center'>
                     <img src={location}/>
                     <div style={{color:'#BAC0C7'}}>{card.distance}</div>
