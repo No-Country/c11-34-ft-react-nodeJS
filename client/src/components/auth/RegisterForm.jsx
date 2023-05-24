@@ -1,10 +1,15 @@
 import { useState } from "react"
 import { registerUser } from "../../services"
 import { toast } from "react-hot-toast"
+import { Ring } from "@uiball/loaders"
 
 export function RegisterForm() {
 
-    const [isError, setIsError] = useState(false)
+    const [actions, setActions] = useState({
+        error : false,
+        loading : false
+    })
+
     const [values, setValues] = useState({
         nombre : '',
         correo : '',
@@ -24,14 +29,15 @@ export function RegisterForm() {
     async function handleSubmit (event) {
         event.preventDefault()
         try {
+            setActions({...actions, loading : true})
             const res = await registerUser(values)
             toast.success(res.data.mensaje)
-            setIsError(false)
+            setActions({ loading : false , error : false})
             resetFields()
         } catch (error) {
             const errorMessage = error.response.data.data.errors[0].msg
             toast.error(errorMessage)
-            setIsError(true)
+            setActions({ loading : false , error : true})
         }
     }
 
@@ -44,23 +50,29 @@ export function RegisterForm() {
             type='text' 
             placeholder='Nombre'
             onChange={(e) => handleChange(e)} 
-            className={`${isError && 'border border-red-400'} p-2.5 border-b border-border-color outline-none`}/>
+            className={`${actions.error && 'border border-red-400'} p-2.5 border-b border-border-color outline-none`}/>
         <input 
             name='correo'
             value={values.correo}
             type='email' 
             placeholder='Email' 
             onChange={(e) => handleChange(e)}
-            className={`${isError && 'border border-red-400'} p-2.5 border-b border-border-color outline-none`}/>
+            className={`${actions.error && 'border border-red-400'} p-2.5 border-b border-border-color outline-none`}/>
         <input 
             name='contrasena'
             value={values.contrasena}
             type='password' 
             placeholder='Contraseña' 
             onChange={(e) => handleChange(e)}
-            className={`${isError && 'border border-red-400'} p-2.5 border-b border-border-color outline-none`}/>
+            className={`${actions.error && 'border border-red-400'} p-2.5 border-b border-border-color outline-none`}/>
         <div className='flex flex-col gap-y-6'>
-        <button type='submit'  className='bg-black text-white rounded-full p-2.5 font-inter '>Crear cuenta</button>
+        <button disabled={actions.loading} type='submit'  className='bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center'>
+           {
+                actions.loading 
+                ? <Ring size={25} lineWeight={5} speed={2} color="white"/>
+                : 'Crear Cuenta'
+            } 
+        </button>
         <button className='flex gap-x-4 items-center justify-center p-2.5 font-inter rounded-full border-2 border-border-color font-medium'>
             <img src='https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg' alt='google logo' width='24' height='24'/>
             Ingresar con Google
