@@ -42,7 +42,7 @@ const CategorySelection = () => {
                 <h1>¿Cuales son tus gustos culinarios?</h1>
             </div>
 
-            <div className="flex w-11/12 justify-around items-center text-2xl font-medium py-3 my-3 mx-auto">
+            <div className="flex w-11/12 text-center items-center text-2xl font-medium py-3 my-3 mx-auto">
                 <h3 >Para ofrecerte recomendaciones personalizadas, cuéntanos tus comidas favoritas y si tienes alguna restricción alimentaria o preferencia especial. </h3>
             </div>
             <div>
