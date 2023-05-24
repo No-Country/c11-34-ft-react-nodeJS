@@ -14,8 +14,8 @@ export function NavBar() {
         <div className="flex items-center gap-10">
             <p className='font-inter font-semibold text-sm whitespace-nowrap'>Registrá tu restaurante</p>
             <button className="flex items-center gap-1 text-white px-2 lg:px-4 py-2 rounded-3xl border-2 border-border-color">
-                <img src={hamburger} alt='hamburger-icon' className='w-12 h-4 lg:w-6 lg:h-6 fill-gray-100'/>
-                <img src={userCircle} alt='user-circle-icon' className='w-10 h-8 hidden lg:block'/>
+                <img src={hamburger} alt='hamburger-icon' className='w-12 h-4 lg:w-6 lg:h-6 icon-color'/>
+                <img src={userCircle} alt='user-circle-icon' className='w-10 h-8 hidden lg:block text-icon-color'/>
             </button>
         </div>
     </header>

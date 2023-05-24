@@ -17,6 +17,14 @@ export default {
       fontFamily : {
         'inter' : ['Inter', 'sans-serif'],
         'montserrat' : ['Montserrat', 'sans-serif']
+      },
+      height:{
+        'galleryDesktop': '300px',
+        'galleryMobile': '250px'
+      },
+      width:{
+        'galleryDesktop': '300px',
+        'galleryMobile': '250px'
       }
     },
   },
