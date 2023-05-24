@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 
-export default function DistanciaIP({ latitudDestiRestaurant, longitudeRestaurant }) {
+export function DistanciaIP({ latitudDestiRestaurant, longitudeRestaurant }) {
     const [ubicacionIP, setUbicacionIP] = useState(null);
     const [distancia, setDistancia] = useState(null);
     const latRest = parseFloat(latitudDestiRestaurant);

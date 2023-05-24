@@ -1,11 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Register } from "./pages";
-import CategorySelection from "./components/tastes/tasteView.jsx";
-import RestaurantView from "./components/restaurantView/restaurantView.jsx";
-
+import { Home, Login, Register, Restaurant, Tastes } from "./pages";
 import { AuthLayout } from "./layouts";
-
 import { Toaster } from "react-hot-toast";
+
 
 function App() {
   return (
@@ -16,8 +13,8 @@ function App() {
           <Route index element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
-        <Route path="/tastes" element={<CategorySelection />} />
-        <Route path="/restaurant/:id" element={<RestaurantView/>}/>
+        <Route path="/tastes" element={<Tastes />} />
+        <Route path="/restaurant/:id" element={<Restaurant/>}/>
       </Routes>
       <Toaster position="top-right" reverseOrder={false} />
     </>
