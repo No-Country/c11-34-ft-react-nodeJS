@@ -1,10 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Distance from "./distanceRestaurant";
 
 export default function RestaurantCard({ name, img, latitude, longitude, average }) {
   return (
-    <Link to={``} className="">
       <div className="containerCard h-full w-full my-5 mx-auto hover:transition duration-200 hover:scale-110 ">
         <div className="w-full h-36 ">
           <img
@@ -40,6 +37,5 @@ export default function RestaurantCard({ name, img, latitude, longitude, average
           </div>
         </div>
       </div>
-    </Link>
   );
 }
