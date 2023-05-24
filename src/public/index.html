@@ -189,14 +189,14 @@
 }
 </code></pre> -->
 
-        <h2>CheckLogin</h2>
+        <h2>CheckLogin Manual</h2>
         <p>
           Esta ruta se utiliza para realizar la verificación de inicio de sesión
           de un usuario.
         </p>
         <ul>
           <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/usuarios/login</code></li>
+          <li>Ruta: <code>/api/auth/login</code></li>
         </ul>
         <p>Parámetros de la solicitud:</p>
         <ul>
@@ -209,12 +209,12 @@
           </li>
         </ul>
         <p>Ejemplo de petición:</p>
-        <pre><code>{
+        <pre><code>
           {
             "correo": "test1@gmail.com",
             "contrasena": "test1"
           }
-}</code></pre>
+</code></pre>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
 {
@@ -231,7 +231,61 @@
       "mensaje": "La contraseña del usuario no coincide"
     }
 </code></pre>
-
+        <h2>CheckLogin Google</h2>
+        <p>
+          Esta ruta se utiliza para realizar la verificación de inicio de sesión
+          de un usuario a traves de google.
+        </p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/auth/google</code></li>
+        </ul>
+        <p>Parámetros de la solicitud:</p>
+        <ul>
+          <li>
+            <code>id_token_google</code> (string, obligatorio):
+            response.credential= token de usuario google entregado por la
+            funcion handleCredentialResponse
+          </li>
+        </ul>
+        <p>Ejemplo de petición:</p>
+        <pre><code>
+          function handleCredentialResponse(response) { 
+            const body = { id_token_google: response.credential } 
+            fetch('http://localhost:3000/api/auth/google', { 
+              method: 'POST', 
+              headers: { 
+                'Content-Type': 'application/json' 
+              }, 
+              body: JSON.stringify(body) 
+            }) 
+              .then((res) => res.json()) 
+              .then((res) => { 
+                console.log(res.usuario) 
+              }) 
+          }
+</code></pre>
+        <pre><code>
+          {
+            "id_token_google": "response.credential"
+          }
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+{
+  "mensaje": "Ingreso exitoso"
+}
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+    {
+        "mensaje": "Usuario no encontrado"
+    }
+    o
+    {
+      "mensaje": "La contraseña del usuario no coincide"
+    }
+</code></pre>
         <h2>Crear un nuevo usuario</h2>
         <p>Crea un nuevo usuario.</p>
         <ul>
