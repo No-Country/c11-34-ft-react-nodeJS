@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { NavBar, SearchBar, Gallery } from '../components';
+import { NavBar, SearchBar, Gallery, Categories } from '../components';
 
 export function Home() {
   return (
@@ -10,6 +10,7 @@ export function Home() {
         <h1 className="lg:text-7xl font-black">Encontrá tu nuevo lugar favorito</h1>
         <p className="lg:text-xl hidden lg:block">Contamos con +500 restaurantes y bares asociados</p>
         <SearchBar />
+        <Categories />
       </div>
       <div className="lg:mt-52 px-10">
         <div className="px-5 hidden lg:block font-black lg:text-xl">Cerca de vos</div>
