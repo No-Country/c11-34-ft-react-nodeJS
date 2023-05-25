@@ -11,7 +11,7 @@ export function Selector({textDefault, image, type}) {
     <div className="relative">       
       <div
         onClick={() => setOpen(!open)}
-        className={`bg-white w-full p-2 flex items-center justify-center gap-1 lg:gap-5 rounded ${
+        className={`bg-white w-full p-2 flex items-center justify-center gap-1 lg:gap-2 rounded ${
           !selected && "text-gray-700"
         }`}
       >
