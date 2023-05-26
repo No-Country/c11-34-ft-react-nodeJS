@@ -1,28 +1,13 @@
 import { Link } from "react-router-dom";
-import { NavBar, NavBarBottom, NavBarMobile, SearchBar, Gallery, Categories } from '../components';
-import React from 'react'
+import {  SearchBar, Gallery, Categories, NavBarUI } from '../components';
 
 export function Home() {
-  const initialState = window.innerWidth < 768 ? false : true;
-  const [isDesktop, setIsDesktop] = React.useState(initialState);
-  const [openNavBar, setOpenNavBar] = React.useState(false);
 
-  React.useEffect(() => {
-    function handleResize() {
-    if (window.innerWidth < 768) {
-        setIsDesktop(false);
-    } else {
-        setIsDesktop(true);
-    }
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-}, []);
 
   return (
     <main className="font-montserrat flex flex-col gap-y-4">
 
-      <NavBar openNavBar={openNavBar} setOpenNavBar={setOpenNavBar} isDesktop={isDesktop}/>
+      <NavBarUI />
       <div className="flex flex-col gap-y-6 justify-center items-center lg:mt-12 px-5">
         <h1 className="lg:text-7xl font-black">Encontrá tu nuevo lugar favorito</h1>
         <p className="lg:text-xl hidden lg:block">Contamos con +500 restaurantes y bares asociados</p>
@@ -36,16 +21,7 @@ export function Home() {
      <Link to='/auth/register' className="bg-border-color w-60 rounded-xl px-4 py-2 m-4">Register</Link>
      <Link to='/tastes' className="bg-border-color w-60 rounded-xl px-4 py-2 m-4">Gustos</Link>
 
-    {
-      !isDesktop && (
-        <NavBarMobile isOpen={openNavBar}/>
-      )
-    }
-    {
-      !isDesktop && (
-        <NavBarBottom />
-      )
-    }
+   
     </main>
   )
 }

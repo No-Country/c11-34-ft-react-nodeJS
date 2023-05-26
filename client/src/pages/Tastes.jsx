@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TastesList } from "../utils";
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { CardTastes, NavBar } from "../components";
+import { CardTastes, NavBarUI } from "../components";
 import { Navigation, Pagination, Thumbs } from "swiper";
 
 import arrow from '../assets/arrow-black.svg'
@@ -32,9 +32,9 @@ export function Tastes() {
     }
     return (
 
-        <section className="pb-6 dt:pb-0">
+        <section className="pb-28  lg:pb-6 dt:pb-0">
 
-            <NavBar/>
+            <NavBarUI />
         
            <div className="flex flex-col gap-y-4 lg:gap-y-6 dt:gap-y-12 mb-12 pt-12">
                 <h2 className="font-inter text-3xl  lg:text-5xl dt:text-7xl text-center font-medium">¿Cuales son tus gustos culinarios? </h2>
