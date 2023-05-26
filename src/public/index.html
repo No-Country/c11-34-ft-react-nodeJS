@@ -189,49 +189,6 @@
 }
 </code></pre> -->
 
-        <h2>CheckLogin</h2>
-        <p>
-          Esta ruta se utiliza para realizar la verificación de inicio de sesión
-          de un usuario.
-        </p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/usuarios/login</code></li>
-        </ul>
-        <p>Parámetros de la solicitud:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo del usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, obligatorio): Contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>{
-          {
-            "correo": "test1@gmail.com",
-            "contrasena": "test1"
-          }
-}</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-{
-  "mensaje": "Ingreso exitoso"
-}
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-    {
-        "mensaje": "Usuario no encontrado"
-    }
-    o
-    {
-      "mensaje": "La contraseña del usuario no coincide"
-    }
-</code></pre>
-
         <h2>Crear un nuevo usuario</h2>
         <p>Crea un nuevo usuario.</p>
         <ul>
@@ -345,6 +302,133 @@
   "mensaje": "Usuario no encontrado"
 }
 </code></pre>
+        <br />
+        <hr />
+        <br />
+        <!-- ------------------------------------------------------------------------------------------------------ -->
+        <!-- --------------------------------LOGIN USER---------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------------------------------ -->
+
+        <h2>CheckLogin</h2>
+        <p>
+          Esta ruta se utiliza para realizar la verificación de inicio de sesión
+          de un usuario.
+        </p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/usuarios/login</code></li>
+        </ul>
+        <p>Parámetros de la solicitud:</p>
+        <ul>
+          <li>
+            <code>correo</code> (string, obligatorio): Correo del usuario.
+          </li>
+          <li>
+            <code>contrasena</code> (string, obligatorio): Contraseña del
+            usuario.
+          </li>
+        </ul>
+        <p>Ejemplo de petición:</p>
+        <pre><code>{
+  {
+    "correo": "test1@gmail.com",
+    "contrasena": "test1"
+  }
+}</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+{
+"mensaje": "Ingreso exitoso"
+}
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+{
+"mensaje": "Usuario no encontrado"
+}
+o
+{
+"mensaje": "La contraseña del usuario no coincide"
+}
+</code></pre>
+
+        <!-- ------------------------------------------------------------------------------------------------------ -->
+        <!-- --------------------------------DETAILS USER---------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------------------------------ -->
+        <br />
+        <hr />
+        <br />
+        <h2>Subir imagen de Perfil de Usuario</h2>
+        <p>Sube una imagen al servidor recibiendo correo y archivo</p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/details/</code></li>
+        </ul>
+        <p>Parámetros de consulta:</p>
+        <ul>
+          <li>
+            <code>correo</code> (string, obligatorio): Correo electrónico del
+            usuario a buscar. <code>img_perfil</code>(file, obligatorio): Imagen
+            del usuario jpeg/jpg/png.
+          </li>
+        </ul>
+        <p>Ejemplo de petición: body (form-data)</p>
+        <pre><code>
+  'correo' -> "usuario1@example.com"
+  'img_perfil' -> file.(jpg/png/jpeg)
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "imagen subida correctamente",
+            "url": "link_de_la_imagen"
+          }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          Array de errores
+          ó
+          {
+            "mensaje": "error al subir la imagen'
+          }
+</code></pre>
+
+        <h2>Detalle de Gustos de Usuario</h2>
+        <p>Envia los gustos del usuario a la base de datos</p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/details/</code></li>
+        </ul>
+        <p>Parámetros de consulta:</p>
+        <ul>
+          <li>
+            <code>correo</code> (string, obligatorio): Correo electrónico del
+            usuario a buscar.
+          </li>
+          <p>EN PROCESO...</p>
+        <!-- </ul>
+        <p>Ejemplo de petición: body (JSON)</p>
+        <pre><code>{
+  "correo": "usuario1@example.com"
+}</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "nombre": "test1",
+            "correo": "test1@gmail.com",
+            "contrasena": "test1",
+            "rol": "USER_ROLE",
+            "estado": true,
+            "google": false,
+            "id": "646ad10cae92aa123ce07df7"
+          }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+{
+  "mensaje": "Usuario no encontrado"
+}
+</code></pre> -->
       </div>
     </div>
   </body>

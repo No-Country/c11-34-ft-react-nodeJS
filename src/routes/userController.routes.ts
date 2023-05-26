@@ -1,5 +1,4 @@
 import { Router } from 'express'
-
 import { check } from 'express-validator'
 import checking from '../middleware/checking'
 import dataValidator from '../helpers/dataValidator'
@@ -18,8 +17,6 @@ router.get(
   ],
   userController.getUsers
 )
-
-router.post('/imagen', userController.uploadImage)
 
 router.post(
   '/',

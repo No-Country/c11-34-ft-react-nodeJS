@@ -3,9 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadImage = exports.deleteUser = exports.updateUser = exports.createUsers = exports.getUsers = void 0;
+exports.deleteUser = exports.updateUser = exports.createUsers = exports.getUsers = void 0;
 const usuario_1 = __importDefault(require("../models/usuario"));
-const cloudinaryUpload_1 = __importDefault(require("../helpers/cloudinaryUpload"));
 async function getUsers(req, res) {
     try {
         const { correo } = req.body;
@@ -95,30 +94,11 @@ async function deleteUser(req, res) {
     }
 }
 exports.deleteUser = deleteUser;
-async function uploadImage(_req, res) {
-    try {
-        const result = await cloudinaryUpload_1.default.uploader.upload('./src/img/anita.jpeg');
-        const { public_id } = result;
-        const transformedUrl = cloudinaryUpload_1.default.url(public_id, {
-            width: 50,
-            height: 50,
-            crop: 'fill'
-        });
-        return res
-            .status(200)
-            .json({ msg: 'imagen subida correctamten', url: transformedUrl });
-    }
-    catch (error) {
-        return res.status(500).json({ msg: 'error al subir la imagen' });
-    }
-}
-exports.uploadImage = uploadImage;
 const userController = {
     getUsers,
     createUsers,
     updateUser,
-    deleteUser,
-    uploadImage
+    deleteUser
 };
 exports.default = userController;
 //# sourceMappingURL=userController.js.map

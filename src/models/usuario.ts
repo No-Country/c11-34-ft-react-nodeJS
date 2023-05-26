@@ -8,6 +8,7 @@ interface Usuario {
   estado: boolean
   google: boolean
   imagen: string
+  gustos: Array<string> | undefined
 }
 
 const usuarioSchema: Schema<Usuario> = new Schema({
@@ -23,6 +24,10 @@ const usuarioSchema: Schema<Usuario> = new Schema({
   contrasena: {
     type: String,
     required: [true, 'La contraseña es obligatoria']
+  },
+  gustos: {
+    type: Array,
+    default: []
   },
   rol: {
     type: String,

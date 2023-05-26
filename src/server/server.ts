@@ -1,14 +1,16 @@
 import express from 'express'
 import cors from 'cors'
 import dbConnection from '../database/dbConnection'
-import routerUser from '../routes/user.routes'
-import routerAuth from '../routes/auth.routes'
+import routerUser from '../routes/userController.routes'
+import routerAuth from '../routes/userAuth.routes'
+import routerDetails from '../routes/userDetails.routes'
 
 class Server {
   private app: express.Application
   private port: string
   private usuariosPath: string
   private usuariosAuth: string
+  private usuariosDetails: string
 
   constructor() {
     this.app = express()
@@ -16,6 +18,7 @@ class Server {
     // Define ruta de mis usuarios
     this.usuariosPath = '/api/usuarios'
     this.usuariosAuth = '/api/auth'
+    this.usuariosDetails = '/api/details'
     // Conectar a base de datos
     this.conectarDB()
     // Middlewares
@@ -41,6 +44,7 @@ class Server {
     // ! router es una ruta de ejemplo, colocar la suya
     this.app.use(this.usuariosPath, routerUser)
     this.app.use(this.usuariosAuth, routerAuth)
+    this.app.use(this.usuariosDetails, routerDetails)
   }
 
   listen() {

@@ -1,6 +1,10 @@
+/*
+    * Archivo de controlador de la ruta /api/usuarios
+    ? Aquí se definen los metodos para obtener y crear usuarios
+*/
+
 import { Request, Response } from 'express'
 import UserModel from '../models/usuario'
-import cloud from '../helpers/cloudinaryUpload'
 
 export async function getUsers(req: Request, res: Response) {
   try {
@@ -108,31 +112,12 @@ export async function deleteUser(req: Request, res: Response) {
   }
 }
 
-export async function uploadImage(_req: Request, res: Response) {
-  try {
-    const result = await cloud.uploader.upload('./src/img/anita.jpeg')
-    const { public_id } = result
-
-    const transformedUrl = cloud.url(public_id, {
-      width: 50,
-      height: 50,
-      crop: 'fill'
-    })
-
-    return res
-      .status(200)
-      .json({ msg: 'imagen subida correctamten', url: transformedUrl })
-  } catch (error) {
-    return res.status(500).json({ msg: 'error al subir la imagen' })
-  }
-}
 
 const userController = {
   getUsers,
   createUsers,
   updateUser,
-  deleteUser,
-  uploadImage
+  deleteUser
 }
 
 export default userController
