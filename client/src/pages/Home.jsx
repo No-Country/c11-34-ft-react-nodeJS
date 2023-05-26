@@ -37,8 +37,8 @@ export function Home() {
      <Link to='/tastes' className="bg-border-color w-60 rounded-xl px-4 py-2 m-4">Gustos</Link>
 
     {
-      !isDesktop && openNavBar && (
-        <NavBarMobile/>
+      !isDesktop && (
+        <NavBarMobile isOpen={openNavBar}/>
       )
     }
     {
