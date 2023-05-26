@@ -51,8 +51,29 @@ export async function uploadImage(req: Request, res: Response) {
   }
 }
 
-const addGustos = async (_req: Request, res: Response) => {
-  res.json({ msg: 'gustos agregados' })
+export async function addGustos (req: Request, res: Response) {
+  const {gustos, correo} = req.body;
+
+  try {
+    const usuario = await UserModel.findOne({correo});
+    console.log("datos de gusto de usuario------"+usuario);
+    
+
+    if (!usuario) {
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    }
+    
+    usuario.gustos = gustos;
+    usuario.save();
+
+    res.json({ msg: 'gustos agregados' })
+    
+  } catch (error) {
+    
+    console.error('Error al actualizar los gustos:', error);
+    return res.status(500).json({ mensaje: 'Error al actualizar los gustos' });
+
+  }
 }
 
 const userDetails = {

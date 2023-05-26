@@ -1,110 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>API de Usuarios</title>
-    <style>
-      body {
-        overflow-y: hidden;
-        background-color: #f2f2f2;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
 
-      .container {
-        max-width: 800px;
-        width: 100%;
-        overflow-y: hidden;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>API de Usuarios</title>
+  <style>
+    body {
+      overflow-y: hidden;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-      h1 {
-        color: #333;
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      overflow-y: hidden;
+    }
 
-      h2 {
-        color: #333;
-        font-size: 20px;
-        margin-bottom: 10px;
-      }
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
-      p {
-        color: #666;
-        font-size: 16px;
-        margin-top: 0;
-      }
+    h2 {
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
 
-      code {
-        background-color: #eee;
-        border-radius: 4px;
-        padding: 2px 4px;
-      }
+    p {
+      color: #666;
+      font-size: 16px;
+      margin-top: 0;
+    }
 
-      pre {
-        background-color: #eee;
-        border-radius: 4px;
-        padding: 10px;
-        white-space: pre-wrap;
-      }
+    code {
+      background-color: #eee;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
 
-      .response {
-        margin-top: 20px;
-      }
+    pre {
+      background-color: #eee;
+      border-radius: 4px;
+      padding: 10px;
+      white-space: pre-wrap;
+    }
 
-      .response code {
-        display: block;
-        margin-top: 10px;
-      }
+    .response {
+      margin-top: 20px;
+    }
 
-      .success {
-        color: green;
-      }
+    .response code {
+      display: block;
+      margin-top: 10px;
+    }
 
-      .error {
-        color: red;
-      }
+    .success {
+      color: green;
+    }
 
-      .scrollable {
-        max-height: 94vh;
-        max-width: 100vw;
-        overflow-y: auto;
-      }
-    </style>
-  </head>
+    .error {
+      color: red;
+    }
 
-  <body>
-    <a href="./loginTest.html">Ir a login de google, solo para local</a>
-    <div class="container">
-      <h1>API de Usuarios</h1>
-      <div class="scrollable">
-        <p>
-          Esta API permite realizar operaciones relacionadas con usuarios, como
-          obtener usuarios, crear usuarios, actualizar usuarios y eliminar
-          usuarios.
-        </p>
-        <p>
-          Ruta de la API:
-          <a href="https://ncback-production.up.railway.app" target="_blank"
-            >https://ncback-production.up.railway.app</a
-          >
-        </p>
+    .scrollable {
+      max-height: 94vh;
+      max-width: 100vw;
+      overflow-y: auto;
+    }
+  </style>
+</head>
 
-        <h2>Obtener todos los usuarios</h2>
-        <p>Obtiene la lista de todos los usuarios registrados en el sistema.</p>
-        <ul>
-          <li>Método: <code>GET</code></li>
-          <li>Ruta: <code>/api/usuarios/</code></li>
-        </ul>
-        <p>Parámetros de consulta: Ninguno.</p>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+<body>
+  <a href="./loginTest.html">Ir a login de google, solo para local</a>
+  <div class="container">
+    <h1>API de Usuarios</h1>
+    <div class="scrollable">
+      <p>
+        Esta API permite realizar operaciones relacionadas con usuarios, como
+        obtener usuarios, crear usuarios, actualizar usuarios y eliminar
+        usuarios.
+      </p>
+      <p>
+        Ruta de la API:
+        <a href="https://ncback-production.up.railway.app" target="_blank">https://ncback-production.up.railway.app</a>
+      </p>
+
+      <h2>Obtener todos los usuarios</h2>
+      <p>Obtiene la lista de todos los usuarios registrados en el sistema.</p>
+      <ul>
+        <li>Método: <code>GET</code></li>
+        <li>Ruta: <code>/api/usuarios/</code></li>
+      </ul>
+      <p>Parámetros de consulta: Ninguno.</p>
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
 [
   {
             "nombre": "test1",
@@ -117,32 +116,32 @@
   }
 ]
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
   "mensaje": "Usuario no encontrado"
 }
 </code></pre>
 
-        <h2>Obtener un usuario por correo</h2>
-        <p>Obtiene un usuario específico por su correo electrónico.</p>
-        <ul>
-          <li>Método: <code>GET</code></li>
-          <li>Ruta: <code>/api/usuarios/</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, opcional): Correo electrónico del
-            usuario a buscar.
-          </li>
-        </ul>
-        <p>Ejemplo de petición: body (JSON)</p>
-        <pre><code>{
+      <h2>Obtener un usuario por correo</h2>
+      <p>Obtiene un usuario específico por su correo electrónico.</p>
+      <ul>
+        <li>Método: <code>GET</code></li>
+        <li>Ruta: <code>/api/usuarios/</code></li>
+      </ul>
+      <p>Parámetros de consulta:</p>
+      <ul>
+        <li>
+          <code>correo</code> (string, opcional): Correo electrónico del
+          usuario a buscar.
+        </li>
+      </ul>
+      <p>Ejemplo de petición: body (JSON)</p>
+      <pre><code>{
   "correo": "usuario1@example.com"
 }</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
           {
             "nombre": "test1",
             "correo": "test1@gmail.com",
@@ -153,14 +152,14 @@
             "id": "646ad10cae92aa123ce07df7"
           }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
   "mensaje": "Usuario no encontrado"
 }
 </code></pre>
 
-        <!-- <h2>Obtener usuario por id</h2>
+      <!-- <h2>Obtener usuario por id</h2>
         <p>Trae los datos de un usuario específico por su id.</p>
         <ul>
           <li>Método: <code>GET</code></li>
@@ -189,160 +188,160 @@
 }
 </code></pre> -->
 
-        <h2>Crear un nuevo usuario</h2>
-        <p>Crea un nuevo usuario.</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/usuarios/</code></li>
-        </ul>
-        <p>Parámetros de cuerpo de la solicitud:</p>
-        <ul>
-          <li>
-            <code>nombre</code> (string, obligatorio): Nombre del usuario.
-          </li>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, obligatorio): Contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>{
+      <h2>Crear un nuevo usuario</h2>
+      <p>Crea un nuevo usuario.</p>
+      <ul>
+        <li>Método: <code>POST</code></li>
+        <li>Ruta: <code>/api/usuarios/</code></li>
+      </ul>
+      <p>Parámetros de cuerpo de la solicitud:</p>
+      <ul>
+        <li>
+          <code>nombre</code> (string, obligatorio): Nombre del usuario.
+        </li>
+        <li>
+          <code>correo</code> (string, obligatorio): Correo electrónico del
+          usuario.
+        </li>
+        <li>
+          <code>contrasena</code> (string, obligatorio): Contraseña del
+          usuario.
+        </li>
+      </ul>
+      <p>Ejemplo de petición:</p>
+      <pre><code>{
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com",
   "contrasena": "password"
 }</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
           {
             "mensaje": "El usuario ha sido creado correctamente"
           }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
   "mensaje": "El correo electrónico ya está registrado"
 }
 </code></pre>
 
-        <h2>Actualizar un usuario</h2>
-        <p>Actualiza los datos de un usuario existente.</p>
-        <ul>
-          <li>Método: <code>PUT</code></li>
-          <li>Ruta: <code>/api/usuarios/:id</code></li>
-        </ul>
-        <p>Parámetros de ruta:</p>
-        <ul>
-          <li>
-            <code>id</code> (string, obligatorio): ID del usuario a actualizar.
-          </li>
-        </ul>
-        <p>Parámetros de cuerpo de la solicitud:</p>
-        <ul>
-          <li>
-            <code>nombre</code> (string, opcional): Nuevo nombre del usuario.
-          </li>
-          <li>
-            <code>correo</code> (string, opcional): Nuevo correo electrónico del
-            usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, opcional): Nueva contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>/api/usuarios/646523b0bb4be194b9207c02</code></pre>
-        <pre><code>{
+      <h2>Actualizar un usuario</h2>
+      <p>Actualiza los datos de un usuario existente.</p>
+      <ul>
+        <li>Método: <code>PUT</code></li>
+        <li>Ruta: <code>/api/usuarios/:id</code></li>
+      </ul>
+      <p>Parámetros de ruta:</p>
+      <ul>
+        <li>
+          <code>id</code> (string, obligatorio): ID del usuario a actualizar.
+        </li>
+      </ul>
+      <p>Parámetros de cuerpo de la solicitud:</p>
+      <ul>
+        <li>
+          <code>nombre</code> (string, opcional): Nuevo nombre del usuario.
+        </li>
+        <li>
+          <code>correo</code> (string, opcional): Nuevo correo electrónico del
+          usuario.
+        </li>
+        <li>
+          <code>contrasena</code> (string, opcional): Nueva contraseña del
+          usuario.
+        </li>
+      </ul>
+      <p>Ejemplo de petición:</p>
+      <pre><code>/api/usuarios/646523b0bb4be194b9207c02</code></pre>
+      <pre><code>{
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com",
   "contrasena": "password"
 }</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
 {
   "id": "4",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
 }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
   "mensaje": "Usuario no encontrado"
 }
 </code></pre>
 
-        <h2>Eliminar un usuario</h2>
-        <p>Elimina un usuario existente.</p>
-        <ul>
-          <li>Método: <code>DELETE</code></li>
-          <li>Ruta: <code>/api/usuarios/:id</code></li>
-        </ul>
-        <p>Parámetros de ruta:</p>
-        <ul>
-          <li>
-            <code>id</code> (string, obligatorio): ID del usuario a eliminar.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>/api/usuarios/646523b0bb4be194b9207c02</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <h2>Eliminar un usuario</h2>
+      <p>Elimina un usuario existente.</p>
+      <ul>
+        <li>Método: <code>DELETE</code></li>
+        <li>Ruta: <code>/api/usuarios/:id</code></li>
+      </ul>
+      <p>Parámetros de ruta:</p>
+      <ul>
+        <li>
+          <code>id</code> (string, obligatorio): ID del usuario a eliminar.
+        </li>
+      </ul>
+      <p>Ejemplo de petición:</p>
+      <pre><code>/api/usuarios/646523b0bb4be194b9207c02</code></pre>
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
 {
   "mensaje": "Usuario eliminado exitosamente"
 }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
   "mensaje": "Usuario no encontrado"
 }
 </code></pre>
-        <br />
-        <hr />
-        <br />
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <!-- --------------------------------LOGIN USER---------------------------------------- -->
-        <!-- ------------------------------------------------------------------------------------------------------ -->
+      <br />
+      <hr />
+      <br />
+      <!-- ------------------------------------------------------------------------------------------------------ -->
+      <!-- --------------------------------LOGIN USER---------------------------------------- -->
+      <!-- ------------------------------------------------------------------------------------------------------ -->
 
-        <h2>CheckLogin</h2>
-        <p>
-          Esta ruta se utiliza para realizar la verificación de inicio de sesión
-          de un usuario.
-        </p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/auth/login</code></li>
-        </ul>
-        <p>Parámetros de la solicitud:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo del usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, obligatorio): Contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>
+      <h2>CheckLogin</h2>
+      <p>
+        Esta ruta se utiliza para realizar la verificación de inicio de sesión
+        de un usuario.
+      </p>
+      <ul>
+        <li>Método: <code>POST</code></li>
+        <li>Ruta: <code>/api/auth/login</code></li>
+      </ul>
+      <p>Parámetros de la solicitud:</p>
+      <ul>
+        <li>
+          <code>correo</code> (string, obligatorio): Correo del usuario.
+        </li>
+        <li>
+          <code>contrasena</code> (string, obligatorio): Contraseña del
+          usuario.
+        </li>
+      </ul>
+      <p>Ejemplo de petición:</p>
+      <pre><code>
   {
     "correo": "test1@gmail.com",
     "contrasena": "test1"
   }
 </code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
 {
 "mensaje": "Ingreso exitoso"
 }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
 "mensaje": "Usuario no encontrado"
 }
@@ -352,35 +351,35 @@ o
 }
 </code></pre>
 
-<h2>Login Google</h2>
-        <p>
-          Esta ruta se utiliza para realizar el registro e inicio de sesion en google.
-          Esto no se puede hacer por postman o alguna otra herramienta a menos que se tenga la credencial de google.
-        </p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/auth/google</code></li>
-        </ul>
-        <p>Parámetros de la solicitud:</p>
-        <ul>
-          <li>
-            <code>id_token_google</code> (string, obligatorio): credencial del usuario google.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>
+      <h2>Login Google</h2>
+      <p>
+        Esta ruta se utiliza para realizar el registro e inicio de sesion en google.
+        Esto no se puede hacer por postman o alguna otra herramienta a menos que se tenga la credencial de google.
+      </p>
+      <ul>
+        <li>Método: <code>POST</code></li>
+        <li>Ruta: <code>/api/auth/google</code></li>
+      </ul>
+      <p>Parámetros de la solicitud:</p>
+      <ul>
+        <li>
+          <code>id_token_google</code> (string, obligatorio): credencial del usuario google.
+        </li>
+      </ul>
+      <p>Ejemplo de petición:</p>
+      <pre><code>
   {
     "id_token_google": "asdhj1jk2h343jkhjkeh53...(jwt encriptado por google)",
   }
 </code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
 {
 "mensaje": "Ingreso exitoso"
 }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
 {
 "mensaje": "Error al iniciar sesion"
 }
@@ -390,40 +389,40 @@ o
 }
 </code></pre>
 
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <!-- --------------------------------DETAILS USER---------------------------------------- -->
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <br />
-        <hr />
-        <br />
-        <h2>Subir imagen de Perfil de Usuario</h2>
-        <p>Sube una imagen al servidor recibiendo correo y archivo</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/details/imagen</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario a buscar. <code>img_perfil</code>(file, obligatorio): Imagen
-            del usuario jpeg/jpg/png.
-          </li>
-        </ul>
-        <p>Ejemplo de petición: body (form-data)</p>
-        <pre><code>
+      <!-- ------------------------------------------------------------------------------------------------------ -->
+      <!-- --------------------------------DETAILS USER---------------------------------------- -->
+      <!-- ------------------------------------------------------------------------------------------------------ -->
+      <br />
+      <hr />
+      <br />
+      <h2>Subir imagen de Perfil de Usuario</h2>
+      <p>Sube una imagen al servidor recibiendo correo y archivo</p>
+      <ul>
+        <li>Método: <code>POST</code></li>
+        <li>Ruta: <code>/api/details/imagen</code></li>
+      </ul>
+      <p>Parámetros de consulta:</p>
+      <ul>
+        <li>
+          <code>correo</code> (string, obligatorio): Correo electrónico del
+          usuario a buscar. <code>img_perfil</code>(file, obligatorio): Imagen
+          del usuario jpeg/jpg/png.
+        </li>
+      </ul>
+      <p>Ejemplo de petición: body (form-data)</p>
+      <pre><code>
   'correo' -> "usuario1@example.com"
   'img_perfil' -> file.(jpg/png/jpeg)
 </code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
+      <p>Respuesta exitosa:</p>
+      <pre><code class="success">
           {
             "msg": "imagen subida correctamente",
             "url": "link_de_la_imagen"
           }
 </code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
+      <p>Respuesta no exitosa:</p>
+      <pre><code class="error">
           Array de errores
           ó
           {
@@ -431,21 +430,42 @@ o
           }
 </code></pre>
 
-        <h2>Detalle de Gustos de Usuario</h2>
-        <p>Envia los gustos del usuario a la base de datos</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/details/gustos</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario a buscar.
-          </li>
-          <p>EN PROCESO...</p>
-        <!-- </ul>
-        <p>Ejemplo de petición: body (JSON)</p>
+      <h2>Detalle de Gustos de Usuario</h2>
+      <p>Envia los gustos del usuario a la base de datos</p>
+      <ul>
+        <li>Método: <code>POST</code></li>
+        <li>Ruta: <code>/api/details/gustos</code></li>
+      </ul>
+      <p>Parámetros de consulta:</p>
+      <ul>
+        <li>
+          <code>correo</code> (string, obligatorio): Correo electrónico del usuario a buscar.
+        </li>
+        <li>
+          <code>gustos</code> (Array[String], obligatorio): Array con los gustos del usuario para guardar en la base de
+          datos.
+        </li>
+      </ul>
+      <p>Ejemplo de petición: body (JSON)</p>
+      <pre><code>
+  {
+    "correo": "test1@gmail.com",
+    "gustos": ["Comida rapida", "Comida asiatica"]
+  }
+</code></pre>
+<p>Respuesta exitosa:</p>
+      <pre><code class="success">
+          {
+            "msg": "gustos agregados"
+          }
+</code></pre>
+<p>Respuesta no exitosa:</p>
+      <pre><code class="error">
+          {
+            "mensaje": "error al actualizar los gustos'
+          }
+</code></pre>
+      <!-- <p>Ejemplo de petición: body (JSON)</p>
         <pre><code>{
   "correo": "usuario1@example.com"
 }</code></pre>
@@ -467,7 +487,8 @@ o
   "mensaje": "Usuario no encontrado"
 }
 </code></pre> -->
-      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
