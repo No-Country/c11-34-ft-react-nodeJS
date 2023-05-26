@@ -21,8 +21,7 @@ export function BackgroundAuth() {
         }}
         grabCursor={true}
         modules={[Navigation, Thumbs, Pagination]}
-
-        pagination={{el: '.pagination', clickable: true}}
+        className=''
       >
       {
         swiperCards.map(card => (
