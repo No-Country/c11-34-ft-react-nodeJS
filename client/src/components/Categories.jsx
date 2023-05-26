@@ -7,7 +7,10 @@ SwiperCore.use([Navigation, Pagination]);
 
 export function Categories() {
   const breakpoints = {
-    320: {
+    360: {
+      slidesPerView: 2,
+    },
+    380: {
       slidesPerView: 3,
     },
     768: {
@@ -21,10 +24,10 @@ export function Categories() {
       loop={true}
       spaceBetween={50}
       breakpoints={breakpoints}
-      slidesPerView={3}
+      slidesPerView={1}
       grabCursor={true}
       modules={[Navigation, Pagination]}
-      className="lg:w-[70vw] w-screen mx-auto"
+      className="lg:w-[70vw] w-[90vw]  overflow-hidden"
     >
       {countries.map((country, index) => (
         <SwiperSlide key={index}>
