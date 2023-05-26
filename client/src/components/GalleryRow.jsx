@@ -3,8 +3,8 @@ import { CardRestoHome } from "../components";
 import { Navigation, Pagination, Thumbs } from "swiper";
 
 
-export function GalleryRow({cards}) {
-  const breakpoints = {
+export function GalleryRow({cards, title}) {
+ const breakpoints = {
     320: {
         slidesPerView: 1,
     },
@@ -16,11 +16,11 @@ export function GalleryRow({cards}) {
     },
     1440: {
         slidesPerView: 4,
-    }
+    } 
 }
     return (
           <div>
-              <div className="px-5 font-black lg:text-xl">Cerca de vos</div>
+              <div className="px-5 font-black lg:text-xl">{title}</div>
 
               <div className="px-5">
                   <Swiper

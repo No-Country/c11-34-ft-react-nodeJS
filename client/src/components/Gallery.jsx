@@ -6,9 +6,9 @@ export function Gallery() {
 
     return (
           <div className="flex flex-col gap-10">
-            <GalleryRow cards={galleryCards}/>
-            <GalleryRow cards={galleryCards}/>
-            <GalleryRow cards={galleryCards}/>
+            <GalleryRow title={'Cerca de vos'} cards={galleryCards}/>
+            <GalleryRow title={'Mejor calificados'} cards={galleryCards}/>
+            <GalleryRow title={'Recomendaciones'} cards={galleryCards}/>
           </div>
       );
 }

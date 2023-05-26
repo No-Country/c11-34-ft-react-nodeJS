@@ -1,16 +1,42 @@
-import {countries} from '../utils/Countries.js';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { countries } from '../utils/Countries';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+
+SwiperCore.use([Navigation, Pagination]);
 
 export function Categories() {
+  const breakpoints = {
+    320: {
+      slidesPerView: 3,
+    },
+    768: {
+      slidesPerView: 6,
+ 
+    }
+  };
 
-    return (
-        <div className="lg:flex flex-row items-center gap-2.5 hidden ">
-            {countries.map((country, index) => (
-                <button className="flex flex-row items-center justify-center h-10 px-2 gap-1 border border-border-color rounded-full text-xs text-subtitle transition ease-in-out duration-700 hover:bg-bg-hover" key={index}>
-                    <img src={country.image} alt={country.name} />
-                    <span className="whitespace-nowrap">{country.name}</span>  
-                </button>
-            ))}
-        </div>
-      );
+  return (
+    <Swiper
+      loop={true}
+      spaceBetween={50}
+      breakpoints={breakpoints}
+      slidesPerView={3}
+      grabCursor={true}
+      modules={[Navigation, Pagination]}
+      className="lg:w-[70vw] w-screen mx-auto"
+    >
+      {countries.map((country, index) => (
+        <SwiperSlide key={index}>
+          <button
+            className=" flex flex-row items-center justify-center h-10 px-2 gap-1 border border-border-color rounded-full text-xs text-subtitle transition ease-in-out duration-700 hover:bg-bg-hover"
+            key={index}
+          >
+            <img src={country.image} alt={country.name} />
+            <span className="whitespace-nowrap">{country.name}</span>
+          </button>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
 }
