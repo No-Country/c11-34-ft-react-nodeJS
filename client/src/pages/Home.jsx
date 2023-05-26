@@ -12,8 +12,7 @@ export function Home() {
         <SearchBar />
         <Categories />
       </div>
-      <div className="lg:mt-52 px-10">
-        <div className="px-5 hidden lg:block font-black lg:text-xl">Cerca de vos</div>
+      <div className="lg:mt-52 lg:px-5 mt-20 px-10">
         <Gallery/>
       </div>
      <Link to='/auth' className="bg-border-color w-60 rounded-xl px-4 py-2 m-4">Navegar Login</Link>
