@@ -1,3 +1,8 @@
+/*
+    * Archivo de controlador de la ruta /api/usuarios
+    ? Aquí se definen los metodos para obtener y crear usuarios
+*/
+
 import { Request, Response } from 'express'
 import UserModel from '../models/usuario'
 
@@ -106,6 +111,7 @@ export async function deleteUser(req: Request, res: Response) {
     })
   }
 }
+
 
 const userController = {
   getUsers,

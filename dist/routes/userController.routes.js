@@ -8,16 +8,6 @@ const express_validator_1 = require("express-validator");
 const checking_1 = __importDefault(require("../middleware/checking"));
 const dataValidator_1 = __importDefault(require("../helpers/dataValidator"));
 const userController_1 = __importDefault(require("../controllers/userController"));
-const multer_1 = __importDefault(require("multer"));
-const storage = multer_1.default.diskStorage({
-    destination: function (_req, _file, cb) {
-        cb(null, 'src/upload');
-    },
-    filename: function (_req, file, cb) {
-        cb(null, file.originalname);
-    }
-});
-const upload = (0, multer_1.default)({ storage: storage });
 const router = (0, express_1.Router)();
 router.get('/', [
     (0, express_validator_1.check)('correo', 'El correo no es valido')
@@ -26,14 +16,6 @@ router.get('/', [
         .normalizeEmail(),
     checking_1.default
 ], userController_1.default.getUsers);
-router.post('/imagen', [
-    upload.single('img_perfil'),
-    (0, express_validator_1.check)('correo', 'Verifique que el correo sea valido')
-        .notEmpty()
-        .isEmail()
-        .normalizeEmail(),
-    checking_1.default
-], userController_1.default.uploadImage);
 router.post('/', [
     (0, express_validator_1.check)('nombre', 'El nombre es Obligatorio').notEmpty(),
     (0, express_validator_1.check)('correo', 'Verifique que el correo sea valido')
@@ -57,4 +39,4 @@ router.delete('/:id', [
     checking_1.default
 ], userController_1.default.deleteUser);
 exports.default = router;
-//# sourceMappingURL=user.routes.js.map
+//# sourceMappingURL=userController.routes.js.map

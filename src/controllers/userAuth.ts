@@ -1,3 +1,8 @@
+/*
+    * Archivo de controlador de la ruta /api/auth
+    ? Aquí se definen los metodos de acceso de usuarios
+*/
+
 import { Request, Response } from 'express'
 import UserModel from '../models/usuario'
 import { googleVerify } from '../helpers/google-verify'

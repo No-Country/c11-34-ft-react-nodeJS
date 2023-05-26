@@ -1,5 +1,4 @@
 import { Router } from 'express'
-
 import { check } from 'express-validator'
 import checking from '../middleware/checking'
 import dataValidator from '../helpers/dataValidator'

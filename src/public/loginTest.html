@@ -73,7 +73,7 @@
       // decodeJwtResponse(response.credential) > devuelve un objeto con los datos del usuario google
 
       //response.credential, entrega el token de usuario google
-      const body = { id_token_google: response.credential }
+      const jwt = { id_token_google: response.credential }
 
       // Envía el token a la ruta de ingreso por Google
       // respuesta: datos del usuario
@@ -82,11 +82,11 @@
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(jwt)
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res.usuario)
+          console.log(res)
 
           /*
             - res.usurio={

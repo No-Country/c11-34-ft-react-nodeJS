@@ -15,6 +15,10 @@ const usuarioSchema = new mongoose_1.Schema({
         type: String,
         required: [true, 'La contraseña es obligatoria']
     },
+    gustos: {
+        type: Array,
+        default: []
+    },
     rol: {
         type: String,
         default: 'USER_ROLE',
