@@ -2,6 +2,7 @@ import { useState } from "react"
 import { registerUser } from "../../services"
 import { toast } from "react-hot-toast"
 import { Ring } from "@uiball/loaders"
+import { useNavigate } from "react-router-dom"
 
 export function RegisterForm() {
 
@@ -9,6 +10,8 @@ export function RegisterForm() {
         error : false,
         loading : false
     })
+
+    const navigate = useNavigate()
 
     const [values, setValues] = useState({
         nombre : '',
@@ -30,10 +33,11 @@ export function RegisterForm() {
         event.preventDefault()
         try {
             setActions({...actions, loading : true})
-            const res = await registerUser(values)
-            toast.success(res.data.mensaje)
+            await registerUser(values)
+            toast.success('Bienvenido a Morfi')
             setActions({ loading : false , error : false})
             resetFields()
+            navigate('/tastes')
         } catch (error) {
             const errorMessage = error.response.data.data.errors[0].msg
             toast.error(errorMessage)

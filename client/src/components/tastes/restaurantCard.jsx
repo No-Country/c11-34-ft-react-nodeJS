@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function RestaurantCard({ name, img, latitude, longitude, average }) {
   return (
