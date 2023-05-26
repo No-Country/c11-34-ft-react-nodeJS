@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@uiball/loaders": "^1.2.6",
     "axios": "^1.4.0",
+    "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.11.1",
-    "swiper": "^9.3.2",
-    "@uiball/loaders": "^1.2.6"
+    "swiper": "^9.3.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -6,7 +6,9 @@ export const galleryCards = [
         img : 'https://a.storyblok.com/f/53624/1365x1800/5f945a262a/two-men-on-a-colorful-balcony-in-caminito-la-boca-buenos-aires.jpg',
         distance: '22km',
         rating: '4.5',
-        priceRange: '200 - 400', 
+        priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 2,
@@ -16,6 +18,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 3,
@@ -25,6 +29,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 4,
@@ -34,6 +40,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 5,
@@ -43,6 +51,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 6,
@@ -52,6 +62,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 7,
@@ -61,6 +73,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 8,
@@ -70,6 +84,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 9,
@@ -79,6 +95,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 10,
@@ -88,6 +106,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 11,
@@ -97,6 +117,8 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     },
     {
         id : 12,
@@ -106,5 +128,7 @@ export const galleryCards = [
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592'
     }
 ]

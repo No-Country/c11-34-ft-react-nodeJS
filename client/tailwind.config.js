@@ -24,11 +24,28 @@ export default {
       },
       height:{
         'galleryDesktop': '300px',
-        'galleryMobile': '250px'
+        'galleryMobile': '250px',
+        'mapViewRestaurant': '526px',
+        'cardViewRestaurantGrid': '191.67px',
+        'firstCardViewRestaurantGrid': '615px',
+        'reservationForm':'304px'
       },
       width:{
         'galleryDesktop': '300px',
-        'galleryMobile': '250px'
+        'galleryMobile': '250px',
+        'mapViewRestaurant': '1240px',
+        'cardViewRestaurantGrid': '295px',
+        'firstCardViewRestaurantGrid': '925px',
+        'reservationForm':'400px'
+      },
+      gridTemplateColumns:{
+        'viewRestaurant': '925px, 295px',
+      },
+      gridTemplateRows:{
+        'viewRestaurant': '192px, 192px,192px',
+      },
+      borderRadius:{
+        'btnReservation': '99px',
       }
     },
   },
