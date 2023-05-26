@@ -10,7 +10,10 @@ export default {
         subtitle : '#BAC0C7',
         'border-color' : '#E6E8EA',
         'icon-color': '#E6E8EA',
-        'bg-hover': '#E6E8EA'
+        'bg-color': '#FFFFFF',
+        'letter-color': '#FFFFFF',
+        'bg-hover': '#E6E8EA',
+        'bg-dark': '#000000',
       },
       screens : {
         dt : '1440px'
