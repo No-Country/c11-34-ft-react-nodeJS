@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import axios from 'axios'
 
 const getCoordenadas = async (req: Request, res: Response) => {
   try {
@@ -11,17 +12,18 @@ const getCoordenadas = async (req: Request, res: Response) => {
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
       data.direccion
     )}.json?access_token=${process.env.MORFI_MAP_KEY}`
-    console.log(url)
-    const response = await fetch(url)
-    if (!response.ok) {
+    const response = await axios(url)
+
+    if (!response.data) {
       return res.status(400).json({
         msg: 'No se ha encontrado la direccion'
       })
     }
-    const dir = await response.json()
+    const dir = await response.data
+
     const { features } = dir
     const [lng, lat] = features[0].center
-    //console.log({ features:features[0], lng, lat })
+    //console.log({ features: features[0], lng, lat })
     res.json({
       lng,
       lat,
