@@ -4,6 +4,7 @@ import dbConnection from '../database/dbConnection'
 import routerUser from '../routes/userController.routes'
 import routerAuth from '../routes/userAuth.routes'
 import routerDetails from '../routes/userDetails.routes'
+import routerOtherServices from '../routes/otherServices.routes'
 
 class Server {
   private app: express.Application
@@ -11,6 +12,7 @@ class Server {
   private usuariosPath: string
   private usuariosAuth: string
   private usuariosDetails: string
+  private otherServices: string
 
   constructor() {
     this.app = express()
@@ -19,6 +21,7 @@ class Server {
     this.usuariosPath = '/api/usuarios'
     this.usuariosAuth = '/api/auth'
     this.usuariosDetails = '/api/details'
+    this.otherServices = '/api/other'
     // Conectar a base de datos
     this.conectarDB()
     // Middlewares
@@ -45,6 +48,7 @@ class Server {
     this.app.use(this.usuariosPath, routerUser)
     this.app.use(this.usuariosAuth, routerAuth)
     this.app.use(this.usuariosDetails, routerDetails)
+    this.app.use(this.otherServices, routerOtherServices)
   }
 
   listen() {

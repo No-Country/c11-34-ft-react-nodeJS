@@ -351,23 +351,23 @@ o
 }
 </code></pre>
 
-      <h2>Login Google</h2>
-      <p>
-        Esta ruta se utiliza para realizar el registro e inicio de sesion en google.
-        Esto no se puede hacer por postman o alguna otra herramienta a menos que se tenga la credencial de google.
-      </p>
-      <ul>
-        <li>Método: <code>POST</code></li>
-        <li>Ruta: <code>/api/auth/google</code></li>
-      </ul>
-      <p>Parámetros de la solicitud:</p>
-      <ul>
-        <li>
-          <code>id_token_google</code> (string, obligatorio): credencial del usuario google.
-        </li>
-      </ul>
-      <p>Ejemplo de petición:</p>
-      <pre><code>
+<h2>Login Google</h2>
+        <p>
+          Esta ruta se utiliza para realizar el registro e inicio de sesion en google.
+          Esto no se puede hacer por postman o alguna otra herramienta a menos que se tenga la credencial de google.
+        </p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/auth/google</code></li>
+        </ul>
+        <p>Parámetros de la solicitud:</p>
+        <ul>
+          <li>
+            <code>id_token_google</code> (string, obligatorio): credencial del usuario google.
+          </li>
+        </ul>
+        <p>Ejemplo de petición:</p>
+        <pre><code>
   {
     "id_token_google": "asdhj1jk2h343jkhjkeh53...(jwt encriptado por google)",
   }
@@ -466,6 +466,65 @@ o
           }
 </code></pre>
       <!-- <p>Ejemplo de petición: body (JSON)</p>
+        <h2>Detalle de Gustos de Usuario</h2>
+        <p>Envia los gustos del usuario a la base de datos</p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/details/gustos</code></li>
+        </ul>
+        <p>Parámetros de consulta:</p>
+        <ul>
+          <li>
+            <code>correo</code> (string, obligatorio): Correo electrónico del
+            usuario a buscar.
+          </li>
+          <p>EN PROCESO...</p>
+          <br><br><br><br><br>
+
+
+          <!-- ------------------------------------------------------------------------------------------------------ -->
+          <!-- --------------------------------MAP COORDENADAS---------------------------------------- -->
+          <!-- ------------------------------------------------------------------------------------------------------ -->
+          <br />
+          <hr />
+          <br />
+          <h2>Map Coordenadas</h2>
+          <p>Envia una direccion y recibe las coordenadas</p>
+          <ul>
+            <li>Método: <code>POST</code></li>
+            <li>Ruta: <code>/api/other/mapcord</code></li>
+          </ul>
+          <p>Parámetros de consulta:</p>
+          <ul>
+            <li>
+              <code>direccion</code> (string, obligatorio): Direccion a buscar.
+            </li>
+          </ul>
+          <p>Ejemplo de petición: body (JSON)</p>
+          <pre><code>
+  {
+    "direccion": "Avenida 60 82, La Plata"
+  }
+</code></pre>
+          <p>Respuesta exitosa:</p>
+          <pre><code class="success">
+            {
+              "lat": 4.59808,
+              "lng": -74.076043,
+              "direccion": "Avenida 60 82, La Plata, Buenos Aires Province, 1900, Argentina"
+            }
+</code></pre>
+          <p>Respuesta no exitosa:</p>
+          <pre><code class="error">
+            {
+              "mensaje": "No se encontraron coordenadas"
+            }
+</code></pre>
+
+<br><br><br><br><br>
+
+        <!-- </ul>
+        <p>Ejemplo de petición: body (JSON)</p>
         <pre><code>{
   "correo": "usuario1@example.com"
 }</code></pre>
