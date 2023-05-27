@@ -11,6 +11,7 @@ const getCoordenadas = async (req: Request, res: Response) => {
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
       data.direccion
     )}.json?access_token=${process.env.MORFI_MAP_KEY}`
+    console.log(url)
     const response = await fetch(url)
     if (!response.ok) {
       return res.status(400).json({
