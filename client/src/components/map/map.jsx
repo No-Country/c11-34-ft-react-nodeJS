@@ -10,11 +10,11 @@ const iconMarker = new l.Icon({
     iconAnchor:[17,30],
 
 })
-const MapRestaurant = ({latitude, longitude, name}) => {
+const MapRestaurant = ({latitude, longitude, name, height, width}) => {
     const locationRestaurant = {lat: latitude, lng: longitude};
     const mapRef = useRef('')
         return (
-            <MapContainer className={'h-mapViewRestaurant w-mapViewRestaurant'} center={locationRestaurant} zoom={50} ref={mapRef}>
+            <MapContainer className={`${height} ${width}`} center={locationRestaurant} zoom={50} ref={mapRef}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
