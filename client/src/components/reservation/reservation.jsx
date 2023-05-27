@@ -31,7 +31,7 @@ const ReservationForm = () => {
                         <option className={'text-base'} value="9:30">9:30</option>
                     </select>
                 </div>
-                <button className={'bg-gray-700 rounded-btnReservation h-11 mx-8 text-white'} type="submit">Reservar</button>
+                <button className={'bg-gray-700 rounded-btnReservation h-11 m-8 text-white'} type="submit">Reservar</button>
             </form>
         </div>
     );
