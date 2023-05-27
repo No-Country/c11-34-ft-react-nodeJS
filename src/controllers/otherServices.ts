@@ -29,6 +29,7 @@ const getCoordenadas = async (req: Request, res: Response) => {
     })
   } catch (error) {
     console.log('error al obtener coordenadas')
+    console.log(error);
   }
 }
 
