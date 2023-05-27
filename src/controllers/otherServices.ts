@@ -28,8 +28,7 @@ const getCoordenadas = async (req: Request, res: Response) => {
       direccion: features[0].place_name
     })
   } catch (error) {
-    console.log('error al obtener coordenadas')
-    console.log(error);
+    console.log('error al obtener coordenadas', error)
   }
 }
 
