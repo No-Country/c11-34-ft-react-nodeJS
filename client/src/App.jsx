@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Register, Restaurant, Tastes } from "./pages";
+import { Home, Login, Register, Restaurant, ResultsFilter, Tastes } from "./pages";
 import { AuthLayout } from "./layouts";
 import { Toaster } from "react-hot-toast";
 
@@ -15,6 +15,7 @@ function App() {
         </Route>
         <Route path="/tastes" element={<Tastes />} />
         <Route path="/restaurant/:id" element={<Restaurant/>}/>
+        <Route path="/result" element={<ResultsFilter />}/>
       </Routes>
       <Toaster position="top-right" reverseOrder={false} />
     </>

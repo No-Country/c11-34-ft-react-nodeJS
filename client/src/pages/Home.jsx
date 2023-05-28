@@ -3,7 +3,6 @@ import {  SearchBar, Gallery, Categories, NavBarUI } from '../components';
 
 export function Home() {
 
-
   return (
     <main className="font-montserrat flex flex-col gap-y-4">
 
