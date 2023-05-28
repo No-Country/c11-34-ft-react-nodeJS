@@ -9,6 +9,7 @@ export default {
       colors : {
         subtitle : '#BAC0C7',
         'border-color' : '#E6E8EA',
+        'black-light' : '#353535', 
         'icon-color': '#E6E8EA',
         'bg-color': '#FFFFFF',
         'letter-color': '#FFFFFF',
