@@ -4,7 +4,8 @@
 ## Morfi es una plataforma de gestión de reservas para restaurantes y bares, donde puedes encontrar y reservar lugares según tus gustos y preferencias.
 
 ## El proyecto se encuentra en fase de desarrollo
-
+## Figma
+Diseño: https://www.figma.com/file/PcpRVE3N7qcVgqxZYGX9Qv/Cohorte-11?type=design&node-id=532-2674&t=xa51NYmqXaRgydt7-0
 ## Acceso al proyecto 
    # Acceso a la Api del back-end
    Readme Backend: https://github.com/No-Country/c11-34-ft-react-nodeJS/tree/backend
