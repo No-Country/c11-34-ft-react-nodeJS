@@ -7,6 +7,7 @@
 
 ## Acceso al proyecto 
    # Acceso a la Api del back-end
+   Readme Backend: https://github.com/No-Country/c11-34-ft-react-nodeJS/tree/backend
    
       https://ncback-production.up.railway.app/
  -------------------------------------------
