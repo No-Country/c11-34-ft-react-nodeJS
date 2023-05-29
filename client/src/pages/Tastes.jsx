@@ -5,6 +5,8 @@ import { CardTastes, NavBarUI } from "../components";
 import { Navigation, Pagination, Thumbs } from "swiper";
 
 import arrow from '../assets/arrow-black.svg'
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 export function Tastes() {
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -13,9 +15,22 @@ export function Tastes() {
             setSelectedCategories(selectedCategories.filter(cat => cat !== name));
         } else {
             setSelectedCategories([...selectedCategories, name]);
-
         }
     };
+    const emailUser = localStorage.getItem('correo');
+     const sendTastes = async ()=>{
+        await axios.post('https://ncback-production.up.railway.app/api/details/gustos',{
+            correo: emailUser,
+            gustos: selectedCategories
+
+        })
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
     const breakpoints = {
         320: {
             slidesPerView: 1,
@@ -40,6 +55,10 @@ export function Tastes() {
                 <h2 className="font-inter text-3xl  lg:text-5xl dt:text-7xl text-center font-medium">¿Cuales son tus gustos culinarios? </h2>
                 <p className="font-inter text-base lg:text-xl  dt:text-2xl font-bold w-auto lg:w-[86vw] text-center  mx-auto">Para ofrecerte recomendaciones personalizadas, cuéntanos tus comidas favoritas y si tienes alguna restricción alimentaria o preferencia especial. </p>
            </div>
+            <div className="flex justify-around p-4">
+                <Link to={"/"}><button className="font-bold" >Skip</button></Link>
+                <Link to={"/"}><button className="font-bold" onClick={sendTastes}>Terminar</button></Link>
+            </div>
                 <Swiper
                     loop={true}
                     navigation={{
