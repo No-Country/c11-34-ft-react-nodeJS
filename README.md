@@ -3,7 +3,7 @@
 
 ## Morfi es una plataforma de gestión de reservas para restaurantes y bares, donde puedes encontrar y reservar lugares según tus gustos y preferencias.
 
-> "El proyecto se encuentra en fase de desarrollo"
+## El proyecto se encuentra en fase de desarrollo
 ------------------------------------
 ## Acceso al proyecto 
    # Acceso a la Api del back-end
@@ -13,10 +13,10 @@
 > Para acceder al proyecto se puede ingresar por medio local o en el deploy de vercel
    # Para acceder por medio local 
 
-    1. ` git clone git@github.com:No-Country/c11-34-ft-react-nodeJS.git`
-    2. `npm i `
-    3. `npm run dev`
-    4. `http://localhost:5173/ `
+    1. git clone git@github.com:No-Country/c11-34-ft-react-nodeJS.git
+    2. npm i 
+    3. npm run dev
+    4. http://localhost:5173/ 
   
   # Acceso deploy vercel
   
