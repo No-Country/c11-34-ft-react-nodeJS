@@ -48,13 +48,13 @@ Para acceder a la vista del front-end se puede ingresar por medio local o en el 
  
  ## Equipo de trabajo
   ## UI/UX
-    - Tania Soto - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/tanisoto)
-    - Andres Bejarano
-    - Samuel Cardenas
-  ## Back-edn
-    - Gian Franco - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/elkake)
-    - Santiago Rodriguez - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/santy6221)
-  ## Front-end
-    - Matias Cabrera - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/matias-d)
-    - Lucas Brumatti - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/lucasBruma)
-    - Stephany Castro - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/StephanyCS1)
+   Tania Soto - [![GitHub](https://icongr.am/devicon/github-original.svg?size=34&color=d4b5b5)](https://github.com/tanisoto)
+   Andres Bejarano
+   Samuel Cardenas
+## Back-end
+   Gian Franco - [![GitHub](https://icongr.am/devicon/github-original.svg?size=34&color=d4b5b5)](https://github.com/elkake)
+   Santiago Rodriguez - [![GitHub](https://icongr.am/devicon/github-original.svg?size=34&color=d4b5b5)](https://github.com/santy6221)
+## Front-end
+   Matias Cabrera - [![GitHub](https://icongr.am/devicon/github-original.svg?size=34&color=d4b5b5)](https://github.com/matias-d)
+   Lucas Brumatti - [![GitHub](https://icongr.am/devicon/github-original.svg?size=34&color=d4b5b5)](https://github.com/lucasBruma)
+   Stephany Castro - [![GitHub](https://icongr.am/devicon/github-original.svg?size=34&color=d4b5b5)](https://github.com/StephanyCS1)
