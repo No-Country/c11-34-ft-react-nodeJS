@@ -48,13 +48,13 @@ Para acceder a la vista del front-end se puede ingresar por medio local o en el 
  
  ## Equipo de trabajo
 ## UI/UX
-   Tania Soto - [![GitHub](https://img.icons8.com/?size=32&id=52539&format=png&color=d4b5b5)](https://github.com/tanisoto)
+   Tania Soto - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/tanisoto)
    - Andres Bejarano
    - Samuel Cardenas
 ## Back-end
-   - Gian Franco - [![GitHub](https://img.icons8.com/?size=32&id=52539&format=png&color=d4b5b5)](https://github.com/elkake)
-   - Santiago Rodriguez - [![GitHub](https://img.icons8.com/?size=32&id=52539&format=png&color=d4b5b5)](https://github.com/santy6221)
+   - Gian Franco - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/elkake)
+   - Santiago Rodriguez - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/santy6221)
 ## Front-end
-   - Matias Cabrera - [![GitHub](https://img.icons8.com/?size=32&id=52539&format=png&color=d4b5b5)](https://github.com/matias-d)
-   - Lucas Brumatti - [![GitHub](https://img.icons8.com/?size=32&id=52539&format=png&color=d4b5b5)](https://github.com/lucasBruma)
-   - Stephany Castro - [![GitHub](https://img.icons8.com/?size=32&id=52539&format=png&color=d4b5b5)](https://github.com/StephanyCS1)
+   - Matias Cabrera - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/matias-d)
+   - Lucas Brumatti - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/lucasBruma)
+   - Stephany Castro - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/StephanyCS1)
