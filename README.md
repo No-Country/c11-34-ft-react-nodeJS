@@ -4,9 +4,11 @@
 ## Morfi es una plataforma de gestión de reservas para restaurantes y bares, donde puedes encontrar y reservar lugares según tus gustos y preferencias.
 
 ## El proyecto se encuentra en fase de desarrollo
-
+## Figma
+Diseño: https://www.figma.com/file/PcpRVE3N7qcVgqxZYGX9Qv/Cohorte-11?type=design&node-id=532-2674&t=xa51NYmqXaRgydt7-0
 ## Acceso al proyecto 
    # Acceso a la Api del back-end
+   Readme Backend: https://github.com/No-Country/c11-34-ft-react-nodeJS/tree/backend
    
       https://ncback-production.up.railway.app/
  -------------------------------------------
@@ -47,14 +49,14 @@ Para acceder a la vista del front-end se puede ingresar por medio local o en el 
     ![mern](https://www.workiy.com/sites/default/files/inline-images/MERN-logo.png)
  
  ## Equipo de trabajo
-  ## UI/UX
-    - Tania Soto
-    - Andres Bejarano
-    - Samuel Cardenas
-  ## Back-edn
-    - Gian Franco
-    - Santiago Rodriguez
-  ## Front-end
-    - Matias Cabrera
-    - Lucas Brumatti
-    - Stephany Castro
+## UI/UX
+   Tania Soto - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/tanisoto)
+   - Andres Bejarano
+   - Samuel Cardenas
+## Back-end
+   - Gian Franco - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/elkake)
+   - Santiago Rodriguez - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/santy6221)
+## Front-end
+   - Matias Cabrera - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/matias-d)
+   - Lucas Brumatti - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/lucasBruma)
+   - Stephany Castro - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/StephanyCS1)
