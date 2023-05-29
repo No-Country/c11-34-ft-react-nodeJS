@@ -1,4 +1,7 @@
 export function CardTastes({ name, img}) {
+
+
+
     return (
         <div className="flex flex-col w-60   justify-center items-center mx-auto hover:transition duration-200 hover:scale-105 hover:border-b-2 hover:border-gray-400">
             <div className="w-full h-full">

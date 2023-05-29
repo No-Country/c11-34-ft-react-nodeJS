@@ -27,7 +27,7 @@ export function Restaurant() {
             <NavBar/>
 
             <div
-                className={'grid grid-cols-viewRestaurant grid-rows-viewRestaurant content-between justify-items-center items-center gap-2.5 mx-24 h-firstCardViewRestaurantGrid'}>
+                className={'grid grid-cols-viewRestaurant grid-rows-viewRestaurant content-between justify-items-center items-center gap-2.5 mx-auto h-firstCardViewRestaurantGrid'}>
                 <div className={'col-span-1 row-span-3 h-firstCardViewRestaurantGrid w-firstCardViewRestaurantGrid'}>
                     <img
                         className="rounded-3xl object-cover h-firstCardViewRestaurantGrid w-firstCardViewRestaurantGrid"
