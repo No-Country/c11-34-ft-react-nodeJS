@@ -1,10 +1,13 @@
 import { useState } from "react"
 import { loginUser } from "../../services"
 import { toast } from "react-hot-toast"
+import { useNavigate } from 'react-router-dom'
 import { LoginGoogleButton } from "./LoginGoogleButton"
 import { Ring } from "@uiball/loaders"
 export  function LoginForm() {
 
+
+const navigate = useNavigate()
 
 
 const [actions, setActions] = useState({
@@ -28,7 +31,10 @@ async function handleSubmit (event) {
     try {
         setActions({...actions, loading : true})
         const res = await loginUser(dataLogin)
+        navigate('/')
+        localStorage.setItem('correo', dataLogin.correo)
         toast.success(res.data.mensaje)
+
         setActions({ loading : false , error : false})
     } catch (error) {
         const errorMessage = 'La contraseña o el correo son incorrectas'
