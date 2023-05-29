@@ -48,13 +48,13 @@ Para acceder a la vista del front-end se puede ingresar por medio local o en el 
  
  ## Equipo de trabajo
   ## UI/UX
-    - Tania Soto
+    - Tania Soto - https://github.com/tanisoto
     - Andres Bejarano
     - Samuel Cardenas
   ## Back-edn
-    - Gian Franco
-    - Santiago Rodriguez
+    - Gian Franco - https://github.com/elkake
+    - Santiago Rodriguez - https://github.com/santy6221
   ## Front-end
-    - Matias Cabrera
-    - Lucas Brumatti
-    - Stephany Castro
+    - Matias Cabrera - https://github.com/matias-d
+    - Lucas Brumatti - https://github.com/lucasBruma
+    - Stephany Castro - https://github.com/StephanyCS1
