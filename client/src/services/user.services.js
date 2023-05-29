@@ -10,5 +10,11 @@ export async function loginUser (userToLogin) {
     return await axios.post(`${API_URL}/auth/login`, userToLogin)
 }
 
+export async function authGoogle (credential) {
+    const res = await axios.post(`${API_URL}/auth/google`, credential)
+    const { usuario } = res.data
+    localStorage.setItem('correo', usuario.correo)
+    return usuario
+}
 
 

@@ -20,10 +20,7 @@ export function Restaurant() {
 
     }, [id])
     let latitudeRestaurant = parseFloat(getRestaurant(id).latitude);
-    let longitudeRestaurant = parseFloat(getRestaurant(id).longitude);
-    console.log(latitudeRestaurant)
-    console.log(longitudeRestaurant)
-    console.log(getRestaurant(id))
+    let longitudeRestaurant = parseFloat(getRestaurant(id).longitude)
     return (
 
         <div>

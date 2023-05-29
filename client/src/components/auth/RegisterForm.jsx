@@ -34,6 +34,7 @@ export function RegisterForm() {
         try {
             setActions({...actions, loading : true})
             await registerUser(values)
+            localStorage.setItem('correo', values.correo)
             toast.success('Bienvenido a Morfi')
             setActions({ loading : false , error : false})
             resetFields()
