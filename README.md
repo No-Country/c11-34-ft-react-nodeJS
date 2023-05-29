@@ -19,12 +19,13 @@
     https://nocountry-vercel.vercel.app/
     
 ## Las rutas a las que se pueden acceder en el front-end son:
-
+  ### Usuario
+  
     1. home: https://nocountry-vercel.vercel.app/ 
     2. Información del restaurande: https://nocountry-vercel.vercel.app/restaurant/:id
     3. Busqueda por filtro:  https://nocountry-vercel.vercel.app/result
   
-  Registro - Ingreso
+  ### Registro - Ingreso
   
     1. Login: https://nocountry-vercel.vercel.app/auth
     2. Registro: https://nocountry-vercel.vercel.app/auth/register 
@@ -35,6 +36,7 @@
  Diseño: 
     
     ![logoFigma](https://www.solucionex.com/sites/default/files/posts/imagen/figma_logo_icon_171159.png)
+    
  Desarrollo:
   
     ![mern](https://www.workiy.com/sites/default/files/inline-images/MERN-logo.png)
