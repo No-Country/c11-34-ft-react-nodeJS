@@ -48,13 +48,13 @@ Para acceder a la vista del front-end se puede ingresar por medio local o en el 
  
  ## Equipo de trabajo
   ## UI/UX
-    - Tania Soto - https://github.com/tanisoto
+    - Tania Soto - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/tanisoto)
     - Andres Bejarano
     - Samuel Cardenas
   ## Back-edn
-    - Gian Franco - https://github.com/elkake
-    - Santiago Rodriguez - https://github.com/santy6221
+    - Gian Franco - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/elkake)
+    - Santiago Rodriguez - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/santy6221)
   ## Front-end
-    - Matias Cabrera - https://github.com/matias-d
-    - Lucas Brumatti - https://github.com/lucasBruma
-    - Stephany Castro - https://github.com/StephanyCS1
+    - Matias Cabrera - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/matias-d)
+    - Lucas Brumatti - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/lucasBruma)
+    - Stephany Castro - [![](https://icongr.am/devicon/gitlab-original.svg?size=34&color=d4b5b5)](https://github.com/StephanyCS1)
