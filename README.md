@@ -6,7 +6,7 @@
 > "El proyecto se encuentra en fase de desarrollo"
 ------------------------------------
 ## Acceso al proyecto 
-   # Acceso a la api del back-end
+   # Acceso a la Api del back-end
    
       https://ncback-production.up.railway.app/
       
@@ -19,6 +19,7 @@
     4. `http://localhost:5173/ `
   
   # Acceso deploy vercel
+  
     https://nocountry-vercel.vercel.app/
          
 ## Las rutas a las que se pueden acceder en el front-end son:
