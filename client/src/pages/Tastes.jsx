@@ -3,13 +3,16 @@ import { TastesList } from "../utils";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { CardTastes, NavBarUI } from "../components";
 import { Navigation, Pagination, Thumbs } from "swiper";
-
+import { Link, useNavigate } from "react-router-dom";
+import { addTastes } from "../services";
+import { toast } from "react-hot-toast";
 import arrow from '../assets/arrow-black.svg'
-import axios from "axios";
-import {Link} from "react-router-dom";
 
 export function Tastes() {
     const [selectedCategories, setSelectedCategories] = useState([]);
+
+    const navigate = useNavigate()
+
     const handleCategoryChange = (name) => {
         if (selectedCategories.includes(name)) {
             setSelectedCategories(selectedCategories.filter(cat => cat !== name));
@@ -17,20 +20,23 @@ export function Tastes() {
             setSelectedCategories([...selectedCategories, name]);
         }
     };
-    const emailUser = localStorage.getItem('correo');
-     const sendTastes = async ()=>{
-        await axios.post('https://ncback-production.up.railway.app/api/details/gustos',{
-            correo: emailUser,
-            gustos: selectedCategories
 
-        })
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const email = localStorage.getItem('correo')
+            const tastes = {correo : email, gustos : selectedCategories}
+            await addTastes(tastes)
+            toast.success('Tus gustos han sido agregados exitosamente')
+            navigate('/')
+        } catch (error) {
+            console.error(error)
+            toast.error('Error al actualizar los gustos')
+        }
     }
+
+
+
     const breakpoints = {
         320: {
             slidesPerView: 1,
@@ -55,10 +61,10 @@ export function Tastes() {
                 <h2 className="font-inter text-3xl  lg:text-5xl dt:text-7xl text-center font-medium">¿Cuales son tus gustos culinarios? </h2>
                 <p className="font-inter text-base lg:text-xl  dt:text-2xl font-bold w-auto lg:w-[86vw] text-center  mx-auto">Para ofrecerte recomendaciones personalizadas, cuéntanos tus comidas favoritas y si tienes alguna restricción alimentaria o preferencia especial. </p>
            </div>
-            <div className="flex justify-around p-4">
-                <Link to={"/"}><button className="font-bold" >Skip</button></Link>
-                <Link to={"/"}><button className="font-bold" onClick={sendTastes}>Terminar</button></Link>
-            </div>
+            <form onSubmit={handleSubmit} className="flex justify-around p-4">
+                <Link to={"/"} className="font-bold">Skipe</Link>
+                <button type="submit">Comenzar</button>
+            </form>
                 <Swiper
                     loop={true}
                     navigation={{
