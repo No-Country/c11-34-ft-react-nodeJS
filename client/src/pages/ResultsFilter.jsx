@@ -3,9 +3,15 @@ import MapRestaurant from "../components/map/map";
 import { countries, galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
 import { Link } from "react-router-dom";
+import { useSearch } from "../hooks/useSearch";
 export function ResultsFilter() {
 
-    const randomRestaurant = galleryCards[0]
+
+  const randomRestaurant = galleryCards[0]
+
+
+  const {galleryFiltered, querySearch} = useSearch()
+
   return (
     <main className="">
         {/* TODO : Modularizar secciones, ya que cada uno tendra logica */}
@@ -57,10 +63,16 @@ export function ResultsFilter() {
 
             {/* Result Section */}
             <section className="col-span-3 flex flex-col gap-y-4  ">
-                <h3 className="font-montserrat font-semibold lg:font-medium text-xl">16 resultados</h3>
+                <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{galleryFiltered.length} resultados</h3>
                 <section className="flex flex-col gap-y-3 overflow-y-auto items-center lg:items-start h-auto lg:h-screen pb-24 lg:pb-56 dt:pb-80 lg:pr-2.5">
+
                     {
-                        galleryCards.slice(0, 4).map(card => (
+                        !galleryFiltered.length &&
+                        <p> { querySearch } no encontrado</p> 
+                    }
+
+                    {
+                        galleryFiltered?.map(card => (
                             <article key={card.id} className="flex flex-col gap-y-2  w-full">
                                 <Link to={`/restaurant/${card.id}`}>
                                     <img src={card.img} alt={card.title} className="rounded-xl w-full h-72 object-cover"/>
