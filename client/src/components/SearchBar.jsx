@@ -5,12 +5,18 @@ import clock from '../assets/clock.svg';
 import user from '../assets/user.svg';
 import filter from '../assets/filter.svg';
 
-export function SearchBar() {
+export function SearchBar({value, setValue, setRestos, restosInitial}) {
+
+  const handleChange = (e) => {
+    setValue(e.target.value)
+    const filteredRestos = restosInitial.filter(resto => resto.title.toLowerCase().includes(e.target.value.toLowerCase()))
+    setRestos(filteredRestos)
+  }
 
   return (
     <div className="w-full gap-2.5 flex flex-col lg:items-center my-5 lg:flex-row lg:border-2 lg:border-border-color rounded-full lg:py-3.5 lg:px-5 lg:w-4/5 mx-auto">
         <div className="relative flex items-center py-4 rounded-full border border-border-color lg:border-0 lg:grow">
-            <input className="flex items-center pl-9 gap-10 relative w-full text-sm text-subtitle lg:w-auto lg:grow outline-0" placeholder="Buscar por ubicacion, restaurante" />
+            <input value={value} onChange={handleChange} className="flex items-center pl-9 gap-10 relative w-full text-sm text-subtitle lg:w-auto lg:grow outline-0" placeholder="Buscar por ubicacion, restaurante" />
             <img src={magnifyingGlass} alt="magnifying glass" width={20} height={20} className='absolute left-2 lg:left-1'/>
             <img src={filter} alt="filter" width={20} height={20} className='absolute right-2 w-6 h-6 lg:hidden'/> 
         </div>
