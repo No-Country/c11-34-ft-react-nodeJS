@@ -38,3 +38,12 @@ export interface Turno {
   personasPorMesa: number
   horaCierre: number
 }
+
+export interface Reservas {
+  hora: number
+  personas: number
+  fecha: string
+  estado: Array<string>
+  correo_usuario: string
+  id_restaurante: string
+}
