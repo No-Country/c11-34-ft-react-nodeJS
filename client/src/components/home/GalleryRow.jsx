@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { CardRestoHome } from "../components";
+import { CardRestoHome } from "..";
 import { Navigation, Pagination, Thumbs } from "swiper";
 
 

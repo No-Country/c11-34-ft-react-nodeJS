@@ -9,7 +9,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,3,4,5]
+        serviceActive: [0,2,3,4,5], 
+        foodType: 'Parrilla Argentina. Churrasquería.',
+        description: ['Almuerzo y cenas','Asientos al aire libre, wi-fi']
     },
     {
         id : 2,
@@ -21,7 +23,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 3,
@@ -33,7 +37,9 @@ export const galleryCards = [
         priceRange: '250 - 375',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 4,
@@ -45,7 +51,9 @@ export const galleryCards = [
         priceRange: '550 - 200',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 5,
@@ -57,7 +65,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 6,
@@ -69,7 +79,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 7,
@@ -81,7 +93,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 8,
@@ -93,7 +107,9 @@ export const galleryCards = [
         priceRange: '250 - 375',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 9,
@@ -105,7 +121,9 @@ export const galleryCards = [
         priceRange: '550 - 200',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 10,
@@ -117,7 +135,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 11,
@@ -129,7 +149,9 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     },
     {
         id : 12,
@@ -141,6 +163,8 @@ export const galleryCards = [
         priceRange: '200 - 400',
         latitude: '-34.603722',
         longitude: '-58.381592',
-        serviceActive: [0,2,5]
+        serviceActive: [0,2,5],
+        foodType: 'Restaurante de pastas',
+        description: ['Cena','Estacionamiento']
     }
 ]
