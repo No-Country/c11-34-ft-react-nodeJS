@@ -6,7 +6,6 @@ export async function registerUser (newUser) {
 }
 
 export async function loginUser (userToLogin) {
-    console.log(userToLogin)
     return await axios.post(`${API_URL}/auth/login`, userToLogin)
 }
 
@@ -15,6 +14,17 @@ export async function authGoogle (credential) {
     const { usuario } = res.data
     localStorage.setItem('correo', usuario.correo)
     return usuario
+}
+
+export async function addTastes (data) {
+    return await axios.post(`${API_URL}/details/gustos`, data)
+}
+
+export async function getUserByEmail (email) {
+    const { data } = await axios.get(`${API_URL}/usuarios`)
+    const userFounded = data.usuarios.find(user => user.correo === email)
+    if(!userFounded) throw new Error('Usuario no encontrado')
+    return userFounded
 }
 
 

@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
-import {NavBar} from "../components";
+import { NavBarUI} from "../components";
 import {galleryCards} from "../utils";
 import {useParams} from "react-router-dom";
 import ReservationForm from "../components/reservation/reservation.jsx";
@@ -26,7 +26,7 @@ export function Restaurant() {
     return (
 
         <div>
-            <NavBar/>
+            <NavBarUI/>
 
             <div
                 className={'grid grid-cols-viewRestaurant grid-rows-viewRestaurant justify-center content-between items-center gap-2.5 h-firstCardViewRestaurantGrid'}>
