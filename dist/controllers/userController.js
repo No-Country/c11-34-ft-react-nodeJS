@@ -7,7 +7,7 @@ exports.deleteUser = exports.updateUser = exports.createUsers = exports.getUsers
 const usuario_1 = __importDefault(require("../models/usuario"));
 async function getUsers(req, res) {
     try {
-        const { correo } = req.body;
+        const { correo } = req.query;
         if (correo) {
             console.log('----get User by correo----');
             const usuario = await usuario_1.default.findOne({ correo });

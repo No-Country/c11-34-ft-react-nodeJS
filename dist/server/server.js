@@ -10,6 +10,8 @@ const userController_routes_1 = __importDefault(require("../routes/userControlle
 const userAuth_routes_1 = __importDefault(require("../routes/userAuth.routes"));
 const userDetails_routes_1 = __importDefault(require("../routes/userDetails.routes"));
 const otherServices_routes_1 = __importDefault(require("../routes/otherServices.routes"));
+const restController_routes_1 = __importDefault(require("../routes/restController.routes"));
+const restTurns_routes_1 = __importDefault(require("../routes/restTurns.routes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -18,6 +20,8 @@ class Server {
         this.usuariosAuth = '/api/auth';
         this.usuariosDetails = '/api/details';
         this.otherServices = '/api/other';
+        this.restController = '/api/restaurant';
+        this.restTurns = '/api/restaurant/turnos';
         this.conectarDB();
         this.middlewares();
         this.routes();
@@ -35,6 +39,8 @@ class Server {
         this.app.use(this.usuariosAuth, userAuth_routes_1.default);
         this.app.use(this.usuariosDetails, userDetails_routes_1.default);
         this.app.use(this.otherServices, otherServices_routes_1.default);
+        this.app.use(this.restController, restController_routes_1.default);
+        this.app.use(this.restTurns, restTurns_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

@@ -5,6 +5,8 @@ import routerUser from '../routes/userController.routes'
 import routerAuth from '../routes/userAuth.routes'
 import routerDetails from '../routes/userDetails.routes'
 import routerOtherServices from '../routes/otherServices.routes'
+import routerRest from '../routes/restController.routes'
+import routerTurns from '../routes/restTurns.routes'
 
 class Server {
   private app: express.Application
@@ -13,6 +15,8 @@ class Server {
   private usuariosAuth: string
   private usuariosDetails: string
   private otherServices: string
+  private restController: string
+  private restTurns: string
 
   constructor() {
     this.app = express()
@@ -22,6 +26,8 @@ class Server {
     this.usuariosAuth = '/api/auth'
     this.usuariosDetails = '/api/details'
     this.otherServices = '/api/other'
+    this.restController = '/api/restaurant'
+    this.restTurns = '/api/restaurant/turnos'
     // Conectar a base de datos
     this.conectarDB()
     // Middlewares
@@ -49,6 +55,8 @@ class Server {
     this.app.use(this.usuariosAuth, routerAuth)
     this.app.use(this.usuariosDetails, routerDetails)
     this.app.use(this.otherServices, routerOtherServices)
+    this.app.use(this.restController, routerRest)
+    this.app.use(this.restTurns, routerTurns)
   }
 
   listen() {

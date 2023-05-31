@@ -1,15 +1,5 @@
 import { Schema, model } from 'mongoose'
-
-interface Usuario {
-  nombre: string
-  correo: string
-  contrasena: string
-  rol: string
-  estado: boolean
-  google: boolean
-  imagen: string
-  gustos: Array<string> | undefined
-}
+import { Usuario } from '../interfaces/modelInterfaces'
 
 const usuarioSchema: Schema<Usuario> = new Schema({
   nombre: {
@@ -54,4 +44,4 @@ usuarioSchema.methods.toJSON = function () {
   return usuario
 }
 
-export default model('Usuario', usuarioSchema)
+export default model<Usuario>('Usuario', usuarioSchema)
