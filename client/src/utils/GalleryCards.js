@@ -8,7 +8,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,3,4,5]
     },
     {
         id : 2,
@@ -19,7 +20,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 3,
@@ -30,7 +32,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 4,
@@ -41,7 +44,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 5,
@@ -52,7 +56,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 6,
@@ -63,7 +68,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 7,
@@ -74,7 +80,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 8,
@@ -85,7 +92,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 9,
@@ -96,7 +104,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 10,
@@ -107,7 +116,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 11,
@@ -118,7 +128,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 12,
@@ -129,6 +140,7 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     }
 ]

@@ -7,20 +7,22 @@ import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
 
 export function Restaurant() {
-    const {id} = useParams()
+    const {id} = useParams();
 
-    const [restaurant, setRestaurant] = useState({})
+    const [restaurant, setRestaurant] = useState({});
 
     const getRestaurant = (id) => {
-        return galleryCards.find(gallery => gallery.id === Number(id))
+        return galleryCards.find(gallery => gallery.id === Number(id));
     }
 
     useEffect(() => {
-        if (id) setRestaurant(getRestaurant(id))
+        if (id) setRestaurant(getRestaurant(id));
 
     }, [id])
     let latitudeRestaurant = parseFloat(getRestaurant(id).latitude);
-    let longitudeRestaurant = parseFloat(getRestaurant(id).longitude)
+    let longitudeRestaurant = parseFloat(getRestaurant(id).longitude);
+    let openRestaurant = (getRestaurant(id).serviceActive);
+
     return (
 
         <div>
@@ -64,8 +66,8 @@ export function Restaurant() {
                     <h3>{restaurant.subtitle}</h3>
 
                 </div>
-                <div className={'w-reservationForm h-reservationForm'}>
-                    <ReservationForm/>
+                <div className={'w-reservationForm h-reservationForm m-auto'}>
+                    <ReservationForm days={openRestaurant}/>
                 </div>
             </div>
             <div className={'flex justify-center items-center h-5/6 w-5/6 mb-8 mx-auto'}>
