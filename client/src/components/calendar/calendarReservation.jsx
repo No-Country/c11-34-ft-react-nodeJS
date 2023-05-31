@@ -15,30 +15,23 @@ const ReservationCalendar = ({ openDays, closeModal }) => {
     const [date, setDate] = useState(new Date());
     const [activeDays, setActiveDays] = useState([]);
 
-    const reservationDay = dayjs(date).locale('es').format('DD MMMM');
 
     useEffect(() => {
         setActiveDays(openDays);
     }, [openDays]);
-
-    useEffect(() => {
-        localStorage.setItem('dateReserve', reservationDay);
-    }, [reservationDay]);
-
     const isDayDisabled = (date) => {
         const dayOfWeek = dayjs(date).day();
         return !activeDays.includes(dayOfWeek);
     };
 
     const handleDateClick = (date) => {
-        const selectedDate = new Date(date);
         closeModal();
-        setDate(selectedDate);
-        console.log('Closing modal');
+        let reservationDay = dayjs(date).locale('es').format('DD MMMM');
+        localStorage.setItem('dateReserve', reservationDay);
     };
 
     return (
-        <div className="w-80 mx-auto bg-white p-2">
+       <div className="w-80 mx-auto bg-white">
             <Calendar
                 className="w-80"
                 calendarClassName="text-gray-800 w-80"
