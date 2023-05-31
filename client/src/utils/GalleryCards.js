@@ -8,7 +8,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,3,4,5]
     },
     {
         id : 2,
@@ -19,7 +20,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 3,
@@ -30,7 +32,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '250 - 375',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 4,
@@ -41,7 +44,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '550 - 200',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 5,
@@ -52,7 +56,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 6,
@@ -63,7 +68,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 7,
@@ -74,7 +80,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 8,
@@ -85,7 +92,8 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '250 - 375',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 9,
@@ -96,17 +104,43 @@ export const galleryCards = [
         rating: '4.5',
         priceRange: '550 - 200',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     },
     {
         id : 10,
         title : 'La Tranquera',
         subtitle : 'Inspirado en la esencia artística y vanguardista de Montmartre en París, este bar ofrece una experiencia única para aquellos que buscan sumergirse en un ambiente acogedor y lleno de creatividad.',
-        img : 'https://media-cdn.tripadvisor.com/media/photo-s/07/45/3a/7c/la-tranquera.jpg',
+        img : 'https://retractableawningsreviews.com/wp-content/uploads/2022/09/2022-09-16_09h21_05-770x1024.png',
         distance: '22km',
         rating: '4.5',
         priceRange: '200 - 400',
         latitude: '-34.603722',
-        longitude: '-58.381592'
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
+    },
+    {
+        id : 11,
+        title : 'La Bohème',
+        subtitle : 'Inspirado en la esencia artística y vanguardista de Montmartre en París, este bar ofrece una experiencia única para aquellos que buscan sumergirse en un ambiente acogedor y lleno de creatividad.',
+        img : 'https://retractableawningsreviews.com/wp-content/uploads/2022/09/2022-09-16_09h21_05-770x1024.png',
+        distance: '22km',
+        rating: '4.5',
+        priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
+    },
+    {
+        id : 12,
+        title : 'La Bohème',
+        subtitle : 'Inspirado en la esencia artística y vanguardista de Montmartre en París, este bar ofrece una experiencia única para aquellos que buscan sumergirse en un ambiente acogedor y lleno de creatividad.',
+        img : 'https://retractableawningsreviews.com/wp-content/uploads/2022/09/2022-09-16_09h21_05-770x1024.png',
+        distance: '22km',
+        rating: '4.5',
+        priceRange: '200 - 400',
+        latitude: '-34.603722',
+        longitude: '-58.381592',
+        serviceActive: [0,2,5]
     }
 ]
