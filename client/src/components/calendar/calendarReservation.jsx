@@ -31,7 +31,7 @@ const ReservationCalendar = ({ openDays, closeModal }) => {
     };
 
     return (
-        <div className="w-80 mx-auto bg-white">
+       <div className="w-80 mx-auto bg-white">
             <Calendar
                 className="w-80"
                 calendarClassName="text-gray-800 w-80"

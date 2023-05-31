@@ -1,5 +1,5 @@
-import { GalleryRow } from "../components";
-import { galleryCards } from '../utils';
+import { GalleryRow } from "..";
+import { galleryCards } from '../../utils';
 
 
 export function Gallery() {
