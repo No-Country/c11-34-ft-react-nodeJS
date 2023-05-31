@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import location from '../assets/location.svg'
+import location from '../../assets/location.svg'
 
 
 export function CardRestoHome({id, img, title, distance, priceRange}) {

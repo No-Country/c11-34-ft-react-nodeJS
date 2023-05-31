@@ -11,10 +11,10 @@ export function SearchBar() {
 
   const navigate = useNavigate()
 
-  const [search, setSearh] = useState('')
+  const [search, setSearch] = useState('')
 
   const handleChange = (e) => {
-    setSearh(e.target.value)
+    setSearch(e.target.value)
   }
 
   const handleSubmit = (e) => {
