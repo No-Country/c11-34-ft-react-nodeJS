@@ -3,10 +3,10 @@ import { Reservas } from '../interfaces/modelInterfaces'
 
 const reservasSchema = new Schema<Reservas>({
   hora: {
-    type: Number,
+    type: String,
     required: [true, 'La hora es obligatoria']
   },
-  personas: {
+  comensales: {
     type: Number,
     required: [true, 'La cantidad de personas es obligatoria']
   },
@@ -19,7 +19,7 @@ const reservasSchema = new Schema<Reservas>({
     default: ['confirmada'],
     enum: ['confirmada', 'cancelada']
   },
-  correo_usuario: {
+  correoComensal: {
     type: String,
     required: [true, 'El correo es obligatorio']
   },

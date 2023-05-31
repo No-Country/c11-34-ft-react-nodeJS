@@ -31,7 +31,7 @@ export interface Restaurant {
 export interface Turno {
   id_restaurante: string
   id_usuario: string
-  reservas: {[key: string]: Array<number>}
+  reservas: { [key: string]: Array<number> }
   capacidadMax: number
   horaApertura: number
   duracionRes: number
@@ -40,10 +40,10 @@ export interface Turno {
 }
 
 export interface Reservas {
-  hora: number
-  personas: number
+  hora: string
+  comensales: number
   fecha: string
   estado: Array<string>
-  correo_usuario: string
+  correoComensal: string
   id_restaurante: string
 }
