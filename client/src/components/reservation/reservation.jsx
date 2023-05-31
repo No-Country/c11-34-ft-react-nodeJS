@@ -19,8 +19,6 @@ const ReservationForm = ({ days }) => {
     };
     const reserveDate= localStorage.getItem('dateReserve');
 
-    console.log(`La fecha reservada es ${reserveDate}`)
-
     return (
         <div className={'border-2 border-black rounded-lg w-reservationForm h-reservationForm'}>
             <form className={'flex flex-col '}>
