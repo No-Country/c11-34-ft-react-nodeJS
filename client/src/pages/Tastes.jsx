@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TastesList } from "../utils";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { CardTastes, NavBarUI } from "../components";
@@ -7,11 +7,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { addTastes } from "../services";
 import { toast } from "react-hot-toast";
 import arrow from '../assets/arrow-black.svg'
+import { useUser } from "../hooks";
 
 export function Tastes() {
     const [selectedCategories, setSelectedCategories] = useState([]);
 
     const navigate = useNavigate()
+    const {load, user} = useUser()
+
+    useEffect(() => {
+     if(!load && !Object.values(user).length) navigate('/auth')
+    }, [user, navigate, load])
+
+    useEffect(() => {
+        if(!load && user) setSelectedCategories(user.gustos)
+    }, [load, user])
 
     const handleCategoryChange = (name) => {
         if (selectedCategories.includes(name)) {
@@ -34,7 +44,6 @@ export function Tastes() {
             toast.error('Error al actualizar los gustos')
         }
     }
-
 
 
     const breakpoints = {

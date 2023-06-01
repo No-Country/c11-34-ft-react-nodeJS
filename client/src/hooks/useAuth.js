@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { isLogin } from "../utils/isLogin";
 import { toast } from "react-hot-toast"
+import { useNavigate } from "react-router-dom";
 
 export function useAuth () {
 
    const [isAuth, setIsAuth] = useState(false)
-
+   const navigate = useNavigate()
 
    const handleAuthentication = async () => {
       return await isLogin()
@@ -13,7 +14,7 @@ export function useAuth () {
 
    useEffect(() => {
       handleAuthentication()
-         .then(res  => setIsAuth(res))
+         .then(res => setIsAuth(res))
          .catch(err => console.log(err))
    }, [])
 
@@ -21,7 +22,7 @@ export function useAuth () {
       localStorage.removeItem('correo')
       setIsAuth(false)
       toast.success('Hasta pronto ✋')
-      window.location.reload()
+      navigate('/auth')
    }
 
    return {
