@@ -6,7 +6,9 @@ export function Login() {
   return (
     <>
     {/* Logo */}
-      <img src={placeholder} alt='placeholder' className='w-20 h-16 lg:mb-0 dt:mb-6 '/>
+      <Link to='/'>
+       <img src={placeholder} alt='placeholder' className='w-20 h-16 lg:mb-0 dt:mb-6 '/>
+      </Link>
 
       <h1 className='text-2xl lg:text-3xl  mb-2 whitespace-nowrap font-semibold'>Iniciar Sesion</h1>
       <p className='text-subtitle w-80 lg:w-80 mb-8 font-inter text-sm font-normal'>¡Hola de vuelta! Ingresa para continuar tu experiencia</p>

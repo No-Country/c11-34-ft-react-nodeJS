@@ -21,10 +21,27 @@ export async function addTastes (data) {
 }
 
 export async function getUserByEmail (email) {
-    const { data } = await axios.get(`${API_URL}/usuarios`)
-    const userFounded = data.usuarios.find(user => user.correo === email)
-    if(!userFounded) throw new Error('Usuario no encontrado')
-    return userFounded
+    const { data } = await axios.get(`${API_URL}/usuarios?correo=${email}`)
+    return data
 }
 
+export async function editUser(userToUpdate) {
+    const { id } = userToUpdate
+    const { data } = await axios.put(`${API_URL}/usuarios/${id}`, userToUpdate)
+    return data
+}
 
+export async function uploadImage (fileWithEmail) {
+
+    const file = new FormData()
+    for(const key in fileWithEmail) {
+        file.append(key, fileWithEmail[key])
+    }
+
+    const { data } = await axios.post(`${API_URL}/details/imagen`, file, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+    })
+    return data
+}
