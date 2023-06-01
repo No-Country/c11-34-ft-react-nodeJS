@@ -1,4 +1,4 @@
-import { NavBarUI, SearchBar } from "../components";
+import {Distance, NavBarUI, SearchBar} from "../components";
 import MapRestaurant from "../components/map/map";
 import { countries, galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
@@ -78,7 +78,7 @@ export function ResultsFilter() {
                                     <img src={card.img} alt={card.title} className="rounded-xl w-full h-72 object-cover"/>
                                 </Link>
                                 <h3 className="font-montserrat font-medium text-xl">{card.title}</h3>
-                                <p className="text-subtitle flex gap-x-1 items-center"><img src={locationSvg}/> 23m</p>
+                                <p className="text-subtitle flex gap-x-1 items-center"><img src={locationSvg}/> <Distance longitudeRestaurant={card.longitude} latitudDestiRestaurant={card.latitude}/> </p>
                                 <p className="font-inter font-semibold ">${card.priceRange}</p>
                             </article>
                         ))

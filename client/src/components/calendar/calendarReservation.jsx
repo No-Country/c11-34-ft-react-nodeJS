@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es.js';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import 'react-calendar/dist/Calendar.css';
 
 dayjs().locale('es');
 dayjs.extend(localizedFormat);
@@ -21,9 +22,11 @@ const ReservationCalendar = ({openDays, closeModal}) => {
     }, [openDays]);
     const isDayDisabled = (date) => {
         const dayOfWeek = dayjs(date).day();
-        return !activeDays.includes(dayOfWeek);
+        return !activeDays.includes(dayOfWeek) ;
     };
-
+    const tileClassName = ({date})=>{
+        return isDayDisabled(date) ? 'text-slate-200' :'';
+    }
     const handleDateClick = (date) => {
         closeModal();
         let reservationDay = dayjs(date).locale('es').format('DD MMMM');
@@ -31,11 +34,12 @@ const ReservationCalendar = ({openDays, closeModal}) => {
     };
 
     return (
-        <div className="w-80 mx-auto bg-white">
+        <div className="w-72 mx-auto">
             <Calendar
-                className="w-80"
-                calendarClassName="text-gray-800 w-80"
+                className="w-72"
+                calendarClassName=""
                 tileDisabled={({date}) => isDayDisabled(date)}
+                tileClassName={tileClassName}
                 prev2Label={null}
                 next2Label={null}
                 value={date}

@@ -65,17 +65,18 @@ export function Restaurant() {
                 </div>
             </div>
 
-            <div className={'flex w-full mt-2 mx- lg:flex-row text-2xl lg:mx-28 lg:mb-32'}>
-                <img className={'pr-2 justify-start'} src={location} alt='location'/>
-                <div className={'flex text-base items-center justify-left'}>
-                    <Distance
-                        longitudeRestaurant={longitudeRestaurant}
-                        latitudDestiRestaurant={latitudeRestaurant}/>
-                </div>
-            </div>
+
             <div className={' flex flex-col items-center mt-2 lg:flex-row text-2xl lg:mx-28 lg:mb-32'}>
                 <div className={'flex justify-center text-sm w-80 items-center lg:mx-8'}>
                     <h3>{restaurant.subtitle}</h3>
+                </div>
+                <div className={'flex text-sm w-80 px-5 items-center lg:mx-8'}>
+                    <img className={'pr-2 justify-start w-5 h-5'} src={location} alt='location'/>
+                    <div className={'flex text-xs '}>
+                        <Distance
+                            longitudeRestaurant={longitudeRestaurant}
+                            latitudDestiRestaurant={latitudeRestaurant}/>
+                    </div>
                 </div>
                 <div className={'lg:w-reservationForm lg:h-reservationForm m-auto mt-4'}>
                     <ReservationForm days={openRestaurant}/>
