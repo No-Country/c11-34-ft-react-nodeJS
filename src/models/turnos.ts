@@ -6,7 +6,7 @@ const turnoSchema: Schema<Turno> = new Schema({
     type: String,
     required: [true, 'El id del restaurante es obligatorio']
   },
-  id_usuario: {
+  correo: {
     type: String,
     required: [true, 'El id del usuario es obligatorio']
   },

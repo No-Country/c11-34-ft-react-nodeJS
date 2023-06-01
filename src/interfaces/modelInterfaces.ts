@@ -15,22 +15,24 @@ export interface Restaurant {
   telefono: string
   correo: string
   dias: Array<string>
-  horarioO: string
-  horarioC: string
+  horarioIn: string
+  horarioOut: string
   tipoComida: Array<string>
   mesas: number
-  lugares: number
-  duracionRes: number
+  sillasPorMesa: number
+  intervaloMesa: number
   descripcion: string
-  caracteristicas: Array<string>
-  detalles: Array<string>
-  costo: number
-  id_usuario: string
+  caracteristicasPrinc: Array<string>
+  otrosDetalles: Array<string>
+  costoReserva: number
+  cantidadComentarios: number
+  imagenes: Array<string>
+  turnos: Array<number>
 }
 
 export interface Turno {
   id_restaurante: string
-  id_usuario: string
+  correo: string
   reservas: { [key: string]: Array<number> }
   capacidadMax: number
   horaApertura: number

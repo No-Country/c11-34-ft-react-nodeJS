@@ -33,11 +33,11 @@ const restaurantSchema: Schema<Restaurant> = new Schema({
     minlength: 1,
     required: [true, 'Los dias son obligatorios']
   },
-  horarioO: {
+  horarioIn: {
     type: String,
     required: [true, 'El horario de apertura es obligatorio']
   },
-  horarioC: {
+  horarioOut: {
     type: String,
     required: [true, 'El horario de cierre es obligatorio']
   },
@@ -49,33 +49,43 @@ const restaurantSchema: Schema<Restaurant> = new Schema({
     type: Number,
     required: [true, 'El numero de mesas es obligatorio']
   },
-  lugares: {
+  sillasPorMesa: {
     type: Number,
-    required: [true, 'El numero de lugares es obligatorio']
+    required: [true, 'El numero de sillas por mesa es obligatorio']
   },
-  duracionRes: {
+  intervaloMesa: {
     type: Number,
-    required: [true, 'La duracion de la reserva es obligatoria']
+    required: [true, 'El intervalo de mesa es obligatorio']
   },
   descripcion: {
     type: String,
     required: [true, 'La descripcion es obligatoria']
   },
-  caracteristicas: {
+  caracteristicasPrinc: {
     type: [String],
-    required: [true, 'Las caracteristicas son obligatorias']
+    required: [true, 'Las caracteristicas principales son obligatorias']
   },
-  detalles: {
+  otrosDetalles: {
     type: [String],
-    required: [true, 'Los detalles son obligatorios']
+    required: [true, 'Los otros detalles son obligatorios']
   },
-  costo: {
+  costoReserva: {
     type: Number,
-    required: [true, 'El costo es obligatorio']
+    default: 0
   },
-  id_usuario: {
-    type: String,
-    required: [true, 'El id del usuario es obligatorio']
+  cantidadComentarios: {
+    type: Number,
+    default: 0
+  },
+  imagenes: {
+    type: [String],
+    minlength: 1,
+    maxlength: 4,
+    required: [true, 'Las imagenes son obligatorias']
+  },
+  turnos: {
+    type: [Number],
+    required: [true, 'Los turnos son obligatorios']
   }
 })
 
