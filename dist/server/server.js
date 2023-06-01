@@ -9,7 +9,9 @@ const dbConnection_1 = __importDefault(require("../database/dbConnection"));
 const userController_routes_1 = __importDefault(require("../routes/userController.routes"));
 const userAuth_routes_1 = __importDefault(require("../routes/userAuth.routes"));
 const userDetails_routes_1 = __importDefault(require("../routes/userDetails.routes"));
+const restaurantDetails_routes_1 = __importDefault(require("../routes/restaurantDetails.routes"));
 const otherServices_routes_1 = __importDefault(require("../routes/otherServices.routes"));
+const restaurantController_routes_1 = __importDefault(require("../routes/restaurantController.routes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -17,7 +19,9 @@ class Server {
         this.usuariosPath = '/api/usuarios';
         this.usuariosAuth = '/api/auth';
         this.usuariosDetails = '/api/details';
+        this.restaurantDetails = '/api/restaurantDetails';
         this.otherServices = '/api/other';
+        this.restaurantPath = '/api/restaurant';
         this.conectarDB();
         this.middlewares();
         this.routes();
@@ -34,7 +38,9 @@ class Server {
         this.app.use(this.usuariosPath, userController_routes_1.default);
         this.app.use(this.usuariosAuth, userAuth_routes_1.default);
         this.app.use(this.usuariosDetails, userDetails_routes_1.default);
+        this.app.use(this.restaurantDetails, restaurantDetails_routes_1.default);
         this.app.use(this.otherServices, otherServices_routes_1.default);
+        this.app.use(this.restaurantPath, restaurantController_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

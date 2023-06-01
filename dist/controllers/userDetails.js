@@ -19,6 +19,7 @@ async function uploadImage(req, res) {
         if (!usuario) {
             return res.status(404).json({ msg: 'usuario no encontrado' });
         }
+        ;
         const result = await cloudinaryUpload_1.default.uploader.upload(dataImg.path);
         const { public_id } = result;
         const transformedUrl = cloudinaryUpload_1.default.url(public_id, {

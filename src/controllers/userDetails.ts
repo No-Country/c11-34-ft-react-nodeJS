@@ -26,7 +26,7 @@ export async function uploadImage(req: Request, res: Response) {
 
     if (!usuario) {
       return res.status(404).json({ msg: 'usuario no encontrado' })
-    }
+    };
 
     // subir la imagen a cloudinary
     const result = await cloud.uploader.upload(dataImg.path)
@@ -41,8 +41,8 @@ export async function uploadImage(req: Request, res: Response) {
 
     // actualizar el usuario.imagen con la url de la imagen
     usuario.imagen = transformedUrl
-    await usuario.save()
-    await eliminarImagenLocal(dataImg.path)
+    await usuario.save();
+    await eliminarImagenLocal(dataImg.path);
     return res
       .status(200)
       .json({ msg: 'imagen subida correctamente', url: transformedUrl })
