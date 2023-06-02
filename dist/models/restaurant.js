@@ -16,7 +16,8 @@ const restaurantSchema = new mongoose_1.Schema({
     },
     correo: {
         type: String,
-        required: [true, 'El correo es obligatorio']
+        required: [true, 'El correo es obligatorio'],
+        unique: true
     },
     dias: {
         type: [String],
@@ -84,7 +85,7 @@ const restaurantSchema = new mongoose_1.Schema({
         required: [true, 'Las imagenes son obligatorias']
     },
     turnos: {
-        type: [Number],
+        type: Number,
         required: [true, 'Los turnos son obligatorios']
     }
 });

@@ -9,6 +9,17 @@ export interface Usuario {
   gustos: Array<string> | undefined
 }
 
+export interface ImageMulter {
+  fieldname: string
+  originalname: string
+  encoding: string
+  mimetype: string
+  destination: string
+  filename: string
+  path: string
+  size: number
+}
+
 export interface Restaurant {
   nombre: string
   direccion: string
@@ -27,7 +38,7 @@ export interface Restaurant {
   costoReserva: number
   cantidadComentarios: number
   imagenes: Array<string>
-  turnos: Array<number>
+  turnos: number
 }
 
 export interface Turno {

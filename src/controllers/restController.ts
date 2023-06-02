@@ -1,30 +1,38 @@
 import { Request, Response } from 'express'
-//import Turnos from '../models/turnos'
-//import fs from 'fs/promises'
-//import cloud from '../helpers/cloudinaryUpload'
+import Turnos from '../models/turnos'
+import { transformarStringtoArray, getTurnsandHours } from '../helpers/others'
+import fs from 'fs/promises'
+import Restaurant from '../models/restaurant'
+import { ImageMulter } from '../interfaces/modelInterfaces'
+import { cloudinaryUpload } from '../helpers/cloudinaryUpload'
 
 export const postRestaurant = async (req: Request, res: Response) => {
   // ! LOS DATOS SERAN ENVIADOS POR UN FORMDATA Y NO POR UN JSON
-  //const eliminarImagenLocal = fs.unlink
+  const eliminarImagenLocal = fs.unlink
 
   try {
-    const dataImg = req.files
-    const allData = req.body
+    const dataImg = req.files as Array<ImageMulter>
+    const allData = await req.body
 
-    console.log({ dataImg })
+    //verificar que no exista
+    const restaurantExistente = await Restaurant.findOne({
+      nombre: allData.nombre,
+      correo: allData.correo
+    })
 
-    if (!dataImg) {
+    if (restaurantExistente) {
+      return res.status(409).json({
+        msg: 'El restaurante ya existe'
+      })
+    }
+
+    if (dataImg?.length === 0) {
       return res.status(400).json({
         msg: 'No se subio ninguna imagen'
       })
     }
 
-    // TRANSFORMAR STRING "[]" A ARRAY []
-    const transformarStringtoArray = (cadena: string) => {
-      const resultado = JSON.parse(cadena.replace(/'/g, '"'))
-      return resultado
-    }
-
+    // TODO TRANSFORMAR STRING "[]" A ARRAY []
     allData.dias = transformarStringtoArray(allData.dias)
     allData.tipoComida = transformarStringtoArray(allData.tipoComida)
     allData.caracteristicasPrinc = transformarStringtoArray(
@@ -32,36 +40,74 @@ export const postRestaurant = async (req: Request, res: Response) => {
     )
     allData.otrosDetalles = transformarStringtoArray(allData.otrosDetalles)
 
-    //OBTENER LA CANTIDAD DE TURNOS
-    const horaI = parseInt(allData.horarioIn.split(':')[0], 10)
-    const horaO = parseInt(allData.horarioOut.split(':')[0], 10)
+    // TODO OBTENER LA CANTIDAD DE TURNOS
+    const { horaI, horaO, turnos } = getTurnsandHours(
+      allData.horarioIn,
+      allData.horarioOut,
+      allData.intervaloMesa
+    )
 
+    // TODO CREAR RESERVAS
     const capacidadMax = allData.sillasPorMesa * allData.mesas
-    const turnos = Math.trunc((horaO - horaI) / allData.intervaloMesa)
-
-    //CREAR RESERVAS
     const reservas = {
       fecha: Array(turnos).fill(capacidadMax)
     }
 
-    console.log(allData)
-    console.log({ horaI, horaO, capacidadMax, turnos, reservas })
+    // TODO SUBIR IMAGENES A CLOUDINARY
+    const transformedUrl = await Promise.all(
+      dataImg.map(async (element: ImageMulter) => {
+        const transformedUrl = await cloudinaryUpload(element.path, 500)
+        return transformedUrl
+      })
+    )
 
-    // const turno = new Turnos({
-    //   id_restaurante,
-    //   correo,
-    //   reservas,
-    //   capacidadMax,
-    //   horaApertura,
-    //   duracionRes,
-    //   personasPorMesa,
-    //   horaCierre
-    // })
+    allData['imagenes'] = transformedUrl
 
-    // await turno.save()
+    // TODO CREAR RESTAURANTE EN LA BASE DE DATOS
+    // añadir turnos al modelo de restaurantes
+    allData['turnos'] = turnos
+    const restaurant = new Restaurant(allData)
+
+    if (!restaurant) {
+      return res.status(400).json({
+        msg: 'No se pudo crear el restaurante'
+      })
+    }
+
+    const { _id: id_restaurante } = restaurant
+
+    await restaurant.save()
+
+    // TODO CREAR TURNOS
+
+    const turno = new Turnos({
+      id_restaurante,
+      correo: allData.correo,
+      reservas,
+      capacidadMax,
+      horaApertura: horaI,
+      duracionRes: allData.intervaloMesa,
+      personasPorMesa: allData.sillasPorMesa,
+      horaCierre: horaO
+    })
+
+    if (!turno) {
+      return res.status(400).json({
+        msg: 'No se pudo crear el turnos, hable con soporte tecnico'
+      })
+    }
+
+    await turno.save()
+
+    // TODO ELIMINAR IMAGENES LOCALES
+    await Promise.all(
+      dataImg.map(async (element: ImageMulter) => {
+        await eliminarImagenLocal(element.path)
+      })
+    )
 
     res.json({
-      msg: 'postRestaurant'
+      msg: 'creado correctamente'
     })
   } catch (error) {
     res.status(500).json({

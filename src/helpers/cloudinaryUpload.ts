@@ -8,5 +8,16 @@ cloud.config({
   api_secret: process.env.CLOUDINARY_API_SECRET || 'x3HKx6yJ_QxGCJltsClsq-TL2-k'
 })
 
-export default cloud
+export const cloudinaryUpload = async (path:string,dimension:number) => {
 
+  const result=await cloud.uploader.upload(path)
+  const { public_id } = result
+
+  const transformedUrl=cloud.url(public_id,{
+    width: dimension,
+    height: dimension,
+    crop: 'fill'
+  })
+
+  return transformedUrl
+}
