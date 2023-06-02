@@ -13,6 +13,15 @@ export function Tastes() {
     const [selectedCategories, setSelectedCategories] = useState([]);
 
     const navigate = useNavigate()
+    const {load, user} = useUser()
+
+    useEffect(() => {
+     if(!load && !Object.values(user).length) navigate('/auth')
+    }, [user, navigate, load])
+
+    useEffect(() => {
+        if(!load && user) setSelectedCategories(user.gustos)
+    }, [load, user])
 
     const handleCategoryChange = (name) => {
         if (selectedCategories.includes(name)) {

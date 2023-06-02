@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Register, Restaurant, ResultsFilter, Tastes } from "./pages";
+import { EditPerfil, Home, Login, Register, Restaurant, ResultsFilter, Tastes } from "./pages";
 import { AuthLayout } from "./layouts";
 import { Toaster } from "react-hot-toast";
 
@@ -15,9 +15,16 @@ function App() {
         </Route>
         <Route path="/tastes" element={<Tastes />} />
         <Route path="/restaurant/:id" element={<Restaurant/>}/>
+        <Route path="/edit-perfil" element={<EditPerfil/>}/>
         <Route path="/result" element={<ResultsFilter />}/>
       </Routes>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster 
+      toastOptions={
+        {
+          duration : 2000
+        }
+      }
+      position="top-right" reverseOrder={false} />
     </>
   );
 }
