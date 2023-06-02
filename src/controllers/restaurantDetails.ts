@@ -86,7 +86,7 @@ export async function getRestaurantHours(req:Request, res:Response) {
         })
 
     } catch (error) {
-        
+        return res.status(500).json({ msg: 'error al consultar la bd' })
     }
 }
 
