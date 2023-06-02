@@ -33,5 +33,30 @@ export const TastesList = [
       "id": 7,
       "name": "Vegano",
       "img": "https://www.eluniversal.com.mx/resizer/NONbGf2nwKe35yT8UsJMYnyARWQ=/980x528/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/WZVAZVEATFACPEXQ53YPJ5IBQY.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Vegano",
+      "img": "https://www.eluniversal.com.mx/resizer/NONbGf2nwKe35yT8UsJMYnyARWQ=/980x528/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/WZVAZVEATFACPEXQ53YPJ5IBQY.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Vegano",
+      "img": "https://www.eluniversal.com.mx/resizer/NONbGf2nwKe35yT8UsJMYnyARWQ=/980x528/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/WZVAZVEATFACPEXQ53YPJ5IBQY.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Vegano",
+      "img": "https://www.eluniversal.com.mx/resizer/NONbGf2nwKe35yT8UsJMYnyARWQ=/980x528/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/WZVAZVEATFACPEXQ53YPJ5IBQY.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Vegano",
+      "img": "https://www.eluniversal.com.mx/resizer/NONbGf2nwKe35yT8UsJMYnyARWQ=/980x528/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/WZVAZVEATFACPEXQ53YPJ5IBQY.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Vegano",
+      "img": "https://www.eluniversal.com.mx/resizer/NONbGf2nwKe35yT8UsJMYnyARWQ=/980x528/cloudfront-us-east-1.images.arcpublishing.com/eluniversal/WZVAZVEATFACPEXQ53YPJ5IBQY.jpg"
     }
   ]
