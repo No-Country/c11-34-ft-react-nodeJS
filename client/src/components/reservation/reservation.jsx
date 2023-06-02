@@ -34,7 +34,7 @@ const ReservationForm = ({days}) => {
                             {!hideButtonImage && <img src={arrowDown} width={14} height={14} alt="Arrow Down"/>}
                         </button>
                         {showCalendar && (
-                            <div className="modal fixed left-5 top-80 lg:w-72 right-20">
+                            <div className="modal fixed left-5 top-80 lg:w-72right-6">
                                 <div className="modal-overlay" onClick={handleCloseModal}></div>
                                 <div className=" relative  lg:mx-5 modal-content ">
                                     <ReservationCalendar openDays={days} closeModal={handleCloseModal}/>
