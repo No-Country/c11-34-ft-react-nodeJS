@@ -1,4 +1,4 @@
-import {Distance, NavBarUI, SearchBar} from "../components";
+import {Distance, NavBarUI, SearchBar, Checkbox} from "../components";
 import MapRestaurant from "../components/map/map";
 import { countries, galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
@@ -18,27 +18,10 @@ export function ResultsFilter() {
         <NavBarUI />
         <SearchBar />
         <section className="grid grid-cols-1 lg:grid-cols-12 w-full px-8 lg:px-20 h-[76vh] gap-4 lg:overflow-hidden">
-            <section className="col-span-3 ">
+            <section className="hidden lg:block col-span-3">
                 <h3 className="mb-2.5 font-montserrat font-bold text-xl">Cocina</h3>
 
-                {/* Section Checkbox */}
-                <section className="flex flex-col gap-y-3">
-                    {
-                        countries.map(countrie => {
-
-                            const name = countrie.name.split(' ')[1]
-
-                            return (
-                            
-                            <div className="w-full flex justify-between" key={countrie.name}>
-                                <label className="font-inter font-medium text-lg">{name}</label>
-                                <input id={name} value={name} type="checkbox" className="w-4 h-4 rounded text-red-400 border border-border-color"/>
-                            </div>
-                            )
-                        })
-                    }
-                </section>
-
+                <Checkbox />
                 
                 <h3 className="mt-6 mb-2.5 font-montserrat font-bold text-xl">Rango de precios</h3>
                
@@ -51,7 +34,7 @@ export function ResultsFilter() {
 
 
             </section>
-            <section className="col-span-6 h-full bg-green-200">
+            <section className="col-span-6 h-full bg-green-200 relative z-10">
                 <MapRestaurant 
                     latitude={randomRestaurant.latitude}
                     longitude={randomRestaurant.longitude}

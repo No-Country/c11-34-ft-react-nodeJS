@@ -5,6 +5,8 @@ export * from './NavBarMobile';
 export * from './NavBarUI';
 export * from './SearchBar';
 export * from './Selector';
+export * from './FilterMobile';
+export * from './Checkbox';
 export * from './auth';
 export { default as calendarReservation } from './calendar/calendarReservation';
 export * from './edit-perfil';
