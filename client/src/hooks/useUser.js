@@ -9,7 +9,7 @@ export function useUser() {
     const email = localStorage.getItem('correo')
 
     useEffect(() => {
-        if(!email) setLoad(false)
+        if(!email || !user) setLoad(false)
         else {
             setLoad(true)
             getUserByEmail(email).then(res => {
@@ -21,6 +21,7 @@ export function useUser() {
             })               
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [email])  
 
     return {
