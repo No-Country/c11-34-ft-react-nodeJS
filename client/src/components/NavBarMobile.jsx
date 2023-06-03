@@ -13,7 +13,7 @@ export function NavBarMobile({isOpen}) {
             <Link to='/'>Inicio</Link>
             <Link to='/about'>Acerca de</Link>
             <Link to='/contact'>Contacto</Link>
-            <Link to='/edit-perfil' className={`${isAuth ? 'block' :'hidden' }`}>Ver perfil</Link>
+            <Link to='/my-perfil' className={`${isAuth ? 'block' :'hidden' }`}>Ver perfil</Link>
             <Link>Registra tu restaurante</Link>
         </div>
         <div className='w-full'>

@@ -41,19 +41,19 @@ export function EditPerfiForm({user}) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-x-12 gap-y-4">
+    <form onSubmit={handleSubmit} className=" flex flex-col lg:flex-row   gap-x-12 gap-y-4">
       <div className="flex-col flex items-start">
             <label htmlFor="nombre"  className="block mb-1 font-inter text-sm text-gray-500 ">Nombre</label>
-            <input value={data.nombre} onChange={(e) => handleChange(e)} name="nombre" type="text" className="border py-1 px-4 outline-none shadow mb-4"/>
+            <input value={data.nombre} onChange={(e) => handleChange(e)} name="nombre" type="text" className="border py-1 px-4 outline-none shadow mb-4 w-full lg:w-auto"/>
             <label htmlFor="correo" className="block mb-1 font-inter text-sm text-gray-500 ">Email</label>
-            <input value={data.correo} onChange={(e) => handleChange(e)} name="correo" type="text"  className="border py-1 px-4 outline-none shadow mb-4"/>
+            <input value={data.correo} onChange={(e) => handleChange(e)} name="correo" type="text"  className="border py-1 px-4 outline-none shadow mb-4 w-full lg:w-auto"/>
             
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full  flex justify-between items-center">
                 <label className="mb-1 font-inter text-sm text-gray-500 ">Gustos</label>
                 <Link to='/tastes' className="font-inter text-xs  text-subtitle hover:underline ">Actualizar gustos </Link>
             </div>
     
-            <div className="flex gap-x-2 items-center border w-full rounded-lg py-1 px-2 mb-4">
+            <div className="flex gap-x-2 items-center border rounded-lg py-2 px-2 mb-4 w-full lg:w-auto">
 
                 {
                   !user?.gustos?.length && 
@@ -65,7 +65,7 @@ export function EditPerfiForm({user}) {
                     ))
                 }
             </div>
-            <button disabled={isLoad} type="submit" className=" bg-green-400 py-2 px-3 rounded-lg font-inter text-xs hover:bg-green-500/90 transition-all w-full flex justify-center">
+            <button disabled={isLoad} type="submit" className=" bg-green-400 py-2 px-3 rounded-lg font-inter text-xs hover:bg-green-500/90 transition-all self-end lg:self-start w-auto flex justify-center" >
               {
                 isLoad
                 ? <Ring size={15} lineWeight={5} speed={2} color="black"/>
@@ -73,7 +73,7 @@ export function EditPerfiForm({user}) {
               }
             </button>
       </div>
-      <div className="w-96">
+      <div className=" lg:w-80 ">
         <div className="flex items-center justify-center w-full ">
             <label htmlFor="file" className="">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6 cursor-pointer w-full">

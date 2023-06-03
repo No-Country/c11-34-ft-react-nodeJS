@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { EditPerfil, Home, Login, Register, Restaurant, ResultsFilter, Tastes } from "./pages";
+import { Home, Login, MyPerfil, Register, Restaurant, ResultsFilter, Tastes } from "./pages";
 import { AuthLayout } from "./layouts";
 import { Toaster } from "react-hot-toast";
 
@@ -15,7 +15,7 @@ function App() {
         </Route>
         <Route path="/tastes" element={<Tastes />} />
         <Route path="/restaurant/:id" element={<Restaurant/>}/>
-        <Route path="/edit-perfil" element={<EditPerfil/>}/>
+        <Route path="/my-perfil" element={<MyPerfil/>}/>
         <Route path="/result" element={<ResultsFilter />}/>
       </Routes>
       <Toaster 
