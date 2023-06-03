@@ -1,6 +1,6 @@
 import {Distance, NavBarUI, SearchBar, Checkbox} from "../components";
 import MapRestaurant from "../components/map/map";
-import { countries, galleryCards } from "../utils";
+import { galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
 import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
@@ -18,7 +18,7 @@ export function ResultsFilter() {
         <NavBarUI />
         <SearchBar />
         <section className="grid grid-cols-1 lg:grid-cols-12 w-full px-8 lg:px-20 h-[76vh] gap-4 lg:overflow-hidden">
-            <section className="hidden lg:block col-span-3">
+            <section className="hidden lg:block lg:col-span-3">
                 <h3 className="mb-2.5 font-montserrat font-bold text-xl">Cocina</h3>
 
                 <Checkbox />
@@ -34,7 +34,7 @@ export function ResultsFilter() {
 
 
             </section>
-            <section className="col-span-6 h-full bg-green-200 relative z-10">
+            <section className="lg:col-span-6 h-full bg-green-200 relative z-10">
                 <MapRestaurant 
                     latitude={randomRestaurant.latitude}
                     longitude={randomRestaurant.longitude}
@@ -45,7 +45,7 @@ export function ResultsFilter() {
             </section>
 
             {/* Result Section */}
-            <section className="col-span-3 flex flex-col gap-y-4  ">
+            <section className="lg:col-span-3 flex flex-col gap-y-4 ">
                 <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{galleryFiltered.length} resultados</h3>
                 <section className="flex flex-col gap-y-3 overflow-y-auto items-center lg:items-start h-auto lg:h-screen pb-24 lg:pb-56 dt:pb-80 lg:pr-2.5">
 

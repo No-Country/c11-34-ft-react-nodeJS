@@ -6,6 +6,8 @@ import {Navigation, Pagination, Thumbs} from "swiper";
 import {Link, useNavigate} from "react-router-dom";
 import {addTastes} from "../services";
 import {toast} from "react-hot-toast";
+import { useEffect } from "react";
+import { useUser } from "../hooks";
 import arrowLeft from '../assets/caret-left-simple.svg'
 import arrowRight from '../assets/caret-right-simple.svg'
 
@@ -76,7 +78,7 @@ export function Tastes() {
                         <Link to={"/"} className="font-bold">volver</Link>
                     </div>
                     <div className={'flex'}>
-                        <Link to={"/"}> Terminar</Link>
+                        <button type="submit">Terminar</button>
                         <img className={'w-4'} src={arrowRight} alt={'arrow Right'}/>
                     </div>
                 </form>
