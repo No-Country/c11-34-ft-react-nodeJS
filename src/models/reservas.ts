@@ -6,6 +6,10 @@ const reservasSchema = new Schema<Reservas>({
     type: String,
     required: [true, 'La hora es obligatoria']
   },
+  nombre: {
+    type: String,
+    required: [true, 'El nombre es obligatorio']
+  },
   comensales: {
     type: Number,
     required: [true, 'La cantidad de personas es obligatoria']

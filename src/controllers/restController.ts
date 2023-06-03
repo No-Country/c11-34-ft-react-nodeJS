@@ -5,8 +5,31 @@ import fs from 'fs/promises'
 import Restaurant from '../models/restaurant'
 import { ImageMulter } from '../interfaces/modelInterfaces'
 import { cloudinaryUpload } from '../helpers/cloudinaryUpload'
+import Reservas from '../models/reservas'
 
-export const postRestaurant = async (req: Request, res: Response) => {
+const getRestaurant = async (req: Request, res: Response) => {
+  try {
+    const { page = 1, limit = 100 } = req.query
+    const restaurants = await Restaurant.find({ visible: true })
+      .skip((Number(page) - 1) * Number(limit))
+      .limit(Number(limit))
+      .exec()
+    res.status(200).json({
+      msg: 'Lista de restaurantes',
+      page,
+      limit,
+      total: restaurants.length,
+      restaurants
+    })
+  } catch (error) {
+    res.status(400).json({
+      msg: 'Se presento un error al obtener la lista de restaurantes',
+      error
+    })
+  }
+}
+
+const postRestaurant = async (req: Request, res: Response) => {
   // ! LOS DATOS SERAN ENVIADOS POR UN FORMDATA Y NO POR UN JSON
   const eliminarImagenLocal = fs.unlink
 
@@ -22,7 +45,7 @@ export const postRestaurant = async (req: Request, res: Response) => {
 
     if (restaurantExistente) {
       return res.status(409).json({
-        msg: 'El restaurante ya existe'
+        msg: 'El restaurante con ese nombre ya existe'
       })
     }
 
@@ -56,7 +79,7 @@ export const postRestaurant = async (req: Request, res: Response) => {
     // TODO SUBIR IMAGENES A CLOUDINARY
     const transformedUrl = await Promise.all(
       dataImg.map(async (element: ImageMulter) => {
-        const transformedUrl = await cloudinaryUpload(element.path, 500)
+        const transformedUrl = await cloudinaryUpload(element.path, 1000)
         return transformedUrl
       })
     )
@@ -82,6 +105,7 @@ export const postRestaurant = async (req: Request, res: Response) => {
 
     const turno = new Turnos({
       id_restaurante,
+      nombre: allData.nombre,
       correo: allData.correo,
       reservas,
       capacidadMax,
@@ -116,3 +140,68 @@ export const postRestaurant = async (req: Request, res: Response) => {
     })
   }
 }
+
+const putRestaurant = async (req: Request, res: Response) => {
+  try {
+    console.log('----Update restaurant----')
+    const { id } = req.params
+    const data = req.body
+
+    const restaurant = await Restaurant.findByIdAndUpdate(id, data, {
+      new: true
+    })
+
+    if (!restaurant) {
+      return res.status(404).json({ mensaje: 'Restautanre no encontrado' })
+    }
+
+    return res.status(200).json({
+      msg: `Restaurante con id: "${id}" actualizado exitosamente`,
+      restaurant
+    })
+  } catch (error) {
+    res.status(500).json({
+      msg: 'Se presento un error al actualizar el retaurante',
+      error
+    })
+  }
+}
+
+const deleteRestaurant = async (req: Request, res: Response) => {
+  try {
+    console.log('----Delete Restaurant----')
+    const { id } = req.params
+
+    // verificar si tiene reservas
+    const reservas = await Reservas.findOne({ id_restaurante: id })
+    if (reservas) {
+      return res.status(400).json({
+        msg: 'No se puede eliminar el restaurante porque tiene reservas, opcion ponerlo quitarle la visibilidad'
+      })
+    }
+
+    const restaurant = await Restaurant.findByIdAndDelete(id)
+    if (!restaurant) {
+      return res.status(404).json({ mensaje: 'Restaurante no encontrado' })
+    }
+    // eliminar turnos
+    await Turnos.findOneAndDelete({ id_restaurante: id })
+    return res
+      .status(200)
+      .json({ mensaje: 'Restaurante eliminado exitosamente' })
+  } catch (error) {
+    res.status(500).json({
+      msg: 'Se presento un error al eliminar el restaurante',
+      error
+    })
+  }
+}
+
+const restController = {
+  getRestaurant,
+  postRestaurant,
+  putRestaurant,
+  deleteRestaurant
+}
+
+export default restController

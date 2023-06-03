@@ -87,6 +87,10 @@ const restaurantSchema: Schema<Restaurant> = new Schema({
   turnos: {
     type: Number,
     required: [true, 'Los turnos son obligatorios']
+  },
+  visible: {
+    type: Boolean,
+    default: true
   }
 })
 

@@ -39,6 +39,7 @@ export interface Restaurant {
   cantidadComentarios: number
   imagenes: Array<string>
   turnos: number
+  visible: boolean
 }
 
 export interface Turno {
@@ -50,9 +51,11 @@ export interface Turno {
   duracionRes: number
   personasPorMesa: number
   horaCierre: number
+  nombre: string
 }
 
 export interface Reservas {
+  nombre: string
   hora: string
   comensales: number
   fecha: string

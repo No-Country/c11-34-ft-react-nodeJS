@@ -15,3 +15,10 @@ export const getTurnsandHours = (
 
   return { horaI, horaO, turnos }
 }
+
+export const getHoursinString = (hora: number) => {
+  const horaString = hora.toString()
+  const horaString2 =
+    horaString.length === 1 ? `0${horaString}:00` : `${horaString}:00`
+  return horaString2
+}

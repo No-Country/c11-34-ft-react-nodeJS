@@ -4,7 +4,7 @@ import Reservas from '../models/reservas'
 import { ParsedQs } from 'qs'
 import { getPlaces } from '../helpers/places'
 import { obtenerFechaAnterior } from '../helpers/obtenerFechaAnterior'
-
+import { getHoursinString } from '../helpers/others'
 const getTurns = async (req: Request, res: Response) => {
   try {
     const { id_restaurante, fecha, turno }: ParsedQs = req.query
@@ -58,15 +58,8 @@ const getTurns = async (req: Request, res: Response) => {
 
 const postTurns = async (req: Request, res: Response) => {
   try {
-    const {
-      id_restaurante,
-      correoComensal,
-      turno,
-      hora,
-      capPorMesa,
-      comensales,
-      fecha
-    } = req.body
+    const { id_restaurante, correoComensal, turno, comensales, fecha } =
+      req.body
 
     const data = await Turnos.findOne({ id_restaurante })
 
@@ -74,6 +67,23 @@ const postTurns = async (req: Request, res: Response) => {
       return {
         msg: 'No se encontró el restaurante,verifique el id del restaurant'
       }
+    }
+
+    //obtener la hora de la reserva
+    const horaNumber = data.horaApertura + data.duracionRes * turno
+    const hora = getHoursinString(horaNumber)
+
+    //verificar si ya reservo la misma persona a la misma hora
+    const dataReservas = await Reservas.findOne({
+      id_restaurante,
+      fecha,
+      correoComensal
+    })
+
+    if (dataReservas) {
+      return res.status(400).json({
+        msg: 'Error al reservar, ya tienes una reserva registrada para esa fecha'
+      })
     }
 
     //objeto con lugar disponible
@@ -101,11 +111,17 @@ const postTurns = async (req: Request, res: Response) => {
 
     //actualizamos la cantidad de personas a un multiplo de personas por mesa
     const cantPersonasARegistrar = (Math.ceil(
-      (comensales / capPorMesa) as number
-    ) * capPorMesa) as number
-
+      (comensales / data.personasPorMesa) as number
+    ) * data.personasPorMesa) as number
     //actualizamos la cantidad de lugares disponibles
-    data.reservas[fecha as string][turno] -= cantPersonasARegistrar
+
+    if (!data.reservas[fecha as string]) {
+      res.json({
+        msg: 'No se encontró la fecha, verifique la fecha'
+      })
+    }
+
+    data.reservas[fecha as string][turno as number] -= cantPersonasARegistrar
 
     // actualizar la base de datos (put )
     const modelTurnos = await Turnos.findByIdAndUpdate(data._id, data)
@@ -115,6 +131,7 @@ const postTurns = async (req: Request, res: Response) => {
 
     const reserva = await Reservas.create({
       hora,
+      nombre: data.nombre,
       comensales,
       fecha,
       correoComensal,
@@ -129,17 +146,18 @@ const postTurns = async (req: Request, res: Response) => {
     res.json({
       msg: 'Reserva creada con éxito',
       reserva: {
+        nombreRest: data.nombre,
         hora,
         comensales,
         fecha,
         correoComensal,
-        id: _id
+        idReserva: _id
       }
     })
   } catch (error) {
+    console.log(error)
     res.status(500).json({
-      msg: 'Error al crear reserva',
-      error
+      msg: error
     })
   }
 }

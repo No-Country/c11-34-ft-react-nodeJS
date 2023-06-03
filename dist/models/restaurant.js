@@ -87,6 +87,10 @@ const restaurantSchema = new mongoose_1.Schema({
     turnos: {
         type: Number,
         required: [true, 'Los turnos son obligatorios']
+    },
+    visible: {
+        type: Boolean,
+        default: true
     }
 });
 exports.default = (0, mongoose_1.model)('Restaurant', restaurantSchema);

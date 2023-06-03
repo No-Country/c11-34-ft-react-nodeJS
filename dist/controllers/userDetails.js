@@ -19,7 +19,7 @@ async function uploadImage(req, res) {
         if (!usuario) {
             return res.status(404).json({ msg: 'usuario no encontrado' });
         }
-        const transformedUrl = await (0, cloudinaryUpload_1.cloudinaryUpload)(dataImg.path, 100);
+        const transformedUrl = await (0, cloudinaryUpload_1.cloudinaryUpload)(dataImg.path, 500);
         usuario.imagen = transformedUrl;
         await usuario.save();
         await eliminarImagenLocal(dataImg.path);

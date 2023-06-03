@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTurnsandHours = exports.transformarStringtoArray = void 0;
+exports.getHoursinString = exports.getTurnsandHours = exports.transformarStringtoArray = void 0;
 const transformarStringtoArray = (cadena) => {
     const resultado = JSON.parse(cadena.replace(/'/g, '"'));
     return resultado;
@@ -13,4 +13,10 @@ const getTurnsandHours = (horaIn, horaOut, intervaloMesa) => {
     return { horaI, horaO, turnos };
 };
 exports.getTurnsandHours = getTurnsandHours;
+const getHoursinString = (hora) => {
+    const horaString = hora.toString();
+    const horaString2 = horaString.length === 1 ? `0${horaString}:00` : `${horaString}:00`;
+    return horaString2;
+};
+exports.getHoursinString = getHoursinString;
 //# sourceMappingURL=others.js.map

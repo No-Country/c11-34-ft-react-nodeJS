@@ -29,7 +29,7 @@ export async function uploadImage(req: Request, res: Response) {
     }
 
     // subir la imagen a cloudinary
-    const transformedUrl = await cloudinaryUpload(dataImg.path, 100)
+    const transformedUrl = await cloudinaryUpload(dataImg.path, 500)
 
     // actualizar el usuario.imagen con la url de la imagen
     usuario.imagen = transformedUrl
