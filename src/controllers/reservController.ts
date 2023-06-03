@@ -4,7 +4,11 @@ import Reservas from '../models/reservas'
 const getReserv = async (req: Request, res: Response) => {
   try {
     const { correo } = req.query
-    const reservas = await Reservas.find({ correo })
+    const reservas = await Reservas.find({ correoComensal: correo })
+    if (!reservas) {
+      return res.status(404).json({ mensaje: 'No se encontraron reservas' })
+    }
+
     res.status(200).json({
       msg: 'Reservas obtenidas exitosamente',
       reservas

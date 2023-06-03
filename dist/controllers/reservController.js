@@ -7,7 +7,10 @@ const reservas_1 = __importDefault(require("../models/reservas"));
 const getReserv = async (req, res) => {
     try {
         const { correo } = req.query;
-        const reservas = await reservas_1.default.find({ correo });
+        const reservas = await reservas_1.default.find({ correoComensal: correo });
+        if (!reservas) {
+            return res.status(404).json({ mensaje: 'No se encontraron reservas' });
+        }
         res.status(200).json({
             msg: 'Reservas obtenidas exitosamente',
             reservas
