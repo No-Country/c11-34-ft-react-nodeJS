@@ -13,7 +13,7 @@ export function ListaMenu() {
     const foodType = JSON.parse(localStorage.getItem('tastesRestaurant'));
     const chars = JSON.parse(localStorage.getItem('characteristicsRestaurant'));
     const firstData = JSON.parse(localStorage.getItem('restaurantFirstData'));
-    console.log(diners.cantidadMesas*diners.cantidadSillasPorMesa)
+    console.log(photos)
     const [values, setValues] = useState({
         nombre: '',
         direccion: '',
@@ -54,7 +54,7 @@ export function ListaMenu() {
             otrosDetalles: chars.newChar,
             costoReserva: daysTime.reservationCost,
             cantidadComentarios: '',
-            imagenes: [],
+            imagenes: photos,
             capacidadMax: diners.cantidadMesas*diners.cantidadSillasPorMesa,
             turnos: [],
         }
