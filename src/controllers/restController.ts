@@ -37,6 +37,7 @@ const postRestaurant = async (req: Request, res: Response) => {
     const dataImg = req.files as Array<ImageMulter>
     const allData = await req.body
 
+   
     //verificar que no exista
     const restaurantExistente = await Restaurant.findOne({
       nombre: allData.nombre,
@@ -93,7 +94,7 @@ const postRestaurant = async (req: Request, res: Response) => {
 
     if (!restaurant) {
       return res.status(400).json({
-        msg: 'No se pudo crear el restaurante'
+        msg: 'No se pudo crear el restaurante, hable con soporte tecnico'
       })
     }
 
@@ -115,6 +116,7 @@ const postRestaurant = async (req: Request, res: Response) => {
       horaCierre: horaO
     })
 
+    // !esto no tiene nada que ver con el frontend
     if (!turno) {
       return res.status(400).json({
         msg: 'No se pudo crear el turnos, hable con soporte tecnico'

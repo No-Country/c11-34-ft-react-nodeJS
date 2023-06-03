@@ -68,7 +68,7 @@ const postRestaurant = async (req, res) => {
         const restaurant = new restaurant_1.default(allData);
         if (!restaurant) {
             return res.status(400).json({
-                msg: 'No se pudo crear el restaurante'
+                msg: 'No se pudo crear el restaurante, hable con soporte tecnico'
             });
         }
         const { _id: id_restaurante } = restaurant;
