@@ -343,7 +343,11 @@ Params:
 Esta API permite realizar operaciones relacionadas con Restaurantes, como obtener, crear, actualizar y eliminar.
 
 Ruta de la API:  [https://ncback-production.up.railway.app](https://ncback-production.up.railway.app/)
+
+## Ver Restaurant
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNj
-kxODU1OSwtMTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
+eyJoaXN0b3J5IjpbMTQ4OTg5NjI4MywyMDU1MjA3MzEzLC0yMz
+U4ODE5MDEsNzE2OTE4NTU5LC0xNzExNjIxMzAxLDQ5MzUwNDU0
+MV19
 -->
