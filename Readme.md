@@ -887,9 +887,10 @@ No se encontraron reservas o el correo es erroneo:
 
 ## Editar reservas
 
-## 
+
+## Eliminar reservas
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUzNTA1OTg4NiwzODg5OTIyMiwxNDg5OD
+eyJoaXN0b3J5IjpbMTkwMTQzNzIxMCwzODg5OTIyMiwxNDg5OD
 k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
 LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
