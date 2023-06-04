@@ -486,8 +486,39 @@ NOTAS IMPORTANTES:
 -   Las Imagenes tienen un min de 1 y un max de 4 por restaurant.
   
 -   Los datos de tipo array deben ser enviados como string pero manteniendo su forma de array, como en el ejemplo de arriba.- Ya que, este sera parseado en el backend.
+
+Respuesta exitosa:
+
+```json
+
+  {
+    msg: "creado correctamente"
+  }
+
+```
+
+Nombre Repetido:
+
+```json
+
+  {
+    msg: 'El restaurante con ese nombre ya existe'
+  }
+
+```
+
+Imagenes inexistentes:
+
+```json
+
+  {
+    msg: 'No se subio ninguna imagen'
+  }
+```
+
+## Editar informacion de rest
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA1MDEwMjY1LDM4ODk5MjIyLDE0ODk4OT
-YyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNjkxODU1OSwt
-MTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
+eyJoaXN0b3J5IjpbMjE0MDYwMzk5OCwzODg5OTIyMiwxNDg5OD
+k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
+LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
