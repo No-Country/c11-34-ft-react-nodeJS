@@ -4,7 +4,7 @@ import dbConnection from '../database/dbConnection'
 import routerUser from '../routes/userController.routes'
 import routerAuth from '../routes/userAuth.routes'
 import routerDetails from '../routes/userDetails.routes'
-import routerResDetails from '../routes/restaurantDetails.routes'
+// import routerResDetails from '../routes/restaurantDetails.routes'
 import routerOtherServices from '../routes/otherServices.routes'
 import routerRest from '../routes/restController.routes'
 import routerTurns from '../routes/restTurns.routes'
@@ -27,7 +27,7 @@ class Server {
     this.usuariosPath = '/api/usuarios'
     this.usuariosAuth = '/api/auth'
     this.usuariosDetails = '/api/details'
-    this.restaurantDetails = '/api/restaurantDetails'
+    // this.restaurantDetails = '/api/restaurantDetails'
     this.otherServices = '/api/other'
     this.restController = '/api/restaurant'
     this.restTurns = '/api/restaurant/turnos'
@@ -58,7 +58,7 @@ class Server {
     this.app.use(this.usuariosPath, routerUser)
     this.app.use(this.usuariosAuth, routerAuth)
     this.app.use(this.usuariosDetails, routerDetails)
-    this.app.use(this.restaurantDetails, routerResDetails)
+    // this.app.use(this.restaurantDetails, routerResDetails)
     this.app.use(this.otherServices, routerOtherServices)
     this.app.use(this.restController, routerRest)
     this.app.use(this.restTurns, routerTurns)
