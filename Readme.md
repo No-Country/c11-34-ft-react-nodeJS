@@ -483,7 +483,7 @@ NOTAS IMPORTANTES:
 
 -   Los datos son de manera obligatoria, si no se envian se presentara un error.
   
--   Las Imagenes tienen un min de 1 y un max de 4 por restaurant.
+-   Las Imágenes tienen un min de 1 y un max de 4 por restaurant.
   
 -   Los datos de tipo array deben ser enviados como string pero manteniendo su forma de array, como en el ejemplo de arriba.- Ya que, este sera parseado en el backend.
 
@@ -507,7 +507,7 @@ Nombre Repetido:
 
 ```
 
-Imagenes inexistentes:
+Imágenes inexistentes:
 
 ```json
 
@@ -518,7 +518,7 @@ Imagenes inexistentes:
 
 ## Editar información de restaurante
 
-Editar informacion del restaurant, de momento no se puede editar imagenes.
+Editar información del restaurant, de momento no se puede editar imágenes.
 
 -   Método:  `PUT`
 -   Ruta:  `/api/restaurant/:id`
@@ -551,8 +551,67 @@ NOTAS IMPORTANTES:
 -   Aun no esta la logica para manejar los comentairios ni el costo de reserva.
   
 -   Visible es un boolean, en caso ponerlo en false, el restaurant desaparecera de la lista pero no se eliminara de la base de datos. En caso querer volverlo a true de momento se debe guardar el id para volverlo a editar.
+
+Respuesta exitosa:
+
+```json
+
+  {
+    "msg": "Restaurante con id: \"647a83c6207aebd584ae3b5c\" actualizado exitosamente",
+    "restaurant": {
+        "_id": "647a83c6207aebd584ae3b5c",
+        "nombre": "san Ponciano",
+        "direccion": "las magnolias",
+        "telefono": "123445567",
+        "correo": "gianco3108@gmail.com",
+        "dias": [
+            "lunes",
+            "martes",
+            "miercoles"
+        ],
+        "horarioIn": "08:00",
+        "horarioOut": "20:00",
+        "tipoComida": [
+            "vegetarioano",
+            "pizza"
+        ],
+        "mesas": 15,
+        "sillasPorMesa": 2,
+        "intervaloMesa": 1,
+        "descripcion": "descricpon del restaruante",
+        "caracteristicasPrinc": [
+            "wifi",
+            "mesasFUera"
+        ],
+        "otrosDetalles": [
+            "casa",
+            "tenedor"
+        ],
+        "costoReserva": 0,
+        "cantidadComentarios": 0,
+        "imagenes": [
+            "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/en5ansx5e4brkwsclq7k",
+            "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/jarluxkjopg217x1yi8p"
+        ],
+        "turnos": 12,
+        "visible": true,
+        "__v": 0
+    }
+}
+
+```
+
+Error id:
+
+```json
+
+  {
+    "msg": "Se presento un error al actualizar el retaurante",
+    "error": error
+ }
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4OTAyMjU4NzgsMzg4OTkyMjIsMTQ4OT
-g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
-LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
+eyJoaXN0b3J5IjpbLTEzODU3NDM5NSwzODg5OTIyMiwxNDg5OD
+k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
+LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
