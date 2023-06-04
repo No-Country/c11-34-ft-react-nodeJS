@@ -634,12 +634,12 @@ Respuesta exitosa:
 ```json
 
   { 
-    msg: 'Restaurante eliminado exitosamente' 
+    "msg": 'Restaurante eliminado exitosamente' 
   }
 
 ```
 
-Peticion fallida:
+Petición fallida:
 
 ```json
 
@@ -890,7 +890,7 @@ No se encontraron reservas o el correo es erroneo:
 
 ## Eliminar reservas
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkwMTQzNzIxMCwzODg5OTIyMiwxNDg5OD
-k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
-LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbMTQ2NDc0NzAzOCwxOTAxNDM3MjEwLDM4OD
+k5MjIyLDE0ODk4OTYyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAx
+LDcxNjkxODU1OSwtMTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
 -->
