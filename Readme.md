@@ -422,15 +422,24 @@ Respuesta exitosa:
 
 Respuesta no exitosa:
 
-```
+```json
 
           {
             msg: 'Se presento un error al obtener la lista de restaurantes',
             error
           }
 ```
+
+## Crear Restaurante
+
+Crea un restaurant en la base de datos.
+
+-   Método:  `POST`
+-   Ruta:  `/api/restaurant`
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjU1ODcxOTcsMzg4OTkyMjIsMTQ4OT
+eyJoaXN0b3J5IjpbLTEyNTc0NzU2MzUsMzg4OTkyMjIsMTQ4OT
 g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
 LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
