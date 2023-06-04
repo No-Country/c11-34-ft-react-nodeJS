@@ -738,7 +738,7 @@ Crea la reserva y obtiene los datos.
 Parámetros de consulta: (BODY json)
 
 -   `id_restaurante`  (string): Id del restaurant.
--   `correoComensal`  (string): correo de la persona que har la reserva.
+-   `correoComensal`  (string): correo de la persona que hará la reserva.
 -   `turno`  (number): posición del array de turnos empezando en 0.
 -   `comensales`  (number): cantidad de personas que asistiran a la reserva.
 -   `fecha`  (string): fecha a reservar.
@@ -748,8 +748,74 @@ NOTAS IMPORTANTES:
 -   Antes de reservar se debe crear el array con las horas disponibles. Esto se crea al momento que la persona elije la fecha y la hora y se hace el get anterior. Sin este paso, ocurrirá un error  [no existe fecha](http://localhost:3000/reserva.html#noDate).
   
 -   Las Reservas se pueden hacer en diferentes dias, pero no en diferentes horarios del mismo dia.
+
+Ejemplo de petición: JSON
+
+```json
+
+          {
+            "id_restaurante":"647a83c6207aebd584ae3b5c",
+            "correoComensal":"gianco.marquez@gmail.com",
+            "turno":1,
+            "comensales":5,
+            "fecha":"04/06/23"
+        }
+
+
+```
+
+Respuesta exitosa:
+
+```json
+
+          {
+            "msg": "Reserva creada con éxito",
+            "reserva": {
+                "nombreRest": "san Ponciano",
+                "hora": "09:00",
+                "comensales": 5,
+                "fecha": "04/06/23",
+                "correoComensal": "gianco.marquez@gmail.com",
+                "idReserva": "647be8676ef2fbbb539a467f"
+            }
+         }
+
+```
+
+Respuesta no exitosa:
+
+```json
+
+          {
+            "msg": "Error al obtener turnos disponibles"
+          }
+
+```
+
+No existe fecha:
+
+```json
+
+          {
+            "msg": "No se encontró la fecha, verifique la fecha"
+          }
+
+```
+
+Reserva en el mismo día:
+
+```json
+
+          {
+            "msg": "Error al reservar, ya tienes una reserva registrada para esa fecha"
+          }
+
+```
+
+## Ver reservas
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDg5NDMyNzQ0LDM4ODk5MjIyLDE0ODk4OT
-YyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNjkxODU1OSwt
-MTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
+eyJoaXN0b3J5IjpbLTE2NzE5OTkzOTgsMzg4OTkyMjIsMTQ4OT
+g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
+LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
