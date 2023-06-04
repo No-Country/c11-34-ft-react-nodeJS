@@ -354,10 +354,9 @@ Obtiene todos los restaurantes registrados y la cantidad total.
 En caso de solo querer 1 restaurant por correo.
 
 -   Ruta 2:  `/api/restaurant/my`
-
-query: ?correo=correo@gmail.com
+- query: ?correo=correo@gmail.com
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxNzIzMzUxNSwxNDg5ODk2MjgzLDIwNT
-UyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTksLTE3MTE2MjEz
-MDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbMzg4OTkyMjIsMTQ4OTg5NjI4MywyMDU1Mj
+A3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5LC0xNzExNjIxMzAx
+LDQ5MzUwNDU0MV19
 -->
