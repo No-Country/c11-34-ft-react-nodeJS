@@ -516,9 +516,43 @@ Imagenes inexistentes:
   }
 ```
 
-## Editar informacion de rest
+## Editar información de restaurante
+
+Editar informacion del restaurant, de momento no se puede editar imagenes.
+
+-   Método:  `PUT`
+-   Ruta:  `/api/restaurant/:id`
+
+Parámetros de consulta:
+
+-   `nombre`  (body, string): costo de la reserva.
+-   `direccion`  (body, string): dirección del restaurant.
+-   `telefono`  (body, string): teléfono del restaurant.
+-   `correo`  (body, string): correo del restaurant
+-   `dias`  (body, array(string)): días abiertos
+-   `horarioIn`  (body, string): horario de apertura
+-   `horarioOut`  (body, string): horario de cierre
+-   `tipoComida`  (body, array(string)): tipo de comida (gustos)
+-   `mesas`  (body, number): cantidad de mesas del rest.
+-   `sillasPorMesa`  (body, number): cantidad de sillas por mesa.
+-   `intervaloMesa`  (body, number): cantidad de horas que dura una reserva
+-   `descripcion`  (body, string): descripcion del restaurant
+-   `caracteristicasPrinc`  (body, array(string)): caracteristicas del rest.
+-   `otrosDetalles`  (body, array(string)): mas detalles del rest.
+-   `costoReserva`  (body, number): costo de la reserva.
+-   `cantidadComentarios`  (body, number): cantidad de Comentarios.
+-   `turnos`  (body, number): turnos totales al día.
+-   `visible`  (body, string (boolean)): visibilidad del restaurant.
+
+NOTAS IMPORTANTES:
+
+-   Aun no esta la logica para editar imagenes, por lo que no se puede editar imagenes.
+  
+-   Aun no esta la logica para manejar los comentairios ni el costo de reserva.
+  
+-   Visible es un boolean, en caso ponerlo en false, el restaurant desaparecera de la lista pero no se eliminara de la base de datos. En caso querer volverlo a true de momento se debe guardar el id para volverlo a editar.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE0MDYwMzk5OCwzODg5OTIyMiwxNDg5OD
-k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
-LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbLTE4OTAyMjU4NzgsMzg4OTkyMjIsMTQ4OT
+g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
+LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
