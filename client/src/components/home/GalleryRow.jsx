@@ -1,9 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { CardRestoHome } from "..";
 import { Navigation, Pagination, Thumbs } from "swiper";
+import { Ring } from '@uiball/loaders';
 
 
-export function GalleryRow({cards, title}) {
+export function GalleryRow({cards, title, isLoad}) {
  const breakpoints = {
     320: {
         slidesPerView: 1,
@@ -17,7 +18,12 @@ export function GalleryRow({cards, title}) {
     1440: {
         slidesPerView: 4,
     } 
+    
 }
+
+    
+  if(isLoad) return <div className="flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
+
     return (
           <div>
               <div className="px-5 font-black lg:text-xl">{title}</div>
