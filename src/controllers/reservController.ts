@@ -5,8 +5,10 @@ const getReserv = async (req: Request, res: Response) => {
   try {
     const { correo } = req.query
     const reservas = await Reservas.find({ correoComensal: correo })
-    if (!reservas) {
-      return res.status(404).json({ mensaje: 'No se encontraron reservas' })
+    if (reservas.length === 0 || !reservas) {
+      return res
+        .status(404)
+        .json({ msg: 'No se encontraron reservas, verificar el correo' })
     }
 
     res.status(200).json({

@@ -4,109 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilo.css">
+
     <title>Reserva</title>
-    <style>
-        body {
-          overflow-y: hidden;
-          background-color: #f2f2f2;
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 20px;
-          margin-top: 10px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          height: 100vh;
-        }
-  
-        .container {
-          max-width: 800px;
-          width: 100%;
-          overflow-y: hidden;
-        }
-  
-        h1 {
-          color: #333;
-          font-size: 24px;
-          margin-bottom: 10px;
-        }
-  
-        h2 {
-          color: #333;
-          font-size: 20px;
-          margin-bottom: 10px;
-        }
-  
-        p {
-          color: #666;
-          font-size: 16px;
-          margin-top: 0;
-        }
-  
-        code {
-          background-color: #eee;
-          border-radius: 4px;
-          padding: 2px 4px;
-        }
-  
-        pre {
-          background-color: #eee;
-          border-radius: 4px;
-          padding: 10px;
-          white-space: pre-wrap;
-        }
-  
-        .response {
-          margin-top: 20px;
-        }
-  
-        .response code {
-          display: block;
-          margin-top: 10px;
-        }
-  
-        .success {
-          color: green;
-        }
-  
-        .error {
-          color: red;
-        }
-  
-        .scrollable {
-          margin-top: 10px;
-          max-height: 85vh;
-          max-width: 100vw;
-          overflow-y: auto;
-          
-        }
-        nav {
-          display: flex;
-          justify-content: center;
-        }
-        .nav_item {
-          margin: 0 10px;
-          padding: 10px;
-          border: 1px solid #000;
-          text-decoration: none;
-          color: #000;
-        }
-      </style>
+    
 </head>
 <body>
     <!-- <a href="./loginTest.html">Ir a login de google, solo para local</a> -->
     <div class="container">
-      <h1>API de Usuarios</h1>
+      <div class="tandback">
+
+        <h1>API de Reserva</h1>
+        <a href="index.html">INICIO</a>
+      </div>
       <nav>
-        <a class="nav_item" href="#listar">Listar</a
-        ><a class="nav_item" href="#correo">Listar por correo
-        ><a class="nav_item" href="#crear">Crear</a
-        ><a class="nav_item" href="#actualizar">Actualizar</a
-            
-        
-            ><a class="nav_item" href="#eliminar">Eliminar</a
-        ><a class="nav_item" href="#loguear">Loguear</a
-        ><a class="nav_item" href="#details">Detalles</a>
+        <a class="nav_item" href="#dispo">Disponibilidad</a
+        ><a class="nav_item" href="#reservar">Crear reserva<a class="nav_item" href="#ver">Ver Reservas</a
+        ><a class="nav_item" href="#editar">Editar Reservas</a
+          >
+          <a class="nav_item" href="#eliminar">Eliminar Reserva</a
+            >
+  
       </nav>
       <div class="scrollable">
         <p>
@@ -121,464 +39,223 @@
           >
         </p>
 
-        <h2>Obtener todos los usuarios</h2>
-        <p>Obtiene la lista de todos los usuarios registrados en el sistema.</p>
+        <h2 id="dispo">Obtener Disponibilidad de Reserva</h2>
+        <p>Obtiene la cantidad de lugares disponibles por la hora y fecha.</p>
         <ul>
           <li>Método: <code>GET</code></li>
-          <li>Ruta: <code>/api/usuarios/</code></li>
+          <li>Ruta: <code>/api/restaurant/turnos</code></li>
         </ul>
-        <p>Parámetros de consulta: Ninguno.</p>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-[
-  {
-            "nombre": "test1",
-            "correo": "test1@gmail.com",
-            "contrasena": "test1",
-            "rol": "USER_ROLE",
-            "estado": true,
-            "google": false,
-            "id": "646ad10cae92aa123ce07df7"
-  }
-]
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-  "mensaje": "Usuario no encontrado"
-}
-</code></pre>
-
-        <h2>Obtener un usuario por correo</h2>
-        <p>Obtiene un usuario específico por su correo electrónico.</p>
-        <ul>
-          <li>Método: <code>GET</code></li>
-          <li>Ruta: <code>/api/usuarios/</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
+        <p>Parámetros de consulta: (Params)</p>
         <ul>
           <li>
-            <code>correo</code> (string, opcional): Correo electrónico del
-            usuario a buscar.
+            <code>id_restaurante</code> (string): Id del restaurant.
+          </li>
+          <li>
+            <code>fecha</code> (string): fecha de busqueda.
+          </li><li>
+            <code>turno</code> (string): posicion del array de turnos empezando en 0.
+          </li>
+          
+        </ul>
+        
+        <p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Turno es un numero, porque es la posicion del array de horas disponibles.
+            Ejm.
+            <br>
+            <pre>
+              <code>
+                turnos:4
+                horaI: 12:00
+                horaF: 20:00
+                intervalo: 2
+              
+
+              [12:00,14:00,16:00,18:00]</code>
+            </pre>
+            
           </li>
         </ul>
         <p>Ejemplo de petición: query</p>
-        <pre><code>{
-   ?correo=correo@gmail.com
-}</code></pre>
+        <pre><code>
+  ruta: ruta/api/restaurant/turnos?id_restaurante=647a83c6207aebd584ae3b5c&fecha=03/06/23&turno=2
+
+</code></pre>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
           {
-            "nombre": "test1",
-            "correo": "test1@gmail.com",
-            "contrasena": "test1",
-            "rol": "USER_ROLE",
-            "estado": true,
-            "google": false,
-            "id": "646ad10cae92aa123ce07df7"
+            "disponible": 18
           }
 </code></pre>
         <p>Respuesta no exitosa:</p>
         <pre><code class="error">
-{
-  "mensaje": "Usuario no encontrado"
-}
+          {
+            "msg": "Error al obtener turnos disponibles"
+          }
+</code></pre>
+<p>ID incorrecto:</p>
+        <pre><code class="error">
+          {
+            "msg": "No se encontró el restaurante,verifique el id del restaurant"
+          }
+</code></pre>
+<p>No disponible:</p>
+        <pre><code class="error">
+          {
+            "msg": "Turno no disponible"
+          }
 </code></pre>
 
-        <!-- <h2>Obtener usuario por id</h2>
-        <p>Trae los datos de un usuario específico por su id.</p>
+<h2 id="reservar">Reservar Mesa</h2>
+        <p>Crea la reserva y obtiene los datos.</p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/restaurant/turnos</code></li>
+        </ul>
+        <p>Parámetros de consulta: (BODY json)</p>
+        <ul>
+          <li>
+            <code>id_restaurante</code> (string): Id del restaurant.
+          </li>
+          <li>
+            <code>correoComensal</code> (string): correo de la persona que hara la reserva.
+          </li><li>
+            <code>turno</code> (number): posicion del array de turnos empezando en 0.
+          </li>
+          <li>
+            <code>comensales</code> (number): cantidad de personas que asistiran a la reserva.
+          </li>
+          <li>
+            <code>fecha</code> (string): fecha a reservar.
+          </li>
+          
+        </ul>
+        
+        <p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Antes de reservar se debe crear el array con las horas disponibles.
+            Esto se crea al momento que la persona elije la fecha y la hora y se hace el get anterior.
+            Sin este paso, ocurrira un error <a href="#noDate">no existe fecha</a>.
+
+          </li>
+          <br>
+          <li>
+            Las Reservas se pueden hacer en diferentes dias, pero no en diferentes horarios del mismo dia.
+          </li>
+        </ul>
+        <p>Ejemplo de petición: JSON</p>
+        <pre><code>
+          {
+            "id_restaurante":"647a83c6207aebd584ae3b5c",
+            "correoComensal":"gianco.marquez@gmail.com",
+            "turno":1,
+            "comensales":5,
+            "fecha":"04/06/23"
+        }
+
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "Reserva creada con éxito",
+            "reserva": {
+                "nombreRest": "san Ponciano",
+                "hora": "09:00",
+                "comensales": 5,
+                "fecha": "04/06/23",
+                "correoComensal": "gianco.marquez@gmail.com",
+                "idReserva": "647be8676ef2fbbb539a467f"
+            }
+         }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            "msg": "Error al obtener turnos disponibles"
+          }
+</code></pre>
+<p id="noDate">No existe fecha:</p>
+        <pre><code class="error">
+          {
+            "msg": "No se encontró la fecha, verifique la fecha"
+          }
+</code></pre>
+<p>Reserva en el mismo día:</p>
+        <pre><code class="error">
+          {
+            "msg": "Error al reservar, ya tienes una reserva registrada para esa fecha"
+          }
+</code></pre>
+
+<h2 id="ver">Ver Reservas</h2>
+        <p>Muestra todas las reservas de la persona en un array</p>
         <ul>
           <li>Método: <code>GET</code></li>
-          <li>Ruta: <code>/api/usuarios/user/:id</code></li>
+          <li>Ruta: <code>/api/reservas</code></li>
         </ul>
-        <p>Parámetros de ruta:</p>
+        <p>Parámetros de consulta: (QUERY params)</p>
         <ul>
           <li>
-            <code>id</code> (string, obligatorio): ID del usuario a buscar.
+            <code>correo</code> (string): correo de la persona.
           </li>
         </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>/api/usuarios/user/646523b0bb4be194b9207c02</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-{
-  "nombre": "pepito",
-  "correo": "pepito@example.com",
-  "contrasena": "password"
-}
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-  "mensaje": "Usuario no encontrado"
-}
-</code></pre> -->
-
-        <h2>Crear un nuevo usuario</h2>
-        <p>Crea un nuevo usuario.</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/usuarios/</code></li>
-        </ul>
-        <p>Parámetros de cuerpo de la solicitud:</p>
-        <ul>
-          <li>
-            <code>nombre</code> (string, obligatorio): Nombre del usuario.
-          </li>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, obligatorio): Contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>{
-  "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com",
-  "contrasena": "password"
-}</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-          {
-            "mensaje": "El usuario ha sido creado correctamente"
-          }
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-  "mensaje": "El correo electrónico ya está registrado"
-}
-</code></pre>
-
-        <h2>Actualizar un usuario</h2>
-        <p>Actualiza los datos de un usuario existente.</p>
-        <ul>
-          <li>Método: <code>PUT</code></li>
-          <li>Ruta: <code>/api/usuarios/:id</code></li>
-        </ul>
-        <p>Parámetros de ruta:</p>
-        <ul>
-          <li>
-            <code>id</code> (string, obligatorio): ID del usuario a actualizar.
-          </li>
-        </ul>
-        <p>Parámetros de cuerpo de la solicitud:</p>
-        <ul>
-          <li>
-            <code>nombre</code> (string, opcional): Nuevo nombre del usuario.
-          </li>
-          <li>
-            <code>correo</code> (string, opcional): Nuevo correo electrónico del
-            usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, opcional): Nueva contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>/api/usuarios/646523b0bb4be194b9207c02</code></pre>
-        <pre><code>{
-  "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com",
-  "contrasena": "password"
-}</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-{
-  "id": "4",
-  "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-}
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-  "mensaje": "Usuario no encontrado"
-}
-</code></pre>
-
-        <h2>Eliminar un usuario</h2>
-        <p>Elimina un usuario existente.</p>
-        <ul>
-          <li>Método: <code>DELETE</code></li>
-          <li>Ruta: <code>/api/usuarios/:id</code></li>
-        </ul>
-        <p>Parámetros de ruta:</p>
-        <ul>
-          <li>
-            <code>id</code> (string, obligatorio): ID del usuario a eliminar.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>/api/usuarios/646523b0bb4be194b9207c02</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-{
-  "mensaje": "Usuario eliminado exitosamente"
-}
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-  "mensaje": "Usuario no encontrado"
-}
-</code></pre>
-        <br />
-        <hr />
-        <br />
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <!-- --------------------------------LOGIN USER---------------------------------------- -->
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-
-        <h2>CheckLogin</h2>
-        <p>
-          Esta ruta se utiliza para realizar la verificación de inicio de sesión
-          de un usuario.
-        </p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/auth/login</code></li>
-        </ul>
-        <p>Parámetros de la solicitud:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo del usuario.
-          </li>
-          <li>
-            <code>contrasena</code> (string, obligatorio): Contraseña del
-            usuario.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
+        
+        <p>Ejemplo de petición: query</p>
         <pre><code>
-  {
-    "correo": "test1@gmail.com",
-    "contrasena": "test1"
-  }
-</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-{
-"mensaje": "Ingreso exitoso"
-}
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-"mensaje": "Usuario no encontrado"
-}
-o
-{
-"mensaje": "La contraseña del usuario no coincide"
-}
-</code></pre>
+          ruta/api/reservas?correo=gianco.marquez@gmail.com
 
-        <h2>Login Google</h2>
-        <p>
-          Esta ruta se utiliza para realizar el registro e inicio de sesion en
-          google. Esto no se puede hacer por postman o alguna otra herramienta a
-          menos que se tenga la credencial de google.
-        </p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/auth/google</code></li>
-        </ul>
-        <p>Parámetros de la solicitud:</p>
-        <ul>
-          <li>
-            <code>id_token_google</code> (string, obligatorio): credencial del
-            usuario google.
-          </li>
-        </ul>
-        <p>Ejemplo de petición:</p>
-        <pre><code>
-  {
-    "id_token_google": "asdhj1jk2h343jkhjkeh53...(jwt encriptado por google)",
-  }
-</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-{
-"mensaje": "Ingreso exitoso"
-}
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-"mensaje": "Error al iniciar sesion"
-}
-o
-{
-"mensaje": "La contraseña del usuario no coincide"
-}
-</code></pre>
-
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <!-- --------------------------------DETAILS USER---------------------------------------- -->
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <br />
-        <hr />
-        <br />
-        <h2>Subir imagen de Perfil de Usuario</h2>
-        <p>Sube una imagen al servidor recibiendo correo y archivo</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/details/imagen</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario a buscar. <code>img_perfil</code>(file, obligatorio): Imagen
-            del usuario jpeg/jpg/png.
-          </li>
-        </ul>
-        <p>Ejemplo de petición: body (form-data)</p>
-        <pre><code>
-  'correo' -> "usuario1@example.com"
-  'img_perfil' -> file.(jpg/png/jpeg)
-</code></pre>
+        </code></pre>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
           {
-            "msg": "imagen subida correctamente",
-            "url": "link_de_la_imagen"
-          }
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-          Array de errores
-          ó
-          {
-            "mensaje": "error al subir la imagen'
-          }
-</code></pre>
-
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <!-- --------------------------------gustos---------------------------------------- -->
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-
-        <h2>Detalle de Gustos de Usuario</h2>
-        <p>Envia los gustos del usuario a la base de datos</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/details/gustos</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario a buscar.
-          </li>
-          <li>
-            <code>gustos</code> (Array[String], obligatorio): Array con los
-            gustos del usuario para guardar en la base de datos.
-          </li>
-        </ul>
-        <p>Ejemplo de petición: body (JSON)</p>
-        <pre><code>
-  {
-    "correo": "test1@gmail.com",
-    "gustos": ["Comida rapida", "Comida asiatica"]
-  }
-</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-          {
-            "msg": "gustos agregados"
-          }
+            "msg": "Reservas obtenidas exitosamente",
+            "reservas": [
+                {
+                    "_id": "647a974721f839fe59b85dbd",
+                    "hora": "09:00",
+                    "nombre": "san Ponciano",
+                    "comensales": 5,
+                    "fecha": "03/06/23",
+                    "estado": [
+                        "confirmada"
+                    ],
+                    "correoComensal": "correo@gmail.com",
+                    "id_restaurante": "647a83c6207aebd584ae3b5c",
+                    "__v": 0
+                },
+                {
+                    "_id": "647be8676ef2fbbb539a467f",
+                    "hora": "09:00",
+                    "nombre": "san Ponciano",
+                    "comensales": 5,
+                    "fecha": "04/06/23",
+                    "estado": [
+                        "confirmada"
+                    ],
+                    "correoComensal": "correo@gmail.com",
+                    "id_restaurante": "647a83c6207aebd584ae3b5c",
+                    "__v": 0
+                }
+            ]
+        }
 </code></pre>
         <p>Respuesta no exitosa:</p>
         <pre><code class="error">
           {
-            "mensaje": "error al actualizar los gustos'
+            msg: 'Se presento un error al obtener las reservas',
+            error
           }
 </code></pre>
-        <!-- <p>Ejemplo de petición: body (JSON)</p>
-        <h2>Detalle de Gustos de Usuario</h2>
-        <p>Envia los gustos del usuario a la base de datos</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/details/gustos</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>correo</code> (string, obligatorio): Correo electrónico del
-            usuario a buscar.
-          </li>
-          <p>EN PROCESO...</p>
-          <br><br><br><br><br>
-
-
-          <!-- ------------------------------------------------------------------------------------------------------ -->
-        <!-- --------------------------------MAP COORDENADAS---------------------------------------- -->
-        <!-- ------------------------------------------------------------------------------------------------------ -->
-        <br />
-        <hr />
-        <br />
-        <h2>Map Coordenadas</h2>
-        <p>Envia una direccion y recibe las coordenadas</p>
-        <ul>
-          <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/other/mapcord</code></li>
-        </ul>
-        <p>Parámetros de consulta:</p>
-        <ul>
-          <li>
-            <code>direccion</code> (string, obligatorio): Direccion a buscar.
-          </li>
-        </ul>
-        <p>Ejemplo de petición: body (JSON)</p>
-        <pre><code>
-  {
-    "direccion": "Avenida 60 82, La Plata"
-  }
-</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-            {
-              "lat": 4.59808,
-              "lng": -74.076043,
-              "direccion": "Avenida 60 82, La Plata, Buenos Aires Province, 1900, Argentina"
-            }
-</code></pre>
-        <p>Respuesta no exitosa:</p>
+<p>No se encontraron reservas o el correo es erroneo:</p>
         <pre><code class="error">
-            {
-              "mensaje": "No se encontraron coordenadas"
-            }
+          { msg: 'No se encontraron reservas, verificar el correo' }
 </code></pre>
-
-        <br /><br /><br /><br /><br />
-
-        <!-- </ul>
-        <p>Ejemplo de petición: body (JSON)</p>
-        <pre><code>{
-  "correo": "usuario1@example.com"
-}</code></pre>
-        <p>Respuesta exitosa:</p>
-        <pre><code class="success">
-          {
-            "nombre": "test1",
-            "correo": "test1@gmail.com",
-            "contrasena": "test1",
-            "rol": "USER_ROLE",
-            "estado": true,
-            "google": false,
-            "id": "646ad10cae92aa123ce07df7"
-          }
-</code></pre>
-        <p>Respuesta no exitosa:</p>
-        <pre><code class="error">
-{
-  "mensaje": "Usuario no encontrado"
-}
-</code></pre> -->
+<h2 id="editar">Editar Reservas</h2>
+<p>En proceso</p>
+<h2 id="eliminar">Eliminar Reservas</h2>
+<p>En proceso</p>
       </div>
     </div>
   </body>

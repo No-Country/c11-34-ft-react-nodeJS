@@ -11,22 +11,32 @@ const others_1 = require("../helpers/others");
 const getTurns = async (req, res) => {
     try {
         const { id_restaurante, fecha, turno } = req.query;
-        const data = await turnos_1.default.findOne({ id_restaurante });
-        if (!data) {
-            return {
+        const datosTurno = await turnos_1.default.findOne({ id_restaurante });
+        if (!datosTurno) {
+            return res.status(400).json({
                 msg: 'No se encontró el restaurante,verifique el id del restaurant'
-            };
+            });
         }
-        const disponibilidad = await (0, places_1.getPlaces)(data, fecha, turno);
-        if (!data.reservas[fecha]) {
-            data.reservas[fecha] = data.reservas['fecha'];
+        const disponibilidad = await (0, places_1.getPlaces)(datosTurno, fecha, turno);
+        if (!datosTurno.reservas[fecha]) {
+            datosTurno.reservas[fecha] = datosTurno.reservas['fecha'];
         }
         const fechaCompleta = (0, obtenerFechaAnterior_1.obtenerFechaAnterior)(2);
-        if (data.reservas[fechaCompleta]) {
-            delete data.reservas[fechaCompleta];
+        if (datosTurno.reservas[fechaCompleta]) {
+            delete datosTurno.reservas[fechaCompleta];
         }
-        const modelTurnos = await turnos_1.default.findByIdAndUpdate(data._id, data);
+        const modelTurnos = await turnos_1.default.findByIdAndUpdate(datosTurno._id, datosTurno);
+        if (!modelTurnos) {
+            res.status(400).json({
+                msg: 'Error al obtener la reserva'
+            });
+        }
         modelTurnos?.save();
+        if (!disponibilidad.disponible) {
+            return res.status(400).json({
+                msg: 'Turno no disponible'
+            });
+        }
         res.json(disponibilidad);
     }
     catch (error) {
@@ -41,9 +51,14 @@ const postTurns = async (req, res) => {
         const { id_restaurante, correoComensal, turno, comensales, fecha } = req.body;
         const data = await turnos_1.default.findOne({ id_restaurante });
         if (!data) {
-            return {
+            return res.status(404).json({
                 msg: 'No se encontró el restaurante,verifique el id del restaurant'
-            };
+            });
+        }
+        if (!data.reservas[fecha]) {
+            return res.status(404).json({
+                msg: 'No se encontró la fecha, verifique la fecha'
+            });
         }
         const horaNumber = data.horaApertura + data.duracionRes * turno;
         const hora = (0, others_1.getHoursinString)(horaNumber);
@@ -70,11 +85,6 @@ const postTurns = async (req, res) => {
             });
         }
         const cantPersonasARegistrar = (Math.ceil((comensales / data.personasPorMesa)) * data.personasPorMesa);
-        if (!data.reservas[fecha]) {
-            res.json({
-                msg: 'No se encontró la fecha, verifique la fecha'
-            });
-        }
         data.reservas[fecha][turno] -= cantPersonasARegistrar;
         const modelTurnos = await turnos_1.default.findByIdAndUpdate(data._id, data);
         modelTurnos?.save();

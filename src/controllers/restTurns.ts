@@ -9,40 +9,54 @@ const getTurns = async (req: Request, res: Response) => {
   try {
     const { id_restaurante, fecha, turno }: ParsedQs = req.query
 
-    //buscamos los datos de los turnos del restaurante
-    const data = await Turnos.findOne({ id_restaurante })
-
-    if (!data) {
-      return {
+    const datosTurno = await Turnos.findOne({ id_restaurante })
+    if (!datosTurno) {
+      return res.status(400).json({
         msg: 'No se encontró el restaurante,verifique el id del restaurant'
-      }
+      })
     }
 
     // obtenemos la disponibilidad de los turnos > {disponibilidad:number}
     const disponibilidad = await getPlaces(
-      data,
+      datosTurno,
       fecha as string,
       turno as string
     )
 
     // si no existe la fecha en la base reservada en la base de datos, la creamos
-    if (!data.reservas[fecha as string]) {
-      data.reservas[fecha as string] = data.reservas['fecha']
+    if (!datosTurno.reservas[fecha as string]) {
+      datosTurno.reservas[fecha as string] = datosTurno.reservas['fecha']
     }
 
     // devuelve la fecha de hace 2 dias
     const fechaCompleta = obtenerFechaAnterior(2)
 
     // elimina las reservas de hace 2 dias
-    if (data.reservas[fechaCompleta]) {
-      delete data.reservas[fechaCompleta]
+    if (datosTurno.reservas[fechaCompleta]) {
+      delete datosTurno.reservas[fechaCompleta]
     }
 
     // actualizar la base de datos (put )
-    const modelTurnos = await Turnos.findByIdAndUpdate(data._id, data)
+    const modelTurnos = await Turnos.findByIdAndUpdate(
+      datosTurno._id,
+      datosTurno
+    )
+
+    if (!modelTurnos) {
+      res.status(400).json({
+        msg: 'Error al obtener la reserva'
+      })
+    }
+
     modelTurnos?.save()
 
     // devolvemos las plazas disponibles
+    if (!disponibilidad.disponible) {
+      return res.status(400).json({
+        msg: 'Turno no disponible'
+      })
+    }
+
     res.json(disponibilidad)
   } catch (error) {
     res.status(500).json({
@@ -64,9 +78,15 @@ const postTurns = async (req: Request, res: Response) => {
     const data = await Turnos.findOne({ id_restaurante })
 
     if (!data) {
-      return {
+      return res.status(404).json({
         msg: 'No se encontró el restaurante,verifique el id del restaurant'
-      }
+      })
+    }
+
+    if (!data.reservas[fecha as string]) {
+      return res.status(404).json({
+        msg: 'No se encontró la fecha, verifique la fecha'
+      })
     }
 
     //obtener la hora de la reserva
@@ -114,12 +134,6 @@ const postTurns = async (req: Request, res: Response) => {
       (comensales / data.personasPorMesa) as number
     ) * data.personasPorMesa) as number
     //actualizamos la cantidad de lugares disponibles
-
-    if (!data.reservas[fecha as string]) {
-      res.json({
-        msg: 'No se encontró la fecha, verifique la fecha'
-      })
-    }
 
     data.reservas[fecha as string][turno as number] -= cantPersonasARegistrar
 

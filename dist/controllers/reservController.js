@@ -8,7 +8,7 @@ const getReserv = async (req, res) => {
     try {
         const { correo } = req.query;
         const reservas = await reservas_1.default.find({ correoComensal: correo });
-        if (!reservas) {
+        if (reservas.length === 0 || !reservas) {
             return res.status(404).json({ mensaje: 'No se encontraron reservas' });
         }
         res.status(200).json({
