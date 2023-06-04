@@ -346,8 +346,18 @@ Ruta de la API:  [https://ncback-production.up.railway.app](https://ncback-produ
 
 ## Ver Restaurant
 
+Obtiene todos los restaurantes registrados y la cantidad total.
+
+-   Método:  `GET`
+-    Ruta:  `/api/restaurant`
+
+En caso de solo querer 1 restaurant por correo.
+
+-   Ruta 2:  `/api/restaurant/my`
+
+query: ?correo=correo@gmail.com
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4OTg5NjI4MywyMDU1MjA3MzEzLC0yMz
-U4ODE5MDEsNzE2OTE4NTU5LC0xNzExNjIxMzAxLDQ5MzUwNDU0
-MV19
+eyJoaXN0b3J5IjpbLTcxNzIzMzUxNSwxNDg5ODk2MjgzLDIwNT
+UyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTksLTE3MTE2MjEz
+MDEsNDkzNTA0NTQxXX0=
 -->
