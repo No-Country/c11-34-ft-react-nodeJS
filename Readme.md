@@ -338,7 +338,8 @@ Params:
 ```
 ---
 
+# API Restaurantes
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzNTg4MTkwMSw3MTY5MTg1NTksLTE3MT
-E2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbNTk5MjY5NjgzLC0yMzU4ODE5MDEsNzE2OT
+E4NTU5LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
