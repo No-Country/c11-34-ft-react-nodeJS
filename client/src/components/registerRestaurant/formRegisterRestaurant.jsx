@@ -1,19 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react"
-import Logo from '../../assets/logo.svg'
 import {useNavigate} from "react-router-dom";
-
 export function FormRegisterRestaurant() {
     const navigate = useNavigate();
 
     const [values, setValues] = useState({
-        nombreRestauante: '',
+        nombre: '',
         correo: '',
         direccion: '',
         telefono: ''
     });
 
-    const {nombreRestauante, correo, direccion, telefono} = values;
+    const [error, setError ] = useState('')
 
     const onChange = (e) => {
         setValues({
@@ -22,22 +20,19 @@ export function FormRegisterRestaurant() {
         })
     };
 
-    useEffect(() => {
-        document.getElementById("nombreRestauante").focus();
-    }, []);
 
     const newRestaurantAccount = async () => {
         const dataRestaurant = {
-            nombreRestauante: values.nombreRestauante,
+            nombre: values.nombre,
             correo: values.correo,
             direccion: values.direccion,
             telefono: values.telefono
         }
 
         localStorage.setItem("restaurantFirstData", JSON.stringify(dataRestaurant));
-        navigate('/createRestaurant/restaurantdata')
+        navigate('/create-restaurant/restaurant-detail')
         setValues({
-            nombreRestauante: '',
+            nombre: '',
             correo: '',
             direccion: '',
             telefono: ''
@@ -46,24 +41,31 @@ export function FormRegisterRestaurant() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if(Object.values(values).includes(''))  {
+            setError('Los campos no deben estar vacios *')
+            setTimeout(() => setError(' '), 2500)
+            return
+        }
         newRestaurantAccount();
     };
 
     return (
-        <div>
-            <div className={'flex mt-11 mb-9 mx-5'}>
-                <img src={Logo} alt={'Morfi Logo'}/>
-            </div>
-            <div className={'mx-5'}>
-                <h1 className={'text-2xl font-semibold mb-4'}>Registrá tu restaurante</h1>
-                <p className={'text-sm fond-normal text-gray-400'}>Conectá con los amantes de la buena comida en Morfi y
+        <div className="px-4 lg:px-0">
+            <div className={'mb-6'}>
+                <h1 className={'text-2xl font-semibold mb-2 font-montserrat'}>Registrá tu restaurante</h1>
+                <p className={'text-sm font-normal text-subtitle  font-inter'}>Conectá con los amantes de la buena comida en Morfi y
                     recibí reservas en tu rincón gastronómico</p>
             </div>
-            <form onSubmit={onSubmit} className='flex  flex-col gap-y-6 mb-8 mx-5'>
+   
+            <form onSubmit={onSubmit} className='flex  flex-col gap-y-6  font-inter relative'>           
+                {
+                    error && 
+                    <p className="text-red-500 font-inter text-sm absolute -top-4 left-0">{error}</p>
+                }
                 <input
-                    name='nombreRestauante'
-                    id='nombreRestauante'
-                    value={values.nombreRestauante}
+                    name='nombre'
+                    id='nombre'
+                    value={values.nombre}
                     type='text'
                     onChange={onChange}
                     placeholder='Nombre del negocio'

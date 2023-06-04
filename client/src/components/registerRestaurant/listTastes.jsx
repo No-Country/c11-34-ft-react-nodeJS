@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
+import { Link, useNavigate } from "react-router-dom";
 import { TastesList } from "../../utils/";
 
 export function ListTastesRestaurant() {
@@ -23,7 +22,7 @@ export function ListTastesRestaurant() {
             tastes: selectedTastes,
         };
         localStorage.setItem("tastesRestaurant", JSON.stringify(data));
-        navigate("/createRestaurant/restaurantdata/");
+        navigate("/create-restaurant/caracts");
         setSelectedTastes([]);
     };
 
@@ -33,19 +32,18 @@ export function ListTastesRestaurant() {
     };
 
     return (
-        <div>
-            <div className="flex mt-11 mb-16 mx-5">
-                <img src={Logo} alt="Morfi Logo" />
-            </div>
-            <h1 className="text-2xl font-bold mx-6 pb-2">Tipos de comida</h1>
+        <div className="font-inter px-4 lg:px-0">
+           <p className="text-sm font-inter font-medium mb-2">5/6</p>
+            <h2 className="text-2xl font-bold font-montserrat">Tipos de comida</h2>
+            <p className="font-inter text-subtitle mb-4 text-sm">Cuales son los platos que sirves en tu restaurante?</p>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 mb-8 mx-5"
+                className="flex flex-col gap-y-6 items "
                 encType="multipart/form-data"
             >
-                <div className="grid grid-cols-2 gap-1 w-64 mx-auto">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
                     {tastes.map((taste) => (
-                        <label key={taste.id} htmlFor={taste.id} className="text-base">
+                        <label key={taste.id} htmlFor={taste.id} className="text-base flex gap-x-2">
                             <input
                                 id={taste.id}
                                 type="checkbox"
@@ -58,12 +56,17 @@ export function ListTastesRestaurant() {
                     ))}
                 </div>
 
-                <button
-                    type="submit"
-                    className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
-                >
-                    Siguiente
-                </button>
+                <div className="flex justify-between gap-x-4 whitespace-nowrap mt-4 lg:mt-0">
+                    <Link to='/create-restaurant/restaurant-detail' className="border shadow text-black rounded-full p-2.5 font-inter flex w-full justify-center">
+                        Volver al inicio
+                    </Link>
+                    <button
+                        type="submit"
+                        className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
+                    >
+                        Siguiente
+                    </button>
+               </div>
             </form>
         </div>
     );

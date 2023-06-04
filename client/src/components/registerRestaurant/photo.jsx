@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import Logo from "../../assets/logo.svg";
+import {Link, useNavigate} from "react-router-dom";
 
 export function UploadPhoto() {
     const navigate = useNavigate();
@@ -24,9 +23,8 @@ export function UploadPhoto() {
             img3: photos[2],
             img4: photos[3],
         };
-        navigate("/createRestaurant/restaurantdata");
+        navigate("/create-restaurant/description");
         localStorage.setItem('photoRestaurant', files)
-        console.log(files)
         setPhotos ({
             img1: null,
             img2: null,
@@ -40,31 +38,52 @@ export function UploadPhoto() {
         restaurantPhotos();
     };
 
-
     return (
-        <div>
-            <div className="flex mt-11 mb-16 mx-5">
-                <img src={Logo} alt="Morfi Logo"/>
-            </div>
-            <h1 className={'text-2xl font-bold px-5 pb-2'}>Fotos</h1>
-            <h3 className={'px-5'}>Por favor carga 4 imagenes del restaurante</h3>
+        <div className="px-4 lg:px-0">
+
+            <p className="text-sm font-inter font-medium mb-2">1/6</p>
+        
+            <h1 className={'text-2xl font-bold font-montserrat  pb-2'}>Fotos</h1>
+            <h3 className={'font-inter text-gray-500 font-normal mb-4'}>Por favor carga 4 imagenes del restaurante <span className="text-subtitle">(min 2)</span></h3>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 mb-8 mx-5"
                 encType="multipart/form-data"
+                className="w-auto lg:w-[40rem]"
             >
-                <input
-                    type="file"
-                    accept=".jpg, .jpeg, .png"
-                    multiple={true}
-                    onChange={handleImageChange}
-                />
-                <button
-                    type="submit"
-                    className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
-                >
-                    Siguiente
-                </button>
+                
+              <section className="grid grid-cols-1 lg:grid-cols-2 gap-2 ">
+
+                <div>
+                    <label className="mb-2 font-inter text-gray-500 text-sm" htmlFor="file_input">Imagen 1</label>
+                    <input className="block w-full text-sm  border border-black text-white bg-black " onChange={handleImageChange}  accept=".jpg, .jpeg, .png" type="file"/>
+                </div>
+
+                <div>
+                    <label className="mb-2 font-inter text-gray-500 text-sm" htmlFor="file_input">Imagen 2</label>
+                    <input className="block w-full text-sm  border border-black text-white bg-black " onChange={handleImageChange}  accept=".jpg, .jpeg, .png" type="file"/>
+                </div>
+
+                <div>
+                    <label className="mb-2 font-inter text-gray-500 text-sm" htmlFor="file_input">Imagen 3</label>
+                    <input className="block w-full text-sm  border border-black text-white bg-black " onChange={handleImageChange}  accept=".jpg, .jpeg, .png" type="file"/>
+                </div>
+
+                <div>
+                    <label className="mb-2 font-inter text-gray-500 text-sm" htmlFor="file_input">Imagen 4</label>
+                    <input className="block w-full text-sm  border border-black text-white bg-black " onChange={handleImageChange}  accept=".jpg, .jpeg, .png" type="file"/>
+                </div>
+               <div className="flex justify-between gap-x-4 mt-4 ">
+                    <Link to='/create-restaurant/restaurant-detail' className="border shadow text-black rounded-full p-2.5 font-inter flex w-full justify-center">
+                        Volver al inicio
+                    </Link>
+                    <button
+                        type="submit"
+                        className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
+                    >
+                        Siguiente
+                    </button>
+               </div>
+              </section>  
             </form>
         </div>
     )
