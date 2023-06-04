@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./estilo.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant</title>
+  </head>
+  <body>
+    <!-- <a href="./loginTest.html">Ir a login de google, solo para local</a> -->
+    <div class="container">
+      <div class="tandback">
+        <h1>API de Restaurant</h1>
+        <a href="index.html">INICIO</a>
+      </div>
+      <nav>
+        <a class="nav_item" href="#get">Ver Restaurant</a
+        ><a class="nav_item" href="#post">Crear Restaurant</a>
+        <a class="nav_item" href="#put">Editar Restaurant</a
+        ><a class="nav_item" href="#delete">Eliminar Restaurant</a>
+      </nav>
+      <div class="scrollable">
+        <p>
+          Esta API permite realizar operaciones relacionadas con usuarios, como
+          obtener usuarios, crear usuarios, actualizar usuarios y eliminar
+          usuarios.
+        </p>
+        <p>
+          Ruta de la API:
+          <a href="https://ncback-production.up.railway.app" target="_blank"
+            >https://ncback-production.up.railway.app</a
+          >
+        </p>
+
+        <!--  -->
+
+        <h2 id="get">Ver Restaurant</h2>
+        <p>Obtiene todos los restaurantes registrados y la cantidad total.</p>
+        <ul>
+          <li>Método: <code>GET</code></li>
+          <li>Ruta: <code>/api/restaurant</code></li>
+          <br>
+          <p>En caso de solo querer 1 restaurant por correo</p>
+          <li>Ruta 2: <code>/api/restaurant/my</code></li>
+          <p>query: ?correo=correo@gmail.com</p>
+        </ul>
+        <p>Parámetros de consulta: (Params)</p>
+        <ul>
+          <li><code>page</code> (param,opcional): pagina.</li>
+          <li><code>limit</code> (param,opcional): elementos por pagina.</li>
+        <p>Ejemplo de petición: query</p>
+        <pre><code>
+  ruta: ruta/api/restaurant?page=1&limit=100
+
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "Lista de restaurantes",
+            "page": 1,
+            "limit": 100,
+            "total": 1,
+            "restaurants": [
+                {
+                    "_id": "647a83c6207aebd584ae3b5c",
+                    "nombre": "san Ponciano",
+                    "direccion": "las magnolias",
+                    "telefono": "123445567",
+                    "correo": "gianco3108@gmail.com",
+                    "dias": [
+                        "lunes",
+                        "martes",
+                        "miercoles"
+                    ],
+                    "horarioIn": "08:00",
+                    "horarioOut": "20:00",
+                    "tipoComida": [
+                        "vegetarioano",
+                        "pizza"
+                    ],
+                    "mesas": 15,
+                    "sillasPorMesa": 2,
+                    "intervaloMesa": 1,
+                    "descripcion": "descricpon del restaruante",
+                    "caracteristicasPrinc": [
+                        "wifi",
+                        "mesasFUera"
+                    ],
+                    "otrosDetalles": [
+                        "casa",
+                        "tenedor"
+                    ],
+                    "costoReserva": 0,
+                    "cantidadComentarios": 0,
+                    "imagenes": [
+                        "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/en5ansx5e4brkwsclq7k",
+                        "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/jarluxkjopg217x1yi8p"
+                    ],
+                    "turnos": 12,
+                    "visible": true,
+                    "__v": 0
+                }
+            ]
+        }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            msg: 'Se presento un error al obtener la lista de restaurantes',
+            error
+          }
+</code></pre>
+        
+<!--  -->
+
+<h2 id="post">Crear Restaurant</h2>
+<p>Lista un restaurant en la base de datos.</p>
+<ul>
+  <li>Método: <code>POST</code></li>
+  <li>Ruta: <code>/api/restaurant</code></li>
+</ul>
+<br>
+<p>Parámetros de consulta: (Form-Data)</p>
+<ul>
+  <li><code>nombre</code> (form key,string): nombre del restaurant.</li>
+  <li><code>direccion</code> (form key,string): direccion del restaurant.</li>
+  <li><code>telefono</code> (form key,string): telefono del restaurant.</li>
+  <li><code>correo</code> (form key,string): correo del restaurant</li>
+  <li><code>dias</code> (form key,string): dias abiertos</li>
+  <li><code>horarioIn</code> (form key,string): horario de apertura</li>
+  <li><code>horarioOut</code> (form key,string): horario de cierre</li>
+  <li><code>tipoComida</code> (form key,string): tipo de comida (gustos)</li>
+  <li><code>mesas</code> (form key,string): cantidad de mesas del rest.</li>
+  <li><code>sillasPorMesa</code> (form key,string): cantidad de sillas por mesa.</li>
+  <li><code>intervaloMesa</code> (form key,string): cantidad de horas que dura una reserva</li>
+  <li><code>descripcion</code> (form key,string): descripcion del restaurant</li>
+  <li><code>caracteristicasPrinc</code> (form key,string): caracteristicas del rest.</li>
+  <li><code>otrosDetalles</code> (form key,string): mas detalles del rest.</li>
+  <li><code>images</code> (form key,file): imagen del restuarant.</li>
+  </ul>
+  <br>
+<p>Ejemplo de petición: Form-Data</p>
+<pre><code>
+    nombre: 'san Marti',
+    direccion: 'las magnolias',
+    telefono: '123445567',
+    correo: 'gianco@gmail.com',
+    dias: "['lunes','martes','miercoles']",
+    horarioIn: '08:00',
+    horarioOut: '20:00',
+    tipoComida: "['vegetarioano','pizza']",
+    mesas: '15',
+    sillasPorMesa: '2',
+    intervaloMesa: '1',
+    descripcion: 'descricpon del restaruante',
+    caracteristicasPrinc: "['wifi','mesasFUera']",
+    otrosDetalles: "['casa','tenedor']"
+    images: file1
+    images: file2
+    images: file3
+    images: file4
+</code></pre>
+<p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Los datos son de manera obligatoria, si no se envian se presentara un error.
+
+          </li>
+          <br>
+          <li>
+            Las Imagenes tienen un min de 1 y un max de 4 por restaurant.
+          </li>
+          <br>
+          <li>
+            Los datos de tipo array deben ser enviados como string pero manteniendo su forma de array, como en el ejemplo de arriba.- Ya que, este sera parseado en el backend.
+          </li>
+        </ul>
+        <br>
+<p>Respuesta exitosa:</p>
+<pre><code class="success">
+  {
+    "msg": "creado correctamente"
+  }
+</code></pre>
+<p>Nombre Repetido:</p>
+<pre><code class="error">
+  {
+    msg: 'El restaurante con ese nombre ya existe'
+  }
+</code></pre>
+<p>Imagenes inexistentes:</p>
+<pre><code class="error">
+  {
+    msg: 'No se subio ninguna imagen'
+  }
+</code></pre>
+
+
+<!--  -->
+
+<h2 id="put">Editar info de Restaurant</h2>
+<p>Editar informacion del restaurant, de momento no se puede editar imagenes.</p>
+<ul>
+  <li>Método: <code>PUT</code></li>
+  <li>Ruta: <code>/api/restaurant/:id
+  </code></li>
+</ul>
+<br>
+<p>Parámetros de consulta: </p>
+<ul>
+  <li><code>nombre</code> (body,string): costo de la reserva.</li>
+  <li><code>direccion</code> (body,string): direccion del restaurant.</li>
+  <li><code>telefono</code> (body,string): telefono del restaurant.</li>
+  <li><code>correo</code> (body,string): correo del restaurant</li>
+  <li><code>dias</code> (body,array(string)): dias abiertos</li>
+  <li><code>horarioIn</code> (body,string): horario de apertura</li>
+  <li><code>horarioOut</code> (body,string): horario de cierre</li>
+  <li><code>tipoComida</code> (body,array(string)): tipo de comida (gustos)</li>
+  <li><code>mesas</code> (body,number): cantidad de mesas del rest.</li>
+  <li><code>sillasPorMesa</code> (body,number): cantidad de sillas por mesa.</li>
+  <li><code>intervaloMesa</code> (body,number): cantidad de horas que dura una reserva</li>
+  <li><code>descripcion</code> (body,string): descripcion del restaurant</li>
+  <li><code>caracteristicasPrinc</code> (body,array(string)): caracteristicas del rest.</li>
+  <li><code>otrosDetalles</code> (body,array(string)): mas detalles del rest.</li>
+  <li><code>costoReserva</code> (body,number): costo de la reserva.</li>
+  <li><code>cantidadComentarios</code> (body,number): cantidad de Comentarios.</li>
+  <li><code>turnos</code> (body,number): turnos totales al dia.</li>
+  <li><code>visible</code> (body,string (boolean)): visibilidad del restaurant.</li>
+
+  </ul>
+  <br>
+
+<p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Aun no esta la logica para editar imagenes, por lo que no se puede editar imagenes.
+          </li>
+          <br>
+          <li>
+            Aun no esta la logica para manejar los comentairios ni el costo de reserva.
+          </li>
+          <br>
+          <li>
+            Visible es un boolean, en caso ponerlo en false, el restaurant desaparecera de la lista pero no se eliminara de la base de datos. En caso querer volverlo a true de momento se debe guardar el id para volverlo a editar.
+          </li>
+        </ul>
+        <br>
+<p>Respuesta exitosa:</p>
+<pre><code class="success">
+  {
+    "msg": "Restaurante con id: \"647a83c6207aebd584ae3b5c\" actualizado exitosamente",
+    "restaurant": {
+        "_id": "647a83c6207aebd584ae3b5c",
+        "nombre": "san Ponciano",
+        "direccion": "las magnolias",
+        "telefono": "123445567",
+        "correo": "gianco3108@gmail.com",
+        "dias": [
+            "lunes",
+            "martes",
+            "miercoles"
+        ],
+        "horarioIn": "08:00",
+        "horarioOut": "20:00",
+        "tipoComida": [
+            "vegetarioano",
+            "pizza"
+        ],
+        "mesas": 15,
+        "sillasPorMesa": 2,
+        "intervaloMesa": 1,
+        "descripcion": "descricpon del restaruante",
+        "caracteristicasPrinc": [
+            "wifi",
+            "mesasFUera"
+        ],
+        "otrosDetalles": [
+            "casa",
+            "tenedor"
+        ],
+        "costoReserva": 0,
+        "cantidadComentarios": 0,
+        "imagenes": [
+            "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/en5ansx5e4brkwsclq7k",
+            "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/jarluxkjopg217x1yi8p"
+        ],
+        "turnos": 12,
+        "visible": true,
+        "__v": 0
+    }
+}
+</code></pre>
+<p>Error id:</p>
+<pre><code class="error">
+  {
+    "msg": "Se presento un error al actualizar el retaurante",
+    "error": error
+ }
+</code></pre>
+
+<!--  -->
+
+<h2 id="delete">Eliminar Restaurant</h2>
+<p>Eliminar restaurant de la base de datos, esta eliminacion es permanente.</p>
+<ul>
+  <li>Método: <code>DELETE</code></li>
+  <li>Ruta: <code>/api/restaurant/:id</code></li>
+</ul>
+<br>
+<p>Parámetros de consulta: (query param)</p>
+<ul>
+  <li><code>id</code> (param): nombre del restaurant.</li>
+  </ul>
+  <br>
+
+<p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            El restaurante no sera eliminado si este tiene reservas existentes.
+
+          </li>
+          
+        </ul>
+        <br>
+<p>Respuesta exitosa:</p>
+<pre><code class="success">
+  { 
+    msg: 'Restaurante eliminado exitosamente' 
+  }
+</code></pre>
+<p>Peticion fallida:</p>
+<pre><code class="error">
+  {
+    msg: 'Se presento un error al eliminar el restaurante',
+    error
+  }
+</code></pre>
+<p>Reservas Existentes:</p>
+<pre><code class="error">
+  {
+    msg: 'No se puede eliminar el restaurante porque tiene reservas, opcion ponerlo quitarle la visibilidad'
+  }
+</code></pre>
+
+      </div>
+    </div>
+  </body>
+</html>

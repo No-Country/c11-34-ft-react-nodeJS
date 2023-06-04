@@ -6,18 +6,20 @@ import routerAuth from '../routes/userAuth.routes'
 import routerDetails from '../routes/userDetails.routes'
 import routerResDetails from '../routes/restaurantDetails.routes'
 import routerOtherServices from '../routes/otherServices.routes'
-import routerRestaurant from '../routes/restaurantController.routes'
+import routerRest from '../routes/restController.routes'
+import routerTurns from '../routes/restTurns.routes'
+import routerReservas from '../routes/reservController.routes'
 
 class Server {
-  private app: express.Application;
-  private port: string;
-  private usuariosPath: string;
-  private usuariosAuth: string;
-  private usuariosDetails: string;
-  private otherServices: string;
-  private restaurantPath: string;
-  private restaurantDetails: string;
-  
+  private app: express.Application
+  private port: string
+  private usuariosPath: string
+  private usuariosAuth: string
+  private usuariosDetails: string
+  private otherServices: string
+  private restController: string
+  private restTurns: string
+  private restReservas: string
   constructor() {
     this.app = express()
     this.port = process.env.PORT || '3000'
@@ -27,7 +29,9 @@ class Server {
     this.usuariosDetails = '/api/details'
     this.restaurantDetails = '/api/restaurantDetails'
     this.otherServices = '/api/other'
-    this.restaurantPath = '/api/restaurant'
+    this.restController = '/api/restaurant'
+    this.restTurns = '/api/restaurant/turnos'
+    this.restReservas = '/api/reservas'
     // Conectar a base de datos
     this.conectarDB()
     // Middlewares
@@ -56,7 +60,9 @@ class Server {
     this.app.use(this.usuariosDetails, routerDetails)
     this.app.use(this.restaurantDetails, routerResDetails)
     this.app.use(this.otherServices, routerOtherServices)
-    this.app.use(this.restaurantPath, routerRestaurant)
+    this.app.use(this.restController, routerRest)
+    this.app.use(this.restTurns, routerTurns)
+    this.app.use(this.restReservas, routerReservas)
   }
 
   listen() {

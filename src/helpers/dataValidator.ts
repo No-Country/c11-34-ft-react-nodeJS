@@ -1,3 +1,5 @@
+
+import turnos from '../models/turnos'
 import UserModel from '../models/usuario'
 
 const emailExiste = async (correo: string): Promise<void> => {
@@ -14,9 +16,18 @@ const idExiste = async (id: string): Promise<void> => {
   }
 }
 
+const idTurnosExiste = async (id: string): Promise<void> => {
+  const existeTurno = await turnos.findById(id)
+  if (!existeTurno) {
+    throw new Error(`El Turno con el id_restaurant="${id}" no existe`)
+  }
+}
+
+
 const dataValidator = {
   emailExiste,
   idExiste
+  ,idTurnosExiste
 }
 
 export default dataValidator

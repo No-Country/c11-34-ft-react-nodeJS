@@ -9,7 +9,7 @@ import UserModel from '../models/usuario'
 export async function getUsers(req: Request, res: Response) {
   try {
     // ?buscar por correo a traves del body
-    const { correo } = req.body
+    const { correo } = req.query
 
     if (correo) {
       console.log('----get User by correo----')

@@ -1,105 +1,97 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from 'mongoose'
+import { Restaurant } from '../interfaces/modelInterfaces'
 
-interface Restaurant {
-    nombre: String,
-    direccion: String,
-    telefono: number,
-    correo: String,
-    dias: String[],
-    horarioIn: String,
-    horarioOut: String,
-    tipoComida: String[],
-    mesas: number,
-    sillasPorMesa: number,
-    intervaloMesa: number,
-    descripcion: String,
-    caracteristicasPrinc: String[],
-    otrosDetalles: String[],
-    costoReserva: number | undefined,
-    // tenedores??: number,
-    cantidadComentarios: number,
-    imagenes: String[]
-    // id_usuario: String
-}
-
-const RestaurantSchema: Schema<Restaurant> = new Schema({
-    nombre: {
-        type: String,
-        required: [true, "El nombre del restaurante es obligatorio"]
-    },
-    direccion: {
-        type: String,
-        required: [true, "La direccion del restaurante es obligatoria"]
-    },
-    telefono: {
-        type: Number,
-        required: [true, "El telefono del restaurante es obligatorio"]
-    },
-    correo: {
-        type: String,
-        required: [true, "El correo del ususario es obligatorio"],
-        unique: true
-    },
-    dias: {
-        type: [String],
-        required: [true, "Se debe abrir al menos un dia a la semana"]
-    },
-    horarioIn: {
-        type: String,
-        required: [true, "Debe haber una hora de apertura"]
-    },
-    horarioOut: {
-        type: String,
-        required: [true, "Debe haber una hora de cierre"]
-    },
-    tipoComida: {
-        type: [String],
-        required: [true, "Debe definirse un tipo de comida"]
-    },
-    mesas: {
-        type: Number,
-        required: [true, "Se debe indicar el numero de mesas del restaurante"]
-    },
-    sillasPorMesa: {
-        type: Number,
-        required: [true, "Se debe indicar el numero de sillas por mesa"]
-    },
-    intervaloMesa: {
-        type: Number,
-        required: [true, "Se debe indicar el intervalo por mesa"]
-    },
-    descripcion: {
-        type: String,
-        required: [true, "Se debe dart una descripcion del restaurante"]
-    },
-    caracteristicasPrinc: {
-        type: [String],
-        required: [true, "Se debe añadir al menos una caracteristica principal"]
-    },
-    otrosDetalles: {
-        type: [String],
-        required: [true, "Se debe indicar otros detalles"]
-    },
-    costoReserva: {
-        type: Number
-    },
-    cantidadComentarios: {
-        type: Number,
-        required: [true, "Se requiere la cantidad de comentarios"]
-    },
-    imagenes: {
-        type: [String],
-    },
-    // id_usuario: {
-    //     type: String
-    // }
+const restaurantSchema: Schema<Restaurant> = new Schema({
+  nombre: {
+    type: String,
+    required: [true, 'El nombre es obligatorio']
+  },
+  direccion: {
+    type: String,
+    required: [true, 'La direccion es obligatoria']
+  },
+  telefono: {
+    type: String,
+    required: [true, 'El telefono es obligatorio']
+  },
+  correo: {
+    type: String,
+    required: [true, 'El correo es obligatorio'],
+    unique: true
+  },
+  dias: {
+    type: [String],
+    default: [
+      'Lunes',
+      'Martes',
+      'Miercoles',
+      'Jueves',
+      'Viernes',
+      'Sabado',
+      'Domingo'
+    ],
+    maxlength: 7,
+    minlength: 1,
+    required: [true, 'Los dias son obligatorios']
+  },
+  horarioIn: {
+    type: String,
+    required: [true, 'El horario de apertura es obligatorio']
+  },
+  horarioOut: {
+    type: String,
+    required: [true, 'El horario de cierre es obligatorio']
+  },
+  tipoComida: {
+    type: [String],
+    required: [true, 'El tipo de comida es obligatorio']
+  },
+  mesas: {
+    type: Number,
+    required: [true, 'El numero de mesas es obligatorio']
+  },
+  sillasPorMesa: {
+    type: Number,
+    required: [true, 'El numero de sillas por mesa es obligatorio']
+  },
+  intervaloMesa: {
+    type: Number,
+    required: [true, 'El intervalo de mesa es obligatorio']
+  },
+  descripcion: {
+    type: String,
+    required: [true, 'La descripcion es obligatoria']
+  },
+  caracteristicasPrinc: {
+    type: [String],
+    required: [true, 'Las caracteristicas principales son obligatorias']
+  },
+  otrosDetalles: {
+    type: [String],
+    required: [true, 'Los otros detalles son obligatorios']
+  },
+  costoReserva: {
+    type: Number,
+    default: 0
+  },
+  cantidadComentarios: {
+    type: Number,
+    default: 0
+  },
+  imagenes: {
+    type: [String],
+    minlength: 1,
+    maxlength: 4,
+    required: [true, 'Las imagenes son obligatorias']
+  },
+  turnos: {
+    type: Number,
+    required: [true, 'Los turnos son obligatorios']
+  },
+  visible: {
+    type: Boolean,
+    default: true
+  }
 })
 
-RestaurantSchema.methods.toJSON = function () {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { __v, _id, ...restaurant } = this.toObject()
-    restaurant.id = _id
-    return restaurant
-}
-
-export default model('restaurant', RestaurantSchema);
+export default model('Restaurant', restaurantSchema)

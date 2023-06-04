@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilo.css">
+
+    <title>Reserva</title>
+    
+</head>
+<body>
+    <!-- <a href="./loginTest.html">Ir a login de google, solo para local</a> -->
+    <div class="container">
+      <div class="tandback">
+
+        <h1>API de Reserva</h1>
+        <a href="index.html">INICIO</a>
+      </div>
+      <nav>
+        <a class="nav_item" href="#dispo">Disponibilidad</a
+        ><a class="nav_item" href="#reservar">Crear reserva<a class="nav_item" href="#ver">Ver Reservas</a
+        ><a class="nav_item" href="#editar">Editar Reservas</a
+          >
+          <a class="nav_item" href="#eliminar">Eliminar Reserva</a
+            >
+  
+      </nav>
+      <div class="scrollable">
+        <p>
+          Esta API permite realizar operaciones relacionadas con usuarios, como
+          obtener usuarios, crear usuarios, actualizar usuarios y eliminar
+          usuarios.
+        </p>
+        <p>
+          Ruta de la API:
+          <a href="https://ncback-production.up.railway.app" target="_blank"
+            >https://ncback-production.up.railway.app</a
+          >
+        </p>
+
+        <h2 id="dispo">Obtener Disponibilidad de Reserva</h2>
+        <p>Obtiene la cantidad de lugares disponibles por la hora y fecha.</p>
+        <ul>
+          <li>Método: <code>GET</code></li>
+          <li>Ruta: <code>/api/restaurant/turnos</code></li>
+        </ul>
+        <p>Parámetros de consulta: (Params)</p>
+        <ul>
+          <li>
+            <code>id_restaurante</code> (string): Id del restaurant.
+          </li>
+          <li>
+            <code>fecha</code> (string): fecha de busqueda.
+          </li><li>
+            <code>turno</code> (string): posicion del array de turnos empezando en 0.
+          </li>
+          
+        </ul>
+        
+        <p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Turno es un numero, porque es la posicion del array de horas disponibles.
+            Ejm.
+            <br>
+            <pre>
+              <code>
+                turnos:4
+                horaI: 12:00
+                horaF: 20:00
+                intervalo: 2
+              
+
+              [12:00,14:00,16:00,18:00]</code>
+            </pre>
+            
+          </li>
+        </ul>
+        <p>Ejemplo de petición: query</p>
+        <pre><code>
+  ruta: ruta/api/restaurant/turnos?id_restaurante=647a83c6207aebd584ae3b5c&fecha=03/06/23&turno=2
+
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "disponible": 18
+          }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            "msg": "Error al obtener turnos disponibles"
+          }
+</code></pre>
+<p>ID incorrecto:</p>
+        <pre><code class="error">
+          {
+            "msg": "No se encontró el restaurante,verifique el id del restaurant"
+          }
+</code></pre>
+<p>No disponible:</p>
+        <pre><code class="error">
+          {
+            "msg": "Turno no disponible"
+          }
+</code></pre>
+
+<h2 id="reservar">Reservar Mesa</h2>
+        <p>Crea la reserva y obtiene los datos.</p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/restaurant/turnos</code></li>
+        </ul>
+        <p>Parámetros de consulta: (BODY json)</p>
+        <ul>
+          <li>
+            <code>id_restaurante</code> (string): Id del restaurant.
+          </li>
+          <li>
+            <code>correoComensal</code> (string): correo de la persona que hara la reserva.
+          </li><li>
+            <code>turno</code> (number): posicion del array de turnos empezando en 0.
+          </li>
+          <li>
+            <code>comensales</code> (number): cantidad de personas que asistiran a la reserva.
+          </li>
+          <li>
+            <code>fecha</code> (string): fecha a reservar.
+          </li>
+          
+        </ul>
+        
+        <p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Antes de reservar se debe crear el array con las horas disponibles.
+            Esto se crea al momento que la persona elije la fecha y la hora y se hace el get anterior.
+            Sin este paso, ocurrira un error <a href="#noDate">no existe fecha</a>.
+
+          </li>
+          <br>
+          <li>
+            Las Reservas se pueden hacer en diferentes dias, pero no en diferentes horarios del mismo dia.
+          </li>
+        </ul>
+        <p>Ejemplo de petición: JSON</p>
+        <pre><code>
+          {
+            "id_restaurante":"647a83c6207aebd584ae3b5c",
+            "correoComensal":"gianco.marquez@gmail.com",
+            "turno":1,
+            "comensales":5,
+            "fecha":"04/06/23"
+        }
+
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "Reserva creada con éxito",
+            "reserva": {
+                "nombreRest": "san Ponciano",
+                "hora": "09:00",
+                "comensales": 5,
+                "fecha": "04/06/23",
+                "correoComensal": "gianco.marquez@gmail.com",
+                "idReserva": "647be8676ef2fbbb539a467f"
+            }
+         }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            "msg": "Error al obtener turnos disponibles"
+          }
+</code></pre>
+<p id="noDate">No existe fecha:</p>
+        <pre><code class="error">
+          {
+            "msg": "No se encontró la fecha, verifique la fecha"
+          }
+</code></pre>
+<p>Reserva en el mismo día:</p>
+        <pre><code class="error">
+          {
+            "msg": "Error al reservar, ya tienes una reserva registrada para esa fecha"
+          }
+</code></pre>
+
+<h2 id="ver">Ver Reservas</h2>
+        <p>Muestra todas las reservas de la persona en un array</p>
+        <ul>
+          <li>Método: <code>GET</code></li>
+          <li>Ruta: <code>/api/reservas</code></li>
+        </ul>
+        <p>Parámetros de consulta: (QUERY params)</p>
+        <ul>
+          <li>
+            <code>correo</code> (string): correo de la persona.
+          </li>
+        </ul>
+        
+        <p>Ejemplo de petición: query</p>
+        <pre><code>
+          ruta/api/reservas?correo=gianco.marquez@gmail.com
+
+        </code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "Reservas obtenidas exitosamente",
+            "reservas": [
+                {
+                    "_id": "647a974721f839fe59b85dbd",
+                    "hora": "09:00",
+                    "nombre": "san Ponciano",
+                    "comensales": 5,
+                    "fecha": "03/06/23",
+                    "estado": [
+                        "confirmada"
+                    ],
+                    "correoComensal": "correo@gmail.com",
+                    "id_restaurante": "647a83c6207aebd584ae3b5c",
+                    "__v": 0
+                },
+                {
+                    "_id": "647be8676ef2fbbb539a467f",
+                    "hora": "09:00",
+                    "nombre": "san Ponciano",
+                    "comensales": 5,
+                    "fecha": "04/06/23",
+                    "estado": [
+                        "confirmada"
+                    ],
+                    "correoComensal": "correo@gmail.com",
+                    "id_restaurante": "647a83c6207aebd584ae3b5c",
+                    "__v": 0
+                }
+            ]
+        }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            msg: 'Se presento un error al obtener las reservas',
+            error
+          }
+</code></pre>
+<p>No se encontraron reservas o el correo es erroneo:</p>
+        <pre><code class="error">
+          { msg: 'No se encontraron reservas, verificar el correo' }
+</code></pre>
+<h2 id="editar">Editar Reservas</h2>
+<p>En proceso</p>
+<h2 id="eliminar">Eliminar Reservas</h2>
+<p>En proceso</p>
+      </div>
+    </div>
+  </body>
+</html>

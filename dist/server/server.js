@@ -12,6 +12,9 @@ const userDetails_routes_1 = __importDefault(require("../routes/userDetails.rout
 const restaurantDetails_routes_1 = __importDefault(require("../routes/restaurantDetails.routes"));
 const otherServices_routes_1 = __importDefault(require("../routes/otherServices.routes"));
 const restaurantController_routes_1 = __importDefault(require("../routes/restaurantController.routes"));
+const restController_routes_1 = __importDefault(require("../routes/restController.routes"));
+const restTurns_routes_1 = __importDefault(require("../routes/restTurns.routes"));
+const reservController_routes_1 = __importDefault(require("../routes/reservController.routes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -22,6 +25,9 @@ class Server {
         this.restaurantDetails = '/api/restaurantDetails';
         this.otherServices = '/api/other';
         this.restaurantPath = '/api/restaurant';
+        this.restController = '/api/restaurant';
+        this.restTurns = '/api/restaurant/turnos';
+        this.restReservas = '/api/reservas';
         this.conectarDB();
         this.middlewares();
         this.routes();
@@ -41,6 +47,9 @@ class Server {
         this.app.use(this.restaurantDetails, restaurantDetails_routes_1.default);
         this.app.use(this.otherServices, otherServices_routes_1.default);
         this.app.use(this.restaurantPath, restaurantController_routes_1.default);
+        this.app.use(this.restController, restController_routes_1.default);
+        this.app.use(this.restTurns, restTurns_routes_1.default);
+        this.app.use(this.restReservas, reservController_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
