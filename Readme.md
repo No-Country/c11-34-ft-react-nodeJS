@@ -610,8 +610,56 @@ Error id:
     "error": error
  }
 ```
+
+## Eliminar Restaurante
+
+Eliminar restaurant de la base de datos, esta eliminación es permanente.
+
+-   Método:  `DELETE`
+-   Ruta:  `/api/restaurant/:id`
+
+
+Parámetros de consulta: (query param)
+
+-   `id`  (param): nombre del restaurant.
+
+  
+
+NOTAS IMPORTANTES:
+
+-   El restaurante no será eliminado si este tiene reservas existentes.
+
+Respuesta exitosa:
+
+```json
+
+  { 
+    msg: 'Restaurante eliminado exitosamente' 
+  }
+
+```
+
+Peticion fallida:
+
+```json
+
+  {
+    msg: 'Se presento un error al eliminar el restaurante',
+    error
+  }
+
+```
+
+Reservas Existentes:
+
+```json
+
+  {
+    msg: 'No se puede eliminar el restaurante porque tiene reservas, opcion ponerlo quitarle la visibilidad'
+  }
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODU3NDM5NSwzODg5OTIyMiwxNDg5OD
-k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
-LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbLTM0NTE2NzgwLDM4ODk5MjIyLDE0ODk4OT
+YyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNjkxODU1OSwt
+MTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
 -->
