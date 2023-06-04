@@ -644,7 +644,7 @@ Petición fallida:
 ```json
 
   {
-    msg: 'Se presento un error al eliminar el restaurante',
+    "msg": "Se presento un error al eliminar el restaurante",
     error
   }
 
@@ -655,7 +655,7 @@ Reservas Existentes:
 ```json
 
   {
-    msg: 'No se puede eliminar el restaurante porque tiene reservas, opcion ponerlo quitarle la visibilidad'
+    "msg": "No se puede eliminar el restaurante porque tiene reservas, opcion ponerlo quitarle la visibilidad"
   }
 ```
 
@@ -890,7 +890,7 @@ No se encontraron reservas o el correo es erroneo:
 
 ## Eliminar reservas
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwNzk2MzQxMCwxOTAxNDM3MjEwLDM4OD
+eyJoaXN0b3J5IjpbLTUxNjQ5NTExNiwxOTAxNDM3MjEwLDM4OD
 k5MjIyLDE0ODk4OTYyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAx
 LDcxNjkxODU1OSwtMTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
 -->
