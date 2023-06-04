@@ -677,18 +677,10 @@ Parámetros de consulta: (Params)
 NOTAS IMPORTANTES:
 
 -   Turno es un numero, porque es la posicion del array de horas disponibles. Ejm.  
-    
-    `
-                    turnos:4
-                    horaI: 12:00
-                    horaF: 20:00
-                    intervalo: 2
-                  
-    
-                  [12:00,14:00,16:00,18:00]`
-                
-    
-
+```
+turnos : 4
+horaI : 
+```
 Ejemplo de petición: query
 
 ```
@@ -734,7 +726,7 @@ No disponible:
           }
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5NjM5MzM0OCwzODg5OTIyMiwxNDg5OD
+eyJoaXN0b3J5IjpbLTUyODA0OTQ0NSwzODg5OTIyMiwxNDg5OD
 k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
 LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
