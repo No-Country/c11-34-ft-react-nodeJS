@@ -425,7 +425,7 @@ Respuesta no exitosa:
 ```json
 
           {
-            msg: 'Se presento un error al obtener la lista de restaurantes',
+            msg: "Se presento un error al obtener la lista de restaurantes",
             error
           }
 ```
@@ -492,7 +492,7 @@ Respuesta exitosa:
 ```json
 
   {
-    msg: "creado correctamente"
+    "msg": "creado correctamente"
   }
 
 ```
@@ -502,7 +502,7 @@ Nombre Repetido:
 ```json
 
   {
-    msg: 'El restaurante con ese nombre ya existe'
+    "msg": "El restaurante con ese nombre ya existe"
   }
 
 ```
@@ -512,7 +512,7 @@ Imágenes inexistentes:
 ```json
 
   {
-    msg: 'No se subio ninguna imagen'
+    "msg": "No se subio ninguna imagen"
   }
 ```
 
@@ -890,7 +890,7 @@ No se encontraron reservas o el correo es erroneo:
 
 ## Eliminar reservas
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxNjQ5NTExNiwxOTAxNDM3MjEwLDM4OD
-k5MjIyLDE0ODk4OTYyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAx
-LDcxNjkxODU1OSwtMTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
+eyJoaXN0b3J5IjpbNzEzNDk5NzM4LDE5MDE0MzcyMTAsMzg4OT
+kyMjIsMTQ4OTg5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEs
+NzE2OTE4NTU5LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
