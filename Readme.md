@@ -679,7 +679,10 @@ NOTAS IMPORTANTES:
 -   Turno es un numero, porque es la posicion del array de horas disponibles. Ejm.  
 ```
 turnos : 4
-horaI : 
+horaI : 12:00
+horaO : 20:00
+intervalo : 2
+[12:00, 14:00, 16:00, 18:00]
 ```
 Ejemplo de petición: query
 
@@ -725,8 +728,28 @@ No disponible:
             "msg": "Turno no disponible"
           }
 ```
+
+##  Reservar mesa
+Crea la reserva y obtiene los datos.
+
+-   Método:  `POST`
+-   Ruta:  `/api/restaurant/turnos`
+
+Parámetros de consulta: (BODY json)
+
+-   `id_restaurante`  (string): Id del restaurant.
+-   `correoComensal`  (string): correo de la persona que har la reserva.
+-   `turno`  (number): posición del array de turnos empezando en 0.
+-   `comensales`  (number): cantidad de personas que asistiran a la reserva.
+-   `fecha`  (string): fecha a reservar.
+
+NOTAS IMPORTANTES:
+
+-   Antes de reservar se debe crear el array con las horas disponibles. Esto se crea al momento que la persona elije la fecha y la hora y se hace el get anterior. Sin este paso, ocurrirá un error  [no existe fecha](http://localhost:3000/reserva.html#noDate).
+  
+-   Las Reservas se pueden hacer en diferentes dias, pero no en diferentes horarios del mismo dia.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyODA0OTQ0NSwzODg5OTIyMiwxNDg5OD
-k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
-LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbNDg5NDMyNzQ0LDM4ODk5MjIyLDE0ODk4OT
+YyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNjkxODU1OSwt
+MTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
 -->
