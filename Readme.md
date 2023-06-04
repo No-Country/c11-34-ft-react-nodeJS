@@ -437,9 +437,57 @@ Crea un restaurant en la base de datos.
 -   Método:  `POST`
 -   Ruta:  `/api/restaurant`
 
+Parámetros de consulta: (Form-Data)
 
+-   `nombre`  (form key, string): nombre del restaurant.
+-   `direccion`  (form key, string): direccion del restaurant.
+-   `telefono`  (form key, string): telefono del restaurant.
+-   `correo`  (form key, string): correo del restaurant
+-   `dias`  (form key, string): dias abiertos
+-   `horarioIn`  (form key, string): horario de apertura
+-   `horarioOut`  (form key, string): horario de cierre
+-   `tipoComida`  (form key, string): tipo de comida (gustos)
+-   `mesas`  (form key, string): cantidad de mesas del rest.
+-   `sillasPorMesa`  (form key, string): cantidad de sillas por mesa.
+-   `intervaloMesa`  (form key, string): cantidad de horas que dura una reserva
+-   `descripcion`  (form key, string): descripcion del restaurant
+-   `caracteristicasPrinc`  (form key, string): caracteristicas del rest.
+-   `otrosDetalles`  (form key, string): mas detalles del rest.
+-   `images`  (form key, file): imagen del restuarant.
+
+Ejemplo de petición: Form-Data
+
+```
+
+    nombre: 'san Marti',
+    direccion: 'las magnolias',
+    telefono: '123445567',
+    correo: 'gianco@gmail.com',
+    dias: "['lunes','martes','miercoles']",
+    horarioIn: '08:00',
+    horarioOut: '20:00',
+    tipoComida: "['vegetarioano','pizza']",
+    mesas: '15',
+    sillasPorMesa: '2',
+    intervaloMesa: '1',
+    descripcion: 'descricpon del restaruante',
+    caracteristicasPrinc: "['wifi','mesasFUera']",
+    otrosDetalles: "['casa','tenedor']"
+    images: file1
+    images: file2
+    images: file3
+    images: file4
+```
+
+NOTAS IMPORTANTES:
+
+-   Los datos son de manera obligatoria, si no se envian se presentara un error.
+  
+-   Las Imagenes tienen un min de 1 y un max de 4 por restaurant.
+  
+-   Los datos de tipo array deben ser enviados como string pero manteniendo su forma de array, como en el ejemplo de arriba.- Ya que, este sera parseado en el backend.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTc0NzU2MzUsMzg4OTkyMjIsMTQ4OT
-g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
-LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
+eyJoaXN0b3J5IjpbNTA1MDEwMjY1LDM4ODk5MjIyLDE0ODk4OT
+YyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNjkxODU1OSwt
+MTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
 -->
