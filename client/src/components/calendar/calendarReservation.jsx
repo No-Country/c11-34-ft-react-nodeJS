@@ -12,7 +12,7 @@ dayjs.extend(localizedFormat);
 dayjs.extend(updateLocale);
 
 // eslint-disable-next-line react/display-name
-const ReservationCalendar = ({openDays, closeModal}) => {
+const ReservationCalendar = ({openDays, closeModal, setSelectedDate}) => {
     const [date, setDate] = useState(new Date());
     const [activeDays, setActiveDays] = useState([]);
 
@@ -31,6 +31,7 @@ const ReservationCalendar = ({openDays, closeModal}) => {
         closeModal();
         let reservationDay = dayjs(date).locale('es').format('DD MMMM');
         localStorage.setItem('dateReserve', reservationDay);
+        setSelectedDate(reservationDay);
     };
 
     return (
