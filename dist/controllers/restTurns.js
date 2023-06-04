@@ -48,10 +48,6 @@ const getTurns = async (req, res) => {
 };
 const postTurns = async (req, res) => {
     try {
-<<<<<<< HEAD
-        res.json({
-            msg: 'postTurns'
-=======
         const { id_restaurante, correoComensal, turno, comensales, fecha } = req.body;
         const data = await turnos_1.default.findOne({ id_restaurante });
         if (!data) {
@@ -112,7 +108,6 @@ const postTurns = async (req, res) => {
                 correoComensal,
                 idReserva: _id
             }
->>>>>>> gian
         });
     }
     catch (error) {

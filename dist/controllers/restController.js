@@ -12,21 +12,46 @@ const reservas_1 = __importDefault(require("../models/reservas"));
 const getRestaurant = async (req, res) => {
     try {
         const { page = 1, limit = 100 } = req.query;
-        const restaurants = await restaurant_1.default.find({ visible: true })
+        const restt = await restaurant_1.default.find({ visible: true })
             .skip((Number(page) - 1) * Number(limit))
             .limit(Number(limit))
             .exec();
+        if (!restt) {
+            return res.status(400).json({
+                msg: 'No se encontraron restaurantes'
+            });
+        }
         res.status(200).json({
             msg: 'Lista de restaurantes',
             page,
             limit,
-            total: restaurants.length,
-            restaurants
+            total: restt.length,
+            restt
         });
     }
     catch (error) {
         res.status(400).json({
             msg: 'Se presento un error al obtener la lista de restaurantes',
+            error
+        });
+    }
+};
+const getRestaurantbyCorreo = async (req, res) => {
+    try {
+        const { correo } = req.query;
+        const restt = await restaurant_1.default.find({ correo });
+        if (!restt) {
+            return res.status(400).json({
+                msg: 'No se encontrao el restaurant'
+            });
+        }
+        res.status(200).json({
+            restt
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: 'Se presento un error al obtener el restaurant',
             error
         });
     }
@@ -66,11 +91,6 @@ const postRestaurant = async (req, res) => {
         allData['imagenes'] = transformedUrl;
         allData['turnos'] = turnos;
         const restaurant = new restaurant_1.default(allData);
-        if (!restaurant) {
-            return res.status(400).json({
-                msg: 'No se pudo crear el restaurante, hable con soporte tecnico'
-            });
-        }
         const { _id: id_restaurante } = restaurant;
         await restaurant.save();
         const turno = new turnos_1.default({
@@ -139,12 +159,10 @@ const deleteRestaurant = async (req, res) => {
         }
         const restaurant = await restaurant_1.default.findByIdAndDelete(id);
         if (!restaurant) {
-            return res.status(404).json({ mensaje: 'Restaurante no encontrado' });
+            return res.status(404).json({ msg: 'Restaurante no encontrado' });
         }
         await turnos_1.default.findOneAndDelete({ id_restaurante: id });
-        return res
-            .status(200)
-            .json({ mensaje: 'Restaurante eliminado exitosamente' });
+        return res.status(200).json({ msg: 'Restaurante eliminado exitosamente' });
     }
     catch (error) {
         res.status(500).json({
@@ -157,7 +175,8 @@ const restController = {
     getRestaurant,
     postRestaurant,
     putRestaurant,
-    deleteRestaurant
+    deleteRestaurant,
+    getRestaurantbyCorreo
 };
 exports.default = restController;
 //# sourceMappingURL=restController.js.map
