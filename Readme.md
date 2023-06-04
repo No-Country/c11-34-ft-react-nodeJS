@@ -355,8 +355,82 @@ En caso de solo querer 1 restaurant por correo.
 
 -   Ruta 2:  `/api/restaurant/my`
 - query: ?correo=correo@gmail.com
+
+Parámetros de consulta: (Params)
+
+-   `page`  (param,opcional): pagina.
+-   `limit`  (param,opcional): elementos por pagina.
+
+Ejemplo de petición: query
+```
+ruta: ruta/api/restaurant?page=1&limit=100
+```
+
+Respuesta exitosa:
+
+```json
+
+          {
+            "msg": "Lista de restaurantes",
+            "page": 1,
+            "limit": 100,
+            "total": 1,
+            "restaurants": [
+                {
+                    "_id": "647a83c6207aebd584ae3b5c",
+                    "nombre": "san Ponciano",
+                    "direccion": "las magnolias",
+                    "telefono": "123445567",
+                    "correo": "gianco3108@gmail.com",
+                    "dias": [
+                        "lunes",
+                        "martes",
+                        "miercoles"
+                    ],
+                    "horarioIn": "08:00",
+                    "horarioOut": "20:00",
+                    "tipoComida": [
+                        "vegetarioano",
+                        "pizza"
+                    ],
+                    "mesas": 15,
+                    "sillasPorMesa": 2,
+                    "intervaloMesa": 1,
+                    "descripcion": "descricpon del restaruante",
+                    "caracteristicasPrinc": [
+                        "wifi",
+                        "mesasFUera"
+                    ],
+                    "otrosDetalles": [
+                        "casa",
+                        "tenedor"
+                    ],
+                    "costoReserva": 0,
+                    "cantidadComentarios": 0,
+                    "imagenes": [
+                        "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/en5ansx5e4brkwsclq7k",
+                        "http://res.cloudinary.com/dwqu0ohif/image/upload/c_fill,h_1000,w_1000/jarluxkjopg217x1yi8p"
+                    ],
+                    "turnos": 12,
+                    "visible": true,
+                    "__v": 0
+                }
+            ]
+        }
+
+```
+
+Respuesta no exitosa:
+
+```
+
+          {
+            msg: 'Se presento un error al obtener la lista de restaurantes',
+            error
+          }
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzg4OTkyMjIsMTQ4OTg5NjI4MywyMDU1Mj
-A3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5LC0xNzExNjIxMzAx
-LDQ5MzUwNDU0MV19
+eyJoaXN0b3J5IjpbLTEzMjU1ODcxOTcsMzg4OTkyMjIsMTQ4OT
+g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
+LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
