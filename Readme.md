@@ -425,7 +425,7 @@ Respuesta no exitosa:
 ```json
 
           {
-            msg: "Se presento un error al obtener la lista de restaurantes",
+            "msg": "Se presento un error al obtener la lista de restaurantes",
             error
           }
 ```
@@ -890,7 +890,7 @@ No se encontraron reservas o el correo es erroneo:
 
 ## Eliminar reservas
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzI4NzAzMzE0LDE5MDE0MzcyMTAsMzg4OT
+eyJoaXN0b3J5IjpbLTY2MTIxNzc0LDE5MDE0MzcyMTAsMzg4OT
 kyMjIsMTQ4OTg5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEs
 NzE2OTE4NTU5LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
