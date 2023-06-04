@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import Logo from "../../assets/logo.svg";
+import {Link, useNavigate} from "react-router-dom";
 import Clock from "../../assets/clock.svg";
 
 export function OpenDays() {
@@ -71,7 +70,7 @@ export function OpenDays() {
             reservationCost: cost,
         }
         localStorage.setItem('dataDayRestaurant', JSON.stringify(data))
-        navigate("/createRestaurant/restaurantdata/");
+        navigate("/create-restaurant/diners");
         setDataRestaurant({
             days: [],
             openHour: '',
@@ -87,19 +86,17 @@ export function OpenDays() {
     };
 
     return (
-        <div>
-            <div className="flex mt-11 mb-16 mx-5">
-                <img src={Logo} alt="Morfi Logo"/>
-            </div>
-            <h1 className="text-2xl font-bold mx-6 pb-2">Días y Horarios</h1>
+        <div className="font-inter px-4 lg:px-0">
+            <p className="text-sm font-inter font-medium mb-2">3/6</p>
+            <h1 className="text-2xl font-bold mb-4 font-montserrat">Días y Horarios</h1>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 mb-8 mx-5"
+                className="flex flex-col gap-y-6 border shadow-xl px-4 py-2"
                 encType="multipart/form-data"
             >
-                <div className="grid grid-cols-3 gap-1 w-80 mx-auto">
+                <div className="grid grid-cols-3 gap-4">
                     {weekdays.map((day, index) => (
-                        <label key={index} htmlFor={day} className="text-base">
+                        <label key={index} htmlFor={day} className="text-base flex gap-2">
                             <input
                                 className=""
                                 id={day}
@@ -113,8 +110,8 @@ export function OpenDays() {
                     ))}
                 </div>
 
-                <div className="flex mx-auto">
-                    <div className="flex items-center mr-2">
+                <div className="flex w-full justify-between">
+                    <div className="flex items-center">
                         <h2 className={'pr-2'}>De</h2>
                         <img src={Clock} alt="clock" className={'w-6'}/>
                     </div>
@@ -130,7 +127,7 @@ export function OpenDays() {
                             </option>
                         ))}
                     </select>
-                    <div className="flex items-center mr-2">
+                    <div className="flex items-center ">
                         <h2 className={'px-2'}>A</h2>
                         <img src={Clock} alt="clock" className={'w-6'}/>
                     </div>
@@ -148,15 +145,15 @@ export function OpenDays() {
                     </select>
                 </div>
 
-                <div>
-                    <div className="flex items-center mr-2">
-                        <h2 className={'px-2 text-xs'}>Duración de la reserva</h2>
-                        <img src={Clock} alt="clock" className={'w-4'}/>
+                <div className="flex flex-col gap-y-4 font-inter">
+                    <div className="flex flex-col gap-y-2">
+                        <h2 className={'flex items-center gap-x-2 text-xs text-subtitle '}>    <img src={Clock} alt="clock" className={'w-4'}/> Duración de la reserva</h2>
+                     
 
                         <select
                             value={selectReservationDuration}
                             onChange={handleReservartionDurationChange}
-                            className="p-2.5 rounded"
+                            className="p-1.5 rounded"
                         >
                             <option value="">--</option>
                             {Array.from({length: 4}).map((_, index) => (
@@ -166,14 +163,14 @@ export function OpenDays() {
                             ))}
                         </select>
                     </div>
-                    <div className="flex items-center mr-2">
-                        <h2 className={'px-2 text-xs'}>Cancelacion de reserva</h2>
-                        <img src={Clock} alt="clock" className={'w-4'}/>
+                    <div className="flex flex-col gap-y-2">
+                        <h2 className={'flex items-center gap-x-2 text-xs text-subtitle'}> <img src={Clock} alt="clock" className={'w-4'}/> Cancelacion de reserva</h2>
+                        
 
                         <select
                             value={selectedMinute}
                             onChange={handleMinuteChange}
-                            className="p-2.5 rounded"
+                            className="p-1.5 rounded"
                         >
                             <option value="">--</option>
                             {Array.from({length: 60}).map((_, index) => (
@@ -184,8 +181,8 @@ export function OpenDays() {
                         </select>
                     </div>
                 </div>
-                <div className={'flex mx-auto'}>
-                    <h3 className={'px-2 text-xs'}>Costo de reserva por persona</h3>
+                <div className={'flex w-full justify-between border px-2 rounded-md py-2'}>
+                    <h3 className={'flex items-center gap-x-2 text-xs'}>Costo de reserva por persona</h3>
                     <input
                         className={'border-b border-border-color outline-none w-28'}
                         type={'number'}
@@ -193,13 +190,17 @@ export function OpenDays() {
                         onChange={handleCost}
                     />
                 </div>
-                <button
-                    type="submit"
-                    className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
-
-                >
-                    Siguiente
-                </button>
+                <div className="flex justify-between gap-x-4">
+                    <Link to='/create-restaurant/restaurant-detail' className="border shadow text-black rounded-full p-2.5 font-inter flex w-full justify-center">
+                        Volver al inicio
+                    </Link>
+                    <button
+                        type="submit"
+                        className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
+                    >
+                        Siguiente
+                    </button>
+               </div>
             </form>
         </div>
     );

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from "react"
-import Logo from '../../assets/logo.svg'
 import {Link, useNavigate} from "react-router-dom";
+import arrow from '../../assets/arrow-right.svg'
 
 export function ListaMenu() {
     const navigate = useNavigate();
@@ -13,7 +13,8 @@ export function ListaMenu() {
     const foodType = JSON.parse(localStorage.getItem('tastesRestaurant'));
     const chars = JSON.parse(localStorage.getItem('characteristicsRestaurant'));
     const firstData = JSON.parse(localStorage.getItem('restaurantFirstData'));
-    console.log(photos)
+
+
     const [values, setValues] = useState({
         nombre: '',
         direccion: '',
@@ -58,8 +59,8 @@ export function ListaMenu() {
             capacidadMax: diners.cantidadMesas*diners.cantidadSillasPorMesa,
             turnos: [],
         }
-        console.log(data)
         navigate("/");
+        console.log(data)
         setValues({
             nombre: '',
             direccion: '',
@@ -90,57 +91,63 @@ export function ListaMenu() {
 
 
     return (
-        <div>
-            <div className={'flex mt-11 mb-16 mx-5'}>
-                <img src={Logo} alt={'Morfi Logo'}/>
-            </div>
-
-            <form onSubmit={onSubmit} className='flex  flex-col gap-y-6 mb-8 mx-5'>
-                <div className={'border-b border-border-color outline-none'}>
+        <div className="px-4 lg:px-0">
+        
+            <h2 className="text-2xl font-montserrat font-semibold mb-2">Completa cada unos de los Formularios</h2>
+            <p className="text-sm font-inter text-subtitle mb-4">Rellena los datos detalladamente, para obtener un mayor beneficio</p>
+            <form onSubmit={onSubmit} className='flex  flex-col gap-y-6 dt:w-[50vw] '>
+                <div className={'w-full b'}>
                     <Link
-                        className={`p-2.5 text-slate-400`}
-                        to={"/createRestaurant/restaurantdata/photos"}>
+                        className={`border-b border-border-color text-subtitle rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer w-full  px-4 font-inter flex gap-x-2 items-center`}
+                        to={"/create-restaurant/photos"}>
                         Fotos
+                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
                     </Link>
                 </div>
-                <div className={'border-b border-border-color outline-none'}>
+                <div className={''}>
                     <Link
-                        className={`p-2.5 text-slate-400`}
-                        to={"/createRestaurant/restaurantdata/description"}>
+                        className={`border-b border-border-color text-subtitle rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer w-full  px-4 font-inter flex gap-x-2 items-center`}
+                        to={"/create-restaurant/description"}>
                         Descripción
+                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
                     </Link>
                 </div>
-                <div className={'border-b border-border-color outline-none'}>
+                <div className={''}>
                     <Link
-                        className={`p-2.5 text-slate-400`}
-                        to={"/createRestaurant/restaurantdata/reservationDays"}>
+                        className={`border-b border-border-color text-subtitle rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer w-full  px-4 font-inter flex gap-x-2 items-center`}
+                        to={"/create-restaurant/reservationDays"}>
                         Días y Horarios
+                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
                     </Link>
                 </div>
-                <div className={'border-b border-border-color outline-none'}>
+                <div className={''}>
                     <Link
-                        className={`p-2.5 text-slate-400`}
-                        to={"/createRestaurant/restaurantdata/diners"}>
+                        className={`border-b border-border-color text-subtitle rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer w-full  px-4 font-inter flex gap-x-2 items-center`}
+                        to={"/create-restaurant/diners"}>
                         Cantiadad de comensales
+                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
                     </Link>
                 </div>
-                <div className={'border-b border-border-color outline-none'}>
+                <div className={''}>
                     <Link
-                        className={`p-2.5 text-slate-400`}
-                        to={"/createRestaurant/restaurantdata/listTastes"}>
+                        className={`border-b border-border-color text-subtitle rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer w-full  px-4 font-inter flex gap-x-2 items-center`}
+                        to={"/create-restaurant/listTastes"}>
                         Tipos de Comida
+                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
                     </Link>
                 </div>
-                <div className={'border-b border-border-color outline-none'}>
+                <div className={''}>
                     <Link
-                        className={`p-2.5 text-slate-400`}
-                        to={"/createRestaurant/restaurantdata/caracts"}>
+                        className={`border-b border-border-color text-subtitle rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer w-full  px-4 font-inter flex gap-x-2 items-center`}
+                        to={"/create-restaurant/caracts"}>
                         Caracteristicas principales
+                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
+
                     </Link>
                 </div>
                 <div className='flex flex-col gap-y-6'>
                     <button type='submit'
-                            className='bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center'>
+                            className='bg-black text-white rounded-full w-full font-inter flex py-2  justify-center hover:scale-105 transition-transform'>
                         Finalizar
                     </button>
                 </div>

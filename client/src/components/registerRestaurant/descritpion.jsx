@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 export function DescriptionRestaurantData() {
     const navigate = useNavigate();
@@ -20,7 +19,7 @@ export function DescriptionRestaurantData() {
             "descriptionRestaurantData",
             JSON.stringify(descriptionRestaurant)
         );
-        navigate("/createRestaurant/restaurantdata");
+        navigate("/create-restaurant/reservationDays");
         setDescription("");
     };
 
@@ -31,16 +30,14 @@ export function DescriptionRestaurantData() {
 
     return (
         <div>
-            <div className="flex mt-11 mb-16 mx-5">
-                <img src={Logo} alt="Morfi Logo" />
-            </div>
-            <h1 className="text-2xl font-bold px-5 pb-2">Descripción</h1>
+            <p className="text-sm font-inter font-medium mb-2">2/6</p>
+            <h2 className="text-2xl font-bold  pb-2 font-montserrat">Descripción</h2>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 mb-8 mx-5"
+                className="flex flex-col gap-y-6  "
                 encType="multipart/form-data"
             >
-                <label>Escribe una descripción del restaurante</label>
+                <label className="font-inter text-subtitle">Escribe una descripción del restaurante</label>
                 <textarea
                     name="description"
                     id="description"
@@ -49,12 +46,17 @@ export function DescriptionRestaurantData() {
                     onChange={onChange}
                     className="p-2.5 border-b border-border-color outline-none"
                 />
-                <button
-                    type="submit"
-                    className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
-                >
-                    Siguiente
-                </button>
+               <div className="flex justify-between gap-x-4">
+                    <Link to='/create-restaurant/restaurant-detail' className="border shadow text-black rounded-full p-2.5 font-inter flex w-full justify-center">
+                        Volver al inicio
+                    </Link>
+                    <button
+                        type="submit"
+                        className="bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center"
+                    >
+                        Siguiente
+                    </button>
+               </div>
             </form>
         </div>
     );
