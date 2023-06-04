@@ -658,8 +658,83 @@ Reservas Existentes:
     msg: 'No se puede eliminar el restaurante porque tiene reservas, opcion ponerlo quitarle la visibilidad'
   }
 ```
+
+# API de reserva
+
+## Obtener disponibilidad
+
+Obtiene la cantidad de lugares disponibles por la hora y fecha.
+
+-   Método:  `GET`
+-   Ruta:  `/api/restaurant/turnos`
+
+Parámetros de consulta: (Params)
+
+-   `id_restaurante`  (string): Id del restaurant.
+-   `fecha`  (string): fecha de busqueda.
+-   `turno`  (string): posicion del array de turnos empezando en 0.
+
+NOTAS IMPORTANTES:
+
+-   Turno es un numero, porque es la posicion del array de horas disponibles. Ejm.  
+    
+    `
+                    turnos:4
+                    horaI: 12:00
+                    horaF: 20:00
+                    intervalo: 2
+                  
+    
+                  [12:00,14:00,16:00,18:00]`
+                
+    
+
+Ejemplo de petición: query
+
+```
+  ruta: ruta/api/restaurant/turnos?id_restaurante=647a83c6207aebd584ae3b5c&fecha=03/06/23&turno=2
+```
+
+Respuesta exitosa:
+
+```json
+
+          {
+            "disponible": 18
+          }
+
+```
+
+Respuesta no exitosa:
+
+```json
+
+          {
+            "msg": "Error al obtener turnos disponibles"
+          }
+
+```
+
+ID incorrecto:
+
+```json
+
+          {
+            "msg": "No se encontró el restaurante,verifique el id del restaurant"
+          }
+
+```
+
+No disponible:
+
+```json
+
+          {
+            "msg": "Turno no disponible"
+          }
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0NTE2NzgwLDM4ODk5MjIyLDE0ODk4OT
-YyODMsMjA1NTIwNzMxMywtMjM1ODgxOTAxLDcxNjkxODU1OSwt
-MTcxMTYyMTMwMSw0OTM1MDQ1NDFdfQ==
+eyJoaXN0b3J5IjpbMTY5NjM5MzM0OCwzODg5OTIyMiwxNDg5OD
+k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
+LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
