@@ -1,17 +1,18 @@
-import React from "react";
 import {Link} from "react-router-dom";
-import location from '../../assets/location.svg'
 import {Distance} from "../map/distanceRestaurant.jsx";
+import location from '../../assets/location.svg'
 
 
-export function CardRestoHome({id, img, title, priceRange, latitude, longitude}) {
+export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, longitude}) {
+
+    const img = imagenes[0]
 
     return (
-        <div className="flex flex-col items-center justify-center gap-2 bg-white py-5 rounded-lg" key={id}>
-            <img src={img} className='rounded-lg w-72 h-72 object-cover'/>
+        <div className="flex flex-col items-center justify-center gap-2 bg-white py-5 rounded-lg" >
+            <img src={img} alt={nombre} className='rounded-lg w-72 h-72 object-cover'/>
             <div className='flex flex-col justify-start mt-4 w-full gap-3'>
-                <Link to={`/restaurant/${id}`}>
-                    <div>{title}</div>
+                <Link to={`/restaurant/${_id}`}>
+                    <div>{nombre}</div>
                 </Link>
                 <div className='flex flex-row w-full items-center'>
                     <img src={location}/>
@@ -21,7 +22,7 @@ export function CardRestoHome({id, img, title, priceRange, latitude, longitude})
                             latitudDestiRestaurant={latitude}/>
                     </div>
                 </div>
-                <div>$ {priceRange} por persona</div>
+                <div>$ {costoReserva} por persona</div>
             </div>
 
         </div>
