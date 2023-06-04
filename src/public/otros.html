@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./estilo.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    
+</head>
+<body>
+    <!-- <a href="./loginTest.html">Ir a login de google, solo para local</a> -->
+    <div class="container">
+      <div class="tandback">
+
+        <h1>API de Otras Funcionalidades</h1>
+        <a href="index.html">INICIO</a>
+      </div>
+      <nav>
+        <a class="nav_item" href="#listar">Obtener coordenadas</a
+        >
+      </nav>
+      <div class="scrollable">
+        <p>
+          Esta API permite realizar operaciones relacionadas con usuarios, como
+          obtener usuarios, crear usuarios, actualizar usuarios y eliminar
+          usuarios.
+        </p>
+        <p>
+          Ruta de la API:
+          <a href="https://ncback-production.up.railway.app" target="_blank"
+            >https://ncback-production.up.railway.app</a
+          >
+        </p>
+
+        
+
+          <!-- ------------------------------------------------------------------------------------------------------ -->
+        <!-- --------------------------------MAP COORDENADAS---------------------------------------- -->
+        <!-- ------------------------------------------------------------------------------------------------------ -->
+        <h2>Map Coordenadas</h2>
+        <p>Envia una direccion y recibe las coordenadas</p>
+        <ul>
+          <li>Método: <code>POST</code></li>
+          <li>Ruta: <code>/api/other/mapcord</code></li>
+        </ul>
+        <p>Parámetros de consulta:</p>
+        <ul>
+          <li>
+            <code>direccion</code> (string, obligatorio): Direccion a buscar.
+          </li>
+        </ul>
+        <p>Ejemplo de petición: body (JSON)</p>
+        <pre><code>
+  {
+    "direccion": "Avenida 60 82, La Plata"
+  }
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+            {
+              "lat": 4.59808,
+              "lng": -74.076043,
+              "direccion": "Avenida 60 82, La Plata, Buenos Aires Province, 1900, Argentina"
+            }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+            {
+              "mensaje": "No se encontraron coordenadas"
+            }
+</code></pre>
+
+        
+
+        
+      </div>
+    </div>
+  </body>
+</html>

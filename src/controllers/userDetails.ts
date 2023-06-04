@@ -6,7 +6,7 @@
 import { Request, Response } from 'express'
 import fs from 'fs/promises'
 import UserModel from '../models/usuario'
-import cloud from '../helpers/cloudinaryUpload'
+import { cloudinaryUpload } from '../helpers/cloudinaryUpload'
 
 export async function uploadImage(req: Request, res: Response) {
   const eliminarImagenLocal = fs.unlink
@@ -29,15 +29,7 @@ export async function uploadImage(req: Request, res: Response) {
     }
 
     // subir la imagen a cloudinary
-    const result = await cloud.uploader.upload(dataImg.path)
-    const { public_id } = result
-
-    // transformar la imagen para que sea mas pequeña
-    const transformedUrl = cloud.url(public_id, {
-      width: 100,
-      height: 100,
-      crop: 'fill'
-    })
+    const transformedUrl = await cloudinaryUpload(dataImg.path, 500)
 
     // actualizar el usuario.imagen con la url de la imagen
     usuario.imagen = transformedUrl
@@ -51,28 +43,24 @@ export async function uploadImage(req: Request, res: Response) {
   }
 }
 
-export async function addGustos (req: Request, res: Response) {
-  const {gustos, correo} = req.body;
+export async function addGustos(req: Request, res: Response) {
+  const { gustos, correo } = req.body
 
   try {
-    const usuario = await UserModel.findOne({correo});
-    console.log("datos de gusto de usuario------"+usuario);
-    
+    const usuario = await UserModel.findOne({ correo })
+    console.log('datos de gusto de usuario------' + usuario)
 
     if (!usuario) {
-      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' })
     }
-    
-    usuario.gustos = gustos;
-    usuario.save();
+
+    usuario.gustos = gustos
+    usuario.save()
 
     res.json({ msg: 'gustos agregados' })
-    
   } catch (error) {
-    
-    console.error('Error al actualizar los gustos:', error);
-    return res.status(500).json({ mensaje: 'Error al actualizar los gustos' });
-
+    console.error('Error al actualizar los gustos:', error)
+    return res.status(500).json({ mensaje: 'Error al actualizar los gustos' })
   }
 }
 
