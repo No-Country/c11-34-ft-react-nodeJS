@@ -814,8 +814,82 @@ Reserva en el mismo día:
 
 ## Ver reservas
 
+Muestra todas las reservas de la persona en un array
+
+-   Método:  `GET`
+-   Ruta:  `/api/reservas`
+
+Parámetros de consulta: (QUERY params)
+
+-   `correo`  (string): correo de la persona.
+
+Ejemplo de petición: query
+```
+ruta/api/reservas?correo=gianco.marquez@gmail.com
+```
+Respuesta exitosa:
+
+```json
+
+          {
+            "msg": "Reservas obtenidas exitosamente",
+            "reservas": [
+                {
+                    "_id": "647a974721f839fe59b85dbd",
+                    "hora": "09:00",
+                    "nombre": "san Ponciano",
+                    "comensales": 5,
+                    "fecha": "03/06/23",
+                    "estado": [
+                        "confirmada"
+                    ],
+                    "correoComensal": "correo@gmail.com",
+                    "id_restaurante": "647a83c6207aebd584ae3b5c",
+                    "__v": 0
+                },
+                {
+                    "_id": "647be8676ef2fbbb539a467f",
+                    "hora": "09:00",
+                    "nombre": "san Ponciano",
+                    "comensales": 5,
+                    "fecha": "04/06/23",
+                    "estado": [
+                        "confirmada"
+                    ],
+                    "correoComensal": "correo@gmail.com",
+                    "id_restaurante": "647a83c6207aebd584ae3b5c",
+                    "__v": 0
+                }
+            ]
+        }
+
+```
+
+Respuesta no exitosa:
+
+```json
+
+          {
+            msg: 'Se presento un error al obtener las reservas',
+            error
+          }
+
+```
+
+No se encontraron reservas o el correo es erroneo:
+
+```json
+
+          {
+           msg: 'No se encontraron reservas, verificar el correo'
+           }
+```
+
+## Editar reservas
+
+## 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NzE5OTkzOTgsMzg4OTkyMjIsMTQ4OT
-g5NjI4MywyMDU1MjA3MzEzLC0yMzU4ODE5MDEsNzE2OTE4NTU5
-LC0xNzExNjIxMzAxLDQ5MzUwNDU0MV19
+eyJoaXN0b3J5IjpbMTUzNTA1OTg4NiwzODg5OTIyMiwxNDg5OD
+k2MjgzLDIwNTUyMDczMTMsLTIzNTg4MTkwMSw3MTY5MTg1NTks
+LTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
