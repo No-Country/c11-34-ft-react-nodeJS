@@ -33,6 +33,9 @@ const getTurns = async (req, res) => {
 };
 const postTurns = async (_req, res) => {
     try {
+        res.json({
+            msg: 'postTurns'
+        });
     }
     catch (error) {
         res.status(500).json({
