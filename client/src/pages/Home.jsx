@@ -1,5 +1,6 @@
 import {  SearchBar, Gallery, Categories, NavBarUI } from '../components';
 
+
 export function Home() {
 
   return (

@@ -14,7 +14,9 @@ export function Restaurant() {
     const { id } = useParams()
 
     useEffect(() => {
-        getRestaurant(id).then(res => setRestaurant(res))
+        getRestaurant(id).then(res =>{
+            setRestaurant(res);
+        } )
     }, [id])
     
     let latitudeRestaurant = parseFloat(getRestaurant(id).latitude);
