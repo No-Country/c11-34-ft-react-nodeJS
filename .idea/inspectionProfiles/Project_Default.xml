@@ -1,0 +1,31 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="IncorrectHttpHeaderInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="customHeaders">
+        <set>
+          <option value="    &quot;data" />
+          <option value="&quot;nombre&quot;" />
+          <option value="&quot;direccion&quot;" />
+          <option value="&quot;telefono&quot;" />
+          <option value="correo&quot;" />
+          <option value="dias&quot;" />
+          <option value="{" />
+          <option value="horarioIn&quot;" />
+          <option value="horarioOut&quot;" />
+          <option value="tipoComida&quot;" />
+          <option value="mesas&quot;" />
+          <option value="sillasPorMesa&quot;" />
+          <option value="intervaloMesa&quot;" />
+          <option value="descripcion&quot;" />
+          <option value="caracteristicasPrinc&quot;" />
+          <option value="otrosDetalles&quot;" />
+          <option value="&quot;https" />
+          <option value="imagenes&quot;" />
+          <option value="}" />
+        </set>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

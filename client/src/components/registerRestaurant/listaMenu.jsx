@@ -43,6 +43,7 @@ export function ListaMenu() {
             imagenes: photos,
             turnos: 12,
         }
+
         return data
     
     }
