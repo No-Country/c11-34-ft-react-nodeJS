@@ -36,7 +36,7 @@ export function NavBar({
           <Link to='/' ><img src={logoMobile} alt='logo-header-mobile' className='w-20 h-8 mr-4'/></Link>
         </div>
         <div className="flex items-center gap-10">
-            <p className='font-inter font-semibold text-sm whitespace-nowrap hidden lg:block'>Registrá tu restaurante</p>
+            <Link to='/create-restaurant'  className='font-inter font-semibold text-sm whitespace-nowrap hidden lg:block'>Registrá tu restaurante</Link>
             <div className='flex items-center gap-x-6 relative z-20 text-white px-2 lg:px-4 py-2 rounded-3xl border-2 border-border-color '>
               <button onClick={toggleNavBar} className=''>
                 <img src={isOpenNavbar ? x : hamburger} alt='hamburger-icon' className='w-8 h-6 lg:w-6 lg:h-6 icon-color'/>

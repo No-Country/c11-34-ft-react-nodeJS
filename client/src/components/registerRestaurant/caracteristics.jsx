@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
 
 export function CaracteristicsRestaurant() {
     const navigate = useNavigate();
@@ -34,7 +33,7 @@ export function CaracteristicsRestaurant() {
             newChar: newChar.split(",").map((char) => char.trim()),
         };
         localStorage.setItem("characteristicsRestaurant", JSON.stringify(descriptionRestaurant));
-        navigate("/createRestaurant/restaurantdata");
+        navigate("/create-restaurant/restaurant-detail");
         setSelectedCharacteristics([]);
         setNewChar("");
     };
@@ -45,19 +44,18 @@ export function CaracteristicsRestaurant() {
     };
 
     return (
-        <div>
-            <div className="flex mt-11 mb-16 mx-5">
-                <img src={Logo} alt="Morfi Logo" />
-            </div>
-            <h2 className="text-xl font-bold px-5 pb-2">Caracteristicas Principales</h2>
+        <div className="font-inter px-4 lg:px-0">
+           <p className="text-sm font-inter font-medium mb-2">6/6</p>
+            
+            <h2 className="text-xl font-bold font-montserrat pb-2">Caracteristicas Principales</h2>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 mb-8 mx-5"
+                className="flex flex-col gap-y-6 "
                 encType="multipart/form-data"
             >
-                <div className={'grid grid-cols-2 gap-1 w-72 mx-auto'}>
+                <div className={'grid grid-cols-2 lg:grid-cols-3 gap-3'}>
                     {mainCharacteristics.map((char, index) => (
-                        <label key={index} htmlFor={index} className="text-base">
+                        <label key={index} htmlFor={index} className="text-base flex gap-2">
                             <input
                                 className=""
                                 id={index}
@@ -71,7 +69,7 @@ export function CaracteristicsRestaurant() {
                     ))}
                 </div>
                 <div className={'pb-0'}>
-                    <h3>Escribe las otras características que tiene tu restaurante</h3>
+                    <h3 className="mb-2">Escribe las otras características que tiene tu restaurante</h3>
                     <h3 className={'text-xs text-slate-400'}>Escribe las características separadas por comas (,)</h3>
                 </div>
                 <textarea

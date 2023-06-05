@@ -40,6 +40,7 @@ const ReservationCalendar = ({ openDays, closeModal }) => {
         closeModal();
         let reservationDay = dayjs(date).locale('es').format('DD MMMM');
         localStorage.setItem('dateReserve', reservationDay);
+        setSelectedDate(reservationDay);
     };
 
     return (

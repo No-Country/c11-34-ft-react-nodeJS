@@ -8,6 +8,7 @@ import MapRestaurant from "../components/map/map.jsx";
 import location from "../assets/location.svg"
 
 export function Restaurant() {
+
     const {id} = useParams();
 
     const [restaurant, setRestaurant] = useState({});
@@ -79,7 +80,7 @@ export function Restaurant() {
                     </div>
                 </div>
                 <div className={'lg:w-reservationForm lg:h-reservationForm m-auto mt-4'}>
-                    <ReservationForm days={openRestaurant}/>
+                    <ReservationForm days={openRestaurant} restaurant={restaurant}/>
                 </div>
             </div>
             <div className={'hidden lg:flex justify-center items-center h-5/6 w-5/6 mb-8 mx-auto'}>

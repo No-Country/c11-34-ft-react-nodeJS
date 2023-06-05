@@ -87,7 +87,7 @@ export function EditPerfiForm({user}) {
                       : <div className="w-full h-full justify-center items-center "><p className="mb-2 text-sm text-gray-500 dark:text-gray-400 ">Imagen cargada</p></div>
                     }
                 </div>
-                <input id="file" onChange={(e) => handleFileChange(e)} type="file" className="hidden " />
+                <input id="file"  accept=".jpg, .jpeg, .png" onChange={(e) => handleFileChange(e)} type="file" className="hidden " />
             </label>
         </div> 
 
