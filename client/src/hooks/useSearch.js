@@ -1,10 +1,11 @@
 
 import { useLocation } from "react-router-dom"
-import { galleryCards } from "../utils"
+import { useRestaurants } from "./useRestaurants"
 
 export function useSearch() {
+    const { restaurants, load } = useRestaurants()
     const query = new URLSearchParams(useLocation().search)
     const querySearch = query.get('search')
-    const galleryFiltered = galleryCards.filter(gallery => gallery.title.toLowerCase().includes(querySearch.toLowerCase()))
-    return {galleryFiltered, querySearch}
+    const restaurantsSearched = restaurants?.restt?.filter(gallery => gallery.nombre.toLowerCase().includes(querySearch.toLowerCase()))
+    return {restaurantsSearched, querySearch, load}
 }

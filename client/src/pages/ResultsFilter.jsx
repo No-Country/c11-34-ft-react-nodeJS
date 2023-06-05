@@ -4,13 +4,16 @@ import { galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
 import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
+import { Ring } from "@uiball/loaders";
 export function ResultsFilter() {
 
 
   const randomRestaurant = galleryCards[0]
 
 
-  const {galleryFiltered, querySearch} = useSearch()
+  const {restaurantsSearched, querySearch, load} = useSearch()
+
+  if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
 
   return (
     <main className="">
@@ -46,23 +49,23 @@ export function ResultsFilter() {
 
             {/* Result Section */}
             <section className="lg:col-span-3 flex flex-col gap-y-4 ">
-                <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{galleryFiltered.length} resultados</h3>
+                <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{restaurantsSearched.length } resultados</h3>
                 <section className="flex flex-col gap-y-3 overflow-y-auto items-center lg:items-start h-auto lg:h-screen pb-24 lg:pb-56 dt:pb-80 lg:pr-2.5">
 
                     {
-                        !galleryFiltered.length &&
+                        !restaurantsSearched.length && !load &&
                         <p> { querySearch } no encontrado</p> 
                     }
 
                     {
-                        galleryFiltered?.map(card => (
+                        restaurantsSearched?.map(card => (
                             <article key={card.id} className="flex flex-col gap-y-2  w-full">
                                 <Link to={`/restaurant/${card.id}`}>
-                                    <img src={card.img} alt={card.title} className="rounded-xl w-full h-72 object-cover"/>
+                                    <img src={card.imagenes[0]} alt={card.nombre} className="rounded-xl w-full h-72 object-cover"/>
                                 </Link>
-                                <h3 className="font-montserrat font-medium text-xl">{card.title}</h3>
+                                <h3 className="font-montserrat font-medium text-xl">{card.nombre}</h3>
                                 <p className="text-subtitle flex gap-x-1 items-center"><img src={locationSvg}/> <Distance longitudeRestaurant={card.longitude} latitudDestiRestaurant={card.latitude}/> </p>
-                                <p className="font-inter font-semibold ">${card.priceRange}</p>
+                                <p className="font-inter font-semibold ">${card.costoReserva}</p>
                             </article>
                         ))
                     }
