@@ -6,6 +6,7 @@ import Restaurant from '../models/restaurant'
 import { ImageMulter } from '../interfaces/modelInterfaces'
 import { cloudinaryUpload } from '../helpers/cloudinaryUpload'
 import Reservas from '../models/reservas'
+import usuario from '../models/usuario'
 
 const getRestaurant = async (req: Request, res: Response) => {
   try {
@@ -63,6 +64,15 @@ const postRestaurant = async (req: Request, res: Response) => {
   try {
     const dataImg = req.files as Array<ImageMulter>
     const allData = await req.body
+    const { correo } = req.query
+
+    const usuarioExstente = await usuario.findOne({ correo })
+
+    if (!usuarioExstente) {
+      return res.status(400).json({
+        msg: 'El usuario con ese correo no existe'
+      })
+    }
 
     //verificar que no exista
     const restaurantExistente = await Restaurant.findOne({

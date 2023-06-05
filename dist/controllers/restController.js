@@ -9,6 +9,7 @@ const promises_1 = __importDefault(require("fs/promises"));
 const restaurant_1 = __importDefault(require("../models/restaurant"));
 const cloudinaryUpload_1 = require("../helpers/cloudinaryUpload");
 const reservas_1 = __importDefault(require("../models/reservas"));
+const usuario_1 = __importDefault(require("../models/usuario"));
 const getRestaurant = async (req, res) => {
     try {
         const { page = 1, limit = 100 } = req.query;
@@ -61,6 +62,13 @@ const postRestaurant = async (req, res) => {
     try {
         const dataImg = req.files;
         const allData = await req.body;
+        const { correo } = req.query;
+        const usuarioExstente = await usuario_1.default.findOne({ correo });
+        if (!usuarioExstente) {
+            return res.status(400).json({
+                msg: 'El usuario con ese correo no existe'
+            });
+        }
         const restaurantExistente = await restaurant_1.default.findOne({
             nombre: allData.nombre,
             correo: allData.correo
