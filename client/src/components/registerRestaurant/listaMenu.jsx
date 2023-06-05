@@ -40,17 +40,17 @@ export function ListaMenu() {
             direccion: firstData.direccion,
             telefono: firstData.telefono,
             correo: firstData.correo,
-            dias: daysTime.days,
+            dias: JSON.stringify(daysTime.days),
             horarioIn: daysTime.openHour,
             horarioOut: daysTime.closeHour,
-            tipoComida: foodType.tastes,
+            tipoComida: JSON.stringify(foodType.tastes),
             mesas: diners.mesas,
             sillasPorMesa: diners.sillasPorMesa,
             intervaloMesa: diners.sillasPorMesa,
             descripcion: descrip.description,
-            caracteristicasPrinc: chars.characteristics,
-            otrosDetalles: chars.newChar,
-            imagenes: file,
+            caracteristicasPrinc: JSON.stringify(chars.characteristics),
+            otrosDetalles: JSON.stringify(chars.newChar),
+            images: file,
         }
 
         return data
