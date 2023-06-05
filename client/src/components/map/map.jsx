@@ -11,15 +11,15 @@ const iconMarker = new l.Icon({
 
 })
 const MapRestaurant = ({latitude, longitude, name, height, width}) => {
-    const locationRestaurant = {lat: latitude, lng: longitude};
+    const position = {lat: latitude, lng: longitude};
     const mapRef = useRef('')
         return (
-            <MapContainer className={`${height} ${width}`} center={locationRestaurant} zoom={50} ref={mapRef}>
+            <MapContainer className={`${height} ${width}`} center={position} zoom={13} ref={mapRef}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={locationRestaurant} icon={iconMarker}>
+                <Marker position={position} icon={iconMarker}>
                     <Popup>
                         {name}
                     </Popup>
