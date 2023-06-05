@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import { daysTimeValidator } from "../../utils";
 import Clock from "../../assets/clock.svg";
 
 export function OpenDays() {
@@ -17,8 +18,11 @@ export function OpenDays() {
 
 
     const [selectedDays, setSelectedDays] = useState([]);
-    const [selectedHourTo, setSelectedHourTo] = useState();
-    const [selectedHourfrom, setSelectedHourfrom] = useState();
+
+    const [selectedHourTo, setSelectedHourTo] = useState("");
+    const [error, setError] = useState("")
+    const [selectedHourfrom, setSelectedHourfrom] = useState("");
+
     const [selectedMinute, setSelectedMinute] = useState("");
     const [selectReservationDuration, setSelectReservationDuration] = useState("");
     const [cost, setCost] = useState("");
@@ -32,7 +36,7 @@ export function OpenDays() {
         reservationCost: '',
     })
 
-    const {days, openHour, closeHour, duration, cancel, reservationCost} = dataRestaurant;
+    
 
     const handleDayChange = (e) => {
         const {value} = e.target;
@@ -66,6 +70,24 @@ export function OpenDays() {
     };
 
     const dataRestaurantInfo = () => {
+
+        const toValidate = {
+            days : selectedDays,
+            hoursTo : selectedHourTo,
+            hoursFrom : selectedHourfrom,
+            minute : selectedMinute,
+            duration : selectReservationDuration,
+            cost : cost
+        }
+
+        const isDataValid = daysTimeValidator(toValidate)
+
+        if(isDataValid)  {
+            setError("Los campos no deben estar vacios*")
+            setTimeout(() => setError(""), 2500)
+            return
+        }
+
         const data = {
             days: selectedDays,
             openHour: selectedHourfrom,
@@ -76,14 +98,7 @@ export function OpenDays() {
         }
         localStorage.setItem('dataDayRestaurant', JSON.stringify(data))
         navigate("/create-restaurant/diners");
-        setDataRestaurant({
-            days: [],
-            openHour: '',
-            closeHour: '',
-            duration: '',
-            cancel: '',
-            reservationCost: ''
-        })
+      
     }
 
     const onSubmit = (e) => {
@@ -93,13 +108,19 @@ export function OpenDays() {
 
     return (
         <div className="font-inter px-4 lg:px-0">
+           
             <p className="text-sm font-inter font-medium mb-2">3/6</p>
-            <h1 className="text-2xl font-bold mb-4 font-montserrat">Días y Horarios</h1>
+            <h1 className="text-2xl font-bold mb-6 font-montserrat">Días y Horarios</h1>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 border shadow-xl px-4 py-2"
+                className="flex flex-col gap-y-6 border shadow-xl px-4 py-2 relative"
                 encType="multipart/form-data"
             >
+
+            {
+                error && 
+                <p className="text-red-500 font-inter text-sm absolute -top-6 left-0">{error}</p>
+            }
                 <div className="grid grid-cols-3 gap-4">
                     {weekdays.map((day, index) => (
                         <label key={index} htmlFor={day} className="text-base flex gap-2">

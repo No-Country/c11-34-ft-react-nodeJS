@@ -7,6 +7,7 @@ export function ListTastesRestaurant() {
     const navigate = useNavigate();
     const tastes = TastesList;
     const [selectedTastes, setSelectedTastes] = useState([]);
+    const [error, setError] = useState('')
 
     const handleTastesSelected = (e) => {
         const { value } = e.target;
@@ -28,19 +29,29 @@ export function ListTastesRestaurant() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if(!selectedTastes.length) {
+             setError('Debe elejir almenos 1 tipo de comida*')
+             setTimeout(() => setError(''), 2500)
+             return
+        }
         dataTastesRestaurant();
     };
 
     return (
         <div className="font-inter px-4 lg:px-0">
            <p className="text-sm font-inter font-medium mb-2">5/6</p>
-            <h2 className="text-2xl font-bold font-montserrat">Tipos de comida</h2>
-            <p className="font-inter text-subtitle mb-4 text-sm">Cuales son los platos que sirves en tu restaurante?</p>
+            <h2 className="text-2xl font-bold font-montserrat mb-2">Tipos de comida</h2>
+            <p className="font-inter text-subtitle mb-6 text-sm">Cuales son los platos que sirves en tu restaurante?</p>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6 items "
+                className="flex flex-col gap-y-6 items relative"
                 encType="multipart/form-data"
             >
+                {
+                    error && 
+                    <p className="text-red-500 font-inter text-sm absolute -top-5 left-0">{error}</p>
+                }
+
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
                     {tastes.map((taste) => (
                         <label key={taste.id} htmlFor={taste.id} className="text-base flex gap-x-2">
