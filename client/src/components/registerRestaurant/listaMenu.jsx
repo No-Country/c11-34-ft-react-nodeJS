@@ -5,17 +5,22 @@ import { toast } from "react-hot-toast";
 import { createRestaurantValidate } from "../../utils";
 import arrow from '../../assets/arrow-right.svg'
 import done from '../../assets/done.svg'
+import { PhotoField } from "./PhotoField";
+import { useState } from "react";
 export function ListaMenu() {
 
     const navigate = useNavigate();
 
-    const photos = JSON.parse(localStorage.getItem('photoRestaurant')) || {};
+    const [file, setFile] = useState(null)
+
     const descrip = JSON.parse(localStorage.getItem('descriptionRestaurantData')) || {};
     const daysTime = JSON.parse(localStorage.getItem('dataDayRestaurant')) || {};
     const diners = JSON.parse(localStorage.getItem('dinersTables')) || {};
     const foodType = JSON.parse(localStorage.getItem('tastesRestaurant')) || {};
     const chars = JSON.parse(localStorage.getItem('characteristicsRestaurant')) || {};
     const firstData = JSON.parse(localStorage.getItem('restaurantFirstData')) || {};
+
+    const handleFile = (e) => setFile(e.target.files[0])
 
     const isDone = (data) => {
         const toArr = Object.values(data)
@@ -34,14 +39,11 @@ export function ListaMenu() {
             tipoComida: foodType.tastes,
             mesas: diners.mesas,
             sillasPorMesa: diners.sillasPorMesa,
-            intervaloMesa: daysTime.duration,
+            intervaloMesa: diners.sillasPorMesa,
             descripcion: descrip.description,
             caracteristicasPrinc: chars.characteristics,
             otrosDetalles: chars.newChar,
-            costoReserva: daysTime.reservationCost,
-            cantidadComentarios: 0,
-            imagenes: photos,
-            turnos: 12,
+            imagenes: file,
         }
 
         return data
@@ -51,7 +53,6 @@ export function ListaMenu() {
     async function handleSubmit(e) {
         e.preventDefault();
         const toValidate = {
-            photos,
             descrip,
             daysTime,
             diners,
@@ -68,11 +69,10 @@ export function ListaMenu() {
         }
 
         try {
-            //TODO: Averiguar como enviar las imagenes - components/registerRestaurant/photo
-            // const data = dataNewRestaurant()
-            // await newRestaurant(data)
-            // toast.success('Su restaurante a sido  creado sastifactoriamente!')
-            //navigate('/')
+            const data = dataNewRestaurant()
+            await newRestaurant(data)
+            toast.success('Su restaurante a sido  creado sastifactoriamente!')
+            navigate('/')
         } catch (error) {
             console.error(error)
             toast.error('Algo salio mal')
@@ -87,17 +87,7 @@ export function ListaMenu() {
             <h2 className="text-2xl font-montserrat font-semibold mb-2">Completa cada unos de los Formularios</h2>
             <p className="text-sm font-inter  text-subtitle mb-4">Rellena los datos detalladamente, para obtener un mayor beneficio</p>
             <form onSubmit={handleSubmit} className='flex  flex-col gap-y-6 dt:w-[50vw] '>
-                <div className={'w-full flex items-center justify-between rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer px-4 font-inter'}>
-                    <Link
-                        className={` hover:text-white transition-colorsc text-subtitle  flex gap-x-2 items-center`}
-                        to={"/create-restaurant/photos"}>
-                        Fotos
-                        <img src={arrow} alt="arrow svg icon" className="w-6 h-6"/>
-                    </Link>
-                    {
-                        isDone(photos) && <img src={done} className="w-6 h-6"/>
-                    }
-                </div>
+          
                 <div className={'w-full flex items-center justify-between rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer px-4 font-inter'}>
                     <Link
                         className={` hover:text-white transition-colorsc text-subtitle font-inter flex gap-x-2 items-center`}
@@ -154,6 +144,8 @@ export function ListaMenu() {
                         isDone(chars) && <img src={done} className="w-6 h-6"/>
                     }
                 </div>
+
+                <PhotoField onFile={handleFile} file={file}/>
                 <div className='flex  justify-between'>
                     <Link to='/create-restaurant' className="border shadow text-black rounded-full p-2.5 font-inter flex w-full justify-center">
                         Volver atras

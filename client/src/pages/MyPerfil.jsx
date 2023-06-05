@@ -17,6 +17,7 @@ export function MyPerfil() {
    if(!load && !Object.values(user).length ) navigate('/auth')
   }, [user, navigate, load])
 
+
   const handleChangeView = () => setView(view === 'edit-perfil' ? 'my-account' : 'edit-perfil')
 
 
