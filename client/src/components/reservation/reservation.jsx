@@ -10,19 +10,33 @@ import user from '../../assets/user.svg';
 const ReservationForm = ({days}) => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [hideButtonImage, setHideButtonImage] = useState(false);
+    const [selectedHour, setSelectedHour] = useState();
+    const [selectedDiners, setSelectedDiners] = useState();
 
+    const horasPrueba = ['16:00', '18:00', '20:00'];
     const handleOpenModal = (e) => {
         e.preventDefault();
         setShowCalendar(true);
         setHideButtonImage(true);
     };
-
+    const formatHour = (hour) => {
+        return hour.toString().padStart(2, '0');
+    };
+    let personas =10;
+    const handleDiners = (e)=>{
+        setSelectedDiners(e.target.value)
+    }
+    const handleHour = (e) =>{
+        const hourFrom = e.target.value.toString()
+        setSelectedHour(formatHour(hourFrom))
+    }
     const handleCloseModal = () => {
         setShowCalendar(false);
         setHideButtonImage(false);
     };
     const reserveDate = localStorage.getItem('dateReserve');
 
+    console.log(reserveDate+" " + selectedHour+" " + selectedDiners)
     return (
         <div className={'bg-bg-hover rounded-lg p-5 w-80 lg:w-reservationForm lg:h-reservationForm'}>
             <form className={'flex flex-col gap-5'}>
@@ -34,7 +48,7 @@ const ReservationForm = ({days}) => {
                             {!hideButtonImage && <img src={arrowDown} width={14} height={14} alt="Arrow Down"/>}
                         </button>
                         {showCalendar && (
-                            <div className="modal fixed left-5 top-80 lg:w-72right-6">
+                            <div className="modal fixed left-5 top-60 lg:w-72right-6">
                                 <div className="modal-overlay" onClick={handleCloseModal}></div>
                                 <div className=" relative  lg:mx-5 modal-content ">
                                     <ReservationCalendar openDays={days} closeModal={handleCloseModal}/>
@@ -44,30 +58,31 @@ const ReservationForm = ({days}) => {
                     </div>
                     <div className={'flex flex row justify-between py-2 px-3 static'}>
                         <img src={clock} alt='clock' width={20} height={20} className='left-2'/>
-                        <select>
-                            <option className={'text-base'} value="7:30">
-                                7:30
-                            </option>
-                            <option className={'text-base'} value="8:30">
-                                8:30
-                            </option>
-                            <option className={'text-base'} value="9:30">
-                                9:30
-                            </option>
+                        <select
+                            value={selectedHour}
+                            onChange={handleHour}
+                            className="p-2.5 rounded"
+                        >
+                            {horasPrueba.map((hora, index) => (
+                                <option key={index} value={hora}>
+                                    {formatHour(hora)}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div className={'flex flex row justify-between py-2 px-3 static'}>
                         <img src={user} alt='user' width={20} height={20} className='left-2'/>
-                        <select>
-                            <option className={'text-base'} value="1">
-                                1
-                            </option>
-                            <option className={'text-base'} value="2">
-                                2
-                            </option>
-                            <option className={'text-base'} value="3">
-                                3
-                            </option>
+                        <select
+                            value={selectedDiners}
+                            onChange={handleDiners}
+                            className="p-2.5 rounded"
+                        >
+                            <option value="">0</option>
+                            {Array.from({ length: personas }).map((_, index) => (
+                                <option key={index} value={index.toString()}>
+                                    {index}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>

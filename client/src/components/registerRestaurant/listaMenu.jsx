@@ -2,6 +2,7 @@
 import React, {useState} from "react"
 import Logo from '../../assets/logo.svg'
 import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export function ListaMenu() {
     const navigate = useNavigate();
@@ -13,7 +14,12 @@ export function ListaMenu() {
     const foodType = JSON.parse(localStorage.getItem('tastesRestaurant'));
     const chars = JSON.parse(localStorage.getItem('characteristicsRestaurant'));
     const firstData = JSON.parse(localStorage.getItem('restaurantFirstData'));
-    console.log(photos)
+
+    const [actions, setActions] = useState({
+        error : false,
+        loading : false
+    })
+
     const [values, setValues] = useState({
         nombre: '',
         direccion: '',
@@ -27,7 +33,7 @@ export function ListaMenu() {
         sillasPorMesa: '',
         intervaloMesa: '',
         descripcion: '',
-        caracteristicasPrincipales: [],
+        caracteristicasPrinc: [],
         otrosDetalles: [],
         costoReserva: '',
         cantidadComentarios: '',
@@ -36,30 +42,7 @@ export function ListaMenu() {
         turnos: [],
     });
 
-    const dataNewRestaurant = () => {
-        const data = {
-            nombre: firstData.nombreRestauante,
-            direccion: firstData.direccion,
-            telefono: firstData.telefono,
-            correo: firstData.correo,
-            dias: daysTime.days,
-            horarioIn: daysTime.openHour,
-            horarioOut: daysTime.closeHour,
-            tipoComida: foodType.tastes,
-            mesas: diners.cantidadMesas,
-            sillasPorMesa: diners.cantidadSillasPorMesa,
-            intervaloMesa: daysTime.duration,
-            descripcion: descrip.descripcion,
-            caracteristicasPrincipales: chars.characteristics,
-            otrosDetalles: chars.newChar,
-            costoReserva: daysTime.reservationCost,
-            cantidadComentarios: '',
-            imagenes: photos,
-            capacidadMax: diners.cantidadMesas*diners.cantidadSillasPorMesa,
-            turnos: [],
-        }
-        console.log(data)
-        navigate("/");
+    const resetValue = () =>{
         setValues({
             nombre: '',
             direccion: '',
@@ -73,14 +56,52 @@ export function ListaMenu() {
             sillasPorMesa: '',
             intervaloMesa: '',
             descripcion: '',
-            caracteristicasPrincipales: [],
+            caracteristicasPrinc: [],
             otrosDetalles: [],
             costoReserva: '',
             cantidadComentarios: '',
             imagenes: [],
-            capacidadMax: '',
-            turnos: [],
         })
+    }
+
+    const dataNewRestaurant = async () => {
+        const data = {
+            nombre: firstData.nombreRestauante,
+            direccion: firstData.direccion,
+            telefono: firstData.telefono,
+            correo: firstData.correo,
+            dias: daysTime.days,
+            horarioIn: daysTime.openHour,
+            horarioOut: daysTime.closeHour,
+            tipoComida: foodType.tastes,
+            mesas: diners.cantidadMesas,
+            sillasPorMesa: diners.cantidadSillasPorMesa,
+            intervaloMesa: daysTime.duration,
+            descripcion: descrip.description,
+            caracteristicasPrinc: chars.characteristics,
+            otrosDetalles: chars.newChar,
+            costoReserva: daysTime.reservationCost,
+            images: photos,
+        }
+        console.log(data)
+        try {
+            const response = await axios.post('https://ncback-production.up.railway.app/api/restaurant',
+            {
+                data
+            }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+            console.log(response)
+            setActions({ loading : false , error : false})
+            navigate("/");
+            resetValue();
+        }catch (error){
+            console.error(error.message)
+            setActions({ loading : false , error : true})
+        }
     }
 
     async function onSubmit(e) {

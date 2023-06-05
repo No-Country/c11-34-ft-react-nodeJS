@@ -18,8 +18,8 @@ export function OpenDays() {
 
 
     const [selectedDays, setSelectedDays] = useState([]);
-    const [selectedHourTo, setSelectedHourTo] = useState("");
-    const [selectedHourfrom, setSelectedHourfrom] = useState("");
+    const [selectedHourTo, setSelectedHourTo] = useState();
+    const [selectedHourfrom, setSelectedHourfrom] = useState();
     const [selectedMinute, setSelectedMinute] = useState("");
     const [selectReservationDuration, setSelectReservationDuration] = useState("");
     const [cost, setCost] = useState("");
@@ -43,12 +43,17 @@ export function OpenDays() {
             setSelectedDays([...selectedDays, value]);
         }
     };
+    const formatHour = (hour) => {
+        return hour.toString().padStart(2, '0') + ":00";
+    };
 
     const handleHourTo = (e) => {
-        setSelectedHourTo(e.target.value);
+        const hourTo = e.target.value.toString();
+        setSelectedHourTo(formatHour(hourTo));
     };
     const handleHourFrom = (e) => {
-        setSelectedHourfrom(e.target.value);
+        const hourFrom = e.target.value.toString();
+        setSelectedHourfrom(formatHour(hourFrom));
     };
     const handleReservartionDurationChange = (e) => {
         setSelectReservationDuration(e.target.value);
@@ -72,15 +77,8 @@ export function OpenDays() {
         }
         localStorage.setItem('dataDayRestaurant', JSON.stringify(data))
         navigate("/createRestaurant/restaurantdata/");
-        setDataRestaurant({
-            days: [],
-            openHour: '',
-            closeHour: '',
-            duration: '',
-            cancel: '',
-            reservationCost: ''
-        })
     }
+
     const onSubmit = (e) => {
         e.preventDefault();
         dataRestaurantInfo();
@@ -123,9 +121,9 @@ export function OpenDays() {
                         onChange={handleHourFrom}
                         className="p-2.5 rounded"
                     >
-                        <option value="">--</option>
-                        {Array.from({length: 24}).map((_, index) => (
-                            <option key={index} value={index}>
+                        <option value="">{selectedHourfrom}</option>
+                        {Array.from({ length: 22 }).map((_, index) => (
+                            <option key={index} value={index.toString()}>
                                 {index}:00
                             </option>
                         ))}
@@ -139,9 +137,9 @@ export function OpenDays() {
                         onChange={handleHourTo}
                         className="p-2.5 rounded"
                     >
-                        <option className={'text-base'} value="">--</option>
-                        {Array.from({length: 24}).map((_, index) => (
-                            <option key={index} value={index}>
+                        <option value="">{selectedHourTo}</option>
+                        {Array.from({ length: 22 }).map((_, index) => (
+                            <option key={index} value={index.toString()}>
                                 {index}:00
                             </option>
                         ))}
