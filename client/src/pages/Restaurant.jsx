@@ -1,26 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
 import {Distance, NavBarUI} from "../components";
-import {galleryCards} from "../utils";
-import {useParams} from "react-router-dom";
+import { getRestaurant } from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
 import location from "../assets/location.svg"
+import { useParams } from "react-router-dom";
 
 export function Restaurant() {
 
-    const {id} = useParams();
 
     const [restaurant, setRestaurant] = useState({});
-
-    const getRestaurant = (id) => {
-        return galleryCards.find(gallery => gallery.id === Number(id));
-    }
+    const { id } = useParams()
 
     useEffect(() => {
-        if (id) setRestaurant(getRestaurant(id));
-
+        getRestaurant(id).then(res => setRestaurant(res))
     }, [id])
+    
     let latitudeRestaurant = parseFloat(getRestaurant(id).latitude);
     let longitudeRestaurant = parseFloat(getRestaurant(id).longitude);
     let openRestaurant = (getRestaurant(id).serviceActive);

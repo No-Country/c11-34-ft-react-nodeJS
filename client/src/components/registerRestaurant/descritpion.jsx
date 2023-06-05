@@ -6,6 +6,8 @@ export function DescriptionRestaurantData() {
     const navigate = useNavigate();
 
     const [description, setDescription] = useState("");
+    const [error, setError] = useState("")
+
 
     const onChange = (e) => {
         setDescription(e.target.value);
@@ -25,6 +27,18 @@ export function DescriptionRestaurantData() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if(!description)  {
+            setError("El campo no debe estar vacio*")
+            setTimeout(() => setError(""), 2500)
+            return
+        }
+
+        if(description.length <= 25)  {
+            setError("El campo debe tener almenos 25 caracteres")
+            setTimeout(() => setError(""), 2500)
+            return
+        }
+
         descriptionResta();
     };
 
@@ -34,9 +48,14 @@ export function DescriptionRestaurantData() {
             <h2 className="text-2xl font-bold  pb-2 font-montserrat">Descripción</h2>
             <form
                 onSubmit={onSubmit}
-                className="flex flex-col gap-y-6  "
+                className="flex flex-col gap-y-6 relative "
                 encType="multipart/form-data"
             >
+
+                {
+                    error && 
+                    <p className="text-red-500 font-inter text-sm absolute top-8 left-0">{error}</p>
+                }
                 <label className="font-inter text-subtitle">Escribe una descripción del restaurante</label>
                 <textarea
                     name="description"
