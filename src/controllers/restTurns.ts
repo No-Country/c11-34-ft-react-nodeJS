@@ -93,6 +93,18 @@ const postTurns = async (req: Request, res: Response) => {
     const horaNumber = data.horaApertura + data.duracionRes * turno
     const hora = getHoursinString(horaNumber)
 
+    const existeOtherReserv = await Reservas.findOne({
+      hora,
+      fecha,
+      correoComensal
+    })
+
+    if (existeOtherReserv) {
+      return res.status(400).json({
+        msg: 'Ya tienes una reserva para esa hora'
+      })
+    }
+
     //verificar si ya reservo la misma persona a la misma hora
     const dataReservas = await Reservas.findOne({
       id_restaurante,

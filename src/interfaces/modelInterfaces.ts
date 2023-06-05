@@ -25,6 +25,7 @@ export interface Restaurant {
   direccion: string
   telefono: string
   correo: string
+  correoCreador: string
   dias: Array<string>
   horarioIn: string
   horarioOut: string

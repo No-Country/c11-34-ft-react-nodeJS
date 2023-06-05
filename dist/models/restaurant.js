@@ -19,6 +19,10 @@ const restaurantSchema = new mongoose_1.Schema({
         required: [true, 'El correo es obligatorio'],
         unique: true
     },
+    correoCreador: {
+        type: String,
+        required: [true, 'El correo del creador es obligatorio']
+    },
     dias: {
         type: [String],
         default: [

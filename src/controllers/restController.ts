@@ -38,8 +38,9 @@ const getRestaurant = async (req: Request, res: Response) => {
 
 const getRestaurantbyCorreo = async (req: Request, res: Response) => {
   try {
+    console.log('getRestaurantbyCorreo')
     const { correo } = req.query
-    const restt = await Restaurant.find({ correo })
+    const restt = await Restaurant.find({ correoCreador: correo })
 
     if (!restt) {
       return res.status(400).json({
@@ -122,7 +123,7 @@ const postRestaurant = async (req: Request, res: Response) => {
     )
 
     allData['imagenes'] = transformedUrl
-
+    allData['correoCreador'] = correo
     // TODO CREAR RESTAURANTE EN LA BASE DE DATOS
     // añadir turnos al modelo de restaurantes
     allData['turnos'] = turnos

@@ -39,8 +39,9 @@ const getRestaurant = async (req, res) => {
 };
 const getRestaurantbyCorreo = async (req, res) => {
     try {
+        console.log('getRestaurantbyCorreo');
         const { correo } = req.query;
-        const restt = await restaurant_1.default.find({ correo });
+        const restt = await restaurant_1.default.find({ correoCreador: correo });
         if (!restt) {
             return res.status(400).json({
                 msg: 'No se encontrao el restaurant'
@@ -97,6 +98,7 @@ const postRestaurant = async (req, res) => {
             return transformedUrl;
         }));
         allData['imagenes'] = transformedUrl;
+        allData['correoCreador'] = correo;
         allData['turnos'] = turnos;
         const restaurant = new restaurant_1.default(allData);
         const { _id: id_restaurante } = restaurant;
