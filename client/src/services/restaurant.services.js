@@ -14,12 +14,13 @@ export async function getRestaurant(id) {
 }
 
 export async function newRestaurant (newRestaurantData) {
+    console.log(newRestaurantData)
+    const correo = localStorage.getItem('correo')
     const toForm = new FormData()
     for(const key in newRestaurantData) {
         toForm.append(key, newRestaurantData[key])
     }
-
-    const { data } = await axios.post(`${API_URL}/restaurant`, toForm, {
+    const { data } = await axios.post(`${API_URL}/restaurant?correo=${correo}`, toForm, {
         headers: {
             'Content-Type': 'multipart/form-data'
           }

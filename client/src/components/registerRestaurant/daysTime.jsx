@@ -26,17 +26,7 @@ export function OpenDays() {
     const [selectedMinute, setSelectedMinute] = useState("");
     const [selectReservationDuration, setSelectReservationDuration] = useState("");
     const [cost, setCost] = useState("");
-
-    const [dataRestaurant, setDataRestaurant] = useState({
-        days: [],
-        openHour: '',
-        closeHour: '',
-        duration: '',
-        cancel: '',
-        reservationCost: '',
-    })
-
-    
+ 
 
     const handleDayChange = (e) => {
         const {value} = e.target;
@@ -92,7 +82,7 @@ export function OpenDays() {
             days: selectedDays,
             openHour: selectedHourfrom,
             closeHour: selectedHourTo,
-            duration: selectReservationDuration,
+            duration: Number(selectReservationDuration),
             cancel: selectedMinute,
             reservationCost: cost,
         }
