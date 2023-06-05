@@ -27,6 +27,13 @@ export function ListaMenu() {
         return toArr && toArr.length > 0
     }
 
+    const removeDataLocalStorage = () => {
+        const items = ['descriptionRestaurantData', 'dataDayRestaurant', 'dinersTables', 'tastesRestaurant', 'characteristicsRestaurant', 'restaurantFirstData']
+        items.forEach(item => {
+            localStorage.removeItem(item)
+        })
+    }
+
     const dataNewRestaurant = () => {
         const data = {
             nombre: firstData.nombre,
@@ -63,7 +70,7 @@ export function ListaMenu() {
         
         const isValidate = createRestaurantValidate(toValidate)
 
-        if(!isValidate) {
+        if(!isValidate || file === null) {
             toast.error('Todos los campos deben estar completos')
             return
         }
@@ -72,6 +79,7 @@ export function ListaMenu() {
             const data = dataNewRestaurant()
             await newRestaurant(data)
             toast.success('Su restaurante a sido  creado sastifactoriamente!')
+            removeDataLocalStorage()
             navigate('/')
         } catch (error) {
             console.error(error)
