@@ -37,6 +37,8 @@ export function NavBar({
         </div>
         <div className="flex items-center gap-10">
             <Link to='/create-restaurant'  className='font-inter font-semibold text-sm whitespace-nowrap hidden lg:block'>Registrá tu restaurante</Link>
+
+
             <div className='flex items-center gap-x-6 relative z-20 text-white px-2 lg:px-4 py-2 rounded-3xl border-2 border-border-color '>
               <button onClick={toggleNavBar} className=''>
                 <img src={isOpenNavbar ? x : hamburger} alt='hamburger-icon' className='w-8 h-6 lg:w-6 lg:h-6 icon-color'/>
@@ -48,10 +50,11 @@ export function NavBar({
                     :   <img src={user.imagen ? user.imagen : userCircle} alt='user-circle-icon' className='w-8 rounded-full h-8  text-icon-color'/>
                   }
               </button>
-              <div className={`${!isOpenDrop && 'hidden'}  z-40 absolute transition-opacity -bottom-40 left-2 text-black bg-white shadow-md flex flex-col gap-y-1 text-sm font-inter whitespace-nowrap border rounded-lg after:w-0 after:h-0 after:border-r-8 after:border-r-transparent after:border-t-8 after:border-t-transparent after:border-l-8 after:border-l-transparent after:border-b-8 after:border-b-gray-300 after:absolute after:-top-4 after:-translate-x-1/2 after:left-1/2 `}>
+              <div className={`${!isOpenDrop && 'hidden'}  z-40 absolute transition-opacity -bottom-48 left-2 text-black bg-white shadow-md flex flex-col gap-y-1 text-sm font-inter whitespace-nowrap border rounded-lg after:w-0 after:h-0 after:border-r-8 after:border-r-transparent after:border-t-8 after:border-t-transparent after:border-l-8 after:border-l-transparent after:border-b-8 after:border-b-gray-300 after:absolute after:-top-4 after:-translate-x-1/2 after:left-1/2 `}>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Ver perfil</Link>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Favoritos</Link>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Reservas</Link>
+                <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-restaurant'>Mis Restaurantes</Link>
                 <button className='flex items-center gap-x-2  hover:bg-gray-300/50 transition-all py-1.5 px-4 font-medium mr-4' onClick={logoutUser}>Cerrar sesión <img src={logoutIcon} alt='icon logout' className='w-4 h-4'/></button>
               </div>
 

@@ -7,6 +7,11 @@ export async function getRestaurants() {
     return data
 }
 
+export async function getRestaurantByEmail (email) {
+    const { data } = await axios.get(`${API_URL}/restaurant/my?correo=${email}`)
+    return data
+}
+
 export async function getRestaurant(id) {
     const { data } = await axios.get(`${API_URL}/restaurant`)
     const restaurantFounded = data?.restt.find(res => res._id === id)
@@ -26,9 +31,10 @@ export async function newRestaurant(newRestaurantData) {
             'Content-Type': 'multipart/form-data'
         }
     })
-    return data}
+    return data
 }
-export async function getRestaaurantCoords(direction) {
+  
+export async function getRestaurantCords(direction) {
     const { data } = await axios.post(`${API_URL}/other/mapcord`, { direccion: direction });
     const lat = data?.lat
     const lon = data?.lng
