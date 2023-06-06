@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Reservas from '../models/reservas'
+import turnos from '../models/turnos'
 
 const getReserv = async (req: Request, res: Response) => {
   try {
@@ -36,20 +37,38 @@ const deleteReserv = async (req: Request, res: Response) => {
 
     if (!reserva) {
       return res.status(404).json({
-        msg: 'No se encontró la reserva'
+        msg: 'No se encontró la reserva , verifique el ID'
       })
     }
 
-    //const { fecha, hora, id_restaurante, comensales } = reserva
+    const { id_restaurante, fecha, turno, comensales } = reserva
 
-    //definir el turno a tarves de la hora
+    const [turnoRest] = await turnos.find({ id_restaurante })
 
-    //definir la cantidad de personas que se le suamaran al array
-    //dependiendo de la mesa y las sillas
+    if (!turnoRest) {
+      return res.status(404).json({
+        msg: 'No se encontró el restaurante'
+      })
+    }
 
-    //con el uturno arreglar el array
+    //definimos la cantidad de sillas que tomo la reserva
+    const cantidad = (Math.ceil(
+      (comensales / turnoRest.personasPorMesa) as number
+    ) * turnoRest.personasPorMesa) as number
 
+    //actualizamos el array de reservas
+    turnoRest.reservas[fecha][turno] += cantidad
+
+    //actualizamos las reservas antes de eliminar
+    await turnos.findByIdAndUpdate(turnoRest._id, {
+      reservas: turnoRest.reservas
+    })
+
+    //eliminamos el registro de la reserva
     await Reservas.findByIdAndDelete(id)
+
+    res.status(200).json({ msg: 'reserva eliminada Correctamente' })
+    //await Reservas.findByIdAndDelete(id)
   } catch (error) {
     res.status(500).json({
       msg: 'Se presento un error al eliminar la reserva',
