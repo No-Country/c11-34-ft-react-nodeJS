@@ -104,7 +104,7 @@ export function Restaurant() {
                 </div>
                 <div  className={"my-5 lg:w-reservationForm lg:h-reservationForm m-auto mt-4"}
                 >
-                    <ReservationForm days={openRestaurant} restaurant={restaurant._id} turnos={hoursAvailable}/>
+                    <ReservationForm days={openRestaurant} restaurant={restaurant._id} turnos={hoursAvailable} restaurantEmail={restaurant.correoCreador} />
                 </div>
                 <div className={"flex flex-col items-center justify-start text-base mt-8 mb-24 m-auto gap-3 w-80"}>
                     <div className="w-11/12 px-3">
