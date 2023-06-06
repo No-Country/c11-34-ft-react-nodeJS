@@ -131,7 +131,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
                     </div>
                     <div className={'flex flex row justify-between py-2 px-1 static'}>
                         <img src={clock} alt='clock' width={20} height={20} className='left-2'/>
-                        <select value={selectedHour} onChange={handleHour} className='p-2 rounded'>
+                        <select value={selectedHour} onChange={handleHour} className={'p-2 rounded'}>
                             {availableShifts.map((hora, index) => (
                                 <option key={index} value={index.toString()}>
                                     {formatHour(hora)}
