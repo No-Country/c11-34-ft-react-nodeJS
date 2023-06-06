@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import {FormRegisterRestaurant, ListTastesRestaurant, OpenDays, CaracteristicsRestaurant, DinnersData, DescriptionRestaurantData, ListaMenu} from "../src/components/registerRestaurant";
-import { Home, Login, MyPerfil, Register, Restaurant, ResultsFilter, Tastes, ReserveDone } from "./pages";
+import { Home, Login, MyPerfil, Register, Restaurant, ResultsFilter, Tastes, ReserveDone, MyRestaurant, Favorites } from "./pages";
 import { AuthLayout, CreateRestaurantLayout } from "./layouts";
 import { Toaster } from "react-hot-toast";
 
@@ -24,8 +24,9 @@ function App() {
             <Route path="listTastes" element={<ListTastesRestaurant />} />
             <Route path="caracts" element={<CaracteristicsRestaurant />} />
         </Route>
-
-
+        
+        <Route path="/favorites" element={<Favorites/>}/>
+        <Route path="/my-restaurant" element={<MyRestaurant />}/>
         <Route path="/tastes" element={<Tastes />} />
         <Route path="/restaurant/:id" element={<Restaurant/>}/>
         <Route path="/my-perfil" element={<MyPerfil/>}/>
