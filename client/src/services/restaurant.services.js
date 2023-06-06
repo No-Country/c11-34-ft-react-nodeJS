@@ -16,6 +16,11 @@ export async function getRestaurants() {
     return data
 }
 
+export async function getRestaurantByEmail (email) {
+    const { data } = await axios.get(`${API_URL}/restaurant/my?correo=${email}`)
+    return data
+}
+
 export async function getRestaurant(id) {
     const { data } = await axios.get(`${API_URL}/restaurant`)
     const restaurantFounded = data?.restt.find(res => res._id === id)
@@ -35,5 +40,6 @@ export async function newRestaurant(newRestaurantData) {
             'Content-Type': 'multipart/form-data'
         }
     })
-    return data}
+    return data
 }
+

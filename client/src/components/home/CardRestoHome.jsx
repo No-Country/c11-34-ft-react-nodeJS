@@ -37,3 +37,4 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, lo
         </div>
     );
 }
+
