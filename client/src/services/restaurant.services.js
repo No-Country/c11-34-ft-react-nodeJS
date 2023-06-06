@@ -38,7 +38,8 @@ export async function getRestaaurantCoords(direction) {
 
 export async function getAvailableCostumers(id, date, shiftId) {
     try {
-        const response = await axios.get(`${API_URL}/restaurant/turnos?id_${id}&fecha=${date}&turno=${shiftId}`);
+        const response = await axios.get(`${API_URL}/restaurant/turnos?id_restaurante=${id}&fecha=${date}&turno=${shiftId}`);
+        console.log(response)
         const availableDiners = response.data?.disponible;
         return availableDiners;
     } catch (error) {

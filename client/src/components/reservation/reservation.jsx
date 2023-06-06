@@ -42,6 +42,8 @@ const ReservationForm = ({days, restaurant, turnos}) => {
     const availableShifts = availableHours(inH, outH, interval)
 
     useEffect(() => {
+        const data = {id_restaurante: idRest, fecha: reserveDate, turno: selectedHour}
+        console.log(data)
         console.log(idRest, reserveDate, selectedHour)
 
         if (selectedHour !== undefined && selectedDate !== undefined) {
