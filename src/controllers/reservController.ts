@@ -28,7 +28,35 @@ const getReserv = async (req: Request, res: Response) => {
 
 //todo eliminar reservas
 //* al eliminar devolver el valor al array
+const deleteReserv = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params
 
-const reservController = { getReserv }
+    const reserva = await Reservas.findById(id)
+
+    if (!reserva) {
+      return res.status(404).json({
+        msg: 'No se encontró la reserva'
+      })
+    }
+
+    //const { fecha, hora, id_restaurante, comensales } = reserva
+
+    //definir el turno a tarves de la hora
+
+    //definir la cantidad de personas que se le suamaran al array
+    //dependiendo de la mesa y las sillas
+
+    //con el uturno arreglar el array
+
+    await Reservas.findByIdAndDelete(id)
+  } catch (error) {
+    res.status(500).json({
+      msg: 'Se presento un error al eliminar la reserva',
+      error
+    })
+  }
+}
+const reservController = { getReserv, deleteReserv }
 
 export default reservController

@@ -30,6 +30,10 @@ const reservasSchema = new mongoose_1.Schema({
     id_restaurante: {
         type: String,
         required: [true, 'El id del restaurante es obligatorio']
+    },
+    turno: {
+        type: Number,
+        required: [true, 'El turno es obligatorio']
     }
 });
 exports.default = (0, mongoose_1.model)('Reservas', reservasSchema);

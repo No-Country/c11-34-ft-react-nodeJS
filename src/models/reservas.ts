@@ -30,6 +30,10 @@ const reservasSchema = new Schema<Reservas>({
   id_restaurante: {
     type: String,
     required: [true, 'El id del restaurante es obligatorio']
+  },
+  turno: {
+    type: Number,
+    required: [true, 'El turno es obligatorio']
   }
 })
 

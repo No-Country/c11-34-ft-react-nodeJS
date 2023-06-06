@@ -5,6 +5,7 @@ import { ParsedQs } from 'qs'
 import { getPlaces } from '../helpers/places'
 import { obtenerFechaAnterior } from '../helpers/obtenerFechaAnterior'
 import { getHoursinString } from '../helpers/others'
+
 const getTurns = async (req: Request, res: Response) => {
   try {
     const { id_restaurante, fecha, turno }: ParsedQs = req.query
@@ -161,7 +162,8 @@ const postTurns = async (req: Request, res: Response) => {
       comensales,
       fecha,
       correoComensal,
-      id_restaurante
+      id_restaurante,
+      turno
     })
 
     await reserva.save()

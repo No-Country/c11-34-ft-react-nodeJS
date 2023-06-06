@@ -104,7 +104,8 @@ const postTurns = async (req, res) => {
             comensales,
             fecha,
             correoComensal,
-            id_restaurante
+            id_restaurante,
+            turno
         });
         await reserva.save();
         const { _id } = reserva;

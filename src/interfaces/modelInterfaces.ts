@@ -64,4 +64,5 @@ export interface Reservas {
   estado: Array<string>
   correoComensal: string
   id_restaurante: string
+  turno: number
 }

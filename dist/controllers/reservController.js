@@ -25,6 +25,24 @@ const getReserv = async (req, res) => {
         });
     }
 };
-const reservController = { getReserv };
+const deleteReserv = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const reserva = await reservas_1.default.findById(id);
+        if (!reserva) {
+            return res.status(404).json({
+                msg: 'No se encontró la reserva'
+            });
+        }
+        await reservas_1.default.findByIdAndDelete(id);
+    }
+    catch (error) {
+        res.status(500).json({
+            msg: 'Se presento un error al eliminar la reserva',
+            error
+        });
+    }
+};
+const reservController = { getReserv, deleteReserv };
 exports.default = reservController;
 //# sourceMappingURL=reservController.js.map
