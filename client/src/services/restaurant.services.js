@@ -36,14 +36,3 @@ export async function getRestaaurantCoords(direction) {
     return info;
 }
 
-export async function getAvailableCostumers(id, date, shiftId) {
-    try {
-        const response = await axios.get(`${API_URL}/restaurant/turnos?id_restaurante=${id}&fecha=${date}&turno=${shiftId}`);
-        console.log(response)
-        const availableDiners = response.data?.disponible;
-        return availableDiners;
-    } catch (error) {
-        console.error('Error fetching customers:', error);
-        throw error;
-    }
-}
