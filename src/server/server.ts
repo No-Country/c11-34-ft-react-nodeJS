@@ -8,6 +8,7 @@ import routerOtherServices from '../routes/otherServices.routes'
 import routerRest from '../routes/restController.routes'
 import routerTurns from '../routes/restTurns.routes'
 import routerReservas from '../routes/reservController.routes'
+import routerFav from '../routes/favController.routes'
 
 class Server {
   private app: express.Application
@@ -19,10 +20,13 @@ class Server {
   private restController: string
   private restTurns: string
   private restReservas: string
+  private favPath: string
+
   constructor() {
     this.app = express()
     this.port = process.env.PORT || '3000'
     // Define ruta de mis usuarios
+    this.favPath = '/api/favoritos'
     this.usuariosPath = '/api/usuarios'
     this.usuariosAuth = '/api/auth'
     this.usuariosDetails = '/api/details'
@@ -60,6 +64,7 @@ class Server {
     this.app.use(this.restController, routerRest)
     this.app.use(this.restTurns, routerTurns)
     this.app.use(this.restReservas, routerReservas)
+    this.app.use(this.favPath, routerFav)
   }
 
   listen() {

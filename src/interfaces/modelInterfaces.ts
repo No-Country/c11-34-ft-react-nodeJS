@@ -6,6 +6,7 @@ export interface Usuario {
   estado: boolean
   google: boolean
   imagen: string
+  favoritos: Array<string> | undefined
   gustos: Array<string> | undefined
 }
 

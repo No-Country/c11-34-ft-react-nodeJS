@@ -13,10 +13,12 @@ const otherServices_routes_1 = __importDefault(require("../routes/otherServices.
 const restController_routes_1 = __importDefault(require("../routes/restController.routes"));
 const restTurns_routes_1 = __importDefault(require("../routes/restTurns.routes"));
 const reservController_routes_1 = __importDefault(require("../routes/reservController.routes"));
+const favController_routes_1 = __importDefault(require("../routes/favController.routes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '3000';
+        this.favPath = '/api/favoritos';
         this.usuariosPath = '/api/usuarios';
         this.usuariosAuth = '/api/auth';
         this.usuariosDetails = '/api/details';
@@ -44,6 +46,7 @@ class Server {
         this.app.use(this.restController, restController_routes_1.default);
         this.app.use(this.restTurns, restTurns_routes_1.default);
         this.app.use(this.restReservas, reservController_routes_1.default);
+        this.app.use(this.favPath, favController_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
