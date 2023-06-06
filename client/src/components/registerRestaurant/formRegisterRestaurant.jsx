@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 import {useNavigate} from "react-router-dom";
+
 export function FormRegisterRestaurant() {
     const navigate = useNavigate();
 
@@ -11,7 +12,7 @@ export function FormRegisterRestaurant() {
         telefono: ''
     });
 
-    const [error, setError ] = useState('')
+    const [error, setError] = useState('')
 
     const onChange = (e) => {
         setValues({
@@ -41,7 +42,7 @@ export function FormRegisterRestaurant() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if(Object.values(values).includes(''))  {
+        if (Object.values(values).includes('')) {
             setError('Los campos no deben estar vacios *')
             setTimeout(() => setError(' '), 2500)
             return
@@ -53,13 +54,14 @@ export function FormRegisterRestaurant() {
         <div className="px-4 lg:px-0">
             <div className={'mb-6'}>
                 <h1 className={'text-2xl font-semibold mb-2 font-montserrat'}>Registrá tu restaurante</h1>
-                <p className={'text-sm font-normal text-subtitle  font-inter'}>Conectá con los amantes de la buena comida en Morfi y
+                <p className={'text-sm font-normal text-subtitle  font-inter'}>Conectá con los amantes de la buena
+                    comida en Morfi y
                     recibí reservas en tu rincón gastronómico</p>
             </div>
-   
-            <form onSubmit={onSubmit} className='flex  flex-col gap-y-6  font-inter relative'>           
+
+            <form onSubmit={onSubmit} className='flex  flex-col gap-y-6  font-inter relative'>
                 {
-                    error && 
+                    error &&
                     <p className="text-red-500 font-inter text-sm absolute -top-4 left-0">{error}</p>
                 }
                 <input
