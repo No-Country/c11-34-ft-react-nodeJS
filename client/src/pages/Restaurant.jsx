@@ -46,7 +46,7 @@ export function Restaurant() {
     return (
         <div>
             <NavBarUI/>
-            <div className={"font-bold text-xl mt-3 mb-2 mx-auto w-full flex flex-col "}>
+            <div className={"font-bold text-xl mt-3 mb-2 mx-auto w-80 flex flex-col "}>
                 <div className={"font-bold text-xl p-3 w-80"}>
                     <h1>{restaurant.nombre}</h1>
                 </div>

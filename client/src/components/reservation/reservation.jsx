@@ -16,7 +16,7 @@ const ReservationForm = ({days, restaurant, turnos}) => {
     const [selectedHour, setSelectedHour] = useState();
     const [selectedDiners, setSelectedDiners] = useState();
     const [selectedDate, setSelectedDate] = useState(null);
-    const [customers, setCustomers] = useState(0);
+    const [customers, setCustomers] = useState();
 
     const inH = turnos.hourIn;
     const outH = turnos.hourOut;
@@ -42,11 +42,16 @@ const ReservationForm = ({days, restaurant, turnos}) => {
     const availableShifts = availableHours(inH, outH, interval)
 
     useEffect(() => {
-        if (selectedHour !== " " && selectedDate !== " ") {
+        const data = {id_restaurante: idRest, fecha: reserveDate, turno: selectedHour}
+        console.log(data)
+        console.log(idRest, reserveDate, selectedHour)
+
+        if (selectedHour !== undefined && selectedDate !== undefined) {
+
             const fetchData = async () => {
                 try {
-                    const data = await getAvailableCostumers(idRest, reserveDate, selectedHour);
-                    setCustomers(data);
+                    const response = await getAvailableCostumers(idRest, reserveDate, selectedHour);
+                    setCustomers(response);
                 } catch (error) {
                     console.error('Error fetching customers:', error);
                 }
@@ -54,9 +59,9 @@ const ReservationForm = ({days, restaurant, turnos}) => {
 
             fetchData();
         }
-    }, [selectedHour, reserveDate, idRest]);
+    }, );
 
-    console.log(idRest, reserveDate, selectedHour)
+
 
     const handleOpenModal = (e) => {
         e.preventDefault();
@@ -84,7 +89,6 @@ const ReservationForm = ({days, restaurant, turnos}) => {
         setSelectedDate(reserveDate);
     };
 
-    console.log(localStorage.getItem("dateReserve"))
     const handleSubmit = (e) => {
         e.preventDefault();
         // const reservationData = {
@@ -137,12 +141,22 @@ const ReservationForm = ({days, restaurant, turnos}) => {
                         </select>
                     </div>
                 </div>
-                <button
+                { setCustomers < 1 ? (
+                    <button
                     className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
                     type='submit'
-                >
+                    disabled
+                    >
                     Reservar
-                </button>
+                    </button>
+                    ) : (
+                    <button
+                    className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                    type='submit'
+                    >
+                    Reservar
+                    </button>
+                    )}
             </form>
         </div>
     );

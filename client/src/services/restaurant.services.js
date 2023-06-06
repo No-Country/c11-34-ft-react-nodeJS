@@ -13,13 +13,13 @@ export async function getRestaurant(id) {
     return restaurantFounded
 }
 
-export async function newRestaurant (newRestaurantData) {
-    console.log(newRestaurantData)
+export async function newRestaurant(newRestaurantData) {
     const correo = localStorage.getItem('correo')
     const toForm = new FormData()
-    for (const key in newRestaurantData) {
-        toForm.append(key, newRestaurantData[key])
-    }
+    for(const key in newRestaurantData) {
+        for (const key in newRestaurantData) {
+            toForm.append(key, newRestaurantData[key])
+        }
     const { data } = await axios.post(`${API_URL}/restaurant?correo=${correo}`, toForm, {
 
         headers: {
@@ -36,13 +36,3 @@ export async function getRestaaurantCoords(direction) {
     return info;
 }
 
-export async function getAvailableCostumers(id, date, shiftId) {
-    try {
-        const response = await axios.get(`${API_URL}/restaurant/turnos?id_${id}&fecha=${date}&turno=${shiftId}`);
-        const availableDiners = response.data?.disponible;
-        return availableDiners;
-    } catch (error) {
-        console.error('Error fetching customers:', error);
-        throw error;
-    }
-}
