@@ -78,7 +78,7 @@ export function FormRegisterRestaurant() {
                     value={values.correo}
                     type='email'
                     onChange={onChange}
-                    placeholder='Email'
+                    placeholder='Email del negocio'
                     className={`p-2.5 border-b border-border-color outline-none`}/>
                 <input
                     name='direccion'
