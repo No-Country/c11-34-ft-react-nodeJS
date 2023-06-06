@@ -1,6 +1,5 @@
 export * from './formRegisterRestaurant.jsx'
 export * from './listaMenu.jsx'
-export * from './photo.jsx'
 export * from  './descritpion.jsx'
 export * from  './daysTime.jsx'
 export * from  './diners.jsx'
