@@ -11,3 +11,19 @@ export async function getAvailableCostumers(id, date, shiftId) {
         throw error;
     }
 }
+
+export async function makeReservation(id, email, shift, diners,date){
+    try {
+        const response = await axios.post(`${API_URL}/restaurant/turnos`, {
+            id_restaurante:id,
+            correoComensal: email,
+            turno:shift,
+            comensales:diners,
+            fecha:date,
+        })
+        return response.json
+    }catch (error) {
+        console.error('Error creating reservation:', error);
+        throw error;
+    }
+}
