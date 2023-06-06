@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {memoize } from 'lodash'
 const API_URL = 'https://ncback-production.up.railway.app/api'
 
 export async function getRestaurants() {
@@ -28,11 +28,10 @@ export async function newRestaurant(newRestaurantData) {
     })
     return data}
 }
-export async function getRestaaurantCoords(direction) {
+export const getRestaaurantCoords= memoize(async function (direction) {
     const { data } = await axios.post(`${API_URL}/other/mapcord`, { direccion: direction });
     const lat = data?.lat
     const lon = data?.lng
     const info = {lat, lon}
     return info;
-}
-
+});

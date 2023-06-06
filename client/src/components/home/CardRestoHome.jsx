@@ -1,11 +1,20 @@
-import {Link} from "react-router-dom";
-import {Distance} from "../map/distanceRestaurant.jsx";
+import { Link } from "react-router-dom";
+import { Distance } from "../map/distanceRestaurant.jsx";
 import location from '../../assets/location.svg'
-
+import { useEffect, useState } from "react";
+import { getRestaaurantCoords } from "../../services/index.js";
 
 export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, longitude}) {
+    const img = imagenes[0];
+    const [restaurantCoords, setRestaurantCoords] = useState({ latitude: 0, longitude: 0 });
 
-    const img = imagenes[0]
+    useEffect(() => {
+        getRestaaurantCoords().then((res) => {
+            setRestaurantCoords(res);
+        }).catch((error) => {
+            console.error(error);
+        });
+    }, []);
 
     return (
         <div className="flex flex-col items-center justify-center gap-2 bg-white py-5 rounded-lg" >
@@ -15,16 +24,16 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, lo
                     <div>{nombre}</div>
                 </Link>
                 <div className='flex flex-row w-full items-center'>
-                    <img src={location}/>
-                    <div style={{color: '#BAC0C7'}}>
+                    <img src={location} alt="location" />
+                    <div style={{ color: '#BAC0C7' }}>
                         <Distance
-                            longitudeRestaurant={longitude}
-                            latitudDestiRestaurant={latitude}/>
+                            longitudeRestaurant={restaurantCoords.longitude}
+                            latitudDestiRestaurant={restaurantCoords.latitude}
+                        />
                     </div>
                 </div>
                 <div>$ {costoReserva} por persona</div>
             </div>
-
         </div>
     );
 }
