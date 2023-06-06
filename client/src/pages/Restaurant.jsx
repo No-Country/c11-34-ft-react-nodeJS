@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
 import {NavBarUI} from "../components";
-import {getRestaaurantCoords, getRestaurant} from "../services";
+import {getRestaurant, getRestaurantCoords} from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
 import location from "../assets/location.svg";
@@ -10,8 +10,8 @@ import {useParams} from "react-router-dom";
 
 export function Restaurant() {
     const [restaurant, setRestaurant] = useState({});
-    const [latitudeRestaurant, setLatitudeRestaurant] = useState(0);
-    const [longitudeRestaurant, setLongitudeRestaurant] = useState(0);
+    const [latitudeRestaurant, setLatitudeRestaurant] = useState('');
+    const [longitudeRestaurant, setLongitudeRestaurant] = useState('');
     const {id} = useParams();
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export function Restaurant() {
 
     useEffect(() => {
         if (directionRest) {
-            getRestaaurantCoords(directionRest)
+            getRestaurantCoords(directionRest)
                 .then((res) => {
                     setLatitudeRestaurant(res.lat);
                     setLongitudeRestaurant(res.lon);
@@ -41,17 +41,21 @@ export function Restaurant() {
     }, [directionRest]);
 
 
+    console.log(longitudeRestaurant)
+    console.log(latitudeRestaurant)
+
     const openRestaurant = restaurant.dias;
 
     return (
-        <div>
+        <div className={"h-full"}>
             <NavBarUI/>
             <div className={"font-bold text-xl mt-3 mb-2 mx-auto w-80 flex flex-col "}>
                 <div className={"font-bold text-xl p-3 w-80"}>
                     <h1>{restaurant.nombre}</h1>
                 </div>
                 {/*Images*/}
-                <div className={" w-11/12 mx-auto  lg:grid grid-cols-viewRestaurant grid-rows-viewRestaurant justify-center content-between items-center gap-2.5 lg:h-firstCardViewRestaurantGrid"}>
+                <div
+                    className={" w-11/12 mx-auto  lg:grid grid-cols-viewRestaurant grid-rows-viewRestaurant justify-center content-between items-center gap-2.5 lg:h-firstCardViewRestaurantGrid"}>
                     <div
                         className={"flex justify-center col-span-1 row-span-3 w-11/12 lg:h-firstCardViewRestaurantGrid lg:w-firstCardViewRestaurantGrid"}>
                         <img
@@ -89,7 +93,8 @@ export function Restaurant() {
                     </div>
                 </div>
                 {/*location, phoneNumber*/}
-                <div className={"flex flex-col items-center mt-2 w-11/12 mx-auto lg:flex-row text-2xl lg:mx-28 lg:mb-32"}>
+                <div
+                    className={"flex flex-col items-center mt-2 w-11/12 mx-auto lg:flex-row text-2xl lg:mx-28 lg:mb-32"}>
                     <div className={"flex justify-center m-2 w-11/12 items-center lg:mx-8"}>
                         <h3 className={'text-sm font-medium'}>{restaurant.descripcion}</h3>
                     </div>
@@ -102,9 +107,10 @@ export function Restaurant() {
                         <h2 className={'text-base font-medium'}>{restaurant.telefono}</h2>
                     </div>
                 </div>
-                <div  className={"my-5 lg:w-reservationForm lg:h-reservationForm m-auto mt-4"}
+                <div className={"my-5 lg:w-reservationForm lg:h-reservationForm m-auto mt-4"}
                 >
-                    <ReservationForm days={openRestaurant} restaurant={restaurant._id} turnos={hoursAvailable} restaurantEmail={restaurant.correoCreador} />
+                    <ReservationForm days={openRestaurant} restaurant={restaurant._id} turnos={hoursAvailable}
+                                     restaurantEmail={restaurant.correo}/>
                 </div>
                 <div className={"flex flex-col items-center justify-start text-base mt-8 mb-24 m-auto gap-3 w-80"}>
                     <div className="w-11/12 px-3">
@@ -123,21 +129,19 @@ export function Restaurant() {
                     </div>
                 </div>
             </div>
-            <div
-                className={
-                    "hidden lg:flex justify-center items-center h-5/6 w-5/6 mb-8 mx-auto"
-                }
-            >
-                <MapRestaurant
-                    className={"text-black"}
-                    latitude={latitudeRestaurant}
-                    longitude={longitudeRestaurant}
-                    name={restaurant.nombre}
-                    height="h-mapViewRestaurant"
-                    width="w-mapViewRestaurant"
-                />
-            </div>
+            {latitudeRestaurant && longitudeRestaurant && (
+                <div className="w-80 h-62 mb-5 lg:flex justify-center items-center h-5/6 w-5/6 mb-8 mx-auto">
+                    <MapRestaurant
+                        className="text-black"
+                        latitude={latitudeRestaurant}
+                        longitude={longitudeRestaurant}
+                        name={restaurant.nombre}
+                        height="h-44"
+                        width="w-11/12"
+                    />
+                </div>
+            )}
+
         </div>
-)
-    ;
+    )
 }

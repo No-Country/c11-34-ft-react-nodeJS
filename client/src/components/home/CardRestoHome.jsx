@@ -2,18 +2,25 @@ import { Link } from "react-router-dom";
 import { Distance } from "../map/distanceRestaurant.jsx";
 import location from '../../assets/location.svg'
 import { useEffect, useState } from "react";
-import { getRestaaurantCoords } from "../../services/index.js";
+import { getRestaurantCoords } from "../../services/index.js";
 
-export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, longitude}) {
+export function CardRestoHome({_id, imagenes, nombre, costoReserva, direccion}) {
     const img = imagenes[0];
-    const [restaurantCoords, setRestaurantCoords] = useState({ latitude: 0, longitude: 0 });
+    const [latitudeRestaurant, setLatitudeRestaurant] = useState();
+    const [longitudeRestaurant, setLongitudeRestaurant] = useState();
+    console.log(direccion)
 
     useEffect(() => {
-        getRestaaurantCoords().then((res) => {
-            setRestaurantCoords(res);
-        }).catch((error) => {
-            console.error(error);
-        });
+            getRestaurantCoords(direccion)
+                .then((res) => {
+                    setLatitudeRestaurant(res.lat);
+                    setLongitudeRestaurant(res.lon);
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
     }, []);
 
     return (
@@ -27,8 +34,8 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, lo
                     <img src={location} alt="location" />
                     <div style={{ color: '#BAC0C7' }}>
                         <Distance
-                            longitudeRestaurant={restaurantCoords.longitude}
-                            latitudDestiRestaurant={restaurantCoords.latitude}
+                            longitudeRestaurant={longitudeRestaurant}
+                            latitudDestiRestaurant={latitudeRestaurant}
                         />
                     </div>
                 </div>
