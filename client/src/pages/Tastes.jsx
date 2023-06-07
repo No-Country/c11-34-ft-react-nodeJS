@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect } from "react";
 import {TastesList} from "../utils";
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {CardTastes, NavBarUI} from "../components";
@@ -6,7 +6,6 @@ import {Navigation, Pagination, Thumbs} from "swiper";
 import {Link, useNavigate} from "react-router-dom";
 import {addTastes} from "../services";
 import {toast} from "react-hot-toast";
-import { useEffect } from "react";
 import { useUser } from "../hooks";
 import arrowLeft from '../assets/caret-left-simple.svg'
 import arrowRight from '../assets/caret-right-simple.svg'

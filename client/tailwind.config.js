@@ -47,7 +47,8 @@ export default {
         'cardMobileImg': '156px',
         'gridTastesMobile': '320px',
         'cardImgSwiperTastes': '190px',
-        'marginSwiper': '100px'
+        'marginSwiper': '100px',
+        'tableView': '678px'
       },
       gridTemplateColumns:{
         'viewRestaurant': '925px, 295px',
