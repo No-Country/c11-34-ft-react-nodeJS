@@ -52,17 +52,23 @@ const editReserv = async (req: Request, res:Response) => {
       let espacioReserva: number = -1;
       let espacioReservaPrePut: number = -1;
 
+      
       for (let i = 0; i < restaurante.turnos; i++) {
         const limiteInferior = turno.horaApertura + i * turno.duracionRes;
         const limiteSuperior = limiteInferior + turno.duracionRes;
       
         if (hora >= limiteInferior && hora < limiteSuperior) {
-          espacioReserva = i + 1; // Se encuentra el espacio de reserva correspondiente
+          espacioReserva = i; // Se encuentra el espacio de reserva correspondiente
           break;
         };
+      };
 
+      for (let i = 0; i < restaurante.turnos; i++) {
+        const limiteInferior = turno.horaApertura + i * turno.duracionRes;
+        const limiteSuperior = limiteInferior + turno.duracionRes;
+      
         if (parseInt(reserva.hora.split(":")[0]) >= limiteInferior && parseInt(reserva.hora.split(":")[0]) < limiteSuperior) {
-          espacioReservaPrePut = i + 1; // Se encuentra el espacio de reserva correspondiente
+          espacioReservaPrePut = i; // Se encuentra el espacio de reserva correspondiente
           break;
         };
       };
@@ -75,11 +81,21 @@ const editReserv = async (req: Request, res:Response) => {
         return res.status(400).json({ msg : "no hay espacio disponible para la reserva"});
       };
 
-      turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.capacidadMax + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
+      // console.log(`turno.reservas[${reserva.fecha}][${espacioReservaPrePut}]`);
+      // console.log("---------------"+turno.reservas[reserva.fecha][espacioReservaPrePut]);
+      turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.reservas[reserva.fecha][espacioReservaPrePut] + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
+      // console.log(`turno.reservas[${reserva.fecha}][${espacioReservaPrePut}]`);
+      // console.log("---------------"+turno.reservas[reserva.fecha][espacioReservaPrePut]);
+      // console.log(`turno.reservas[${reserva.fecha}][${espacioReserva}]`);
+      // console.log("---------------"+turno.reservas[reserva.fecha][espacioReserva]);
       turno.reservas[reserva.fecha][espacioReserva] = (turno.capacidadMax - (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
+      // console.log(`turno.reservas[${reserva.fecha}][${espacioReserva}]`);
+      // console.log("---------------"+turno.reservas[reserva.fecha][espacioReserva]);
       reserva.hora = `${hora}:00`;
       reserva.comensales = comensales;
       const reservas = turno.reservas;
+      console.log(reservas);
+      
       const turnoUpdate = await Turno.findByIdAndUpdate(turno._id, {reservas});
       await reserva.save();
 
@@ -106,7 +122,12 @@ const editReserv = async (req: Request, res:Response) => {
           espacioReserva = i; // Se encuentra el espacio de reserva correspondiente
           break;
         };
+      };
 
+      for (let i = 0; i < restaurante.turnos; i++) {
+        const limiteInferior = turno.horaApertura + i * turno.duracionRes;
+        const limiteSuperior = limiteInferior + turno.duracionRes;
+      
         if (parseInt(reserva.hora.split(":")[0]) >= limiteInferior && parseInt(reserva.hora.split(":")[0]) < limiteSuperior) {
           espacioReservaPrePut = i; // Se encuentra el espacio de reserva correspondiente
           break;
@@ -121,7 +142,7 @@ const editReserv = async (req: Request, res:Response) => {
         return res.status(400).json({ msg : "no hay espacio disponible para la reserva"});
       }
       
-      turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.capacidadMax + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
+      turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.reservas[reserva.fecha][espacioReservaPrePut] + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
       turno.reservas[reserva.fecha][espacioReserva] = (turno.capacidadMax - (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
       const reservas = turno.reservas;
       const turnoUpdate = await Turno.findByIdAndUpdate(turno._id, {reservas});
