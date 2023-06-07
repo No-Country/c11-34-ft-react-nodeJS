@@ -111,10 +111,10 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
     };
 
     return (
-        <div className={'bg-bg-hover mx-auto rounded-lg p-2 w-80 lg:w-reservationForm lg:h-reservationForm'}>
+        <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter'}>
             <form onSubmit={handleSubmit} className={'flex flex-col gap-5'}>
-                <div className='flex flex-row text-xs justify-around bg-white rounded-full'>
-                    <div className='flex flex-row justify-between gap-1 items-center py-2 pl-3'>
+                <div className='flex flex-col gap-y-2 text-xs justify-around bg-white rounded-full'>
+                    <div className='flex border rounded-lg shadow flex-row justify-between gap-1 items-center py-2 pl-3'>
                         <img src={calendar} alt='calendar' width={20} height={20} className='left-2'/>
                         <h3>{reserveDate}</h3>
                         <button onClick={handleOpenModal}>
@@ -129,7 +129,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
                             </div>
                         )}
                     </div>
-                    <div className={'flex flex row justify-between py-2 px-1 static'}>
+                    <div className={'flex border rounded-lg shadow  justify-between py-2 px-1 static'}>
                         <img src={clock} alt='clock' width={20} height={20} className='left-2'/>
                         <select value={selectedHour} onChange={handleHour} className={'p-2 rounded'}>
                             {availableShifts.map((hora, index) => (
@@ -139,7 +139,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
                             ))}
                         </select>
                     </div>
-                    <div className={'flex flex row justify-between py-2 px-2 static'}>
+                    <div className={'flex border rounded-lg shadow justify-between py-2 px-2 static'}>
                         <img src={user} alt='user' width={20} height={20} className='left-2'/>
                         <select value={selectedDiners} onChange={handleDiners} className='p-2.5 rounded'>
                             <option value=''>0</option>
@@ -153,7 +153,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
                 </div>
                 {customers === 0 ? (
                     <button
-                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full font-inter bg-bg-dark text-letter-color'
                         type='submit'
                         disabled
                     >
@@ -161,7 +161,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
                     </button>
                 ) : (
                     <button
-                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center font-inter items-center rounded-full bg-bg-dark text-letter-color'
                         type='submit'
                     >
                         Reservar

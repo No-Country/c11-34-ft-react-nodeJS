@@ -3,6 +3,8 @@ import { useState } from "react";
 import { getRestaurants } from "../services";
 
 export function useRestaurants() {
+
+
     const [restaurants, setRestaurants] = useState([])
     const [actions , setActions] = useState({
         error : '',
@@ -11,7 +13,7 @@ export function useRestaurants() {
 
     useEffect(() => {
         getRestaurants().then(res => {
-            setRestaurants(res)
+            setRestaurants(res)           
             setActions({...actions, load : false})
         }).catch(err => {
             console.log('Error', err)
@@ -19,6 +21,7 @@ export function useRestaurants() {
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
 
     return {

@@ -71,13 +71,13 @@ export function Tastes() {
                     restricción alimentaria o preferencia especial. </p>
             </div>
             <div className={'pb-2'}>
-                <form onSubmit={handleSubmit} className="flex justify-around w-full ">
-                    <div className={'flex '}>
+                <form onSubmit={handleSubmit} className="flex justify-around w-full mb-4">
+                    <div className={'flex hover:bg-gray-200 transition-all p-1.5 rounded-xl'}>
                         <img className={'w-4'} src={arrowLeft} alt={'arrow Left'}/>
-                        <Link to={"/"} className="font-bold">volver</Link>
+                        <Link to={"/"} className="font-inter font-medium">Volver</Link>
                     </div>
-                    <div className={'flex'}>
-                        <button type="submit">Terminar</button>
+                    <div className={'flex hover:bg-gray-200 transition-all p-1.5 rounded-xl'}>
+                        <button type="submit" className="font-inter font-medium ">Siguiente</button>
                         <img className={'w-4'} src={arrowRight} alt={'arrow Right'}/>
                     </div>
                 </form>
@@ -112,7 +112,7 @@ export function Tastes() {
                         grabCursor={true}
                         modules={[Navigation, Thumbs, Pagination]}
                         pagination={{el: '.pagination', clickable: true}}
-                        className="h-heightTastesCard w-4/5 gap-5 pb-1.5"
+                        className="h-heightTastesCard w-[70vw] gap-2 pb-1.5"
                     >
                         {
                             TastesList.map(item => (
@@ -125,7 +125,6 @@ export function Tastes() {
                                         <CardTastes
                                             name={item.name}
                                             img={item.img}
-                                            width={'w-cardImgSwiperTastes'}
                                             height={'h-cardImgSwiperTastes'}/>
                                     </div>
                                 </SwiperSlide>

@@ -1,4 +1,4 @@
-import {Distance, NavBarUI, SearchBar, Checkbox} from "../components";
+import {Distance, NavBarUI, SearchBar} from "../components";
 import MapRestaurant from "../components/map/map";
 import { galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
@@ -9,7 +9,6 @@ export function ResultsFilter() {
 
 
   const randomRestaurant = galleryCards[0]
-
 
   const {restaurantsSearched, querySearch, load} = useSearch()
 
@@ -23,8 +22,6 @@ export function ResultsFilter() {
         <section className="grid grid-cols-1 lg:grid-cols-12 w-full px-8 lg:px-20 h-[76vh] gap-4 lg:overflow-hidden">
             <section className="hidden lg:block lg:col-span-3">
                 <h3 className="mb-2.5 font-montserrat font-bold text-xl">Cocina</h3>
-
-                <Checkbox />
                 
                 <h3 className="mt-6 mb-2.5 font-montserrat font-bold text-xl">Rango de precios</h3>
                
@@ -59,8 +56,8 @@ export function ResultsFilter() {
 
                     {
                         restaurantsSearched?.map(card => (
-                            <article key={card.id} className="flex flex-col gap-y-2  w-full">
-                                <Link to={`/restaurant/${card.id}`}>
+                            <article key={card._id} className="flex flex-col gap-y-2  w-full">
+                                <Link to={`/restaurant/${card._id}`}>
                                     <img src={card.imagenes[0]} alt={card.nombre} className="rounded-xl w-full h-72 object-cover"/>
                                 </Link>
                                 <h3 className="font-montserrat font-medium text-xl">{card.nombre}</h3>

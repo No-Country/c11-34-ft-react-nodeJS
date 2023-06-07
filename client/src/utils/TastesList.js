@@ -32,7 +32,7 @@ export const TastesList = [
     {
         "id": 7,
         "name": "Parrilla",
-        "img": "https://www.elhttps://images.ctfassets.net/86mn0qn5b7d0/featured-img-of-post-152543/436cf88c49f85eb46d1ab04748cbf8e6/featured-img-of-post-152543.jpg"
+        "img": "https://www.unileverfoodsolutions.com.mx/tendencias/tecnicas-culinarias/al-grill/parrilla-como-innovacion/jcr:content/parsys/set1/row2/span12/textimage_copy_1052527401/image.transform/jpeg-optimized/image.1592429871241.jpg"
     },
     {
         "id": 8,
