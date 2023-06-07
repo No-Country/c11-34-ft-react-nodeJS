@@ -36,10 +36,10 @@ export function MyRestaurant() {
   return (
     <>
       <NavBarUI />
-      <main className="font-inter px-40 py-6">
+      <main className="font-inter px-10 lg:px-40 py-6 pb-20 lg:pb-6">
         <h2 className="text-3xl font-medium text-black font-montserrat mb-2">{user.nombre} <span className="text-black-light">estos son tus restaurantes</span></h2>
         <Link to='/create-restaurant' className="mb-4 block text-gray-400 text-sm hover:text-gray-600 hover:underline transition-all">Registrar otro restaurante</Link>
-        <section className="grid grid-cols-4 gap-8 w-full">
+        <section className="grid grid-cols-2 lg:grid-cols-4 gap-8 w-full">
           {
             restaurants.map(res => (
               <article key={res._id} className="flex flex-col gap-y-2 relative">
