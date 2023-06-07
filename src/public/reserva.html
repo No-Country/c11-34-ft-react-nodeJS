@@ -253,7 +253,35 @@
           { msg: 'No se encontraron reservas, verificar el correo' }
 </code></pre>
 <h2 id="editar">Editar Reservas</h2>
-<p>En proceso</p>
+<p>Edita una reserva a traves del id</p>
+<ul>
+  <li>Método: <code>PUT</code></li>
+  <li>Ruta: <code>/api/reservas</code></li>
+</ul>
+<p>Parámetros de consulta: (QUERY params)</p>
+        <ul>
+          <li>
+            <code>id</code> (string): id de la reserva.
+          </li>
+        </ul>
+        <p>Ejemplo de petición: query</p>
+        <pre><code>
+          ruta/api/reservas?id=647fbaa6fbbe00bab4a99534
+
+        </code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "reserva actualizada Correctamente"
+          }
+</code></pre>
+<p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            msg: 'se presento un error al actualizar la reserva',
+            error
+          }
+</code></pre>
 <h2 id="eliminar">Eliminar Reservas</h2>
         <p>Elimina una reserva a traves del id</p>
         <ul>
