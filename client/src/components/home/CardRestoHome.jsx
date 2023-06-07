@@ -8,7 +8,6 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, direccion}) 
     const img = imagenes[0];
     const [latitudeRestaurant, setLatitudeRestaurant] = useState();
     const [longitudeRestaurant, setLongitudeRestaurant] = useState();
-    console.log(direccion)
 
     useEffect(() => {
             getRestaurantCoords(direccion)
@@ -21,6 +20,7 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, direccion}) 
                     console.error(error);
                 });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

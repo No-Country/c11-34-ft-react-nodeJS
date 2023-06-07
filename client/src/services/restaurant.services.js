@@ -23,9 +23,8 @@ export async function newRestaurant(newRestaurantData) {
     const correo = localStorage.getItem('correo')
     const toForm = new FormData()
     for (const key in newRestaurantData) {
-        for (const key in newRestaurantData) {
-            toForm.append(key, newRestaurantData[key])
-        }
+        toForm.append(key, newRestaurantData[key])
+    }
         const {data} = await axios.post(`${API_URL}/restaurant?correo=${correo}`, toForm, {
 
             headers: {
@@ -33,7 +32,6 @@ export async function newRestaurant(newRestaurantData) {
             }
         })
         return data
-    }
 }
 
 export const getRestaurantCoords = memoize(async function (direction) {
