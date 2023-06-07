@@ -48,9 +48,9 @@ export function Restaurant() {
       <NavBarUI />
       <div className={"h-full mx-auto "}>
         <div
-          className={"font-bold text-xl mt-3 mb-2 w-full flex flex-col w-96 mx-auto md:w-tableView"}
+          className={"font-bold text-xl mt-3 mb-2 w-full flex flex-col w-96 lg:w-auto lg:mx-2 mx-auto md:w-tableView"}
         >
-          <div className={"font-bold mx-auto text-xl p-3 w-80"}>
+          <div className={"lg:hidden font-bold mx-auto text-xl p-3 w-80"}>
             <h1>{restaurant.nombre}</h1>
           </div>
           {/*Images*/}
@@ -104,28 +104,31 @@ export function Restaurant() {
               />
             </div>
           </div>
+          <div className={"lg:flex hidden font-bold mx-auto lg:mx-0 lg:ml-10 lg:mt-3 text-xl lg:text-4xl p-3 lg:w-full"}>
+            <h1>{restaurant.nombre}</h1>
+          </div>
           {/*location, phoneNumber, reservationForm*/}
-          <div className={"flex flex-col items-center mt-2 w-11/12 mx-auto md:w-full md:flex-row md: mx-5 lg:flex-row text-2xl lg:mx-28 lg:mb-32"}>
-            <div className={"flex flex-col items-start gap-2 m-2 w-11/12 md:flex md:flex-col md:items-start lg:mx-8"}>
-              <h3 className={"text-sm font-medium"}>
+          <div className={"flex flex-col items-center mt-2 w-11/12 mx-auto md:w-full md:flex-row md: mx-5 lg:mx-0 lg:flex-row text-2xl lg:mx-28 lg:mb-12 lg:items-start"}>
+            <div className={"flex flex-col items-start gap-2 lg:gap-5 m-2 w-11/12 md:flex md:flex-col md:items-start lg:mx-14 lg:mt-0"}>
+              <h3 className={"text-sm lg:text-xl font-medium lg:font-normal"}>
                 {restaurant.descripcion}
               </h3>
-              <div className={"flex flex-row m-2"}>
-                <img className={"w-5 pr-1"} src={location} alt={"location"} />
-                <h2 className={"text-base font-medium"}>
+              <div className={"flex flex-row m-2 lg:ml-0"}>
+                <img className={"w-5 pr-1 lg:w-10"} src={location} alt={"location"} />
+                <h2 className={"text-base lg:text-xl font-medium lg:font-normal"}>
                   {restaurant.direccion}
                 </h2>
               </div>
-              <div className={"flex flex-row m-2"}>
-                <img className={"w-5 pr-1"} src={phone} alt={"phone"} />
-                <h2 className={"text-base font-medium"}>
+              <div className={"flex flex-row m-2 lg:ml-0"}>
+                <img className={"w-5 pr-1 lg:w-10"} src={phone} alt={"phone"} />
+                <h2 className={"text-base lg:text-xl font-medium lg:font-normal"}>
                   {restaurant.telefono}
                 </h2>
               </div>
             </div>
             <div
               className={
-                "my-5 md:mr-2 lg:w-reservationForm lg:h-reservationForm m-auto mt-4"
+                "my-5 md:mr-2 m-auto mt-4 lg:mt-0"
               }
             >
               <ReservationForm
@@ -139,29 +142,29 @@ export function Restaurant() {
               {/* Food, characteristics */}
           <div
             className={
-              "flex flex-col items-center justify-start text-base mt-5 mb-12 m-auto gap-3 w-80 md:w-tableView md:flex md:flex-col"
+              "flex flex-col items-center justify-start text-base mt-5 mb-12 m-auto gap-3 w-80 md:w-tableView md:flex md:flex-row lg:m-1 lg:items-baseline lg:ml-12 lg:w-3/4"
             }
           >
             <div className="w-11/12 px-3">
-              <h1 className="font-bold text-lg ">Tipo de comida</h1>
+              <h1 className="font-bold text-lg lg:text-xl lg:mb-2">Tipo de comida</h1>
               {restaurant.tipoComida?.map((item, index) => (
-                <li key={index} className={"text-base font-normal list-none flex flex-row"}>
+                <li key={index} className={"text-base font-normal list-none flex flex-row lg:text-xl"}>
                   {item}
                 </li>
               ))}
             </div>
             <div className="w-11/12 px-3">
-              <h1 className="font-bold text-lg ">Caracteristicas</h1>
+              <h1 className="font-bold text-lg lg:text-xl lg:mb-2">Caracteristicas</h1>
               {restaurant.caracteristicasPrinc?.map((item, index) => (
-                <li key={index} className={"text-base font-normal list-none"}>
+                <li key={index} className={"text-base font-normal list-none lg:text-xl"}>
                   {item}
                 </li>
               ))}
             </div>
             <div className="w-11/12 px-3">
-              <h1 className="font-bold text-lg">Otras caracteristicas</h1>
+              <h1 className="font-bold text-lg lg:text-xl lg:mb-2">Otras caracteristicas</h1>
               {restaurant.otrosDetalles?.map((item, index) => (
-                <li key={index} className={"text-base font-normal list-none"}>
+                <li key={index} className={"text-base font-normal list-none lg:text-xl"}>
                   {item}
                 </li>
               ))}
