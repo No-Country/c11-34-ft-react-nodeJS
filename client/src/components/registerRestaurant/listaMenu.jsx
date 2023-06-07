@@ -96,7 +96,6 @@ export function ListaMenu() {
             <h2 className="text-2xl font-montserrat font-semibold mb-2">Completa cada unos de los Formularios</h2>
             <p className="text-sm font-inter  text-subtitle mb-4">Rellena los datos detalladamente, para obtener un mayor beneficio</p>
             <form onSubmit={handleSubmit} className='flex  flex-col gap-y-6 dt:w-[50vw] '>
-          
                 <div className={'w-full flex items-center justify-between rounded-lg py-2 outline-none hover:bg-black hover:text-white transition-all cursor-pointer px-4 font-inter'}>
                     <Link
                         className={` hover:text-white transition-colorsc text-subtitle font-inter flex gap-x-2 items-center`}

@@ -5,10 +5,14 @@ import calendar from '../../assets/calendar.svg';
 import clock from '../../assets/clock.svg';
 import user from '../../assets/user.svg';
 import {useNavigate} from 'react-router-dom';
-import {getAvailableCostumers} from '../../services/index.js';
+import {getAvailableCostumers, makeReservation} from '../../services/index.js';
+import {toast} from "react-hot-toast";
 
-const ReservationForm = ({days, restaurant, turnos}) => {
-
+const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
+    const [actions, setActions] = useState({
+        error: false,
+        loading: false
+    })
     const navigate = useNavigate();
 
     const [showCalendar, setShowCalendar] = useState(false);
@@ -26,6 +30,7 @@ const ReservationForm = ({days, restaurant, turnos}) => {
 
 
     const availableHours = (startHour, finalHour, duration) => {
+
         const stHour = new Date(`2000-01-01T${startHour}:00`);
         const fnHour = new Date(`2000-01-01T${finalHour}:00`);
         const inter = duration * 60 * 60 * 1000;
@@ -42,12 +47,7 @@ const ReservationForm = ({days, restaurant, turnos}) => {
     const availableShifts = availableHours(inH, outH, interval)
 
     useEffect(() => {
-        const data = {id_restaurante: idRest, fecha: reserveDate, turno: selectedHour}
-        console.log(data)
-        console.log(idRest, reserveDate, selectedHour)
-
         if (selectedHour !== undefined && selectedDate !== undefined) {
-
             const fetchData = async () => {
                 try {
                     const response = await getAvailableCostumers(idRest, reserveDate, selectedHour);
@@ -56,13 +56,9 @@ const ReservationForm = ({days, restaurant, turnos}) => {
                     console.error('Error fetching customers:', error);
                 }
             };
-
             fetchData();
         }
-    }, );
-
-
-
+    },);
     const handleOpenModal = (e) => {
         e.preventDefault();
         setShowCalendar(true);
@@ -82,23 +78,37 @@ const ReservationForm = ({days, restaurant, turnos}) => {
         setSelectedHour(selectedIndex.toString());
     };
 
-
     const handleCloseModal = () => {
         setShowCalendar(false);
         setHideButtonImage(false);
         setSelectedDate(reserveDate);
     };
+    const hour = availableShifts[selectedHour];
+
+    localStorage.setItem('reservationHour', hour)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const reservationData = {
-        //     guests: selectedDiners,
-        //     time: selectedHour,
-        //     date: selectedDate,
-        // };
-        // navigate(`/reserve`, { state: { restaurant, reservationData } });
-    };
+        const reservationData = {
+            id_restaurante: idRest,
+            correoComensal: restaurantEmail,
+            turno: parseInt(selectedHour),
+            comensales: parseInt(selectedDiners),
+            fecha: reserveDate
+        };
+        try {
+            setActions({...actions, loading: true})
+            makeReservation(reservationData)
+            navigate('/')
+            setActions({loading: false, error: false})
+        } catch (e) {
+            const errorMessage = 'Error al crear el restaurante'
+            toast.error(errorMessage)
+            setActions({loading: false, error: true})
+        }
 
+        navigate(`/reserve`, {state: {restaurant, reservationData}});
+    };
 
     return (
         <div className={'bg-bg-hover mx-auto rounded-lg p-2 w-80 lg:w-reservationForm lg:h-reservationForm'}>
@@ -108,7 +118,7 @@ const ReservationForm = ({days, restaurant, turnos}) => {
                         <img src={calendar} alt='calendar' width={20} height={20} className='left-2'/>
                         <h3>{reserveDate}</h3>
                         <button onClick={handleOpenModal}>
-                            {!hideButtonImage && <img src={arrowDown} width={24} height={24} alt="Arrow Down" />}
+                            {!hideButtonImage && <img src={arrowDown} width={24} height={24} alt="Arrow Down"/>}
                         </button>
                         {showCalendar && (
                             <div className="modal fixed left-5 top-60 lg:w-72right-6">
@@ -121,7 +131,7 @@ const ReservationForm = ({days, restaurant, turnos}) => {
                     </div>
                     <div className={'flex flex row justify-between py-2 px-1 static'}>
                         <img src={clock} alt='clock' width={20} height={20} className='left-2'/>
-                        <select value={selectedHour} onChange={handleHour} className='p-2 rounded'>
+                        <select value={selectedHour} onChange={handleHour} className={'p-2 rounded'}>
                             {availableShifts.map((hora, index) => (
                                 <option key={index} value={index.toString()}>
                                     {formatHour(hora)}
@@ -141,22 +151,22 @@ const ReservationForm = ({days, restaurant, turnos}) => {
                         </select>
                     </div>
                 </div>
-                { setCustomers < 1 ? (
+                {customers === 0 ? (
                     <button
-                    className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
-                    type='submit'
-                    disabled
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                        type='submit'
+                        disabled
                     >
-                    Reservar
+                        Reservar
                     </button>
-                    ) : (
+                ) : (
                     <button
-                    className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
-                    type='submit'
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                        type='submit'
                     >
-                    Reservar
+                        Reservar
                     </button>
-                    )}
+                )}
             </form>
         </div>
     );

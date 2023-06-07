@@ -17,8 +17,8 @@ export function useRestaurants() {
             console.log('Error', err)
             setActions({...actions, error: 'Algo salio mal!', load:false})
         })
-
-    }, [actions])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
     return {

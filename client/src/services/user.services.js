@@ -45,3 +45,4 @@ export async function uploadImage (fileWithEmail) {
     })
     return data
 }
+

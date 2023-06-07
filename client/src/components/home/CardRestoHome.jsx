@@ -1,11 +1,27 @@
-import {Link} from "react-router-dom";
-import {Distance} from "../map/distanceRestaurant.jsx";
+import { Link } from "react-router-dom";
+import { Distance } from "../map/distanceRestaurant.jsx";
 import location from '../../assets/location.svg'
+import { useEffect, useState } from "react";
+import { getRestaurantCoords } from "../../services/index.js";
 
+export function CardRestoHome({_id, imagenes, nombre, costoReserva, direccion}) {
+    const img = imagenes[0];
+    const [latitudeRestaurant, setLatitudeRestaurant] = useState();
+    const [longitudeRestaurant, setLongitudeRestaurant] = useState();
+    console.log(direccion)
 
-export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, longitude}) {
+    useEffect(() => {
+            getRestaurantCoords(direccion)
+                .then((res) => {
+                    setLatitudeRestaurant(res.lat);
+                    setLongitudeRestaurant(res.lon);
 
-    const img = imagenes[0]
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+    }, []);
 
     return (
         <div className="flex flex-col items-center justify-center gap-2 bg-white py-5 rounded-lg" >
@@ -15,17 +31,17 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, lo
                     <div>{nombre}</div>
                 </Link>
                 <div className='flex flex-row w-full items-center'>
-                    <img src={location}/>
-                    <div style={{color: '#BAC0C7'}}>
+                    <img src={location} alt="location" />
+                    <div style={{ color: '#BAC0C7' }}>
                         <Distance
-                            longitudeRestaurant={longitude}
-                            latitudDestiRestaurant={latitude}
+                            longitudeRestaurant={longitudeRestaurant}
+                            latitudDestiRestaurant={latitudeRestaurant}
                         />
                     </div>
                 </div>
                 <div>$ {costoReserva} por persona</div>
             </div>
-
         </div>
     );
 }
+
