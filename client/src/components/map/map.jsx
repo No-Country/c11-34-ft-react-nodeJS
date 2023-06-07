@@ -15,7 +15,7 @@ const MapRestaurant = ({latitude, longitude, name, height, width}) => {
     const position = {lat: latitude, lng: longitude};
     console.log(position)
     return (
-        <MapContainer className={`${height} ${width}`} center={position} zoom={16} scrollWheelZoom={false}>
+        <MapContainer className={`${height} ${width} mx-auto`} center={position} zoom={16} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
