@@ -46,11 +46,11 @@ export function Restaurant() {
   return (
     <div>
       <NavBarUI />
-      <div className={"h-full w-96 mx-auto "}>
+      <div className={"h-full mx-auto "}>
         <div
           className={"font-bold text-xl mt-3 mb-2 w-full flex flex-col w-96 mx-auto md:w-tableView"}
         >
-          <div className={"font-bold text-xl p-3 w-80"}>
+          <div className={"font-bold mx-auto text-xl p-3 w-80"}>
             <h1>{restaurant.nombre}</h1>
           </div>
           {/*Images*/}
@@ -61,7 +61,7 @@ export function Restaurant() {
           >
             <div
               className={
-                "flex justify-center col-span-1 row-span-3 w-11/12 md:w-96 md:h-96 md:items-Center lg:h-firstCardViewRestaurantGrid lg:w-firstCardViewRestaurantGrid"
+                "flex justify-center col-span-1 row-span-3 w-10/12 md:w-96 md:h-96 md:items-Center lg:h-firstCardViewRestaurantGrid lg:w-firstCardViewRestaurantGrid"
               }
             >
               <img
@@ -106,7 +106,7 @@ export function Restaurant() {
           </div>
           {/*location, phoneNumber, reservationForm*/}
           <div className={"flex flex-col items-center mt-2 w-11/12 mx-auto md:w-full md:flex-row md: mx-5 lg:flex-row text-2xl lg:mx-28 lg:mb-32"}>
-            <div className={"flex flex-col items-start m-2 w-11/12 md:flex md:flex-col md:items-start lg:mx-8"}>
+            <div className={"flex flex-col items-start gap-2 m-2 w-11/12 md:flex md:flex-col md:items-start lg:mx-8"}>
               <h3 className={"text-sm font-medium"}>
                 {restaurant.descripcion}
               </h3>
