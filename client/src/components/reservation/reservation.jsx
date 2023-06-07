@@ -111,7 +111,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
     };
 
     return (
-        <div className={'bg-bg-hover mx-auto rounded-lg p-2 w-80 lg:w-reservationForm lg:h-reservationForm'}>
+        <div className={'bg-bg-hover mx-auto rounded-lg p-2 w-80'}>
             <form onSubmit={handleSubmit} className={'flex flex-col gap-5'}>
                 <div className='flex flex-row text-xs justify-around bg-white rounded-full'>
                     <div className='flex flex-row justify-between gap-1 items-center py-2 pl-3'>

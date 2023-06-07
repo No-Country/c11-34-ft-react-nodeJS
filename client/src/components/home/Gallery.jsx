@@ -1,6 +1,6 @@
 import { GalleryRow } from "..";
 import { useRestaurants } from "../../hooks";
-
+import { useEffect } from "react";
 
 export function Gallery() {
 
