@@ -34,6 +34,10 @@ const usuarioSchema: Schema<Usuario> = new Schema({
   },
   imagen: {
     type: String
+  },
+  favoritos: {
+    type: [String],
+    default: []
   }
 })
 

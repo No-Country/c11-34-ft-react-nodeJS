@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express'
 
-import reservController from "../controllers/reservController";
+import reservController from '../controllers/reservController'
 
-const routerReserv: Router = Router();
+const routerReserv: Router = Router()
 
-routerReserv.get("/", reservController.getReserv);
-
+routerReserv.get('/', reservController.getReserv)
+routerReserv.delete('/:id', reservController.deleteReserv)
 routerReserv.put("/", reservController.editReserv);
 
 export default routerReserv;

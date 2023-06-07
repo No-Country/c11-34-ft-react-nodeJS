@@ -34,6 +34,10 @@ const usuarioSchema = new mongoose_1.Schema({
     },
     imagen: {
         type: String
+    },
+    favoritos: {
+        type: [String],
+        default: []
     }
 });
 usuarioSchema.methods.toJSON = function () {

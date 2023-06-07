@@ -255,7 +255,37 @@
 <h2 id="editar">Editar Reservas</h2>
 <p>En proceso</p>
 <h2 id="eliminar">Eliminar Reservas</h2>
-<p>En proceso</p>
+        <p>Elimina una reserva a traves del id</p>
+        <ul>
+          <li>Método: <code>DELETE</code></li>
+          <li>Ruta: <code>/api/reservas</code></li>
+        </ul>
+        <p>Parámetros de consulta: PARAM</p>
+        <ul>
+          <li>
+            <code>id</code> (param): id de la reserva.
+          </li>
+        </ul>
+        
+        <p>Ejemplo de petición: param</p>
+        <pre><code>
+          ruta/api/reservas/647fbaa6fbbe00bab4a99534
+
+        </code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": "reserva eliminada Correctamente"
+          }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+          {
+            msg: 'se presento un error al eliminar la reserva',
+            error
+          }
+</code></pre>
+
       </div>
     </div>
   </body>

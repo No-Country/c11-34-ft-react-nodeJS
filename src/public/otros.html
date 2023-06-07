@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./estilo.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./estilo.css" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Restaurant</title>
-    
-</head>
-<body>
+  </head>
+  <body>
     <!-- <a href="./loginTest.html">Ir a login de google, solo para local</a> -->
     <div class="container">
       <div class="tandback">
-
         <h1>API de Otras Funcionalidades</h1>
         <a href="index.html">INICIO</a>
       </div>
       <nav>
-        <a class="nav_item" href="#listar">Obtener coordenadas</a
-        >
+        <a class="nav_item" href="#listar">Obtener coordenadas</a>
       </nav>
       <div class="scrollable">
         <p>
@@ -34,9 +31,7 @@
           >
         </p>
 
-        
-
-          <!-- ------------------------------------------------------------------------------------------------------ -->
+        <!-- ------------------------------------------------------------------------------------------------------ -->
         <!-- --------------------------------MAP COORDENADAS---------------------------------------- -->
         <!-- ------------------------------------------------------------------------------------------------------ -->
         <h2>Map Coordenadas</h2>
@@ -72,9 +67,74 @@
             }
 </code></pre>
 
-        
+        <br />
+        <hr />
+        <br />
 
-        
+        <h2>GET FAVORITOS</h2>
+        <p>Visualiza el array de favoritos</p>
+        <ul>
+          <li>Método: <code>GET</code></li>
+          <li>Ruta: <code>/api/favoritos</code></li>
+        </ul>
+        <p>Parámetros de consulta:</p>
+        <ul>
+          <li><code>id</code> (param): id de usuario.</li>
+        </ul>
+        <p>Ejemplo de petición:</p>
+        <pre><code>
+  ruta/123456
+</code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "fav": [
+                "ponciano"
+            ]
+          }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+            {
+              "mensaje": 'Error al obtener favoritos'
+            }
+</code></pre>
+
+        <h2>PUT FAVORITOS</h2>
+        <p>Edita el array de favoritos</p>
+        <ul>
+          <li>Método: <code>PUT</code></li>
+          <li>Ruta: <code>/api/favoritos</code></li>
+        </ul>
+        <p>Parámetros de consulta: param</p>
+        <ul>
+          <li><code>id</code> (param): id de usuario.</li>
+          <li>
+            <code>data</code> (array(string)): array de string de favoritos.
+          </li>
+        </ul>
+        <p>Ejemplo de petición:</p>
+        <pre><code>
+      ruta/123456
+</code></pre>
+        <p>Ejemplo de petición: (body)</p>
+        <pre><code>
+          {
+            "data":["ponciano"]
+          }
+  </code></pre>
+        <p>Respuesta exitosa:</p>
+        <pre><code class="success">
+          {
+            "msg": true
+          }
+</code></pre>
+        <p>Respuesta no exitosa:</p>
+        <pre><code class="error">
+    {
+      "mensaje": 'Error al agregar favoritos'
+    }
+</code></pre>
       </div>
     </div>
   </body>

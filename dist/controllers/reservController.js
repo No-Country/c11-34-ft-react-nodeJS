@@ -73,16 +73,8 @@ const editReserv = async (req, res) => {
                 return res.status(400).json({ msg: "no hay espacio disponible para la reserva" });
             }
             ;
-            console.log(`turno.reservas[${reserva.fecha}][${espacioReservaPrePut}]`);
-            console.log("---------------" + turno.reservas[reserva.fecha][espacioReservaPrePut]);
             turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.reservas[reserva.fecha][espacioReservaPrePut] + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
-            console.log(`turno.reservas[${reserva.fecha}][${espacioReservaPrePut}]`);
-            console.log("---------------" + turno.reservas[reserva.fecha][espacioReservaPrePut]);
-            console.log(`turno.reservas[${reserva.fecha}][${espacioReserva}]`);
-            console.log("---------------" + turno.reservas[reserva.fecha][espacioReserva]);
             turno.reservas[reserva.fecha][espacioReserva] = (turno.capacidadMax - (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
-            console.log(`turno.reservas[${reserva.fecha}][${espacioReserva}]`);
-            console.log("---------------" + turno.reservas[reserva.fecha][espacioReserva]);
             reserva.hora = `${hora}:00`;
             reserva.comensales = comensales;
             const reservas = turno.reservas;
@@ -126,7 +118,7 @@ const editReserv = async (req, res) => {
             if (turno.reservas[reserva.fecha][espacioReserva] < reserva.comensales) {
                 return res.status(400).json({ msg: "no hay espacio disponible para la reserva" });
             }
-            turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.capacidadMax + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
+            turno.reservas[reserva.fecha][espacioReservaPrePut] = (turno.reservas[reserva.fecha][espacioReservaPrePut] + (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
             turno.reservas[reserva.fecha][espacioReserva] = (turno.capacidadMax - (Math.ceil((reserva.comensales / turno.personasPorMesa)) * turno.personasPorMesa));
             const reservas = turno.reservas;
             const turnoUpdate = await turnos_1.default.findByIdAndUpdate(turno._id, { reservas });
@@ -184,9 +176,37 @@ const editReserv = async (req, res) => {
     }
     ;
 };
-const reservController = {
-    getReserv,
-    editReserv
+const deleteReserv = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const reserva = await reservas_1.default.findById(id);
+        if (!reserva) {
+            return res.status(404).json({
+                msg: 'No se encontró la reserva , verifique el ID'
+            });
+        }
+        const { id_restaurante, fecha, turno, comensales } = reserva;
+        const [turnoRest] = await turnos_1.default.find({ id_restaurante });
+        if (!turnoRest) {
+            return res.status(404).json({
+                msg: 'No se encontró el restaurante'
+            });
+        }
+        const cantidad = (Math.ceil((comensales / turnoRest.personasPorMesa)) * turnoRest.personasPorMesa);
+        turnoRest.reservas[fecha][turno] += cantidad;
+        await turnos_1.default.findByIdAndUpdate(turnoRest._id, {
+            reservas: turnoRest.reservas
+        });
+        await reservas_1.default.findByIdAndDelete(id);
+        res.status(200).json({ msg: 'reserva eliminada Correctamente' });
+    }
+    catch (error) {
+        res.status(500).json({
+            msg: 'Se presento un error al eliminar la reserva',
+            error
+        });
+    }
 };
+const reservController = { getReserv, editReserv, deleteReserv };
 exports.default = reservController;
 //# sourceMappingURL=reservController.js.map

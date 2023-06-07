@@ -5,6 +5,7 @@ import { ParsedQs } from 'qs'
 import { getPlaces } from '../helpers/places'
 import { obtenerFechaAnterior } from '../helpers/obtenerFechaAnterior'
 import { getHoursinString } from '../helpers/others'
+
 const getTurns = async (req: Request, res: Response) => {
   try {
     const { id_restaurante, fecha, turno }: ParsedQs = req.query
@@ -93,6 +94,18 @@ const postTurns = async (req: Request, res: Response) => {
     const horaNumber = data.horaApertura + data.duracionRes * turno
     const hora = getHoursinString(horaNumber)
 
+    const existeOtherReserv = await Reservas.findOne({
+      hora,
+      fecha,
+      correoComensal
+    })
+
+    if (existeOtherReserv) {
+      return res.status(400).json({
+        msg: 'Ya tienes una reserva para esa hora'
+      })
+    }
+
     //verificar si ya reservo la misma persona a la misma hora
     const dataReservas = await Reservas.findOne({
       id_restaurante,
@@ -149,7 +162,8 @@ const postTurns = async (req: Request, res: Response) => {
       comensales,
       fecha,
       correoComensal,
-      id_restaurante
+      id_restaurante,
+      turno
     })
 
     await reserva.save()

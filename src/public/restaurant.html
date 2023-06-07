@@ -122,6 +122,10 @@
   <li>Ruta: <code>/api/restaurant</code></li>
 </ul>
 <br>
+<p>Parametros de consulta: query</p>
+<ul>
+  <li><code>correo</code> (query): correo del usuario.</li>
+</ul>
 <p>Parámetros de consulta: (Form-Data)</p>
 <ul>
   <li><code>nombre</code> (form key,string): nombre del restaurant.</li>
@@ -142,12 +146,17 @@
   </ul>
   <br>
 <p>Ejemplo de petición: Form-Data</p>
+<pre>
+  <code>
+    ruta: ruta/api/restaurant?correo=test1@gmail.com
+  </code>
+</pre>
 <pre><code>
     nombre: 'san Marti',
     direccion: 'las magnolias',
     telefono: '123445567',
     correo: 'gianco@gmail.com',
-    dias: "['lunes','martes','miercoles']",
+    dias: "['0','1','2']",
     horarioIn: '08:00',
     horarioOut: '20:00',
     tipoComida: "['vegetarioano','pizza']",

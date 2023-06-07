@@ -6,6 +6,7 @@ export interface Usuario {
   estado: boolean
   google: boolean
   imagen: string
+  favoritos: Array<string> | undefined
   gustos: Array<string> | undefined
 }
 
@@ -25,6 +26,7 @@ export interface Restaurant {
   direccion: string
   telefono: string
   correo: string
+  correoCreador: string
   dias: Array<string>
   horarioIn: string
   horarioOut: string
@@ -62,4 +64,5 @@ export interface Reservas {
   estado: Array<string>
   correoComensal: string
   id_restaurante: string
+  turno: number
 }

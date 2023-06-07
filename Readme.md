@@ -383,9 +383,9 @@ Respuesta exitosa:
                     "telefono": "123445567",
                     "correo": "gianco3108@gmail.com",
                     "dias": [
-                        "lunes",
-                        "martes",
-                        "miercoles"
+                        "0",
+                        "1",
+                        "2"
                     ],
                     "horarioIn": "08:00",
                     "horarioOut": "20:00",
@@ -436,6 +436,10 @@ Crea un restaurant en la base de datos.
 
 -   Método:  `POST`
 -   Ruta:  `/api/restaurant`
+
+Parámetros de consulta: (query)
+
+-   `correo`  (query): correo de la persona.
 
 Parámetros de consulta: (Form-Data)
 
