@@ -7,5 +7,6 @@ const express_1 = require("express");
 const reservController_1 = __importDefault(require("../controllers/reservController"));
 const routerReserv = (0, express_1.Router)();
 routerReserv.get("/", reservController_1.default.getReserv);
+routerReserv.put("/", reservController_1.default.editReserv);
 exports.default = routerReserv;
 //# sourceMappingURL=reservController.routes.js.map
