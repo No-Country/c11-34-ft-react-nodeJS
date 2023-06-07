@@ -14,7 +14,6 @@ export function ResultsFilter() {
   const {restaurantsSearched, querySearch, load} = useSearch()
 
   if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
-
   return (
     <main className="">
         {/* TODO : Modularizar secciones, ya que cada uno tendra logica */}
@@ -49,13 +48,13 @@ export function ResultsFilter() {
 
             {/* Result Section */}
             <section className="lg:col-span-3 flex flex-col gap-y-4 ">
-                <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{restaurantsSearched.length } resultados</h3>
+                <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{restaurantsSearched.length  } resultados</h3>
                 <section className="flex flex-col gap-y-3 overflow-y-auto items-center lg:items-start h-auto lg:h-screen pb-24 lg:pb-56 dt:pb-80 lg:pr-2.5">
 
                     {
                         !restaurantsSearched.length && !load &&
                         <p> { querySearch } no encontrado</p> 
-                    }
+                    } 
 
                     {
                         restaurantsSearched?.map(card => (

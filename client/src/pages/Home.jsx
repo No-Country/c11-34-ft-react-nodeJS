@@ -1,4 +1,4 @@
-import {  SearchBar, Gallery, Categories, NavBarUI } from '../components';
+import {  SearchBar, Gallery, NavBarUI } from '../components';
 
 
 export function Home() {
@@ -11,7 +11,6 @@ export function Home() {
         <h1 className="lg:text-7xl text-2xl text-center font-black">Encontrá tu nuevo lugar favorito</h1>
         <p className="lg:text-xl hidden lg:block">Contamos con +500 restaurantes y bares asociados</p>
         <SearchBar/>
-        <Categories />
       </div>
       <div className="lg:mt-52 lg:px-5 mt-20 px-10">
         <Gallery />

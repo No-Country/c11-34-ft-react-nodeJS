@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es.js';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore.js';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 
@@ -12,7 +11,6 @@ import 'react-calendar/dist/Calendar.css';
 dayjs.locale('es');
 dayjs.extend(localizedFormat);
 dayjs.extend(updateLocale);
-dayjs.extend(isSameOrBefore);
 
 const ReservationCalendar = ({ openDays, closeModal }) => {
     const [date, setDate] = useState(new Date());
@@ -24,11 +22,11 @@ const ReservationCalendar = ({ openDays, closeModal }) => {
 
     const isDatePast = (date) => {
         const currentDate = dayjs();
-        return dayjs(date).isSameOrBefore(currentDate, 'day');
+        return dayjs(date).isBefore(currentDate, 'day');
     };
 
     const isDayDisabled = (date) => {
-        const dayOfWeek = dayjs(date).day();
+        const dayOfWeek = dayjs(date).day().toString();
         return !activeDays.includes(dayOfWeek) || isDatePast(date);
     };
 
@@ -38,9 +36,8 @@ const ReservationCalendar = ({ openDays, closeModal }) => {
 
     const handleDateClick = (date) => {
         closeModal();
-        let reservationDay = dayjs(date).locale('es').format('DD MMMM');
+        let reservationDay = dayjs(date).locale('es').format('DD/MM/YY');
         localStorage.setItem('dateReserve', reservationDay);
-        setSelectedDate(reservationDay);
     };
 
     return (

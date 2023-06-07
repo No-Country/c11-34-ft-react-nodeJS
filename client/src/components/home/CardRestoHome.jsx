@@ -19,7 +19,8 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, latitude, lo
                     <div style={{color: '#BAC0C7'}}>
                         <Distance
                             longitudeRestaurant={longitude}
-                            latitudDestiRestaurant={latitude}/>
+                            latitudDestiRestaurant={latitude}
+                        />
                     </div>
                 </div>
                 <div>$ {costoReserva} por persona</div>
