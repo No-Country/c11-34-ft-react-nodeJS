@@ -4,7 +4,7 @@ import { NavBarUI, SwiperCard } from "../components";
 import { getRestaurant, getRestaurantCoords } from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
-import location from "../assets/location.svg";
+import location from "../assets/locationBlack.svg";
 import phone from "../assets/phone.svg";
 import logo from '../assets/logo-mobile.svg'
 import { useParams } from "react-router-dom";
