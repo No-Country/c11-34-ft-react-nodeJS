@@ -34,7 +34,8 @@ export default {
         'cardMobileTastes': '155px',
         'gridTastesMobile': '1260px',
         'cardImgSwiperTastes': '402px',
-        'heightTastesCard': '458'
+        'heightTastesCard': '458',
+        'xlarge': '550px'
       },
       width:{
         'galleryDesktop': '300px',
@@ -48,7 +49,9 @@ export default {
         'gridTastesMobile': '320px',
         'cardImgSwiperTastes': '190px',
         'marginSwiper': '100px',
-        'tableView': '678px'
+        'tableView': '678px',
+        'largeView': '860px',
+        'xlarge': '1000px'
       },
       gridTemplateColumns:{
         'viewRestaurant': '925px, 295px',

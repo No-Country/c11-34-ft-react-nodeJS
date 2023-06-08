@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
-import { NavBarUI } from "../components";
-import { getRestaurant, getRestaurantCoords } from "../services";
+import React, {useEffect, useState} from "react";
+import {NavBarUI} from "../components";
+import {getRestaurant, getRestaurantCoords} from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
-import location from "../assets/locationBlack.svg";
+import location from "../assets/location.svg";
+import {useParams} from "react-router-dom";
 import logo from '../assets/logo-mobile.svg'
-import { useParams } from "react-router-dom";
 import { Ring } from "@uiball/loaders";
 import { Favorite } from "../components/Favorite";
 import { useUser } from "../hooks";
@@ -17,10 +17,24 @@ export function Restaurant() {
   const isFavorite = user?.favoritos?.includes(restaurant?._id)
   const [color, setColor] = useState(isFavorite ? 'f75252' : 'transparent')
   const [load, setLoad] = useState(true)
+  const [breakpoints, setBreakpoints] = useState({
+        small: 576,
+        medium: 768,
+        large: 992,
+        xlarge: 1024
+    })
   const [cords, setCords] = useState({
     lat: '',
     lon : ''
   })
+
+  const hoursAvailable = {
+    turnos: restaurant.turnos,
+    hourIn: restaurant.horarioIn,
+    hourOut: restaurant.horarioOut,
+    inteval: restaurant.intervaloMesa,
+  };
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -32,7 +46,6 @@ export function Restaurant() {
   }, [id]);
 
   useEffect(() => {
-
     getRestaurantCoords(restaurant.direccion)
       .then((res) => {
         setLoad(true)
@@ -45,13 +58,28 @@ export function Restaurant() {
 
   }, [restaurant.direccion]);
 
-  const hoursAvailable = {
-    turnos: restaurant.turnos,
-    hourIn: restaurant.horarioIn,
-    hourOut: restaurant.horarioOut,
-    inteval: restaurant.intervaloMesa,
-  };
+    useEffect(() => {
+        const handleResize = () => {
+            const windowWidth = window.innerWidth;
+            if (windowWidth < breakpoints.small) {
+                setBreakpoints({width: 'w-11/12', height: 'h-44'});
+            } else if (windowWidth < breakpoints.medium) {
+                setBreakpoints({width: 'w-tableView', height: 'h-60'});
+            } else if (windowWidth < breakpoints.large) {
+                setBreakpoints({width: 'w-largeView', height: 'h-96'});
+            } else if (windowWidth < breakpoints.xlarge) {
+                setBreakpoints({width: 'w-xlarge', height: 'h-xlarge'});
+            } else {
+                setBreakpoints({width: 'w-xlarge', height: 'h-xlarge'});
+            }
+        };
 
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
   const openRestaurant = restaurant.dias;
 
@@ -178,14 +206,16 @@ export function Restaurant() {
               }
             </section> 
             <section className="lg:col-span-8 h-full relative z-10">
-               <MapRestaurant
-                  latitude={cords.lat}
-                  longitude={cords.lon}
-                  name={restaurant.nombre}
-                  height={'w-full'}
-                  width={'w-full'}
-                />
-          
+                <div className="w-full h-full lg:flex justify-center items-center mx-auto">
+                      <MapRestaurant
+                           className="text-black"
+                          latitude={cords.lat}
+                          longitude={cords.lon}
+                          name={restaurant.nombre}
+                          height={breakpoints.height}
+                          width={breakpoints.width}
+                       />
+                  </div>
             </section>
           </section>   
       </div> 
