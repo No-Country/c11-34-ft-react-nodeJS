@@ -5,19 +5,36 @@ import {getRestaurant, getRestaurantCoords} from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
 import location from "../assets/location.svg";
-import phone from "../assets/phone-call-svgrepo-com.svg";
 import {useParams} from "react-router-dom";
-import location from "../assets/locationBlack.svg";
-import phone from "../assets/phone.svg";
 import logo from '../assets/logo-mobile.svg'
-import { useParams } from "react-router-dom";
 import { Ring } from "@uiball/loaders";
+import { Favorite } from "../components/Favorite";
+import { useUser } from "../hooks";
 
 export function Restaurant() {
+  const { user } = useUser()
   const [restaurant, setRestaurant] = useState({});
+  const isFavorite = user?.favoritos?.includes(restaurant?._id)
+  const [color, setColor] = useState(isFavorite ? 'f75252' : 'transparent')
   const [load, setLoad] = useState(true)
-  const [latitudeRestaurant, setLatitudeRestaurant] = useState("");
-  const [longitudeRestaurant, setLongitudeRestaurant] = useState("");
+  const [breakpoints, setBreakpoints] = useState({
+        small: 576,
+        medium: 768,
+        large: 992,
+        xlarge: 1024
+    })
+  const [cords, setCords] = useState({
+    lat: '',
+    lon : ''
+  })
+
+  const hoursAvailable = {
+    turnos: restaurant.turnos,
+    hourIn: restaurant.horarioIn,
+    hourOut: restaurant.horarioOut,
+    inteval: restaurant.intervaloMesa,
+  };
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,19 +45,12 @@ export function Restaurant() {
     });
   }, [id]);
 
-  const hoursAvailable = {
-    turnos: restaurant.turnos,
-    hourIn: restaurant.horarioIn,
-    hourOut: restaurant.horarioOut,
-    inteval: restaurant.intervaloMesa,
-  };
-
   useEffect(() => {
-
     getRestaurantCoords(restaurant.direccion)
       .then((res) => {
-        setLatitudeRestaurant(res.lat);
-        setLongitudeRestaurant(res.lon);
+        setLoad(true)
+        setCords(res)
+        setLoad(false)
       })
       .catch((error) => {
          console.error(error);
@@ -48,27 +58,19 @@ export function Restaurant() {
 
   }, [restaurant.direccion]);
 
-    const openRestaurant = restaurant.dias;
-
-    const breakpoints = {
-        small: 576,
-        medium: 768,
-        large: 992,
-        xlarge: 1024
-    };
     useEffect(() => {
         const handleResize = () => {
             const windowWidth = window.innerWidth;
             if (windowWidth < breakpoints.small) {
-                setBreakpoint({width: 'w-11/12', height: 'h-44'});
+                setBreakpoints({width: 'w-11/12', height: 'h-44'});
             } else if (windowWidth < breakpoints.medium) {
-                setBreakpoint({width: 'w-tableView', height: 'h-60'});
+                setBreakpoints({width: 'w-tableView', height: 'h-60'});
             } else if (windowWidth < breakpoints.large) {
-                setBreakpoint({width: 'w-largeView', height: 'h-96'});
+                setBreakpoints({width: 'w-largeView', height: 'h-96'});
             } else if (windowWidth < breakpoints.xlarge) {
-                setBreakpoint({width: 'w-xlarge', height: 'h-xlarge'});
+                setBreakpoints({width: 'w-xlarge', height: 'h-xlarge'});
             } else {
-                setBreakpoint({width: 'w-xlarge', height: 'h-xlarge'});
+                setBreakpoints({width: 'w-xlarge', height: 'h-xlarge'});
             }
         };
 
@@ -78,6 +80,8 @@ export function Restaurant() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+  const openRestaurant = restaurant.dias;
 
   if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
 
@@ -149,6 +153,7 @@ export function Restaurant() {
                <div className="flex flex-col gap-y-5">
                 <p className="font-inter font-medium flex items-center gap-x-1"><img src={logo}/>${restaurant.costoReserva}</p>
                 <p className="flex font-inter font-medium items-center"><img src={location}/> {restaurant.direccion}</p>
+                {load ? <Ring size={15} lineWeight={5} speed={2} color="black"/> :  <Favorite restaurant={restaurant} user={user} color={color} setColor={setColor}/>}
                </div>
               </section>
               <section className={"lg:col-span-3"}>
@@ -201,19 +206,16 @@ export function Restaurant() {
               }
             </section> 
             <section className="lg:col-span-8 h-full relative z-10">
-               {latitudeRestaurant && longitudeRestaurant && (
-                            <div className="w-full h-full mb-5 mx-auto lg:flex justify-center items-center mx-auto">
-                                <MapRestaurant
-                                    className="text-black"
-                                    latitude={latitudeRestaurant}
-                                    longitude={longitudeRestaurant}
-                                    name={restaurant.nombre}
-                                    height={breakpoint.height}
-                                    width={breakpoint.width}
-                                />
-                            </div>
-                        )}
-          
+                <div className="w-full h-full lg:flex justify-center items-center mx-auto">
+                      <MapRestaurant
+                           className="text-black"
+                          latitude={cords.lat}
+                          longitude={cords.lon}
+                          name={restaurant.nombre}
+                          height={breakpoints.height}
+                          width={breakpoints.width}
+                       />
+                  </div>
             </section>
           </section>   
       </div> 
