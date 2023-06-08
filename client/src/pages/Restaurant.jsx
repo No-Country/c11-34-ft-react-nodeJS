@@ -4,7 +4,7 @@ import { NavBarUI, SwiperCard } from "../components";
 import { getRestaurant, getRestaurantCoords } from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
-import location from "../assets/location.svg";
+import location from "../assets/locationBlack.svg";
 import phone from "../assets/phone.svg";
 import logo from '../assets/logo-mobile.svg'
 import { useParams } from "react-router-dom";
@@ -118,13 +118,14 @@ export function Restaurant() {
                <div className="flex flex-col gap-y-5">
                 <p className="font-inter font-medium flex items-center gap-x-1"><img src={logo}/>${restaurant.costoReserva}</p>
                 <p className="flex font-inter font-medium items-center"><img src={location}/> {restaurant.direccion}</p>
-                <p className="font-inter font-medium flex items-center gap-x-1"> <img src={phone} />{restaurant.telefono}</p>
                </div>
               </section>
               <section className={"lg:col-span-3"}>
                   <ReservationForm
                     days={openRestaurant}
                     restaurant={restaurant._id}
+                    restaurantNombre={restaurant.nombre}
+                    restaurantImagenes={restaurant.imagenes}
                     turnos={hoursAvailable}
                     restaurantEmail={restaurant.correo}
                   />
