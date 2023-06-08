@@ -5,11 +5,10 @@ import calendar from '../../assets/calendar.svg';
 import clock from '../../assets/clock.svg';
 import user from '../../assets/user.svg';
 import {useNavigate} from 'react-router-dom';
-import {getAvailableCostumers, makeReservation} from '../../services/index.js';
+import {getAvailableCustomers, makeReservation} from '../../services/index.js';
 import {toast} from "react-hot-toast";
 
 const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, restaurantEmail}) => {
-
     const [actions, setActions] = useState({
         error: false,
         loading: false
@@ -28,8 +27,6 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     const interval = turnos.inteval;
     const idRest = restaurant
     const reserveDate = localStorage.getItem('dateReserve');
-
-    const emailUser = localStorage.getItem('correo')
 
     const restoData = {
         imagenes: restaurantImagenes,
@@ -57,7 +54,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
         if (selectedHour !== undefined && selectedDate !== undefined) {
             const fetchData = async () => {
                 try {
-                    const response = await getAvailableCostumers(idRest, reserveDate, selectedHour);
+                    const response = await getAvailableCustomers(idRest, reserveDate, selectedHour);
                     setCustomers(response);
                 } catch (error) {
                     console.error('Error fetching customers:', error);
@@ -66,12 +63,6 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
             fetchData();
         }
     },);
-    const dataEditing = {
-        turnos: availableShifts,
-        personas: customers
-    }
-    
-    localStorage.setItem('editReservation', dataEditing)
     const handleOpenModal = (e) => {
         e.preventDefault();
         setShowCalendar(true);
@@ -100,30 +91,28 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
 
     localStorage.setItem('reservationHour', hour)
 
-console.log(emailUser)
-    const dataReservation = () =>{
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const reservationData = {
             id_restaurante: idRest,
-            correoComensal: emailUser,
+            correoComensal: restaurantEmail,
             turno: parseInt(selectedHour),
             comensales: parseInt(selectedDiners),
             fecha: reserveDate
-        }
-        return reservationData;
-    }
-    async function handleSubmit(e){
-        e.preventDefault();
+        };
         try {
-            const reservation = dataReservation()
-            await makeReservation(reservation);
-            toast.success('Reservación creada')
-            navigate(`/reserve`, { state: { restaurant, reservation } })
-            setActions({ ...actions, loading: true });
+            setActions({...actions, loading: true})
+            makeReservation(reservationData)
+            navigate('/')
+            setActions({loading: false, error: false})
         } catch (e) {
-            const errorMessage = 'Error al crear la reserva';
-            toast.error(errorMessage);
-            setActions({ loading: false, error: true });
+            const errorMessage = 'Error al crear el restaurante'
+            toast.error(errorMessage)
+            setActions({loading: false, error: true})
         }
+        console.log(`Se esta por ejecutar navigate a reserve`)
+        navigate(`/reserve`, {state: {restoData, reservationData}});
+    };
 
     return (
         <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter'}>
