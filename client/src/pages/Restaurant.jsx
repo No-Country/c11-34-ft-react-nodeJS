@@ -151,7 +151,6 @@ export function Restaurant() {
                                 days={openRestaurant}
                                 restaurant={restaurant._id}
                                 turnos={hoursAvailable}
-                                restaurantEmail={restaurant.correo}
                             />
                         </div>
                     </div>

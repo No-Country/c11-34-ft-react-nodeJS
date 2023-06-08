@@ -13,7 +13,6 @@ const iconMarker = new L.Icon({
 
 const MapRestaurant = ({latitude, longitude, name, height, width}) => {
     const position = {lat: latitude, lng: longitude};
-    console.log(position)
     return (
         <MapContainer className={`${height} ${width} mx-auto`} center={position} zoom={16} scrollWheelZoom={false}>
             <TileLayer

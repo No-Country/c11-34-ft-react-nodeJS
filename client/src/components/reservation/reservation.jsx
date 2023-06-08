@@ -8,7 +8,8 @@ import {useNavigate} from 'react-router-dom';
 import {getAvailableCostumers, makeReservation} from '../../services/index.js';
 import {toast} from "react-hot-toast";
 
-const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
+const ReservationForm = ({days, restaurant, turnos}) => {
+
     const [actions, setActions] = useState({
         error: false,
         loading: false
@@ -28,7 +29,7 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
     const idRest = restaurant
     const reserveDate = localStorage.getItem('dateReserve');
 
-
+    const emailUser = localStorage.getItem('correo')
     const availableHours = (startHour, finalHour, duration) => {
 
         const stHour = new Date(`2000-01-01T${startHour}:00`);
@@ -59,6 +60,11 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
             fetchData();
         }
     },);
+    const dataEditing = {
+        turnos: availableShifts,
+        personas: customers
+    }
+    localStorage.setItem('editReservation', dataEditing)
     const handleOpenModal = (e) => {
         e.preventDefault();
         setShowCalendar(true);
@@ -87,28 +93,32 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
 
     localStorage.setItem('reservationHour', hour)
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+console.log(emailUser)
+    const dataReservation = () =>{
         const reservationData = {
             id_restaurante: idRest,
-            correoComensal: restaurantEmail,
+            correoComensal: emailUser,
             turno: parseInt(selectedHour),
             comensales: parseInt(selectedDiners),
             fecha: reserveDate
-        };
-        try {
-            setActions({...actions, loading: true})
-            makeReservation(reservationData)
-            navigate('/')
-            setActions({loading: false, error: false})
-        } catch (e) {
-            const errorMessage = 'Error al crear el restaurante'
-            toast.error(errorMessage)
-            setActions({loading: false, error: true})
         }
+        return reservationData;
+    }
+    async function handleSubmit(e){
+        e.preventDefault();
+        try {
+            const reservation = dataReservation()
+            await makeReservation(reservation);
+            toast.success('Reservación creada')
+            navigate(`/reserve`, { state: { restaurant, reservation } })
+            setActions({ ...actions, loading: true });
+        } catch (e) {
+            const errorMessage = 'Error al crear la reserva';
+            toast.error(errorMessage);
+            setActions({ loading: false, error: true });
+        }
+    }
 
-        navigate(`/reserve`, {state: {restaurant, reservationData}});
-    };
 
     return (
         <div className={'bg-bg-hover mx-auto rounded-lg p-2 w-80 lg:w-reservationForm lg:h-reservationForm'}>
