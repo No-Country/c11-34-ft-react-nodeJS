@@ -1,9 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
-import { NavBarUI, SwiperCard } from "../components";
-import { getRestaurant, getRestaurantCoords } from "../services";
+import React, {useEffect, useState} from "react";
+import {NavBarUI} from "../components";
+import {getRestaurant, getRestaurantCoords} from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
+import location from "../assets/location.svg";
+import phone from "../assets/phone-call-svgrepo-com.svg";
+import {useParams} from "react-router-dom";
 import location from "../assets/locationBlack.svg";
 import phone from "../assets/phone.svg";
 import logo from '../assets/logo-mobile.svg'
@@ -45,8 +48,36 @@ export function Restaurant() {
 
   }, [restaurant.direccion]);
 
-  const openRestaurant = restaurant.dias;
+    const openRestaurant = restaurant.dias;
 
+    const breakpoints = {
+        small: 576,
+        medium: 768,
+        large: 992,
+        xlarge: 1024
+    };
+    useEffect(() => {
+        const handleResize = () => {
+            const windowWidth = window.innerWidth;
+            if (windowWidth < breakpoints.small) {
+                setBreakpoint({width: 'w-11/12', height: 'h-44'});
+            } else if (windowWidth < breakpoints.medium) {
+                setBreakpoint({width: 'w-tableView', height: 'h-60'});
+            } else if (windowWidth < breakpoints.large) {
+                setBreakpoint({width: 'w-largeView', height: 'h-96'});
+            } else if (windowWidth < breakpoints.xlarge) {
+                setBreakpoint({width: 'w-xlarge', height: 'h-xlarge'});
+            } else {
+                setBreakpoint({width: 'w-xlarge', height: 'h-xlarge'});
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
   if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
 
@@ -170,13 +201,18 @@ export function Restaurant() {
               }
             </section> 
             <section className="lg:col-span-8 h-full relative z-10">
-               <MapRestaurant
-                  latitude={latitudeRestaurant}
-                  longitude={longitudeRestaurant}
-                  name={restaurant.nombre}
-                  height={'w-full'}
-                  width={'w-full'}
-                />
+               {latitudeRestaurant && longitudeRestaurant && (
+                            <div className="w-full h-full mb-5 mx-auto lg:flex justify-center items-center mx-auto">
+                                <MapRestaurant
+                                    className="text-black"
+                                    latitude={latitudeRestaurant}
+                                    longitude={longitudeRestaurant}
+                                    name={restaurant.nombre}
+                                    height={breakpoint.height}
+                                    width={breakpoint.width}
+                                />
+                            </div>
+                        )}
           
             </section>
           </section>   
