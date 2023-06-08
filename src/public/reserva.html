@@ -264,11 +264,33 @@
             <code>id</code> (string): id de la reserva.
           </li>
         </ul>
+        <p>Parámetros de consulta: (BODY json)</p>
+        <ul>
+          <li>
+            <code>hora</code> (number): hora a actualizar en la reserva.
+          </li>
+          <li>
+            <code>comensales</code> (number): numero de comensales a actualizar en la reserva.
+          </li>
         <p>Ejemplo de petición: query</p>
         <pre><code>
           ruta/api/reservas?id=647fbaa6fbbe00bab4a99534
 
         </code></pre>
+        <p>Ejemplo de petición: JSON</p>
+        <pre><code>
+          {
+            "hora": 10,
+            "comensales": 5
+          }
+        </code></pre>
+        <p>NOTAS IMPORTANTES:</p>
+        <ul>
+          <li>
+            Se debe enviar en el request al menos un elemento en el body, ya sea la hora o los comensales, o ambos en su defecto.
+          </li>
+        </ul>
+        <br>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
           {
