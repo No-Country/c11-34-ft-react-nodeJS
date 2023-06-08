@@ -1,12 +1,12 @@
-export function CardTastes({ name, img, width, height}) {
+export function CardTastes({ name, img, height}) {
 
 
 
     return (
-        <div className={`flex flex-col ${width} justify-center items-center hover:transition duration-200 hover:scale-105 hover:border-b-2 hover:border-gray-400`}>
-            <div className={`${height} ${width}`}>
+        <div className={`flex flex-col w-auto justify-center items-center hover:transition duration-200 hover:scale-105 hover:border-b-2 hover:border-gray-400`}>
+            <div className={`${height} w-auto`}>
                 <img
-                    className={`rounded lg object-cover ${width} ${height}`}
+                    className={`rounded lg object-cover w-auto ${height}`}
                     src={img} alt={name}
                 />
             </div>

@@ -7,39 +7,46 @@ import MapRestaurant from "../components/map/map.jsx";
 import location from "../assets/location.svg";
 import phone from "../assets/phone-call-svgrepo-com.svg";
 import {useParams} from "react-router-dom";
+import location from "../assets/locationBlack.svg";
+import phone from "../assets/phone.svg";
+import logo from '../assets/logo-mobile.svg'
+import { useParams } from "react-router-dom";
+import { Ring } from "@uiball/loaders";
 
 export function Restaurant() {
-    const [restaurant, setRestaurant] = useState({});
-    const [latitudeRestaurant, setLatitudeRestaurant] = useState("");
-    const [longitudeRestaurant, setLongitudeRestaurant] = useState("");
-    const [breakpoint, setBreakpoint] = useState(null);
-    const {id} = useParams();
+  const [restaurant, setRestaurant] = useState({});
+  const [load, setLoad] = useState(true)
+  const [latitudeRestaurant, setLatitudeRestaurant] = useState("");
+  const [longitudeRestaurant, setLongitudeRestaurant] = useState("");
+  const { id } = useParams();
 
-    useEffect(() => {
-        getRestaurant(id).then((res) => setRestaurant(res));
-    }, [id]);
+  useEffect(() => {
+    getRestaurant(id).then((res) => {
+      setLoad(true)
+      setRestaurant(res)
+      setLoad(false)
+    });
+  }, [id]);
 
-    const directionRest = restaurant.direccion;
+  const hoursAvailable = {
+    turnos: restaurant.turnos,
+    hourIn: restaurant.horarioIn,
+    hourOut: restaurant.horarioOut,
+    inteval: restaurant.intervaloMesa,
+  };
 
-    const hoursAvailable = {
-        turnos: restaurant.turnos,
-        hourIn: restaurant.horarioIn,
-        hourOut: restaurant.horarioOut,
-        inteval: restaurant.intervaloMesa,
-    };
+  useEffect(() => {
 
-    useEffect(() => {
-        if (directionRest) {
-            getRestaurantCoords(directionRest)
-                .then((res) => {
-                    setLatitudeRestaurant(res.lat);
-                    setLongitudeRestaurant(res.lon);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-    }, [directionRest]);
+    getRestaurantCoords(restaurant.direccion)
+      .then((res) => {
+        setLatitudeRestaurant(res.lat);
+        setLongitudeRestaurant(res.lon);
+      })
+      .catch((error) => {
+         console.error(error);
+    });
+
+  }, [restaurant.direccion]);
 
     const openRestaurant = restaurant.dias;
 
@@ -72,118 +79,129 @@ export function Restaurant() {
         };
     }, []);
 
-    return (
-        <div>
-            <NavBarUI/>
-            <div className={"h-full w-96 mx-auto "}>
-                <div className={"font-bold text-xl mt-3 mb-2 w-full flex flex-col w-96 mx-auto md:w-tableView"}>
-                    <div className={"font-bold text-xl p-3 w-80"}>
-                        <h1>{restaurant.nombre}</h1>
-                    </div>
-                    {/*Images*/}
-                    <div
-                        className={"flex  mx-auto w-full md:w-96 md:h-96 md:items-Center lg:grid grid-cols-viewRestaurant grid-rows-viewRestaurant justify-center content-between items-center gap-2.5 lg:h-firstCardViewRestaurantGrid"}>
-                        <div
-                            className={
-                                "flex justify-center col-span-1 row-span-3 w-11/12 md:w-96 md:h-96 md:items-Center lg:h-firstCardViewRestaurantGrid lg:w-firstCardViewRestaurantGrid"
-                            }
-                        >
-                            <img
-                                className="rounded-3xl object-cover w-full h-80 lg:h-firstCardViewRestaurantGrid lg:w-firstCardViewRestaurantGrid"
-                                src={restaurant.imagenes}
-                                alt={restaurant.nombre}
-                            />
-                        </div>
-                        <div
-                            className={"hidden lg:block col-end-3 row-start-1 h-cardViewRestaurantGrid w-cardViewRestaurantGrid"}>
-                            <img
-                                className="rounded-3xl object-cover  h-cardViewRestaurantGrid w-cardViewRestaurantGrid"
-                                src={restaurant.imagenes}
-                                alt={restaurant.nombre}
-                            />
-                        </div>
-                        <div
-                            className={
-                                "hidden lg:block col-end-3 row-start-2 h-cardViewRestaurantGrid w-cardViewRestaurantGrid"
-                            }
-                        >
-                            <img
-                                className="rounded-3xl object-cover h-cardViewRestaurantGrid w-cardViewRestaurantGrid"
-                                src={restaurant.imagen}
-                                alt={restaurant.nombre}
-                            />
-                        </div>
-                        <div
-                            className={
-                                "hidden lg:block col-end-3 row-start-3 h-cardViewRestaurantGrid w-cardViewRestaurantGrid"
-                            }
-                        >
-                            <img
-                                className="rounded-3xl object-cover h-cardViewRestaurantGrid w-cardViewRestaurantGrid"
-                                src={restaurant.imagen}
-                                alt={restaurant.nombre}
-                            />
-                        </div>
-                    </div>
-                    {/*location, phoneNumber, reservationForm*/}
-                    <div
-                        className={"flex flex-col items-center mt-2 w-11/12 mx-auto md:w-full md:flex-row md: mx-5 lg:flex-row text-2xl lg:mx-28 lg:mb-32"}>
-                        <div
-                            className={"flex flex-col items-start m-2 w-11/12 md:flex md:flex-col md:items-start lg:mx-8"}>
-                            <h3 className={"text-sm font-medium"}>
-                                {restaurant.descripcion}
-                            </h3>
-                            <div className={"flex flex-row m-2"}>
-                                <img className={"w-5 pr-1"} src={location} alt={"location"}/>
-                                <h2 className={"text-base font-medium"}>
-                                    {restaurant.direccion}
-                                </h2>
-                            </div>
-                            <div className={"flex flex-row m-2"}>
-                                <img className={"w-5 pr-1"} src={phone} alt={"phone"}/>
-                                <h2 className={"text-base font-medium"}>
-                                    {restaurant.telefono}
-                                </h2>
-                            </div>
-                        </div>
-                        <div className={"my-5 md:mr-2 lg:w-reservationForm lg:h-reservationForm m-auto mt-4"}>
-                            <ReservationForm
-                                days={openRestaurant}
-                                restaurant={restaurant._id}
-                                turnos={hoursAvailable}
-                            />
-                        </div>
-                    </div>
-                    {/* Food, characteristics */}
-                    <div
-                        className={"flex flex-col items-center justify-start text-base mt-5 mb-12 m-auto gap-3 w-80 md:w-tableView md:flex md:flex-col"}>
-                        <div className="w-11/12 px-3">
-                            <h1 className="font-bold text-lg ">Tipo de comida</h1>
-                            {restaurant.tipoComida?.map((item, index) => (
-                                <li key={index} className={"text-base font-normal list-none flex flex-row"}>
-                                    {item}
-                                </li>
-                            ))}
-                        </div>
-                        <div className="w-11/12 px-3">
-                            <h1 className="font-bold text-lg ">Caracteristicas</h1>
-                            {restaurant.caracteristicasPrinc?.map((item, index) => (
-                                <li key={index} className={"text-base font-normal list-none"}>
-                                    {item}
-                                </li>
-                            ))}
-                        </div>
-                        <div className="w-11/12 px-3">
-                            <h1 className="font-bold text-lg">Otras caracteristicas</h1>
-                            {restaurant.otrosDetalles?.map((item, index) => (
-                                <li key={index} className={"text-base font-normal list-none"}>
-                                    {item}
-                                </li>
-                            ))}
-                        </div>
-                    </div>
-                    <div className={'flex '}>
-                        {latitudeRestaurant && longitudeRestaurant && (
+  if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
+
+  return (
+    <>
+      <NavBarUI />
+      <div className={"px-10 lg:px-24 pt-12 pb-20 lg:pb-0"}>
+       
+          {/*Images*/}
+          <div
+            className={
+              "grid grid-cols-1 lg:grid-cols-12 gap-x-3 gap-y-5 mb-7"
+            }
+          >
+
+          {/* Image Principal */}
+            <div
+              className={
+                "lg:col-span-9"
+              }
+            >
+              <img
+                className="rounded-3xl object-cover w-full lg:h-firstCardViewRestaurantGrid lg:w-firstCardViewRestaurantGrid"
+                src={restaurant.imagenes}
+                alt={restaurant.nombre}
+              />
+            </div>
+            <section className="lg:col-span-3 flex flex-col gap-y-5">
+            <div
+              className={
+                "hidden lg:block col-end-3 row-start-1 h-cardViewRestaurantGrid w-72"
+              }
+            >
+              <img
+                className="rounded-3xl object-cover  h-cardViewRestaurantGrid w-72"
+                src={restaurant.imagenes}
+                alt={restaurant.nombre}
+              />
+            </div>
+            <div
+              className={
+                "hidden lg:block col-end-3 row-start-2 h-cardViewRestaurantGrid w-72"
+              }
+            >
+              <img
+                className="rounded-3xl object-cover h-cardViewRestaurantGrid w-72"
+                src={'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='}
+                alt={restaurant.nombre}
+              />
+            </div>
+            <div
+              className={
+                "hidden lg:block col-end-3 row-start-3 h-cardViewRestaurantGrid w-72"
+              }
+            >
+              <img
+                className="rounded-3xl object-cover h-cardViewRestaurantGrid w-72"
+                src={'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='}
+                alt={restaurant.nombre}
+              />
+            </div>
+            </section>  
+          </div>
+
+          <section className="grid grid-cols-1 lg:grid-cols-8 gap-6 mb-12">
+              <section className="lg:col-span-5 mb-6 lg:mb-0">
+                <h3 className="font-montserrat font-medium text-3xl lg:text-4xl mb-2">{restaurant.nombre}</h3>
+                <p className="font-inter font-normal text-lg lg:text-xl w-auto lg:w-[44rem] mb-7">{restaurant.descripcion}</p>
+               <div className="flex flex-col gap-y-5">
+                <p className="font-inter font-medium flex items-center gap-x-1"><img src={logo}/>${restaurant.costoReserva}</p>
+                <p className="flex font-inter font-medium items-center"><img src={location}/> {restaurant.direccion}</p>
+               </div>
+              </section>
+              <section className={"lg:col-span-3"}>
+                  <ReservationForm
+                    days={openRestaurant}
+                    restaurant={restaurant._id}
+                    restaurantNombre={restaurant.nombre}
+                    restaurantImagenes={restaurant.imagenes}
+                    turnos={hoursAvailable}
+                    restaurantEmail={restaurant.correo}
+                  />
+              </section>
+          </section>
+
+          {/* Food, characteristics */}
+
+
+          <section className="grid grid-cols-1 lg:grid-cols-12">
+            <section
+              className={
+                "font-inter lg:col-span-4 flex flex-col gap-y-6"
+              }
+            >
+              <div className="">
+                <h1 className="font-bold text-lg ">Tipo de comida</h1>
+                {restaurant.tipoComida?.map((item, index) => (
+                  <li key={index} className={"text-base font-normal list-none text-gray-500"}>
+                    {item}
+                  </li>
+                ))}
+              </div>
+              <div className="">
+                <h1 className="font-bold text-lg ">Caracteristicas</h1>
+                {restaurant.caracteristicasPrinc?.map((item, index) => (
+                  <li key={index} className={"text-base font-normal list-none text-gray-500"}>
+                    {item}
+                  </li>
+                ))}
+              </div>
+              {
+                !restaurant.otrosDetalles.includes('') &&
+                <div className="">
+                <h1 className="font-bold text-lg">Otras caracteristicas</h1>
+                {restaurant.otrosDetalles?.map((item, index) => (
+                  <li key={index} className={"text-base font-normal list-none"}>
+                    {item}
+                  </li>
+                ))}
+              </div>
+              }
+            </section> 
+            <section className="lg:col-span-8 h-full relative z-10">
+               {latitudeRestaurant && longitudeRestaurant && (
                             <div className="w-full h-full mb-5 mx-auto lg:flex justify-center items-center mx-auto">
                                 <MapRestaurant
                                     className="text-black"
@@ -195,10 +213,10 @@ export function Restaurant() {
                                 />
                             </div>
                         )}
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    )
+          
+            </section>
+          </section>   
+      </div> 
+    </>
+  );
 }

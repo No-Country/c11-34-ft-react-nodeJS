@@ -7,11 +7,13 @@ import arrow from '../../assets/arrow-right.svg'
 import done from '../../assets/done.svg'
 import { PhotoField } from "./PhotoField";
 import { useState } from "react";
+import { Ring } from "@uiball/loaders";
 export function ListaMenu() {
 
     const navigate = useNavigate();
 
     const [file, setFile] = useState(null)
+    const [isLoad, setIsLoad] = useState(false)
 
     const descrip = JSON.parse(localStorage.getItem('descriptionRestaurantData')) || {};
     const daysTime = JSON.parse(localStorage.getItem('dataDayRestaurant')) || {};
@@ -45,6 +47,7 @@ export function ListaMenu() {
             horarioOut: daysTime.closeHour,
             tipoComida: JSON.stringify(foodType.tastes),
             mesas: diners.mesas,
+            costoReserva : daysTime.reservationCost,
             sillasPorMesa: diners.sillasPorMesa,
             intervaloMesa: diners.sillasPorMesa,
             descripcion: descrip.description,
@@ -76,14 +79,17 @@ export function ListaMenu() {
         }
 
         try {
+            setIsLoad(true)
             const data = dataNewRestaurant()
             await newRestaurant(data)
-            toast.success('Su restaurante a sido  creado sastifactoriamente!')
+            setIsLoad(false)
+            toast.success('Su restaurante ha sido creado sastifactoriamente!')
             removeDataLocalStorage()
             navigate('/')
         } catch (error) {
             console.error(error)
             toast.error('Algo salio mal')
+            setIsLoad(false)
         }
         
     }
@@ -158,8 +164,12 @@ export function ListaMenu() {
                         Volver atras
                     </Link>
                     <button type='submit'
-                            className='bg-black text-white rounded-full w-full font-inter flex py-2  justify-center hover:scale-105 transition-transform'>
-                        Finalizar
+                            className='bg-black text-white rounded-full p-2.5 font-inter flex w-full justify-center'>
+                        {
+                            isLoad
+                            ? <Ring size={20} lineWeight={5} speed={2} color="white"/>
+                            : 'Finalizar'
+                        }
                     </button>
                 </div>
             </form>

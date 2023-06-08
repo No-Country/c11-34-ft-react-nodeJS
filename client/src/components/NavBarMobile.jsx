@@ -11,9 +11,8 @@ export function NavBarMobile({isOpen}) {
     <div className={`${isOpen ? 'top-0' : '-top-full'} fixed  left-0 w-full h-screen bg-bg-color z-10 flex flex-col justify-between items-center py-24 px-10 transition-all duration-[400ms]`}>
         <div className="flex flex-col gap-8 justify-between w-full font-inter">
             <Link to='/'>Inicio</Link>
-            <Link to='/about'>Acerca de</Link>
-            <Link to='/contact'>Contacto</Link>
             <Link to='/my-perfil' className={`${isAuth ? 'block' :'hidden' }`}>Ver perfil</Link>
+            <Link to='/my-restaurant' className={`${isAuth ? 'block' :'hidden' }`}>Mis restaurantes</Link>
             <Link>Registra tu restaurante</Link>
         </div>
         <div className='w-full'>

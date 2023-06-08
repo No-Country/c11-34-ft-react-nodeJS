@@ -22,7 +22,7 @@ export function Categories() {
   return (
     <Swiper
       loop={true}
-      spaceBetween={50}
+      spaceBetween={10}
       breakpoints={breakpoints}
       slidesPerView={1}
       grabCursor={true}
@@ -35,8 +35,8 @@ export function Categories() {
             className=" flex flex-row items-center justify-center h-10 px-2 gap-1 border border-border-color rounded-full text-xs text-subtitle transition ease-in-out duration-700 hover:bg-bg-hover"
             key={index}
           >
-            <img src={country.image} alt={country.name} />
-            <span className="whitespace-nowrap">{country.name}</span>
+            <img src={country.image} alt={country.name} className='ml-2' />
+            <span className="whitespace-nowrap mr-2">{country.name}</span>
           </button>
         </SwiperSlide>
       ))}

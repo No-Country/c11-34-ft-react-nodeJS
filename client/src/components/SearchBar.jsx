@@ -45,7 +45,7 @@ export function SearchBar() {
   return (
     <form onSubmit={handleSubmit} className="w-full gap-2.5 flex flex-col lg:items-center my-5 lg:flex-row lg:border-2 lg:border-border-color rounded-full lg:py-3.5 lg:px-5 lg:w-4/5 mx-auto">
         <div className="relative flex items-center py-4 rounded-full border border-border-color lg:border-0 lg:grow ">
-            <input value={search} onChange={handleChange} className="flex items-center pl-9 gap-10 relative w-full text-sm text-subtitle lg:w-auto lg:grow outline-0" placeholder="Buscar por ubicacion, restaurante" />
+            <input value={search} onChange={handleChange} className="flex items-center pl-9 gap-10 relative w-full text-sm text-subtitle lg:w-auto lg:grow outline-0" placeholder="Buscar por restaurante" />
             <button type='submit' className='absolute left-2 lg:left-1'>
               <img src={magnifyingGlass} alt="magnifying glass" width={20} height={20} />
             </button>   

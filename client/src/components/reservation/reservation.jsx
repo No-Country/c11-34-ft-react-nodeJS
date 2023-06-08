@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import {getAvailableCostumers, makeReservation} from '../../services/index.js';
 import {toast} from "react-hot-toast";
 
-const ReservationForm = ({days, restaurant, turnos}) => {
+const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, restaurantEmail}) => {
 
     const [actions, setActions] = useState({
         error: false,
@@ -30,6 +30,12 @@ const ReservationForm = ({days, restaurant, turnos}) => {
     const reserveDate = localStorage.getItem('dateReserve');
 
     const emailUser = localStorage.getItem('correo')
+
+    const restoData = {
+        imagenes: restaurantImagenes,
+        nombre: restaurantNombre
+    }
+
     const availableHours = (startHour, finalHour, duration) => {
 
         const stHour = new Date(`2000-01-01T${startHour}:00`);
@@ -64,6 +70,7 @@ const ReservationForm = ({days, restaurant, turnos}) => {
         turnos: availableShifts,
         personas: customers
     }
+    
     localStorage.setItem('editReservation', dataEditing)
     const handleOpenModal = (e) => {
         e.preventDefault();
@@ -117,14 +124,12 @@ console.log(emailUser)
             toast.error(errorMessage);
             setActions({ loading: false, error: true });
         }
-    }
-
 
     return (
-        <div className={'bg-bg-hover mx-auto rounded-lg p-2 w-80 lg:w-reservationForm lg:h-reservationForm'}>
+        <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter'}>
             <form onSubmit={handleSubmit} className={'flex flex-col gap-5'}>
-                <div className='flex flex-row text-xs justify-around bg-white rounded-full'>
-                    <div className='flex flex-row justify-between gap-1 items-center py-2 pl-3'>
+                <div className='flex flex-col gap-y-2 text-xs justify-around bg-white rounded-full'>
+                    <div className='flex border rounded-lg shadow flex-row justify-between gap-1 items-center py-2 pl-3'>
                         <img src={calendar} alt='calendar' width={20} height={20} className='left-2'/>
                         <h3>{reserveDate}</h3>
                         <button onClick={handleOpenModal}>
@@ -139,7 +144,7 @@ console.log(emailUser)
                             </div>
                         )}
                     </div>
-                    <div className={'flex flex row justify-between py-2 px-1 static'}>
+                    <div className={'flex border rounded-lg shadow  justify-between py-2 px-1 static'}>
                         <img src={clock} alt='clock' width={20} height={20} className='left-2'/>
                         <select value={selectedHour} onChange={handleHour} className={'p-2 rounded'}>
                             {availableShifts.map((hora, index) => (
@@ -149,7 +154,7 @@ console.log(emailUser)
                             ))}
                         </select>
                     </div>
-                    <div className={'flex flex row justify-between py-2 px-2 static'}>
+                    <div className={'flex border rounded-lg shadow justify-between py-2 px-2 static'}>
                         <img src={user} alt='user' width={20} height={20} className='left-2'/>
                         <select value={selectedDiners} onChange={handleDiners} className='p-2.5 rounded'>
                             <option value=''>0</option>
@@ -163,7 +168,7 @@ console.log(emailUser)
                 </div>
                 {customers === 0 ? (
                     <button
-                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full font-inter bg-bg-dark text-letter-color'
                         type='submit'
                         disabled
                     >
@@ -171,7 +176,7 @@ console.log(emailUser)
                     </button>
                 ) : (
                     <button
-                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full bg-bg-dark text-letter-color'
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center font-inter items-center rounded-full bg-bg-dark text-letter-color'
                         type='submit'
                     >
                         Reservar
