@@ -125,6 +125,8 @@ export function Restaurant() {
                   <ReservationForm
                     days={openRestaurant}
                     restaurant={restaurant._id}
+                    restaurantNombre={restaurant.nombre}
+                    restaurantImagenes={restaurant.imagenes}
                     turnos={hoursAvailable}
                     restaurantEmail={restaurant.correo}
                   />

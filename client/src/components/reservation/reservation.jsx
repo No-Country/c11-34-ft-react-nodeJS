@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import {getAvailableCostumers, makeReservation} from '../../services/index.js';
 import {toast} from "react-hot-toast";
 
-const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
+const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, restaurantEmail}) => {
     const [actions, setActions] = useState({
         error: false,
         loading: false
@@ -28,6 +28,10 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
     const idRest = restaurant
     const reserveDate = localStorage.getItem('dateReserve');
 
+    const restoData = {
+        imagenes: restaurantImagenes,
+        nombre: restaurantNombre
+    }
 
     const availableHours = (startHour, finalHour, duration) => {
 
@@ -106,8 +110,8 @@ const ReservationForm = ({days, restaurant, turnos, restaurantEmail}) => {
             toast.error(errorMessage)
             setActions({loading: false, error: true})
         }
-
-        navigate(`/reserve`, {state: {restaurant, reservationData}});
+        console.log(`Se esta por ejecutar navigate a reserve`)
+        navigate(`/reserve`, {state: {restoData, reservationData}});
     };
 
     return (
