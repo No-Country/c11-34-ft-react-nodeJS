@@ -31,6 +31,23 @@ export async function editUser(userToUpdate) {
     return data
 }
 
+export async function addFavorite(id, favorite) {
+    const { data } = await axios.put(`${API_URL}/favoritos/${id}`, favorite)
+    return data
+}
+
+
+export async function getFavorite(id, idRest){
+    const { data } = await axios.get(`${API_URL}/favoritos/${id}`)
+
+    if(data) {
+        const isFavorite = data?.fav?.find(fav => fav === idRest)
+        return isFavorite ?? true
+    }
+
+    return false
+}
+
 export async function uploadImage (fileWithEmail) {
 
     const file = new FormData()

@@ -26,6 +26,7 @@ export function useUser() {
 
     return {
         user,
-        load
+        load,
+        setLoad
     }
 }

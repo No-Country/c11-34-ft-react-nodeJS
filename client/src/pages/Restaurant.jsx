@@ -1,20 +1,26 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { NavBarUI, SwiperCard } from "../components";
+import { NavBarUI } from "../components";
 import { getRestaurant, getRestaurantCoords } from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
 import location from "../assets/locationBlack.svg";
-import phone from "../assets/phone.svg";
 import logo from '../assets/logo-mobile.svg'
 import { useParams } from "react-router-dom";
 import { Ring } from "@uiball/loaders";
+import { Favorite } from "../components/Favorite";
+import { useUser } from "../hooks";
 
 export function Restaurant() {
+  const { user } = useUser()
   const [restaurant, setRestaurant] = useState({});
+  const isFavorite = user?.favoritos?.includes(restaurant?._id)
+  const [color, setColor] = useState(isFavorite ? 'f75252' : 'transparent')
   const [load, setLoad] = useState(true)
-  const [latitudeRestaurant, setLatitudeRestaurant] = useState("");
-  const [longitudeRestaurant, setLongitudeRestaurant] = useState("");
+  const [cords, setCords] = useState({
+    lat: '',
+    lon : ''
+  })
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,19 +31,13 @@ export function Restaurant() {
     });
   }, [id]);
 
-  const hoursAvailable = {
-    turnos: restaurant.turnos,
-    hourIn: restaurant.horarioIn,
-    hourOut: restaurant.horarioOut,
-    inteval: restaurant.intervaloMesa,
-  };
-
   useEffect(() => {
 
     getRestaurantCoords(restaurant.direccion)
       .then((res) => {
-        setLatitudeRestaurant(res.lat);
-        setLongitudeRestaurant(res.lon);
+        setLoad(true)
+        setCords(res)
+        setLoad(false)
       })
       .catch((error) => {
          console.error(error);
@@ -45,8 +45,15 @@ export function Restaurant() {
 
   }, [restaurant.direccion]);
 
-  const openRestaurant = restaurant.dias;
+  const hoursAvailable = {
+    turnos: restaurant.turnos,
+    hourIn: restaurant.horarioIn,
+    hourOut: restaurant.horarioOut,
+    inteval: restaurant.intervaloMesa,
+  };
 
+
+  const openRestaurant = restaurant.dias;
 
   if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
 
@@ -118,6 +125,7 @@ export function Restaurant() {
                <div className="flex flex-col gap-y-5">
                 <p className="font-inter font-medium flex items-center gap-x-1"><img src={logo}/>${restaurant.costoReserva}</p>
                 <p className="flex font-inter font-medium items-center"><img src={location}/> {restaurant.direccion}</p>
+                {load ? <Ring size={15} lineWeight={5} speed={2} color="black"/> :  <Favorite restaurant={restaurant} user={user} color={color} setColor={setColor}/>}
                </div>
               </section>
               <section className={"lg:col-span-3"}>
@@ -171,8 +179,8 @@ export function Restaurant() {
             </section> 
             <section className="lg:col-span-8 h-full relative z-10">
                <MapRestaurant
-                  latitude={latitudeRestaurant}
-                  longitude={longitudeRestaurant}
+                  latitude={cords.lat}
+                  longitude={cords.lon}
                   name={restaurant.nombre}
                   height={'w-full'}
                   width={'w-full'}

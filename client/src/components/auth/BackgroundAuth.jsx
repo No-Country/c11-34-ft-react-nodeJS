@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import {Navigation, Thumbs, Pagination} from 'swiper'
+import {Navigation, Thumbs, Pagination, Autoplay} from 'swiper'
 import { SwiperCard } from './SwiperCard'
 import { swiperCards } from '../../utils'
 
@@ -11,6 +11,7 @@ import arrowRight from '../../assets/arrow-right.svg'
 import 'swiper/css'
 
 export function BackgroundAuth() {
+  
   return (
     <section className="hidden lg:col-span-5 dt:col-span-7 w-full lg:h-[92vh] dt:h-[94vh]  overflow-hidden rounded-3xl  lg:flex justify-between items-end  relative ">
       <Swiper
@@ -19,8 +20,12 @@ export function BackgroundAuth() {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         }}
+        autoplay={{
+          delay: 20000,
+          disableOnInteraction: false,
+        }}
         grabCursor={true}
-        modules={[Navigation, Thumbs, Pagination]}
+        modules={[Navigation, Thumbs, Pagination, Autoplay]}
         className=''
       >
       {
