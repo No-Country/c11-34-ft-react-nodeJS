@@ -118,7 +118,6 @@ export function Restaurant() {
                <div className="flex flex-col gap-y-5">
                 <p className="font-inter font-medium flex items-center gap-x-1"><img src={logo}/>${restaurant.costoReserva}</p>
                 <p className="flex font-inter font-medium items-center"><img src={location}/> {restaurant.direccion}</p>
-                <p className="font-inter font-medium flex items-center gap-x-1"> <img src={phone} />{restaurant.telefono}</p>
                </div>
               </section>
               <section className={"lg:col-span-3"}>
