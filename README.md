@@ -17,7 +17,7 @@ Morfi es una plataforma web diseñada para facilitar y agilizar el proceso de re
 
 ## Backend
 - [Gianfranco Márquez](https://github.com/elkake) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/gianfranco-marquez/)
-- [Santiago Rodriguez](https://github.com/santy6221)
+- [Santiago Rodriguez](https://github.com/santy6221) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/santiago-rodriguez-a6b090215/)
 
 # Tecnologías y herramientas
 
