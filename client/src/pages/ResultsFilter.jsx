@@ -23,14 +23,13 @@ export function ResultsFilter() {
                 <h3 className="mb-2.5 font-montserrat font-bold text-xl">Cocina</h3>
                 
                 <h3 className="mt-6 mb-2.5 font-montserrat font-bold text-xl">Rango de precios</h3>
-               
-                {/* Section Price Range */}
-                <input  type="range" value="50" className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-subtitle mb-6" />
-                <div className="flex flex-col lg:flex-row justify-between items-center">
-                    <p className="font-semibold font-inter text-base">$-$$</p>
-                    <p className="font-semibold text-subtitle font-inter">Promedio: <span className="text-black">$500</span></p>
-                </div>
 
+          {/* Section Price Range */}
+                <input  type="range" value="50" className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-subtitle mb-6" />
+          <div className="flex flex-col lg:flex-row justify-between items-center">
+            <p className="font-semibold font-inter text-base">$-$$</p>
+                    <p className="font-semibold text-subtitle font-inter">Promedio: <span className="text-black">$500</span></p>
+          </div>
 
             </section>
             <section className="lg:col-span-6 h-full  relative z-10">
@@ -51,10 +50,10 @@ export function ResultsFilter() {
                }
             </section>
 
-            {/* Result Section */}
-            <section className="lg:col-span-3 flex flex-col gap-y-4 ">
+        {/* Result Section */}
+        <section className="lg:col-span-3 flex flex-col gap-y-4 ">
                 <h3 className="font-montserrat font-semibold lg:font-medium text-xl">{restaurantsSearched.length  } resultados</h3>
-                <section className="flex flex-col gap-y-3 overflow-y-auto items-center lg:items-start h-auto lg:h-screen pb-24 lg:pb-56 dt:pb-80 lg:pr-2.5">
+          <section className="flex flex-col gap-y-3 overflow-y-auto items-center lg:items-start h-auto lg:h-screen pb-24 lg:pb-56 dt:pb-80 lg:pr-2.5">
 
                     {
                         !restaurantsSearched.length && !load &&
@@ -63,19 +62,19 @@ export function ResultsFilter() {
 
                     {
                         restaurantsSearched?.map(card => (
-                            <article key={card._id} className="flex flex-col gap-y-2  w-full">
-                                <Link to={`/restaurant/${card._id}`}>
+              <article key={card._id} className="flex flex-col gap-y-2  w-full">
+                <Link to={`/restaurant/${card._id}`}>
                                     <img src={card.imagenes[0]} alt={card.nombre} className="rounded-xl w-full h-72 object-cover"/>
-                                </Link>
+                </Link>
                                 <h3 className="font-montserrat font-medium text-xl">{card.nombre}</h3>
                                 <p className="text-subtitle flex gap-x-1 items-center"><img src={locationSvg}/> <Distance longitudeRestaurant={card?.cords?.lat} latitudDestiRestaurant={card?.cords?.lon}/> </p>
                                 <p className="font-inter font-semibold ">${card.costoReserva}</p>
-                            </article>
+              </article>
                         ))
                     }
-                </section>
-            </section>
+          </section>
         </section>
+      </section>
     </main>
   )
 }
