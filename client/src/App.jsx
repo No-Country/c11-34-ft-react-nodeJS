@@ -13,6 +13,7 @@ import {
     Home,
     Login,
     MyPerfil,
+    MyReserves,
     MyRestaurant,
     Register,
     ReserveDone,
@@ -22,7 +23,6 @@ import {
 } from "./pages";
 import {AuthLayout, CreateRestaurantLayout} from "./layouts";
 import {Toaster} from "react-hot-toast";
-import {MyReservationList} from "./components/index.js";
 
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
                 <Route path="/tastes" element={<Tastes/>}/>
                 <Route path="/restaurant/:id" element={<Restaurant/>}/>
                 <Route path="/my-perfil" element={<MyPerfil/>}/>
-                <Route path="/my-reservations" element={<MyReservationList/>}/>
+                <Route path="/my-reserva" element={<MyReserves/>}/>
                 <Route path="/result" element={<ResultsFilter/>}/>
                 <Route path="/reserve" element={<ReserveDone/>}/>
             </Routes>

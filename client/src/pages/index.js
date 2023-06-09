@@ -2,6 +2,7 @@ export * from './Favorites';
 export * from './Home';
 export * from './Login';
 export * from './MyPerfil';
+export * from './MyReserves';
 export * from './MyRestaurant';
 export * from './Register';
 export * from './ReserveDone';
