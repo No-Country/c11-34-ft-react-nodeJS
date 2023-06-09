@@ -35,7 +35,7 @@ export function NavBar({
 
   return (
     <>
-      <header className="sticky top-0 z-20 bg-bg-color w-full justify-between flex items-center h-20 px-5 lg:px-24">
+      <header className="sticky top-0 z-20 bg-bg-color w-full justify-between flex items-center py-2 px-5 lg:px-24">
           <div className='hidden lg:block'>
             <Link to='/' ><img src={logoDesktop} alt='logo-header' className='w-20 h-8  lg:mb-0 dt:mb-6 '/></Link>
           </div>

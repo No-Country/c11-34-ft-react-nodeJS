@@ -9,12 +9,30 @@ import {toast} from "react-hot-toast";
 import { useUser } from "../hooks";
 import arrowLeft from '../assets/caret-left-simple.svg'
 import arrowRight from '../assets/caret-right-simple.svg'
+import { Ring } from "@uiball/loaders";
 
 export function Tastes() {
     const [selectedCategories, setSelectedCategories] = useState([]);
 
     const navigate = useNavigate()
     const {load, user} = useUser()
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768); // Establece isMobile en true si el ancho de la ventana es menor a 768px
+      };
+    
+      handleResize(); // Llama a la función al cargar la página
+    
+      window.addEventListener('resize', handleResize); // Agrega un event listener para manejar cambios de tamaño de ventana
+    
+      return () => {
+        window.removeEventListener('resize', handleResize); // Remueve el event listener al desmontar el componente
+      };
+    }, []);
+
 
     useEffect(() => {
      if(!load && !Object.values(user).length) navigate('/auth')
@@ -46,83 +64,84 @@ export function Tastes() {
         }
     }
 
+    
+    
+    if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
+    
     const breakpoints = {
         768: {
-            slidesPerView: 3,
+            slidesPerView: 6,
         },
-        1024: {
-            slidesPerView: 4,
-        },
-        1440: {
-            slidesPerView: 5,
-        }
+        
     }
+
     return (
+        <>
+        <NavBarUI/>
+        <section className="pb-28  lg:pb-6 dt:pb-0 ">
 
-        <section className="pb-28  lg:pb-6 dt:pb-0">
 
-            <NavBarUI/>
-
-            <div className="flex flex-col gap-y-4 lg:gap-y-6 dt:gap-y-12 mb-12 pt-12">
-                <h2 className="font-inter text-3xl  lg:text-5xl dt:text-7xl text-center font-medium">¿Cuales son tus
-                    gustos culinarios? </h2>
-                <p className="font-inter text-base lg:text-xl  dt:text-2xl font-bold w-auto lg:w-[86vw] text-center  mx-auto">Para
+            <div className="flex flex-col gap-y-4 lg:gap-y-6 dt:gap-y-8 mb-4 pt-12">
+                <h2 className="font-inter text-2xl  lg:text-5xl dt:text-6xl text-center font-bold lg:font-medium">¿Cuales son tus preferencias culinarias? </h2>
+                <p className="hidden lg:block font-inter text-base lg:text-xl  dt:text-2xl font-bold w-auto lg:w-[86vw] text-center  mx-auto">Para
                     ofrecerte recomendaciones personalizadas, cuéntanos tus comidas favoritas y si tienes alguna
                     restricción alimentaria o preferencia especial. </p>
             </div>
-            <div className={'pb-2'}>
-                <form onSubmit={handleSubmit} className="flex justify-around w-full mb-4">
+            <div className={'mb-5'}>
+                <form onSubmit={handleSubmit} className="flex justify-between md:px-16 w-full ">
                     <div className={'flex hover:bg-gray-200 transition-all p-1.5 rounded-xl'}>
                         <img className={'w-4'} src={arrowLeft} alt={'arrow Left'}/>
-                        <Link to={"/"} className="font-inter font-medium">Volver</Link>
+                        <Link to={"/"} className="font-inter font-bold">Volver</Link>
                     </div>
                     <div className={'flex hover:bg-gray-200 transition-all p-1.5 rounded-xl'}>
-                        <button type="submit" className="font-inter font-medium ">Siguiente</button>
+                        <button type="submit" className="font-inter font-bold ">Siguiente</button>
                         <img className={'w-4'} src={arrowRight} alt={'arrow Right'}/>
                     </div>
                 </form>
             </div>
-            {window.innerWidth < 767 ?
-                <div className=" mx-auto grid grid-cols-2 grid-rows-6 gap-x-px h-gridTastesMobile w-gridTastesMobile ">
-                    {TastesList.map(item => (
-                        <div
-                            key={item.id}
-                            className={`${selectedCategories.includes(item.name) ? 'selected ' : 'grayscale'}`}
-                            onClick={() => handleCategoryChange(item.name)}
-                        >
-                            <div className={'h-cardMobileTastes w-cardMobileTastes'}>
+            {
+                isMobile && 
+                <section className="grid grid-cols-2 gap-2 px-4">
+                    {
+                        TastesList.map(taste => (
+                            <div
+                                key={taste.id}
+                                onClick={() => handleCategoryChange(taste.name)}
+                                >
                                 <CardTastes
-                                    height={'h-cardMobileImg'}
-                                    width={'w-cardMobileImg'}
-                                    name={item.name}
-                                    img={item.img}/>
+                                    isSelected={selectedCategories.includes(taste.name)}
+                                    name={taste.name}
+                                    img={taste.img}
+                                />
                             </div>
-                        </div>
-                    ))}
-                </div> :
-                <div className={'mx-5 gap-5 gb-violet-200 h-4/5'}>
+                        ))
+                    }
+                </section>    
+                
+            }
+
+            {
+
+                !isMobile && 
+                <section className={'ml-20'}>
                     <Swiper
                         loop={true}
-                        navigation={{
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        }}
                         spaceBetween={10}
                         breakpoints={breakpoints}
                         grabCursor={true}
                         modules={[Navigation, Thumbs, Pagination]}
                         pagination={{el: '.pagination', clickable: true}}
-                        className="h-heightTastesCard w-[70vw] gap-2 pb-1.5"
+                        className="h-heightTastesCard  gap-2 pb-1.5"
                     >
                         {
                             TastesList.map(item => (
                                 <SwiperSlide key={item.id} spaceBetween={20}>
                                     <div
                                         key={item.id}
-                                        className={`${selectedCategories.includes(item.name) ? 'selected ' : 'grayscale'}`}
                                         onClick={() => handleCategoryChange(item.name)}
                                     >
                                         <CardTastes
+                                            isSelected={selectedCategories.includes(item.name)}
                                             name={item.name}
                                             img={item.img}
                                             height={'h-cardImgSwiperTastes'}/>
@@ -131,16 +150,11 @@ export function Tastes() {
                             ))
                         }
                     </Swiper>
-                    <div className=' flex justify-center gap-x-12 pt-8 lg:pt-16 dt:pt-28'>
-                        <button className='swiper-button-prev'>
-                            <img src={arrowLeft} alt={'arrow'} />
-                        </button>
-                        <button className='swiper-button-next'>
-                            <img src={arrowRight} alt={'arrow'} />
-                        </button>
-                    </div>
-                </div>
+                 
+                </section>
+
             }
         </section>
+        </>
     )
 }

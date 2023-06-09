@@ -42,15 +42,17 @@ export function MyRestaurant() {
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-8 w-full">
           {
             restaurants.map(res => (
-              <article key={res._id} className="flex flex-col gap-y-2 relative">
+              <article key={res._id} className="flex flex-col gap-y-2 relative border shadow overflow-hidden rounded-lg">
                 <img src={res.imagenes[0]} className="w-56 h-56 rounded-lg object-cover" alt={res.nombre}/>
-                <h3 className="text-base font-medium">{res.nombre}</h3>
+               <div className="px-4 flex flex-col gap-y-1.5">
+               <h3 className="text-base font-medium">{res.nombre}</h3>
                 <p className="text-sm font-inter text-black-light">Reserva: <span className="text-subtitle font-medium">${res.costoReserva}</span></p>
                 <p className="text-sm font-inter text-black-light">Mesas: <span className="text-subtitle font-medium">{res.mesas}</span></p>
-                <p className="text-sm font-inter text-black-light">Turnos: <span className="text-subtitle font-medium">{res.turnos}</span></p>
+        
                 <p className="text-sm font-inter text-black-light">Telefono: <span className="text-subtitle font-medium">{res.telefono}</span></p>
                 <p className="text-sm font-inter text-black-light">Correo: <span className="text-subtitle font-medium">{res.correo}</span></p>
-                <Link to={`/restaurant/${res._id}`} referrerPolicy="no-referrer" className="text-sm font-inter bg-black text-white p-1.5">Ver mas detalles</Link>
+               </div>
+                <Link to={`/restaurant/${res._id}`} referrerPolicy="no-referrer" className="text-sm font-inter bg-black text-white p-1.5 rounded-lg px-2 hover:scale-[1.03] transition-transform">Ver mas detalles</Link>
               </article>
             ))
           }

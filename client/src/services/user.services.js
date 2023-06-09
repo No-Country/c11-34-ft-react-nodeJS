@@ -37,15 +37,9 @@ export async function addFavorite(id, favorite) {
 }
 
 
-export async function getFavorite(id, idRest){
+export async function getFavorite(id){
     const { data } = await axios.get(`${API_URL}/favoritos/${id}`)
-
-    if(data) {
-        const isFavorite = data?.fav?.find(fav => fav === idRest)
-        return isFavorite ?? true
-    }
-
-    return false
+    return data
 }
 
 export async function uploadImage (fileWithEmail) {

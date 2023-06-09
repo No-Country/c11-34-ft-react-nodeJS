@@ -10,7 +10,7 @@ const iconMarker = new L.Icon({
 
 })
 
-const MapRestaurant = ({latitude, longitude, name, height, width}) => {
+const MapRestaurant = ({latitude, longitude, restaurant, height, width}) => {
     const position = [latitude, longitude];
     return (
         <MapContainer className={`${height} ${width} mx-auto`} center={position} zoom={16} scrollWheelZoom={false}>
@@ -19,8 +19,8 @@ const MapRestaurant = ({latitude, longitude, name, height, width}) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Marker position={position} marker={iconMarker}>
-                <Popup>
-                    {name}
+                <Popup >
+                    <img src={restaurant?.imagenes} alt={restaurant?.nombre} className='w-28  rounded'/>
                 </Popup>
             </Marker>
         </MapContainer>
