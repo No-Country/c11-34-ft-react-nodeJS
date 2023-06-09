@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { editUser, uploadImage } from "../../services"
 import { toast } from "react-hot-toast"
 import { Ring } from "@uiball/loaders"
@@ -10,6 +10,8 @@ export function EditPerfiForm({user}) {
     nombre: user.nombre,
     correo : user.correo
   })  
+
+  const navigate = useNavigate('/')
 
   const [isLoad, setIsLoad] = useState(false)
 
@@ -32,6 +34,7 @@ export function EditPerfiForm({user}) {
      }
      setIsLoad(false)
      toast.success('Su usuario ha sido actualizado correctamente')
+     navigate('/')
     } catch (error) {
       console.error(error)
       toast.error('Algo salio mal')

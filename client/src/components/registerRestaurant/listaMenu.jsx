@@ -89,8 +89,8 @@ export function ListaMenu() {
             navigate('/')
         } catch (error) {
             console.error(error)
-            console.log(data)
             toast.error('Algo salio mal')
+            removeDataLocalStorage()
             setIsLoad(false)
         }
         

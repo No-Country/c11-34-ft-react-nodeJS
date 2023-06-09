@@ -1,6 +1,5 @@
 import {Distance, NavBarUI, SearchBar} from "../components";
 import MapRestaurant from "../components/map/map";
-import { galleryCards } from "../utils";
 import locationSvg from '../assets/location.svg'
 import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
@@ -8,11 +7,12 @@ import { Ring } from "@uiball/loaders";
 export function ResultsFilter() {
 
 
-  const randomRestaurant = galleryCards[0]
+  const {restaurantsSearched, querySearch, load, loadRest} = useSearch()
 
-  const {restaurantsSearched, querySearch, load} = useSearch()
+  const firstRest = restaurantsSearched[0]
 
-  if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
+  
+  if(load || loadRest) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
   return (
     <main className="">
         {/* TODO : Modularizar secciones, ya que cada uno tendra logica */}
@@ -31,17 +31,24 @@ export function ResultsFilter() {
                     <p className="font-semibold text-subtitle font-inter">Promedio: <span className="text-black">$500</span></p>
           </div>
 
+            </section>
+            <section className="lg:col-span-6 h-full  relative z-10">
+               {
 
-        </section>
-        <section className="lg:col-span-6 h-full bg-green-200 relative z-10">
-          <MapRestaurant
-            latitude={randomRestaurant.latitude}
-            longitude={randomRestaurant.longitude}
-            name={randomRestaurant.title}
-            height={"h-full"}
-            width={"w-full"}
-          />
-        </section>
+                !restaurantsSearched.length 
+                ? <div className="flex flex-col items-center pt-4 gap-y-4 "><b4 className="font-montserrat font-medium text-2xl">No hay nada que mostrar</b4>
+                <p className="font-inter text-subtitle">Prueba con otra busqueda</p>
+                </div>
+                :
+                <MapRestaurant 
+                    latitude={firstRest?.cords?.lat}
+                    longitude={firstRest?.cords?.lon}
+                    restaurant={firstRest}
+                    height={"h-full"}
+                    width={"w-full"}
+                />
+               }
+            </section>
 
         {/* Result Section */}
         <section className="lg:col-span-3 flex flex-col gap-y-4 ">
@@ -60,7 +67,7 @@ export function ResultsFilter() {
                                     <img src={card.imagenes[0]} alt={card.nombre} className="rounded-xl w-full h-72 object-cover"/>
                 </Link>
                                 <h3 className="font-montserrat font-medium text-xl">{card.nombre}</h3>
-                                <p className="text-subtitle flex gap-x-1 items-center"><img src={locationSvg}/> <Distance longitudeRestaurant={card.longitude} latitudDestiRestaurant={card.latitude}/> </p>
+                                <p className="text-subtitle flex gap-x-1 items-center"><img src={locationSvg}/> <Distance longitudeRestaurant={card?.cords?.lat} latitudDestiRestaurant={card?.cords?.lon}/> </p>
                                 <p className="font-inter font-semibold ">${card.costoReserva}</p>
               </article>
                         ))
