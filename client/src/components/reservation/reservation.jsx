@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import {getAvailableCustomers, makeReservation} from '../../services/index.js';
 import {toast} from "react-hot-toast";
 
-const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, restaurantEmail}) => {
+const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, userEmail}) => {
     const [actions, setActions] = useState({
         error: false,
         loading: false
@@ -28,6 +28,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     const idRest = restaurant
     const reserveDate = localStorage.getItem('dateReserve');
 
+    console.log(reserveDate)
     const restoData = {
         imagenes: restaurantImagenes,
         nombre: restaurantNombre
@@ -93,27 +94,30 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
 
     localStorage.setItem('reservationHour', hour)
 
-    const handleSubmit = (e) => {
+
+    async function handleSubmit(e){
         e.preventDefault();
         const reservationData = {
             id_restaurante: idRest,
-            correoComensal: restaurantEmail,
+            correoComensal: userEmail,
             turno: parseInt(selectedHour),
             comensales: parseInt(selectedDiners),
             fecha: reserveDate
         };
         try {
             setActions({...actions, loading: true})
-            makeReservation(reservationData)
-            navigate('/')
+            await makeReservation(reservationData)
             setActions({loading: false, error: false})
+            toast.success('Su reserva fue generada correctamente')
+            
         } catch (e) {
-            const errorMessage = 'Error al crear el restaurante'
+            const errorMessage = 'Error al generar la reserva'
             toast.error(errorMessage)
             setActions({loading: false, error: true})
         }
         console.log(`Se esta por ejecutar navigate a reserve`)
         navigate(`/reserve`, {state: {restoData, reservationData}});
+        
     };
 
     return (

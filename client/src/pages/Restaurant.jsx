@@ -24,7 +24,6 @@ export function Restaurant() {
     lat: '',
     lon : ''
   })
-
   const hoursAvailable = {
     turnos: restaurant?.turnos,
     hourIn: restaurant?.horarioIn,
@@ -90,7 +89,6 @@ export function Restaurant() {
     }, [breakpoints.large, breakpoints.medium, breakpoints.small, breakpoints.xlarge]);
 
   const openRestaurant = restaurant?.dias;
-
   if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
 
   return (
@@ -203,7 +201,7 @@ export function Restaurant() {
                       restaurantNombre={restaurant?.nombre}
                       restaurantImagenes={restaurant?.imagenes}
                       turnos={hoursAvailable}
-                      restaurantEmail={restaurant?.correo}
+                      userEmail={user?.correo}
                     />
                     <p className="flex font-inter font-medium items-center underline">{restaurant?.direccion}</p>
                 </section>
