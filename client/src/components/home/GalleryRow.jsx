@@ -44,7 +44,7 @@ export function GalleryRow({cards, title, isLoad}) {
                         {
                             cards.map(item => (
                                 <SwiperSlide key={item._id}>
-                                    <CardRestoHome {...item} />
+                                    <CardRestoHome rest={item}/>
                                 </SwiperSlide>
                             ))
                         }

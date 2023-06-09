@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function Distance({ latitudDestiRestaurant, longitudeRestaurant }) {
     const [distance, setDistance] = useState(null);

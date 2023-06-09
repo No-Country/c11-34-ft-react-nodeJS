@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {
     CaracteristicsRestaurant,
     DescriptionRestaurantData,
@@ -53,9 +53,10 @@ function App() {
                 <Route path="/my-reserva" element={<MyReserves/>}/>
                 <Route path="/result" element={<ResultsFilter/>}/>
                 <Route path="/reserve" element={<ReserveDone/>}/>
+                <Route path="*" element={<Navigate to='/'/>}/>
             </Routes>
             <Toaster
-                toastOptions={
+                toastOptions={ 
                     {
                         duration: 2000
                     }

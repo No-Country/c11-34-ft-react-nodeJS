@@ -1,5 +1,5 @@
 import { Ring } from "@uiball/loaders"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useUser } from "../hooks/useUser"
 import { getRestaurant } from "../services"
 import { NavBarUI } from "../components"
@@ -10,26 +10,47 @@ export function Favorites() {
   const {load, user, setLoad} = useUser()
   const [favRestaurants, setFavRestaurants] = useState([])
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoad(true)
-        const favs = user?.favoritos
-        favs?.forEach(async (fav) => {
-          const res = await getRestaurant(fav)
-          setFavRestaurants(prevRestaurants => [...prevRestaurants, res]);
-        })
 
-      } catch (error) {
-        console.log(error)
+  const getFavorites = useCallback(async () => {
+    try {
+      setLoad(true)
+      const favs = user?.favoritos;
+      if (favs) {
+        const promises = favs.map(async (fav) => {
+          const res = await getRestaurant(fav);
+          return res;
+        });
+        const favRestaurants = await Promise.all(promises);
+        setFavRestaurants(favRestaurants);
       }
       setLoad(false)
-    }) ()
+    } catch (error) {
+      console.log(error)
+      setLoad(false)
 
+    }
   }, [setLoad, user?.favoritos])
+
+  useEffect(() => {
+    getFavorites()
+  }, [getFavorites])
+
 
 
   if(load) return <div className="h-[90vh] flex justify-center items-center w-full"><Ring size={40} lineWeight={5} speed={2} color="black"/></div>
+
+
+  if(!load && !favRestaurants.length) return (
+    <>
+      <NavBarUI />
+      <main className="font-inter flex h-[80vh] flex-col items-center justify-center">
+        <h2 className="text-3xl font-medium text-black font-montserrat mb-2">{user.nombre} <span className="text-black-light">usted no tiene favoritos</span></h2>
+        <Link to='/' className="mb-4 block text-gray-400 text-sm hover:text-gray-600 hover:underline transition-all">Elije tus restaurantes preferidos</Link>
+      </main>
+    </>
+  )
+
+
   return (
     <>
       <NavBarUI />

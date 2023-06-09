@@ -3,8 +3,7 @@ import { useState } from "react";
 import { getRestaurants } from "../services";
 
 export function useRestaurants() {
-
-
+    
     const [restaurants, setRestaurants] = useState([])
     const [actions , setActions] = useState({
         error : '',
@@ -21,12 +20,17 @@ export function useRestaurants() {
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    
+    const onLoad = (typeLoad) => {
+        setActions({...actions, load : typeLoad})
+    }
 
 
 
     return {
         restaurants,
         error : actions.error,
-        load : actions.load
+        load : actions.load,
+        onLoad : onLoad
     }
 }

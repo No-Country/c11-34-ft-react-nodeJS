@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
 import {NavBarUI} from "../components";
-import {getRestaurant, getRestaurantCoords} from "../services";
+import {getRestaurant} from "../services";
 import ReservationForm from "../components/reservation/reservation.jsx";
 import MapRestaurant from "../components/map/map.jsx";
 import {Link, useParams} from "react-router-dom";
@@ -20,10 +20,6 @@ export function Restaurant() {
         large: 992,
         xlarge: 1024
     })
-  const [cords, setCords] = useState({
-    lat: '',
-    lon : ''
-  })
 
   const hoursAvailable = {
     turnos: restaurant?.turnos,
@@ -47,22 +43,6 @@ export function Restaurant() {
       setLoad(false)
     })()
   }, [id]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoad(true)
-        const cords = await getRestaurantCoords(restaurant?.direccion)
-        setCords(cords)
-        setLoad(false)
-     
-      } catch (error) {
-        console.log(error)
-        setLoad(false)
-      }
-    })()
-
-  }, [restaurant?.direccion]);
 
   
     useEffect(() => {
@@ -212,8 +192,8 @@ export function Restaurant() {
           <div className="w-full h-full lg:flex justify-center items-center mx-auto">
               <MapRestaurant
                    className="text-black"
-                  latitude={cords.lat}
-                  longitude={cords.lon}
+                  latitude={restaurant?.cords?.lat}
+                  longitude={restaurant?.cords?.lon}
                   restaurant={restaurant}
                   height={breakpoints.height}
                   width={breakpoints.width}
