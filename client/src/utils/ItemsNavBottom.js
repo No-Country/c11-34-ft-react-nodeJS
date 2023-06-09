@@ -8,12 +8,12 @@ import search from '../assets/search.svg'
 export const itemsNavBottom = [{
     name: 'Explorar',
     image: magnifyingGlass,
-    href : '/result'
+    href : '/result?search='
 },
 {
     name: 'Favoritos',
     image: heart,
-    href : '/favourites'
+    href : '/favorites'
 },
 {
     name: 'Reservar',

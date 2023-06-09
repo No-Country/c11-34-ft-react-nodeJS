@@ -6,6 +6,7 @@ export function useSearch() {
     const { restaurants, load } = useRestaurants()
     const query = new URLSearchParams(useLocation().search)
     const querySearch = query.get('search')
-    const restaurantsSearched = restaurants?.restt?.filter(gallery => gallery.nombre.toLowerCase().includes(querySearch.toLowerCase()))
+    const restaurantsSearched = restaurants?.filter(gallery => gallery.nombre.toLowerCase().includes(querySearch.toLowerCase()))
+
     return {restaurantsSearched, querySearch, load}
 }
