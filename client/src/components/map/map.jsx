@@ -1,5 +1,4 @@
 // eslint-disable-next-line no-unused-vars
-import React, {useRef} from "react";
 import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -12,7 +11,7 @@ const iconMarker = new L.Icon({
 })
 
 const MapRestaurant = ({latitude, longitude, name, height, width}) => {
-    const position = {lat: latitude, lng: longitude};
+    const position = [latitude, longitude];
     return (
         <MapContainer className={`${height} ${width} mx-auto`} center={position} zoom={16} scrollWheelZoom={false}>
             <TileLayer

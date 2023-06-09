@@ -77,10 +77,11 @@ export function ListaMenu() {
             toast.error('Todos los campos deben estar completos')
             return
         }
-
+        
+        const data = dataNewRestaurant()
+        
         try {
             setIsLoad(true)
-            const data = dataNewRestaurant()
             await newRestaurant(data)
             setIsLoad(false)
             toast.success('Su restaurante ha sido creado sastifactoriamente!')
@@ -88,6 +89,7 @@ export function ListaMenu() {
             navigate('/')
         } catch (error) {
             console.error(error)
+            console.log(data)
             toast.error('Algo salio mal')
             setIsLoad(false)
         }
