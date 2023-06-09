@@ -18,7 +18,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     const [showCalendar, setShowCalendar] = useState(false);
     const [hideButtonImage, setHideButtonImage] = useState(false);
     const [selectedHour, setSelectedHour] = useState();
-    const [selectedDiners, setSelectedDiners] = useState();
+    const [selectedDiners, setSelectedDiners] = useState(0);
     const [selectedDate, setSelectedDate] = useState(null);
     const [customers, setCustomers] = useState();
 
@@ -74,7 +74,9 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     };
 
     const handleDiners = (e) => {
+        console.log(e.target.value)
         setSelectedDiners(e.target.value);
+
     };
 
     const handleHour = (e) => {
@@ -146,7 +148,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
                     <div className={'flex border rounded-lg shadow justify-between py-2 px-2 static'}>
                         <img src={user} alt='user' width={20} height={20} className='left-2'/>
                         <select value={selectedDiners} onChange={handleDiners} className='p-2.5 rounded'>
-                            <option value=''>0</option>
+                            {/* <option value=''>0</option> */}
                             {Array.from({length: customers}).map((_, index) => (
                                 <option key={index} value={index.toString()}>
                                     {index}
@@ -155,10 +157,10 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
                         </select>
                     </div>
                 </div>
-                {customers === 0 ? (
+                {selectedDiners == 0 ? (
                     <button
                         className='whitespace-nowrap h-12 text-center text-sm flex justify-center items-center rounded-full font-inter bg-bg-dark text-letter-color'
-                        type='submit'
+                        type='button'
                         disabled
                     >
                         Reservar
