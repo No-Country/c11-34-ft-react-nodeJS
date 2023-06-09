@@ -20,6 +20,7 @@ export async function getRestaurant(id) {
 }
 
 export async function newRestaurant(newRestaurantData) {
+    console.log(newRestaurantData)
     const correo = localStorage.getItem('correo')
     const toForm = new FormData()
     for (const key in newRestaurantData) {

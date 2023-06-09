@@ -53,10 +53,9 @@ export function NavBar({
                     </Link> 
                   }
               </button>
-              <div className={`${!isOpenDrop && 'hidden'}  z-40 absolute transition-opacity -bottom-48 right-2 text-black bg-white shadow-md flex flex-col gap-y-1 text-sm font-inter whitespace-nowrap border rounded-lg after:w-0 after:h-0 after:border-r-8 after:border-r-transparent after:border-t-8 after:border-t-transparent after:border-l-8 after:border-l-transparent after:border-b-8 after:border-b-gray-300 after:absolute after:-top-4 after:-translate-x-1/2 after:left-1/2 `}>
-                <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Ver perfil</Link>
+              <div className={`${!isOpenDrop && 'hidden'}  z-40 absolute transition-opacity -bottom-40 right-2 text-black bg-white shadow-md flex flex-col gap-y-1 text-sm font-inter whitespace-nowrap border rounded-lg after:w-0 after:h-0 after:border-r-8 after:border-r-transparent after:border-t-8 after:border-t-transparent after:border-l-8 after:border-l-transparent after:border-b-8 after:border-b-gray-300 after:absolute after:-top-4 after:-translate-x-1/2 after:left-1/2 `}>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Favoritos</Link>
-                <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-reservations'>Reservas</Link>
+                <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-reserva'>Mis Reservas</Link>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-restaurant'>Mis Restaurantes</Link>
                 <button className='flex items-center gap-x-2  hover:bg-gray-300/50 transition-all py-1.5 px-4 font-medium mr-4' onClick={logoutUser}>Cerrar sesión <img src={logoutIcon} alt='icon logout' className='w-4 h-4'/></button>
               </div>
