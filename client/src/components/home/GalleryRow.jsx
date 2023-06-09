@@ -26,7 +26,7 @@ export function GalleryRow({cards, title, isLoad}) {
 
     return (
 
-        <div>
+        <div className='select-none'>
             <div className="px-5 font-black lg:text-xl">{title}</div>
 
             <div className="px-5">
