@@ -49,8 +49,8 @@ export function NavBar({
                   <img src={isOpenNavbar ? x : hamburger} alt='hamburger-icon' className='w-8 h-6 lg:w-6 lg:h-6 icon-color'/>
                 </button>
 
-              <div className='relative'>
-                <button onClick={handleClickPerfil}  className="hidden lg:block">
+              <div className='relative hidden lg:block'>
+                <button onClick={handleClickPerfil} className='flex items-center' >
                       {
                         load  ? <Ring size={25} lineWeight={5} speed={2} color="black"/>
                         :  

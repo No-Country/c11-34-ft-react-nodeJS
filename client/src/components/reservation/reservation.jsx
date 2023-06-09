@@ -124,14 +124,14 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
         <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter mb-4'}>
             <form onSubmit={handleSubmit} className={'flex flex-col gap-5'}>
                 <div className='flex flex-col gap-y-2 text-xs justify-around bg-white rounded-full'>
-                    <div className='flex border rounded-lg shadow flex-row justify-between gap-1 items-center py-2 pl-3'>
+                    <div className='relative flex border rounded-lg shadow flex-row justify-between gap-1 items-center py-2 pl-3 '>
                         <img src={calendar} alt='calendar' width={20} height={20} className='left-2'/>
                         <h3>{reserveDate}</h3>
                         <button onClick={handleOpenModal}>
                             {!hideButtonImage && <img src={arrowDown} width={24} height={24} alt="Arrow Down"/>}
                         </button>
                         {showCalendar && (
-                            <div className="modal fixed left-5 top-60 lg:w-72right-6">
+                            <div className="modal absolute lg:w-72 lg:right-72 lg:top-0">
                                 <div className="modal-overlay" onClick={handleCloseModal}></div>
                                 <div className=" relative  lg:mx-5 modal-content ">
                                     <ReservationCalendar openDays={days} closeModal={handleCloseModal}/>
