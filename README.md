@@ -6,11 +6,11 @@ Morfi es una plataforma web diseñada para facilitar y agilizar el proceso de re
 # Equipo
 
 ## UX/UI
-- [Andrés Bejarano]()[![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/andres-bejarano-6765aa241) <a href="https://www.behance.net/andresbejarano6"><img src="https://cdn-icons-png.flaticon.com/512/124/124035.png" alt="Andrés Bejarano" width="20" height="20"></a>
+- [Andrés Bejarano]()[![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/andres-bejarano-6765aa241) <a href="https://www.behance.net/andresbejarano6"><img src="https://cdn-icons-png.flaticon.com/512/124/124035.png" alt="Andrés Bejarano" width="30" height="30"></a>
 
-- [Tania Soto](https://github.com/tanisoto) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/taniasotoarq) [![](https://cdn-icons-png.flaticon.com/512/124/124035.png){width=20px height=20px}](https://www.behance.net/tanisoto)
+- [Tania Soto](https://github.com/tanisoto) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/taniasotoarq) <a href="https://www.behance.net/tanisoto"><img src="https://cdn-icons-png.flaticon.com/512/124/124035.png" alt="Andrés Bejarano" width="30" height="30"></a>
 
-- [Samuel Cárdenas]()[![](https://cdn-icons-png.flaticon.com/512/124/124035.png){width=20px height=20px}](https://www.behance.net/samuxui)
+- [Samuel Cárdenas]() <a href="https://www.behance.net/samuxui"><img src="https://cdn-icons-png.flaticon.com/512/124/124035.png" alt="Andrés Bejarano" width="30" height="30"></a>
 
 
 ## Frontend
