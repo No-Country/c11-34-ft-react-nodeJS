@@ -19,11 +19,11 @@ export function NavBar({
     if(!isDesktop){
       onNavbar()
     }
+    if(isDesktop) onDropdown()
   }
 
-  const toggleDropDown = () => {
+  const handleClickPerfil = () => {
     if(!isAuth) return navigate('/auth')
-    onDropdown()
   }
 
 
@@ -44,13 +44,16 @@ export function NavBar({
                 <img src={isOpenNavbar ? x : hamburger} alt='hamburger-icon' className='w-8 h-6 lg:w-6 lg:h-6 icon-color'/>
               </button>
 
-              <button onClick={toggleDropDown}  className="hidden lg:block">
+              <button onClick={handleClickPerfil}  className="hidden lg:block">
                   {
                     load  ? <Ring size={25} lineWeight={5} speed={2} color="black"/>
-                    :   <img src={user.imagen ? user.imagen : userCircle} alt='user-circle-icon' className='w-8 rounded-full h-8  text-icon-color'/>
+                    :  
+                    <Link to='/my-perfil'>
+                      <img src={user.imagen ? user.imagen : userCircle} alt='user-circle-icon' className='w-8 rounded-full h-8  text-icon-color'/>
+                    </Link> 
                   }
               </button>
-              <div className={`${!isOpenDrop && 'hidden'}  z-40 absolute transition-opacity -bottom-48 left-2 text-black bg-white shadow-md flex flex-col gap-y-1 text-sm font-inter whitespace-nowrap border rounded-lg after:w-0 after:h-0 after:border-r-8 after:border-r-transparent after:border-t-8 after:border-t-transparent after:border-l-8 after:border-l-transparent after:border-b-8 after:border-b-gray-300 after:absolute after:-top-4 after:-translate-x-1/2 after:left-1/2 `}>
+              <div className={`${!isOpenDrop && 'hidden'}  z-40 absolute transition-opacity -bottom-48 right-2 text-black bg-white shadow-md flex flex-col gap-y-1 text-sm font-inter whitespace-nowrap border rounded-lg after:w-0 after:h-0 after:border-r-8 after:border-r-transparent after:border-t-8 after:border-t-transparent after:border-l-8 after:border-l-transparent after:border-b-8 after:border-b-gray-300 after:absolute after:-top-4 after:-translate-x-1/2 after:left-1/2 `}>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Ver perfil</Link>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-perfil'>Favoritos</Link>
                 <Link className='hover:bg-gray-300/50 transition-all py-1.5 px-4 ' to='/my-reservations'>Reservas</Link>
