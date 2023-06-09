@@ -5,13 +5,15 @@ import Pencil from '../assets/pencil-svgrepo-com.svg';
 import { deleteReservation, editReservation, getRestaurant, listReservation } from "../services";
 
 
-export function MyReserves({email}) {
+export function MyReserves({}) {
     const [listReservations, setListReservations] = useState([]);
     const [restaurants, setRestaurants] = useState({});
     const [showCalendar, setShowCalendar] = useState(false);
     const [idRestaurants, setIdRestaurants] = useState([]);
     // const [selectedDiners, setSelectedDiners] = useState();
     // const [selectedHour, setSelectedHour] = useState(null);
+
+    const email = localStorage.getItem('userEmailReservation')
 
     useEffect(() => {
         listReservation(email)
