@@ -11,7 +11,7 @@ export function Home() {
         <p className="lg:text-xl hidden lg:block mb-4">Contamos con +500 restaurantes y bares asociados</p>
         <SearchBar/>
       </div>
-      <div className=" lg:px-5  px-10">
+      <div className=" lg:px-5  px-6">
         <Gallery />
       </div>
     </main>

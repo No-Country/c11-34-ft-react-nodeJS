@@ -15,13 +15,13 @@ export function Gallery() {
   if(error) return <div className="w-full text-center"><p className="font-montserrat text-xl font-semibold">{error}</p></div>
 
   return (
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-4 lg:gap-y-16">
             <GalleryRow title={'Cerca de vos'} cards={restaurants?.restt} isLoad={load} />
             <GalleryRow title={'Mejor calificados'} cards={restaurants?.restt} isLoad={load}/>
             {
               Object.values(user).length && user?.gustos.length 
               ?
-              <GalleryRow title={'A tu gusto'} cards={matchTastes || restaurants?.restt} isLoad={load}/>
+              <GalleryRow title={'Segun tu preferencia'} cards={matchTastes || restaurants?.restt} isLoad={load}/>
               : 
               <div className="w-full text-center flex flex-col gap-y-4">
                 <p className="text-xl font-inter font-medium">No tienes ninguna preferencia de gustos</p>

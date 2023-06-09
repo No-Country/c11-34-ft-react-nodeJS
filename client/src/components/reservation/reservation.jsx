@@ -117,7 +117,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     };
 
     return (
-        <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter'}>
+        <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter mb-4'}>
             <form onSubmit={handleSubmit} className={'flex flex-col gap-5'}>
                 <div className='flex flex-col gap-y-2 text-xs justify-around bg-white rounded-full'>
                     <div className='flex border rounded-lg shadow flex-row justify-between gap-1 items-center py-2 pl-3'>
@@ -166,7 +166,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
                     </button>
                 ) : (
                     <button
-                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center font-inter items-center rounded-full bg-bg-dark text-letter-color'
+                        className='whitespace-nowrap h-12 text-center text-sm flex justify-center font-inter items-center rounded-full bg-bg-dark text-letter-color hover:scale-[1.03] transition-transform'
                         type='submit'
                     >
                         Reservar

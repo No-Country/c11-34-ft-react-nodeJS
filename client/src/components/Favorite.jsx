@@ -4,17 +4,27 @@ import { FavoriteIcon } from "./FavoriteIcon";
 import { Ring } from "@uiball/loaders";
 import { useState } from "react";
 
-export function Favorite({restaurant, user, color, setColor}) {
+export function Favorite({restaurant, user}) {
 
   const [load, setLoad] = useState(false)
+  const isFavorite = user?.favoritos?.includes(restaurant?._id)
+  const [color, setColor] = useState(isFavorite ? '#f75252' : 'transparent')
 
   const handleFavorite  = async () => {
     setLoad(true)
+    let favoritesToSend;
     try {
-        await addFavorite(user.id, {data : [restaurant._id]})
-        if(color === 'transparent') setColor('#f75252')
-        else setColor('transparent')
-        toast.success(`${restaurant.nombre} ha sido agregado a favoritos`)
+        if(color === 'transparent') {
+          setColor('#f75252')
+          favoritesToSend = {data : [...user.favoritos, restaurant._id]}
+        } else {
+          const deleteFavorite = user?.favoritos?.filter(fav => fav !== restaurant._id)
+          setColor('transparent')
+          favoritesToSend = {data : deleteFavorite}
+        }
+       
+        await addFavorite(user.id, favoritesToSend)
+        toast.success(`${restaurant.nombre} ha sido ${color === 'transparent' ? 'agregado a' : 'eliminado de'} favoritos`)
     } catch (error) {
         console.log(error)
         toast.error('Algo salio mal')

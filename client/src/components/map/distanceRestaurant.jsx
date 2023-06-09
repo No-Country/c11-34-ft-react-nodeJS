@@ -46,7 +46,7 @@ export function Distance({ latitudDestiRestaurant, longitudeRestaurant }) {
     }, [latitudDestiRestaurant, longitudeRestaurant]);
 
     return (
-        <div className={'flex justify-start'}>
+        <div className={'flex justify-start text-sm lg:text-base'}>
             <h3> {distance} km</h3>
         </div>
     );
