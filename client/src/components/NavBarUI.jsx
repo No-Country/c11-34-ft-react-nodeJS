@@ -47,7 +47,7 @@ export function NavBarUI() {
       
     {
       !isDesktop && (
-        <NavBarMobile isOpen={openNavBar}/>
+        <NavBarMobile isOpen={openNavBar} setOpenNavBar={setOpenNavBar}/>
       )
     }
     {
