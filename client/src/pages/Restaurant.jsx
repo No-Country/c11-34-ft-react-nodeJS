@@ -177,6 +177,7 @@ export function Restaurant() {
                 {/* Reservation Form and Ubication */}
                 <section className={"lg:col-span-3"}>
                     <ReservationForm
+                      dinners={restaurant?.sillasPorMesa}
                       days={openRestaurant}
                       restaurant={restaurant?._id}
                       restaurantNombre={restaurant?.nombre}

@@ -14,7 +14,7 @@ import {
   listReservation,
 } from "../services";
 
-export function MyReserves({}) {
+export function MyReserves() {
   const [listReservations, setListReservations] = useState([]);
   const [restaurants, setRestaurants] = useState({});
   const [showCalendar, setShowCalendar] = useState(false);
@@ -111,6 +111,16 @@ export function MyReserves({}) {
       console.error(error);
     }
   };
+
+  if( !listReservations.length) return (
+    <>
+      <NavBarUI />
+      <main className="font-inter flex h-[80vh] flex-col items-center justify-center">
+        <h2 className="text-3xl font-medium text-black font-montserrat mb-2">{user.nombre} <span className="text-black-light">usted no tiene reservas</span></h2>
+        <Link to='/' className="mb-4 block text-gray-400 text-sm hover:text-gray-600 hover:underline transition-all">Reserva unos!</Link>
+      </main>
+    </>
+  )
 
   return (
     <>

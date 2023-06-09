@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import {getAvailableCustomers, makeReservation} from '../../services/index.js';
 import {toast} from "react-hot-toast";
 
-const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, userEmail}) => {
+const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes, turnos, userEmail, dinners}) => {
     const [actions, setActions] = useState({
         error: false,
         loading: false
@@ -18,7 +18,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     const [showCalendar, setShowCalendar] = useState(false);
     const [hideButtonImage, setHideButtonImage] = useState(false);
     const [selectedHour, setSelectedHour] = useState();
-    const [selectedDiners, setSelectedDiners] = useState(0);
+    const [selectedDiners, setSelectedDiners] = useState();
     const [selectedDate, setSelectedDate] = useState(null);
     const [customers, setCustomers] = useState();
 
@@ -27,8 +27,6 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
     const interval = turnos.inteval;
     const idRest = restaurant
     const reserveDate = localStorage.getItem('dateReserve');
-
-    console.log(reserveDate)
     const restoData = {
         imagenes: restaurantImagenes,
         nombre: restaurantNombre
@@ -56,6 +54,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
             const fetchData = async () => {
                 try {
                     const response = await getAvailableCustomers(idRest, reserveDate, selectedHour);
+                   
                     setCustomers(response);
                 } catch (error) {
                     console.error('Error fetching customers:', error);
@@ -109,16 +108,15 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
             await makeReservation(reservationData)
             setActions({loading: false, error: false})
             toast.success('Su reserva fue generada correctamente')
+            navigate(`/reserve`, {state: {restoData, reservationData}});
             
         } catch (e) {
-            const errorMessage = 'Error al generar la reserva'
+            const errorMessage = e.response.data.msg || 'Algo salio mal!'
             toast.error(errorMessage)
             setActions({loading: false, error: true})
         }
-        console.log(`Se esta por ejecutar navigate a reserve`)
-        navigate(`/reserve`, {state: {restoData, reservationData}});
         
-    };
+    }
 
     return (
         <div className={'mx-auto rounded-lg p-2.5    border shadow font-inter mb-4'}>
@@ -152,7 +150,7 @@ const ReservationForm = ({days, restaurant, restaurantNombre, restaurantImagenes
                     <div className={'flex border rounded-lg shadow justify-between py-2 px-2 static'}>
                         <img src={user} alt='user' width={20} height={20} className='left-2'/>
                         <select value={selectedDiners} onChange={handleDiners} className='p-2.5 rounded'>
-                            {Array.from({length: customers}).map((_, index) => (
+                            {Array.from({length: dinners}).map((_, index) => (
                                 <option key={index} value={index.toString()}>
                                     {index}
                                 </option>
