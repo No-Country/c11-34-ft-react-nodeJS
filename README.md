@@ -7,7 +7,6 @@ Morfi es una plataforma web diseñada para facilitar y agilizar el proceso de re
 
 ## UX/UI
 - [Andrés Bejarano]()[![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/andres-bejarano-6765aa241) [![](https://cdn-icons-png.flaticon.com/512/124/124035.png){width=20px height=20px}](https://www.behance.net/andresbejarano6)
-
 - [Tania Soto](https://github.com/tanisoto) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/taniasotoarq) [![](https://cdn-icons-png.flaticon.com/512/124/124035.png){width=20px height=20px}](https://www.behance.net/tanisoto)
 
 - [Samuel Cárdenas]()[![](https://cdn-icons-png.flaticon.com/512/124/124035.png){width=20px height=20px}](https://www.behance.net/samuxui)
