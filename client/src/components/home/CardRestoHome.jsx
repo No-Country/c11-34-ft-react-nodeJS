@@ -30,7 +30,7 @@ export function CardRestoHome({_id, imagenes, nombre, costoReserva, direccion}) 
 
     return (
         <div className="flex flex-col mt-4 items-center justify-center gap-2 bg-white pb-5 rounded-lg relative" >
-            <img src={img} alt={nombre} className='rounded-lg w-72 h-72 object-cover'/>
+            <img src={img} alt={nombre} className='rounded-lg w-full h-72 object-cover'/>
             <div className='flex flex-col justify-start mt-4 w-full gap-3'>
                 <Link to={`/restaurant/${_id}`}>
                     <div>{nombre}</div>
