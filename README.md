@@ -50,13 +50,13 @@ Para acceder a la vista del front-end se puede ingresar por medio local o en el 
  
  ## Equipo de trabajo
 ## UI/UX
-   Tania Soto - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/tanisoto)
-   - Andres Bejarano
-   - Samuel Cardenas
+   Tania Soto - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/tanisoto) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/taniasotoarq)
+   - Andres Bejarano [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)]((https://www.linkedin.com/in/andres-bejarano-6765aa241))
+   - Samuel Cardenas [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)]()
 ## Back-end
-   - Gian Franco - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/elkake)
-   - Santiago Rodriguez - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/santy6221)
+   - Gian Franco - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/elkake)[![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/gianfranco-marquez/)
+   - Santiago Rodriguez - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/santy6221)[![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)]()
 ## Front-end
-   - Matias Cabrera - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/matias-d)
-   - Lucas Brumatti - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/lucasBruma)
-   - Stephany Castro - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/StephanyCS1)
+   - Matias Cabrera - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/matias-d)[![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)]()
+   - Lucas Brumatti - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/lucasBruma) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](/)
+   - Stephany Castro - [![GitHub](https://img.icons8.com/?size=25&id=52539&format=png&color=d4b5b5)](https://github.com/StephanyCS1) [![](https://icongr.am/devicon/linkedin-original.svg?size=34&color=d4b5b5)](https://www.linkedin.com/in/stephany-castro-salas-03a001172/)

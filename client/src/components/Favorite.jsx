@@ -3,6 +3,7 @@ import { addFavorite } from "../services";
 import { FavoriteIcon } from "./FavoriteIcon";
 import { Ring } from "@uiball/loaders";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Favorite({restaurant, user}) {
 
@@ -10,7 +11,17 @@ export function Favorite({restaurant, user}) {
   const isFavorite = user?.favoritos?.includes(restaurant?._id)
   const [color, setColor] = useState(isFavorite ? '#f75252' : 'transparent')
 
+  const navigate = useNavigate()
+
+
   const handleFavorite  = async () => {
+
+    if(!Object.values(user).length) {
+      navigate('/auth')
+      toast.error('Debe ser usuario de Morfi para guardar en favoritos')
+      return
+    }
+
     setLoad(true)
     let favoritesToSend;
     try {

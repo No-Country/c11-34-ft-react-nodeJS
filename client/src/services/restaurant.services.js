@@ -5,7 +5,15 @@ const API_URL = 'https://ncback-production.up.railway.app/api'
 
 export async function getRestaurants() {
     const {data} = await axios.get(`${API_URL}/restaurant`)
-    return data
+
+    const restWithCords = await Promise.all(
+        data?.restt?.map(async (rest) => {
+            const res = await getRestaurantCoords(rest?.direccion)
+            return {...rest, cords :res}
+        })
+    )
+
+    return restWithCords
 }
 
 export async function getRestaurantByEmail(email) {
@@ -14,8 +22,9 @@ export async function getRestaurantByEmail(email) {
 }
 
 export async function getRestaurant(id) {
-    const {data} = await axios.get(`${API_URL}/restaurant`)
-    const restaurantFounded = data?.restt.find(res => res._id === id)
+    const rest = await getRestaurants()
+    const restaurantFounded = rest?.find(res => res._id === id)
+
     return restaurantFounded
 }
 
