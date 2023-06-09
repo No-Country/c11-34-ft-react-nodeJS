@@ -15,20 +15,8 @@ export async function getAvailableCustomers(id, date, shiftId) {
 }
 
 export async function makeReservation(data) {
-    const form = new FormData();
-    for (const key in data) {
-        for (const key in data) {
-            form.append(key, data[key])
-        }
-        const {data} = await axios.post(`${API_URL}/restaurant/turnos`, form, {
-
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }
-        })
-        return data
-    }
+    const response = await axios.post(`${API_URL}/restaurant/turnos`, data);
+    return response.data;
 }
 
 export async function listReservation(email) {
